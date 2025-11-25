@@ -1,0 +1,2392 @@
+{
+  "map_name": "Россия 90-х: Путешествие на восток / Russia 90s: Journey to the East",
+  "version": "2.1",
+  "description": "Путешествие через Россию в стиле Keep Driving с дефицитом ресурсов и свободным выбором маршрута / Journey through Russia in Keep Driving style with resource scarcity and free route choice",
+  "author": "Road Trip Adventure RPG Team",
+  "nodes": [
+    {
+      "id": 1,
+      "type": "HOME_BASE",
+      "name": "Москва - Окраина",
+      "name_en": "Moscow - Outskirts",
+      "position": {
+        "x": 150,
+        "y": 400
+      },
+      "biome": "urban",
+      "description": "Окраина Москвы. Ваш дом и начало путешествия.",
+      "structures": [
+        {
+          "type": "GAS_PUMP",
+          "name": "Заправка 'Нефтьмаг'",
+          "name_en": "Gas Station 'Neftmag'",
+          "available": true
+        },
+        {
+          "type": "STORE",
+          "name": "Ларёк 'Продукты'",
+          "name_en": "Kiosk 'Products'",
+          "available": true
+        },
+        {
+          "type": "GARAGE",
+          "name": "Гараж дяди Васи",
+          "name_en": "Uncle Vasya's Garage",
+          "available": true
+        },
+        {
+          "type": "CAFE",
+          "name": "Кафе 'У дороги'",
+          "name_en": "Cafe 'By the Road'",
+          "available": true
+        }
+      ],
+      "unlockNodes": [
+        2
+      ]
+    },
+    {
+      "id": 2,
+      "type": "VILLAGE",
+      "name": "Деревня Петрово",
+      "name_en": "Petrovo Village",
+      "position": {
+        "x": 250,
+        "y": 380
+      },
+      "biome": "rural",
+      "description": "Маленькая деревня. Старая заправка работает не всегда.",
+      "structures": [
+        {
+          "type": "GAS_PUMP",
+          "name": "Заправка",
+          "name_en": "Gas Station",
+          "available": true
+        },
+        {
+          "type": "STORE",
+          "name": "Сельпо",
+          "name_en": "Rural Store",
+          "available": true
+        },
+        {
+          "type": "CAFE",
+          "name": "Столовая",
+          "name_en": "Canteen",
+          "available": true
+        }
+      ],
+      "unlockNodes": [
+        1,
+        3,
+        4
+      ]
+    },
+    {
+      "id": 3,
+      "type": "VILLAGE",
+      "name": "Посёлок Дорожный",
+      "name_en": "Dorozhny Settlement",
+      "position": {
+        "x": 320,
+        "y": 420
+      },
+      "biome": "rural",
+      "description": "Придорожный посёлок. Здесь есть мастерская, но нет заправки.",
+      "structures": [
+        {
+          "type": "STORE",
+          "name": "Магазин",
+          "name_en": "Store",
+          "available": true
+        },
+        {
+          "type": "GARAGE",
+          "name": "Автосервис",
+          "name_en": "Auto Service",
+          "available": true
+        }
+      ],
+      "unlockNodes": [
+        2,
+        4,
+        5
+      ]
+    },
+    {
+      "id": 4,
+      "type": "VILLAGE",
+      "name": "Село Берёзовка",
+      "name_en": "Beryozovka Village",
+      "position": {
+        "x": 350,
+        "y": 340
+      },
+      "biome": "forest",
+      "description": "Лесное село. Только заправка и магазин.",
+      "structures": [
+        {
+          "type": "GAS_PUMP",
+          "name": "АЗС",
+          "name_en": "Gas Station",
+          "available": true
+        },
+        {
+          "type": "STORE",
+          "name": "Магазинчик",
+          "name_en": "Small Store",
+          "available": true
+        },
+        {
+          "type": "CAFE",
+          "name": "Столовая",
+          "name_en": "Canteen",
+          "available": true
+        }
+      ],
+      "unlockNodes": [
+        2,
+        3,
+        6
+      ]
+    },
+    {
+      "id": 5,
+      "type": "VILLAGE",
+      "name": "Посёлок Заречный",
+      "name_en": "Zarechny Settlement",
+      "position": {
+        "x": 430,
+        "y": 450
+      },
+      "biome": "rural",
+      "description": "Маленький посёлок за рекой. Есть магазин, но заправки нет.",
+      "structures": [
+        {
+          "type": "STORE",
+          "name": "Магазин",
+          "name_en": "Store",
+          "available": true
+        }
+      ],
+      "unlockNodes": [
+        3,
+        7
+      ]
+    },
+    {
+      "id": 6,
+      "type": "TOWN",
+      "name": "Александров",
+      "name_en": "Aleksandrov",
+      "position": {
+        "x": 450,
+        "y": 320
+      },
+      "biome": "urban",
+      "description": "Небольшой городок. Есть заправка, магазин и мастерская.",
+      "structures": [
+        {
+          "type": "GAS_PUMP",
+          "name": "Заправка",
+          "name_en": "Gas Station",
+          "available": true
+        },
+        {
+          "type": "STORE",
+          "name": "Универмаг",
+          "name_en": "Department Store",
+          "available": true
+        },
+        {
+          "type": "GARAGE",
+          "name": "СТО",
+          "name_en": "Auto Service",
+          "available": true
+        },
+        {
+          "type": "CAFE",
+          "name": "Придорожное кафе",
+          "name_en": "Roadside Cafe",
+          "available": true
+        }
+      ],
+      "unlockNodes": [
+        4,
+        8,
+        9
+      ]
+    },
+    {
+      "id": 7,
+      "type": "VILLAGE",
+      "name": "Деревня Красное",
+      "name_en": "Krasnoye Village",
+      "position": {
+        "x": 520,
+        "y": 470
+      },
+      "biome": "rural",
+      "description": "Старая деревня. Заправка и магазин.",
+      "structures": [
+        {
+          "type": "GAS_PUMP",
+          "name": "Заправка",
+          "name_en": "Gas Station",
+          "available": true
+        },
+        {
+          "type": "STORE",
+          "name": "Магазин",
+          "name_en": "Store",
+          "available": true
+        }
+      ],
+      "unlockNodes": [
+        5,
+        9,
+        10
+      ]
+    },
+    {
+      "id": 8,
+      "type": "VILLAGE",
+      "name": "Посёлок Сосновый",
+      "name_en": "Sosnovy Settlement",
+      "position": {
+        "x": 540,
+        "y": 290
+      },
+      "biome": "forest",
+      "description": "Посёлок в сосновом бору. Только магазин.",
+      "structures": [
+        {
+          "type": "STORE",
+          "name": "Магазин",
+          "name_en": "Store",
+          "available": true
+        }
+      ],
+      "unlockNodes": [
+        6,
+        9,
+        11
+      ]
+    },
+    {
+      "id": 9,
+      "type": "VILLAGE",
+      "name": "Село Покровское",
+      "name_en": "Pokrovskoye Village",
+      "position": {
+        "x": 530,
+        "y": 360
+      },
+      "biome": "rural",
+      "description": "Село на развилке. Есть заправка, магазин и редко работающий сервис.",
+      "structures": [
+        {
+          "type": "GAS_PUMP",
+          "name": "АЗС",
+          "name_en": "Gas Station",
+          "available": true
+        },
+        {
+          "type": "STORE",
+          "name": "Магазин",
+          "name_en": "Store",
+          "available": true
+        },
+        {
+          "type": "GARAGE",
+          "name": "Мастерская",
+          "name_en": "Workshop",
+          "available": false
+        },
+        {
+          "type": "CAFE",
+          "name": "Столовая",
+          "name_en": "Canteen",
+          "available": true
+        }
+      ],
+      "unlockNodes": [
+        6,
+        7,
+        8,
+        11,
+        12
+      ]
+    },
+    {
+      "id": 10,
+      "type": "TOWN",
+      "name": "Владимир",
+      "name_en": "Vladimir",
+      "position": {
+        "x": 620,
+        "y": 450
+      },
+      "biome": "urban",
+      "description": "Древний город. Заправка, магазин, мастерская и мотель.",
+      "structures": [
+        {
+          "type": "GAS_PUMP",
+          "name": "Центральная АЗС",
+          "name_en": "Central Gas Station",
+          "available": true
+        },
+        {
+          "type": "STORE",
+          "name": "Магазин 'Продукты'",
+          "name_en": "Store 'Products'",
+          "available": true
+        },
+        {
+          "type": "GARAGE",
+          "name": "Автосервис",
+          "name_en": "Auto Service",
+          "available": true
+        },
+        {
+          "type": "MOTEL",
+          "name": "Гостиница",
+          "name_en": "Hotel",
+          "available": true
+        },
+        {
+          "type": "CAFE",
+          "name": "Придорожное кафе",
+          "name_en": "Roadside Cafe",
+          "available": true
+        }
+      ],
+      "unlockNodes": [
+        7,
+        12,
+        13
+      ]
+    },
+    {
+      "id": 11,
+      "type": "VILLAGE",
+      "name": "Деревня Ольховка",
+      "name_en": "Olkhovka Village",
+      "position": {
+        "x": 630,
+        "y": 300
+      },
+      "biome": "rural",
+      "description": "Маленькая деревня. Заправка и магазин.",
+      "structures": [
+        {
+          "type": "GAS_PUMP",
+          "name": "Заправка",
+          "name_en": "Gas Station",
+          "available": true
+        },
+        {
+          "type": "STORE",
+          "name": "Магазин",
+          "name_en": "Store",
+          "available": true
+        },
+        {
+          "type": "CAFE",
+          "name": "Столовая",
+          "name_en": "Canteen",
+          "available": true
+        }
+      ],
+      "unlockNodes": [
+        8,
+        9,
+        12,
+        14
+      ]
+    },
+    {
+      "id": 12,
+      "type": "VILLAGE",
+      "name": "Посёлок Речной",
+      "name_en": "Rechnoy Settlement",
+      "position": {
+        "x": 610,
+        "y": 380
+      },
+      "biome": "rural",
+      "description": "Посёлок у реки. Только магазин, заправки нет.",
+      "structures": [
+        {
+          "type": "STORE",
+          "name": "Магазин",
+          "name_en": "Store",
+          "available": true
+        }
+      ],
+      "unlockNodes": [
+        9,
+        10,
+        11,
+        13
+      ]
+    },
+    {
+      "id": 13,
+      "type": "VILLAGE",
+      "name": "Село Боголюбово",
+      "name_en": "Bogolyubovo Village",
+      "position": {
+        "x": 700,
+        "y": 420
+      },
+      "biome": "rural",
+      "description": "Историческое село. Заправка и магазин.",
+      "structures": [
+        {
+          "type": "GAS_PUMP",
+          "name": "Заправка",
+          "name_en": "Gas Station",
+          "available": true
+        },
+        {
+          "type": "STORE",
+          "name": "Магазин",
+          "name_en": "Store",
+          "available": true
+        }
+      ],
+      "unlockNodes": [
+        10,
+        12,
+        15
+      ]
+    },
+    {
+      "id": 14,
+      "type": "VILLAGE",
+      "name": "Деревня Горки",
+      "name_en": "Gorki Village",
+      "position": {
+        "x": 720,
+        "y": 280
+      },
+      "biome": "rural",
+      "description": "Деревня на холме. Магазин и мастерская, но нет заправки.",
+      "structures": [
+        {
+          "type": "STORE",
+          "name": "Магазин",
+          "name_en": "Store",
+          "available": true
+        },
+        {
+          "type": "GARAGE",
+          "name": "Мастерская",
+          "name_en": "Workshop",
+          "available": true
+        }
+      ],
+      "unlockNodes": [
+        11,
+        16
+      ]
+    },
+    {
+      "id": 15,
+      "type": "TOWN",
+      "name": "Гороховец",
+      "name_en": "Gorokhovets",
+      "position": {
+        "x": 780,
+        "y": 440
+      },
+      "biome": "urban",
+      "description": "Старинный город. Заправка, магазин и мастерская.",
+      "structures": [
+        {
+          "type": "GAS_PUMP",
+          "name": "АЗС",
+          "name_en": "Gas Station",
+          "available": true
+        },
+        {
+          "type": "STORE",
+          "name": "Магазин",
+          "name_en": "Store",
+          "available": true
+        },
+        {
+          "type": "GARAGE",
+          "name": "Автосервис",
+          "name_en": "Auto Service",
+          "available": true
+        },
+        {
+          "type": "CAFE",
+          "name": "Придорожное кафе",
+          "name_en": "Roadside Cafe",
+          "available": true
+        }
+      ],
+      "unlockNodes": [
+        13,
+        17,
+        18
+      ]
+    },
+    {
+      "id": 16,
+      "type": "VILLAGE",
+      "name": "Посёлок Вязники",
+      "name_en": "Vyazniki Settlement",
+      "position": {
+        "x": 810,
+        "y": 300
+      },
+      "biome": "rural",
+      "description": "Промышленный посёлок. Заправка и магазин.",
+      "structures": [
+        {
+          "type": "GAS_PUMP",
+          "name": "Заправка",
+          "name_en": "Gas Station",
+          "available": true
+        },
+        {
+          "type": "STORE",
+          "name": "Магазин",
+          "name_en": "Store",
+          "available": true
+        },
+        {
+          "type": "CAFE",
+          "name": "Столовая",
+          "name_en": "Canteen",
+          "available": true
+        }
+      ],
+      "unlockNodes": [
+        14,
+        19
+      ]
+    },
+    {
+      "id": 17,
+      "type": "VILLAGE",
+      "name": "Деревня Павлово",
+      "name_en": "Pavlovo Village",
+      "position": {
+        "x": 860,
+        "y": 460
+      },
+      "biome": "rural",
+      "description": "Маленькая деревня. Только магазин.",
+      "structures": [
+        {
+          "type": "STORE",
+          "name": "Магазин",
+          "name_en": "Store",
+          "available": true
+        }
+      ],
+      "unlockNodes": [
+        15,
+        18,
+        20
+      ]
+    },
+    {
+      "id": 18,
+      "type": "VILLAGE",
+      "name": "Село Лысково",
+      "name_en": "Lyskovo Village",
+      "position": {
+        "x": 870,
+        "y": 400
+      },
+      "biome": "rural",
+      "description": "Село на Волге. Заправка и магазин.",
+      "structures": [
+        {
+          "type": "GAS_PUMP",
+          "name": "АЗС",
+          "name_en": "Gas Station",
+          "available": true
+        },
+        {
+          "type": "STORE",
+          "name": "Магазин",
+          "name_en": "Store",
+          "available": true
+        }
+      ],
+      "unlockNodes": [
+        15,
+        17,
+        19,
+        20
+      ]
+    },
+    {
+      "id": 19,
+      "type": "VILLAGE",
+      "name": "Посёлок Ковров",
+      "name_en": "Kovrov Settlement",
+      "position": {
+        "x": 900,
+        "y": 320
+      },
+      "biome": "industrial",
+      "description": "Промышленный посёлок. Заправка, магазин и мастерская.",
+      "structures": [
+        {
+          "type": "GAS_PUMP",
+          "name": "Заправка",
+          "name_en": "Gas Station",
+          "available": true
+        },
+        {
+          "type": "STORE",
+          "name": "Магазин",
+          "name_en": "Store",
+          "available": true
+        },
+        {
+          "type": "GARAGE",
+          "name": "Мотороремонтный завод",
+          "name_en": "Motor Repair Plant",
+          "available": true
+        },
+        {
+          "type": "CAFE",
+          "name": "Столовая",
+          "name_en": "Canteen",
+          "available": true
+        }
+      ],
+      "unlockNodes": [
+        16,
+        18,
+        20,
+        21
+      ]
+    },
+    {
+      "id": 20,
+      "type": "CITY",
+      "name": "Нижний Новгород",
+      "name_en": "Nizhny Novgorod",
+      "position": {
+        "x": 950,
+        "y": 430
+      },
+      "biome": "urban",
+      "description": "Крупный город на Волге. Полный набор услуг.",
+      "structures": [
+        {
+          "type": "GAS_PUMP",
+          "name": "Центральная АЗС",
+          "name_en": "Central Gas Station",
+          "available": true
+        },
+        {
+          "type": "STORE",
+          "name": "Супермаркет",
+          "name_en": "Supermarket",
+          "available": true
+        },
+        {
+          "type": "GARAGE",
+          "name": "Автосервис 'Профи'",
+          "name_en": "Auto Service 'Profi'",
+          "available": true
+        },
+        {
+          "type": "MOTEL",
+          "name": "Гостиница 'Волга'",
+          "name_en": "Hotel 'Volga'",
+          "available": true
+        },
+        {
+          "type": "WORK_AGENCY",
+          "name": "Биржа труда",
+          "name_en": "Employment Agency",
+          "available": true
+        },
+        {
+          "type": "CAFE",
+          "name": "Кафе 'Нижний'",
+          "name_en": "Cafe 'Nizhny'",
+          "available": true
+        }
+      ],
+      "unlockNodes": [
+        17,
+        18,
+        19,
+        21,
+        22
+      ]
+    },
+    {
+      "id": 21,
+      "type": "VILLAGE",
+      "name": "Деревня Балахна",
+      "name_en": "Balakhna Village",
+      "position": {
+        "x": 1020,
+        "y": 360
+      },
+      "biome": "rural",
+      "description": "Деревня у реки. Заправка и магазин.",
+      "structures": [
+        {
+          "type": "GAS_PUMP",
+          "name": "Заправка",
+          "name_en": "Gas Station",
+          "available": true
+        },
+        {
+          "type": "STORE",
+          "name": "Магазин",
+          "name_en": "Store",
+          "available": true
+        }
+      ],
+      "unlockNodes": [
+        19,
+        20,
+        22,
+        23
+      ]
+    },
+    {
+      "id": 22,
+      "type": "VILLAGE",
+      "name": "Посёлок Кстово",
+      "name_en": "Kstovo Settlement",
+      "position": {
+        "x": 1010,
+        "y": 470
+      },
+      "biome": "industrial",
+      "description": "Нефтехимический посёлок. Заправка, магазин, но мастерская не работает.",
+      "structures": [
+        {
+          "type": "GAS_PUMP",
+          "name": "НПЗ Заправка",
+          "name_en": "Refinery Gas Station",
+          "available": true
+        },
+        {
+          "type": "STORE",
+          "name": "Магазин",
+          "name_en": "Store",
+          "available": true
+        },
+        {
+          "type": "GARAGE",
+          "name": "Мастерская",
+          "name_en": "Workshop",
+          "available": false
+        }
+      ],
+      "unlockNodes": [
+        20,
+        21,
+        24
+      ]
+    },
+    {
+      "id": 23,
+      "type": "VILLAGE",
+      "name": "Село Городец",
+      "name_en": "Gorodets Village",
+      "position": {
+        "x": 1100,
+        "y": 340
+      },
+      "biome": "rural",
+      "description": "Историческое село. Только магазин.",
+      "structures": [
+        {
+          "type": "STORE",
+          "name": "Магазин",
+          "name_en": "Store",
+          "available": true
+        }
+      ],
+      "unlockNodes": [
+        21,
+        24,
+        25
+      ]
+    },
+    {
+      "id": 24,
+      "type": "VILLAGE",
+      "name": "Деревня Чкаловск",
+      "name_en": "Chkalovsk Village",
+      "position": {
+        "x": 1090,
+        "y": 450
+      },
+      "biome": "rural",
+      "description": "Деревня на берегу. Заправка и магазин.",
+      "structures": [
+        {
+          "type": "GAS_PUMP",
+          "name": "Заправка",
+          "name_en": "Gas Station",
+          "available": true
+        },
+        {
+          "type": "STORE",
+          "name": "Магазин",
+          "name_en": "Store",
+          "available": true
+        }
+      ],
+      "unlockNodes": [
+        22,
+        23,
+        25
+      ]
+    },
+    {
+      "id": 25,
+      "type": "TOWN",
+      "name": "Чебоксары",
+      "name_en": "Cheboksary",
+      "position": {
+        "x": 1180,
+        "y": 400
+      },
+      "biome": "urban",
+      "description": "Столица Чувашии. Заправка, магазин, мастерская и мотель.",
+      "structures": [
+        {
+          "type": "GAS_PUMP",
+          "name": "АЗС",
+          "name_en": "Gas Station",
+          "available": true
+        },
+        {
+          "type": "STORE",
+          "name": "Магазин",
+          "name_en": "Store",
+          "available": true
+        },
+        {
+          "type": "GARAGE",
+          "name": "Автосервис",
+          "name_en": "Auto Service",
+          "available": true
+        },
+        {
+          "type": "MOTEL",
+          "name": "Гостиница",
+          "name_en": "Hotel",
+          "available": true
+        },
+        {
+          "type": "CAFE",
+          "name": "Придорожное кафе",
+          "name_en": "Roadside Cafe",
+          "available": true
+        }
+      ],
+      "unlockNodes": [
+        23,
+        24,
+        26,
+        27
+      ]
+    },
+    {
+      "id": 26,
+      "type": "VILLAGE",
+      "name": "Посёлок Марпосад",
+      "name_en": "Marposad Settlement",
+      "position": {
+        "x": 1250,
+        "y": 360
+      },
+      "biome": "rural",
+      "description": "Небольшой посёлок. Заправка и магазин.",
+      "structures": [
+        {
+          "type": "GAS_PUMP",
+          "name": "Заправка",
+          "name_en": "Gas Station",
+          "available": true
+        },
+        {
+          "type": "STORE",
+          "name": "Магазин",
+          "name_en": "Store",
+          "available": true
+        }
+      ],
+      "unlockNodes": [
+        25,
+        27,
+        28
+      ]
+    },
+    {
+      "id": 27,
+      "type": "VILLAGE",
+      "name": "Деревня Цивильск",
+      "name_en": "Tsivilsk Village",
+      "position": {
+        "x": 1260,
+        "y": 440
+      },
+      "biome": "rural",
+      "description": "Деревня у дороги. Только магазин, заправки нет.",
+      "structures": [
+        {
+          "type": "STORE",
+          "name": "Магазин",
+          "name_en": "Store",
+          "available": true
+        }
+      ],
+      "unlockNodes": [
+        25,
+        26,
+        28
+      ]
+    },
+    {
+      "id": 28,
+      "type": "CITY",
+      "name": "Казань",
+      "name_en": "Kazan",
+      "position": {
+        "x": 1330,
+        "y": 400
+      },
+      "biome": "urban",
+      "description": "Столица Татарстана. Полный набор услуг.",
+      "structures": [
+        {
+          "type": "GAS_PUMP",
+          "name": "АЗС 'Татнефть'",
+          "name_en": "Gas Station 'Tatneft'",
+          "available": true
+        },
+        {
+          "type": "STORE",
+          "name": "Рынок",
+          "name_en": "Market",
+          "available": true
+        },
+        {
+          "type": "GARAGE",
+          "name": "Автосервис",
+          "name_en": "Auto Service",
+          "available": true
+        },
+        {
+          "type": "MOTEL",
+          "name": "Гостиница",
+          "name_en": "Hotel",
+          "available": true
+        },
+        {
+          "type": "WORK_AGENCY",
+          "name": "Биржа труда",
+          "name_en": "Employment Agency",
+          "available": true
+        },
+        {
+          "type": "CAFE",
+          "name": "Кафе 'Казань'",
+          "name_en": "Cafe 'Kazan'",
+          "available": true
+        }
+      ],
+      "unlockNodes": [
+        26,
+        27
+      ]
+    }
+  ],
+  "roads": [
+    {
+      "from": 1,
+      "to": 2,
+      "type": "ROAD",
+      "distance": 113,
+      "name": "Дорога к Петрово",
+      "name_en": "Road to Petrovo",
+      "condition": 65,
+      "description": "Старая дорога, местами ямы.",
+      "events": [
+        "event_pothole",
+        "event_old_car"
+      ]
+    },
+    {
+      "from": 2,
+      "to": 1,
+      "type": "ROAD",
+      "distance": 123,
+      "name": "Дорога к Петрово",
+      "name_en": "Road to Petrovo",
+      "condition": 65,
+      "description": "Старая дорога, местами ямы.",
+      "events": [
+        "event_pothole",
+        "event_old_car"
+      ]
+    },
+    {
+      "from": 2,
+      "to": 3,
+      "type": "ROAD",
+      "distance": 100,
+      "name": "Дорога к Дорожному",
+      "name_en": "Road to Dorozhny",
+      "condition": 70,
+      "description": "Просёлочная дорога.",
+      "events": [
+        "event_hitchhiker",
+        "event_breakdown"
+      ]
+    },
+    {
+      "from": 3,
+      "to": 2,
+      "type": "ROAD",
+      "distance": 100,
+      "name": "Дорога к Дорожному",
+      "name_en": "Road to Dorozhny",
+      "condition": 70,
+      "description": "Просёлочная дорога.",
+      "events": [
+        "event_hitchhiker",
+        "event_breakdown"
+      ]
+    },
+    {
+      "from": 2,
+      "to": 4,
+      "type": "ROAD",
+      "distance": 105,
+      "name": "Дорога к Берёзовке",
+      "name_en": "Road to Beryozovka",
+      "condition": 60,
+      "description": "Лесная дорога.",
+      "events": [
+        "event_forest_encounter",
+        "event_weather"
+      ]
+    },
+    {
+      "from": 4,
+      "to": 2,
+      "type": "ROAD",
+      "distance": 102,
+      "name": "Дорога к Берёзовке",
+      "name_en": "Road to Beryozovka",
+      "condition": 60,
+      "description": "Лесная дорога.",
+      "events": [
+        "event_forest_encounter",
+        "event_weather"
+      ]
+    },
+    {
+      "from": 3,
+      "to": 5,
+      "type": "ROAD",
+      "distance": 133,
+      "name": "Дорога к Заречному",
+      "name_en": "Road to Zarechny",
+      "condition": 55,
+      "description": "Плохая дорога через реку.",
+      "events": [
+        "event_broken_bridge",
+        "event_muddy_road"
+      ]
+    },
+    {
+      "from": 5,
+      "to": 3,
+      "type": "ROAD",
+      "distance": 132,
+      "name": "Дорога к Заречному",
+      "name_en": "Road to Zarechny",
+      "condition": 55,
+      "description": "Плохая дорога через реку.",
+      "events": [
+        "event_broken_bridge",
+        "event_muddy_road"
+      ]
+    },
+    {
+      "from": 4,
+      "to": 6,
+      "type": "ROAD",
+      "distance": 143,
+      "name": "Дорога к Александрову",
+      "name_en": "Road to Aleksandrov",
+      "condition": 75,
+      "description": "Региональная дорога.",
+      "events": [
+        "event_police_checkpoint",
+        "event_rest_stop"
+      ]
+    },
+    {
+      "from": 6,
+      "to": 4,
+      "type": "ROAD",
+      "distance": 146,
+      "name": "Дорога к Александрову",
+      "name_en": "Road to Aleksandrov",
+      "condition": 75,
+      "description": "Региональная дорога.",
+      "events": [
+        "event_police_checkpoint",
+        "event_rest_stop"
+      ]
+    },
+    {
+      "from": 5,
+      "to": 7,
+      "type": "ROAD",
+      "distance": 119,
+      "name": "Дорога к Красному",
+      "name_en": "Road to Krasnoye",
+      "condition": 50,
+      "description": "Старая разбитая дорога.",
+      "events": [
+        "event_pothole_damage",
+        "event_village_market"
+      ]
+    },
+    {
+      "from": 7,
+      "to": 5,
+      "type": "ROAD",
+      "distance": 126,
+      "name": "Дорога к Красному",
+      "name_en": "Road to Krasnoye",
+      "condition": 50,
+      "description": "Старая разбитая дорога.",
+      "events": [
+        "event_pothole_damage",
+        "event_village_market"
+      ]
+    },
+    {
+      "from": 6,
+      "to": 8,
+      "type": "ROAD",
+      "distance": 134,
+      "name": "Дорога к Сосновому",
+      "name_en": "Road to Sosnovy",
+      "condition": 68,
+      "description": "Дорога через лес.",
+      "events": [
+        "event_forest_path",
+        "event_deer"
+      ]
+    },
+    {
+      "from": 8,
+      "to": 6,
+      "type": "ROAD",
+      "distance": 145,
+      "name": "Дорога к Сосновому",
+      "name_en": "Road to Sosnovy",
+      "condition": 68,
+      "description": "Дорога через лес.",
+      "events": [
+        "event_forest_path",
+        "event_deer"
+      ]
+    },
+    {
+      "from": 6,
+      "to": 9,
+      "type": "ROAD",
+      "distance": 115,
+      "name": "Дорога к Покровскому",
+      "name_en": "Road to Pokrovskoye",
+      "condition": 72,
+      "description": "Развилка дорог.",
+      "events": [
+        "event_crossroads",
+        "event_trucker"
+      ]
+    },
+    {
+      "from": 9,
+      "to": 6,
+      "type": "ROAD",
+      "distance": 120,
+      "name": "Дорога к Покровскому",
+      "name_en": "Road to Pokrovskoye",
+      "condition": 72,
+      "description": "Развилка дорог.",
+      "events": [
+        "event_crossroads",
+        "event_trucker"
+      ]
+    },
+    {
+      "from": 7,
+      "to": 10,
+      "type": "HIGHWAY",
+      "distance": 156,
+      "name": "Трасса M7",
+      "name_en": "M7 Highway",
+      "condition": 85,
+      "description": "Участок трассы М7.",
+      "events": [
+        "event_highway_patrol",
+        "event_roadside_cafe"
+      ]
+    },
+    {
+      "from": 10,
+      "to": 7,
+      "type": "HIGHWAY",
+      "distance": 166,
+      "name": "Трасса M7",
+      "name_en": "M7 Highway",
+      "condition": 85,
+      "description": "Участок трассы М7.",
+      "events": [
+        "event_highway_patrol",
+        "event_roadside_cafe"
+      ]
+    },
+    {
+      "from": 8,
+      "to": 11,
+      "type": "ROAD",
+      "distance": 138,
+      "name": "Дорога к Ольховке",
+      "name_en": "Road to Olkhovka",
+      "condition": 62,
+      "description": "Лесная дорога.",
+      "events": [
+        "event_logging_truck",
+        "event_forest_encounter"
+      ]
+    },
+    {
+      "from": 11,
+      "to": 8,
+      "type": "ROAD",
+      "distance": 139,
+      "name": "Дорога к Ольховке",
+      "name_en": "Road to Olkhovka",
+      "condition": 62,
+      "description": "Лесная дорога.",
+      "events": [
+        "event_logging_truck",
+        "event_forest_encounter"
+      ]
+    },
+    {
+      "from": 9,
+      "to": 11,
+      "type": "ROAD",
+      "distance": 147,
+      "name": "Просёлок к Ольховке",
+      "name_en": "Country Road to Olkhovka",
+      "condition": 58,
+      "description": "Грунтовая дорога.",
+      "events": [
+        "event_muddy_road",
+        "event_tractor"
+      ]
+    },
+    {
+      "from": 11,
+      "to": 9,
+      "type": "ROAD",
+      "distance": 146,
+      "name": "Просёлок к Ольховке",
+      "name_en": "Country Road to Olkhovka",
+      "condition": 58,
+      "description": "Грунтовая дорога.",
+      "events": [
+        "event_muddy_road",
+        "event_tractor"
+      ]
+    },
+    {
+      "from": 9,
+      "to": 12,
+      "type": "ROAD",
+      "distance": 114,
+      "name": "Дорога к Речному",
+      "name_en": "Road to Rechnoy",
+      "condition": 64,
+      "description": "Короткая дорога.",
+      "events": [
+        "event_river_crossing",
+        "event_fisherman"
+      ]
+    },
+    {
+      "from": 12,
+      "to": 9,
+      "type": "ROAD",
+      "distance": 106,
+      "name": "Дорога к Речному",
+      "name_en": "Road to Rechnoy",
+      "condition": 64,
+      "description": "Короткая дорога.",
+      "events": [
+        "event_river_crossing",
+        "event_fisherman"
+      ]
+    },
+    {
+      "from": 10,
+      "to": 13,
+      "type": "HIGHWAY",
+      "distance": 112,
+      "name": "Трасса M7",
+      "name_en": "M7 Highway",
+      "condition": 82,
+      "description": "Хорошая трасса.",
+      "events": [
+        "event_traffic",
+        "event_rest_area"
+      ]
+    },
+    {
+      "from": 13,
+      "to": 10,
+      "type": "HIGHWAY",
+      "distance": 114,
+      "name": "Трасса M7",
+      "name_en": "M7 Highway",
+      "condition": 82,
+      "description": "Хорошая трасса.",
+      "events": [
+        "event_traffic",
+        "event_rest_area"
+      ]
+    },
+    {
+      "from": 11,
+      "to": 14,
+      "type": "ROAD",
+      "distance": 131,
+      "name": "Дорога к Горкам",
+      "name_en": "Road to Gorki",
+      "condition": 60,
+      "description": "Дорога в гору.",
+      "events": [
+        "event_steep_climb",
+        "event_old_bus"
+      ]
+    },
+    {
+      "from": 14,
+      "to": 11,
+      "type": "ROAD",
+      "distance": 120,
+      "name": "Дорога к Горкам",
+      "name_en": "Road to Gorki",
+      "condition": 60,
+      "description": "Дорога в гору.",
+      "events": [
+        "event_steep_climb",
+        "event_old_bus"
+      ]
+    },
+    {
+      "from": 12,
+      "to": 13,
+      "type": "ROAD",
+      "distance": 133,
+      "name": "Объездная",
+      "name_en": "Bypass",
+      "condition": 55,
+      "description": "Объездная дорога.",
+      "events": [
+        "event_detour",
+        "event_construction"
+      ]
+    },
+    {
+      "from": 13,
+      "to": 12,
+      "type": "ROAD",
+      "distance": 144,
+      "name": "Объездная",
+      "name_en": "Bypass",
+      "condition": 55,
+      "description": "Объездная дорога.",
+      "events": [
+        "event_detour",
+        "event_construction"
+      ]
+    },
+    {
+      "from": 13,
+      "to": 15,
+      "type": "HIGHWAY",
+      "distance": 117,
+      "name": "Трасса M7",
+      "name_en": "M7 Highway",
+      "condition": 80,
+      "description": "Трасса М7.",
+      "events": [
+        "event_convoy",
+        "event_checkpoint"
+      ]
+    },
+    {
+      "from": 15,
+      "to": 13,
+      "type": "HIGHWAY",
+      "distance": 127,
+      "name": "Трасса M7",
+      "name_en": "M7 Highway",
+      "condition": 80,
+      "description": "Трасса М7.",
+      "events": [
+        "event_convoy",
+        "event_checkpoint"
+      ]
+    },
+    {
+      "from": 14,
+      "to": 16,
+      "type": "ROAD",
+      "distance": 140,
+      "name": "Дорога к Вязникам",
+      "name_en": "Road to Vyazniki",
+      "condition": 65,
+      "description": "Региональная дорога.",
+      "events": [
+        "event_local_traffic",
+        "event_market_day"
+      ]
+    },
+    {
+      "from": 16,
+      "to": 14,
+      "type": "ROAD",
+      "distance": 130,
+      "name": "Дорога к Вязникам",
+      "name_en": "Road to Vyazniki",
+      "condition": 65,
+      "description": "Региональная дорога.",
+      "events": [
+        "event_local_traffic",
+        "event_market_day"
+      ]
+    },
+    {
+      "from": 15,
+      "to": 17,
+      "type": "ROAD",
+      "distance": 119,
+      "name": "Дорога к Павлово",
+      "name_en": "Road to Pavlovo",
+      "condition": 58,
+      "description": "Плохая дорога.",
+      "events": [
+        "event_bad_road",
+        "event_village_dog"
+      ]
+    },
+    {
+      "from": 17,
+      "to": 15,
+      "type": "ROAD",
+      "distance": 112,
+      "name": "Дорога к Павлово",
+      "name_en": "Road to Pavlovo",
+      "condition": 58,
+      "description": "Плохая дорога.",
+      "events": [
+        "event_bad_road",
+        "event_village_dog"
+      ]
+    },
+    {
+      "from": 15,
+      "to": 18,
+      "type": "ROAD",
+      "distance": 129,
+      "name": "Дорога к Лыскову",
+      "name_en": "Road to Lyskovo",
+      "condition": 70,
+      "description": "Дорога вдоль Волги.",
+      "events": [
+        "event_river_view",
+        "event_barge"
+      ]
+    },
+    {
+      "from": 18,
+      "to": 15,
+      "type": "ROAD",
+      "distance": 138,
+      "name": "Дорога к Лыскову",
+      "name_en": "Road to Lyskovo",
+      "condition": 70,
+      "description": "Дорога вдоль Волги.",
+      "events": [
+        "event_river_view",
+        "event_barge"
+      ]
+    },
+    {
+      "from": 16,
+      "to": 19,
+      "type": "ROAD",
+      "distance": 138,
+      "name": "Дорога к Коврову",
+      "name_en": "Road to Kovrov",
+      "condition": 75,
+      "description": "Промышленная дорога.",
+      "events": [
+        "event_factory",
+        "event_workers"
+      ]
+    },
+    {
+      "from": 19,
+      "to": 16,
+      "type": "ROAD",
+      "distance": 134,
+      "name": "Дорога к Коврову",
+      "name_en": "Road to Kovrov",
+      "condition": 75,
+      "description": "Промышленная дорога.",
+      "events": [
+        "event_factory",
+        "event_workers"
+      ]
+    },
+    {
+      "from": 17,
+      "to": 20,
+      "type": "ROAD",
+      "distance": 123,
+      "name": "Подъезд к городу",
+      "name_en": "City Approach",
+      "condition": 68,
+      "description": "Въезд в город.",
+      "events": [
+        "event_city_traffic",
+        "event_roadblock"
+      ]
+    },
+    {
+      "from": 20,
+      "to": 17,
+      "type": "ROAD",
+      "distance": 124,
+      "name": "Подъезд к городу",
+      "name_en": "City Approach",
+      "condition": 68,
+      "description": "Въезд в город.",
+      "events": [
+        "event_city_traffic",
+        "event_roadblock"
+      ]
+    },
+    {
+      "from": 18,
+      "to": 20,
+      "type": "HIGHWAY",
+      "distance": 112,
+      "name": "Трасса M7",
+      "name_en": "M7 Highway",
+      "condition": 85,
+      "description": "Скоростная трасса.",
+      "events": [
+        "event_speed_trap",
+        "event_truckers"
+      ]
+    },
+    {
+      "from": 20,
+      "to": 18,
+      "type": "HIGHWAY",
+      "distance": 120,
+      "name": "Трасса M7",
+      "name_en": "M7 Highway",
+      "condition": 85,
+      "description": "Скоростная трасса.",
+      "events": [
+        "event_speed_trap",
+        "event_truckers"
+      ]
+    },
+    {
+      "from": 19,
+      "to": 21,
+      "type": "HIGHWAY",
+      "distance": 159,
+      "name": "Трасса M7",
+      "name_en": "M7 Highway",
+      "condition": 82,
+      "description": "Трасса через лес.",
+      "events": [
+        "event_forest_highway",
+        "event_rest_stop"
+      ]
+    },
+    {
+      "from": 21,
+      "to": 19,
+      "type": "HIGHWAY",
+      "distance": 163,
+      "name": "Трасса M7",
+      "name_en": "M7 Highway",
+      "condition": 82,
+      "description": "Трасса через лес.",
+      "events": [
+        "event_forest_highway",
+        "event_rest_stop"
+      ]
+    },
+    {
+      "from": 20,
+      "to": 21,
+      "type": "HIGHWAY",
+      "distance": 107,
+      "name": "Трасса M7",
+      "name_en": "M7 Highway",
+      "condition": 88,
+      "description": "Новая трасса.",
+      "events": [
+        "event_new_road",
+        "event_convoy"
+      ]
+    },
+    {
+      "from": 21,
+      "to": 20,
+      "type": "HIGHWAY",
+      "distance": 108,
+      "name": "Трасса M7",
+      "name_en": "M7 Highway",
+      "condition": 88,
+      "description": "Новая трасса.",
+      "events": [
+        "event_new_road",
+        "event_convoy"
+      ]
+    },
+    {
+      "from": 20,
+      "to": 22,
+      "type": "ROAD",
+      "distance": 100,
+      "name": "Дорога к Кстово",
+      "name_en": "Road to Kstovo",
+      "condition": 72,
+      "description": "Промышленная дорога.",
+      "events": [
+        "event_refinery",
+        "event_tanker_trucks"
+      ]
+    },
+    {
+      "from": 22,
+      "to": 20,
+      "type": "ROAD",
+      "distance": 100,
+      "name": "Дорога к Кстово",
+      "name_en": "Road to Kstovo",
+      "condition": 72,
+      "description": "Промышленная дорога.",
+      "events": [
+        "event_refinery",
+        "event_tanker_trucks"
+      ]
+    },
+    {
+      "from": 21,
+      "to": 23,
+      "type": "ROAD",
+      "distance": 125,
+      "name": "Дорога к Городцу",
+      "name_en": "Road to Gorodets",
+      "condition": 62,
+      "description": "Старая дорога.",
+      "events": [
+        "event_historic_site",
+        "event_artisan"
+      ]
+    },
+    {
+      "from": 23,
+      "to": 21,
+      "type": "ROAD",
+      "distance": 118,
+      "name": "Дорога к Городцу",
+      "name_en": "Road to Gorodets",
+      "condition": 62,
+      "description": "Старая дорога.",
+      "events": [
+        "event_historic_site",
+        "event_artisan"
+      ]
+    },
+    {
+      "from": 22,
+      "to": 24,
+      "type": "ROAD",
+      "distance": 117,
+      "name": "Дорога к Чкаловску",
+      "name_en": "Road to Chkalovsk",
+      "condition": 65,
+      "description": "Дорога вдоль реки.",
+      "events": [
+        "event_riverside",
+        "event_ferry"
+      ]
+    },
+    {
+      "from": 24,
+      "to": 22,
+      "type": "ROAD",
+      "distance": 111,
+      "name": "Дорога к Чкаловску",
+      "name_en": "Road to Chkalovsk",
+      "condition": 65,
+      "description": "Дорога вдоль реки.",
+      "events": [
+        "event_riverside",
+        "event_ferry"
+      ]
+    },
+    {
+      "from": 23,
+      "to": 25,
+      "type": "HIGHWAY",
+      "distance": 143,
+      "name": "Трасса M7",
+      "name_en": "M7 Highway",
+      "condition": 80,
+      "description": "Трасса к Чебоксарам.",
+      "events": [
+        "event_bridge_crossing",
+        "event_toll"
+      ]
+    },
+    {
+      "from": 25,
+      "to": 23,
+      "type": "HIGHWAY",
+      "distance": 136,
+      "name": "Трасса M7",
+      "name_en": "M7 Highway",
+      "condition": 80,
+      "description": "Трасса к Чебоксарам.",
+      "events": [
+        "event_bridge_crossing",
+        "event_toll"
+      ]
+    },
+    {
+      "from": 24,
+      "to": 25,
+      "type": "HIGHWAY",
+      "distance": 148,
+      "name": "Трасса M7",
+      "name_en": "M7 Highway",
+      "condition": 83,
+      "description": "Скоростная трасса.",
+      "events": [
+        "event_highway_traffic",
+        "event_rest_area"
+      ]
+    },
+    {
+      "from": 25,
+      "to": 24,
+      "type": "HIGHWAY",
+      "distance": 156,
+      "name": "Трасса M7",
+      "name_en": "M7 Highway",
+      "condition": 83,
+      "description": "Скоростная трасса.",
+      "events": [
+        "event_highway_traffic",
+        "event_rest_area"
+      ]
+    },
+    {
+      "from": 25,
+      "to": 26,
+      "type": "ROAD",
+      "distance": 124,
+      "name": "Дорога к Марпосаду",
+      "name_en": "Road to Marposad",
+      "condition": 68,
+      "description": "Региональная дорога.",
+      "events": [
+        "event_rural_traffic",
+        "event_farm"
+      ]
+    },
+    {
+      "from": 26,
+      "to": 25,
+      "type": "ROAD",
+      "distance": 124,
+      "name": "Дорога к Марпосаду",
+      "name_en": "Road to Marposad",
+      "condition": 68,
+      "description": "Региональная дорога.",
+      "events": [
+        "event_rural_traffic",
+        "event_farm"
+      ]
+    },
+    {
+      "from": 25,
+      "to": 27,
+      "type": "ROAD",
+      "distance": 130,
+      "name": "Дорога к Цивильску",
+      "name_en": "Road to Tsivilsk",
+      "condition": 60,
+      "description": "Просёлочная дорога.",
+      "events": [
+        "event_countryside",
+        "event_hayride"
+      ]
+    },
+    {
+      "from": 27,
+      "to": 25,
+      "type": "ROAD",
+      "distance": 123,
+      "name": "Дорога к Цивильску",
+      "name_en": "Road to Tsivilsk",
+      "condition": 60,
+      "description": "Просёлочная дорога.",
+      "events": [
+        "event_countryside",
+        "event_hayride"
+      ]
+    },
+    {
+      "from": 26,
+      "to": 28,
+      "type": "HIGHWAY",
+      "distance": 129,
+      "name": "Трасса M7",
+      "name_en": "M7 Highway",
+      "condition": 85,
+      "description": "Подъезд к Казани.",
+      "events": [
+        "event_city_approach",
+        "event_traffic_jam"
+      ]
+    },
+    {
+      "from": 28,
+      "to": 26,
+      "type": "HIGHWAY",
+      "distance": 127,
+      "name": "Трасса M7",
+      "name_en": "M7 Highway",
+      "condition": 85,
+      "description": "Подъезд к Казани.",
+      "events": [
+        "event_city_approach",
+        "event_traffic_jam"
+      ]
+    },
+    {
+      "from": 27,
+      "to": 28,
+      "type": "ROAD",
+      "distance": 114,
+      "name": "Объездная к Казани",
+      "name_en": "Bypass to Kazan",
+      "condition": 58,
+      "description": "Объездная дорога.",
+      "events": [
+        "event_detour",
+        "event_local_traffic"
+      ]
+    },
+    {
+      "from": 28,
+      "to": 27,
+      "type": "ROAD",
+      "distance": 124,
+      "name": "Объездная к Казани",
+      "name_en": "Bypass to Kazan",
+      "condition": 58,
+      "description": "Объездная дорога.",
+      "events": [
+        "event_detour",
+        "event_local_traffic"
+      ]
+    },
+    {
+      "from": 17,
+      "to": 18,
+      "type": "ROAD",
+      "distance": 100,
+      "name": "Дорога Павлово-Лысково",
+      "name_en": "Pavlovo-Lyskovo Road",
+      "condition": 58,
+      "description": "Короткая проселочная дорога.",
+      "events": [
+        "event_shortcut",
+        "event_village_dog"
+      ]
+    },
+    {
+      "from": 18,
+      "to": 17,
+      "type": "ROAD",
+      "distance": 104,
+      "name": "Дорога Павлово-Лысково",
+      "name_en": "Pavlovo-Lyskovo Road",
+      "condition": 58,
+      "description": "Короткая проселочная дорога.",
+      "events": [
+        "event_shortcut",
+        "event_village_dog"
+      ]
+    },
+    {
+      "from": 8,
+      "to": 9,
+      "type": "ROAD",
+      "distance": 111,
+      "name": "Лесная дорога",
+      "name_en": "Forest Road",
+      "condition": 55,
+      "description": "Дорога через лес, соединяющая посёлки.",
+      "events": [
+        "event_forest_path",
+        "event_deer"
+      ]
+    },
+    {
+      "from": 9,
+      "to": 8,
+      "type": "ROAD",
+      "distance": 124,
+      "name": "Лесная дорога",
+      "name_en": "Forest Road",
+      "condition": 55,
+      "description": "Дорога через лес, соединяющая посёлки.",
+      "events": [
+        "event_forest_path",
+        "event_deer"
+      ]
+    },
+    {
+      "from": 10,
+      "to": 12,
+      "type": "ROAD",
+      "distance": 131,
+      "name": "Объездная дорога",
+      "name_en": "Bypass Road",
+      "condition": 62,
+      "description": "Объездной путь мимо города.",
+      "events": [
+        "event_detour",
+        "event_local_traffic"
+      ]
+    },
+    {
+      "from": 12,
+      "to": 10,
+      "type": "ROAD",
+      "distance": 129,
+      "name": "Объездная дорога",
+      "name_en": "Bypass Road",
+      "condition": 62,
+      "description": "Объездной путь мимо города.",
+      "events": [
+        "event_detour",
+        "event_local_traffic"
+      ]
+    },
+    {
+      "from": 26,
+      "to": 27,
+      "type": "ROAD",
+      "distance": 100,
+      "name": "Прямая дорога",
+      "name_en": "Direct Road",
+      "condition": 60,
+      "description": "Короткая связь между посёлками.",
+      "events": [
+        "event_shortcut",
+        "event_countryside"
+      ]
+    },
+    {
+      "from": 27,
+      "to": 26,
+      "type": "ROAD",
+      "distance": 100,
+      "name": "Прямая дорога",
+      "name_en": "Direct Road",
+      "condition": 60,
+      "description": "Короткая связь между посёлками.",
+      "events": [
+        "event_shortcut",
+        "event_countryside"
+      ]
+    },
+    {
+      "from": 3,
+      "to": 4,
+      "type": "ROAD",
+      "distance": 129,
+      "name": "Просёлочная дорога",
+      "name_en": "Country Road",
+      "condition": 50,
+      "description": "Старая дорога через поля.",
+      "events": [
+        "event_muddy_road",
+        "event_tractor"
+      ]
+    },
+    {
+      "from": 4,
+      "to": 3,
+      "type": "ROAD",
+      "distance": 125,
+      "name": "Просёлочная дорога",
+      "name_en": "Country Road",
+      "condition": 50,
+      "description": "Старая дорога через поля.",
+      "events": [
+        "event_muddy_road",
+        "event_tractor"
+      ]
+    },
+    {
+      "from": 7,
+      "to": 9,
+      "type": "ROAD",
+      "distance": 156,
+      "name": "Деревенская дорога",
+      "name_en": "Village Road",
+      "condition": 52,
+      "description": "Дорога между деревнями.",
+      "events": [
+        "event_village_market",
+        "event_old_car"
+      ]
+    },
+    {
+      "from": 9,
+      "to": 7,
+      "type": "ROAD",
+      "distance": 142,
+      "name": "Деревенская дорога",
+      "name_en": "Village Road",
+      "condition": 52,
+      "description": "Дорога между деревнями.",
+      "events": [
+        "event_village_market",
+        "event_old_car"
+      ]
+    },
+    {
+      "from": 21,
+      "to": 22,
+      "type": "ROAD",
+      "distance": 131,
+      "name": "Промышленная дорога",
+      "name_en": "Industrial Road",
+      "condition": 65,
+      "description": "Дорога между промышленными посёлками.",
+      "events": [
+        "event_factory",
+        "event_workers"
+      ]
+    },
+    {
+      "from": 22,
+      "to": 21,
+      "type": "ROAD",
+      "distance": 145,
+      "name": "Промышленная дорога",
+      "name_en": "Industrial Road",
+      "condition": 65,
+      "description": "Дорога между промышленными посёлками.",
+      "events": [
+        "event_factory",
+        "event_workers"
+      ]
+    },
+    {
+      "from": 23,
+      "to": 24,
+      "type": "ROAD",
+      "distance": 138,
+      "name": "Прибрежная дорога",
+      "name_en": "Riverside Road",
+      "condition": 58,
+      "description": "Дорога вдоль реки.",
+      "events": [
+        "event_river_view",
+        "event_fisherman"
+      ]
+    },
+    {
+      "from": 24,
+      "to": 23,
+      "type": "ROAD",
+      "distance": 127,
+      "name": "Прибрежная дорога",
+      "name_en": "Riverside Road",
+      "condition": 58,
+      "description": "Дорога вдоль реки.",
+      "events": [
+        "event_river_view",
+        "event_fisherman"
+      ]
+    },
+    {
+      "from": 11,
+      "to": 12,
+      "type": "ROAD",
+      "distance": 127,
+      "name": "Соединительная дорога",
+      "name_en": "Connecting Road",
+      "condition": 54,
+      "description": "Связывает два посёлка.",
+      "events": [
+        "event_crossroads",
+        "event_hitchhiker"
+      ]
+    },
+    {
+      "from": 12,
+      "to": 11,
+      "type": "ROAD",
+      "distance": 130,
+      "name": "Соединительная дорога",
+      "name_en": "Connecting Road",
+      "condition": 54,
+      "description": "Связывает два посёлка.",
+      "events": [
+        "event_crossroads",
+        "event_hitchhiker"
+      ]
+    },
+    {
+      "from": 19,
+      "to": 20,
+      "type": "HIGHWAY",
+      "distance": 156,
+      "name": "Трасса к городу",
+      "name_en": "Highway to City",
+      "condition": 80,
+      "description": "Прямая трасса к городу.",
+      "events": [
+        "event_highway_traffic",
+        "event_speed_trap"
+      ]
+    },
+    {
+      "from": 20,
+      "to": 19,
+      "type": "HIGHWAY",
+      "distance": 161,
+      "name": "Трасса к городу",
+      "name_en": "Highway to City",
+      "condition": 80,
+      "description": "Прямая трасса к городу.",
+      "events": [
+        "event_highway_traffic",
+        "event_speed_trap"
+      ]
+    },
+    {
+      "from": 18,
+      "to": 19,
+      "type": "ROAD",
+      "distance": 141,
+      "name": "Объездная",
+      "name_en": "Bypass",
+      "condition": 60,
+      "description": "Объездной путь.",
+      "events": [
+        "event_detour",
+        "event_construction"
+      ]
+    },
+    {
+      "from": 19,
+      "to": 18,
+      "type": "ROAD",
+      "distance": 141,
+      "name": "Объездная",
+      "name_en": "Bypass",
+      "condition": 60,
+      "description": "Объездной путь.",
+      "events": [
+        "event_detour",
+        "event_construction"
+      ]
+    },
+    {
+      "from": 5,
+      "to": 7,
+      "type": "DIRT_ROAD",
+      "distance": 118,
+      "name": "Болотная дорога",
+      "name_en": "Swamp Road",
+      "condition": 40,
+      "description": "Плохая дорога через болото. Опасно!",
+      "events": [
+        "event_muddy_road",
+        "event_breakdown"
+      ]
+    },
+    {
+      "from": 7,
+      "to": 5,
+      "type": "DIRT_ROAD",
+      "distance": 116,
+      "name": "Болотная дорога",
+      "name_en": "Swamp Road",
+      "condition": 40,
+      "description": "Плохая дорога через болото. Опасно!",
+      "events": [
+        "event_muddy_road",
+        "event_breakdown"
+      ]
+    }
+  ],
+  "event_pool": {
+    "event_pothole": {
+      "name": "Яма на дороге",
+      "name_en": "Pothole",
+      "description": "Глубокая яма! Нужно объехать.",
+      "type": "obstacle"
+    },
+    "event_old_car": {
+      "name": "Старые Жигули",
+      "name_en": "Old Lada",
+      "description": "Старые Жигули стоят на обочине.",
+      "type": "encounter"
+    },
+    "event_hitchhiker": {
+      "name": "Попутчик",
+      "name_en": "Hitchhiker",
+      "description": "Кто-то голосует на дороге.",
+      "type": "npc_encounter"
+    },
+    "event_breakdown": {
+      "name": "Поломка",
+      "name_en": "Breakdown",
+      "description": "Странные звуки из двигателя...",
+      "type": "car_issue"
+    },
+    "event_forest_encounter": {
+      "name": "Лесная встреча",
+      "name_en": "Forest Encounter",
+      "description": "Что-то в лесу...",
+      "type": "encounter"
+    },
+    "event_weather": {
+      "name": "Погода меняется",
+      "name_en": "Weather Change",
+      "description": "Начинается дождь.",
+      "type": "environmental"
+    },
+    "event_broken_bridge": {
+      "name": "Разбитый мост",
+      "name_en": "Broken Bridge",
+      "description": "Мост в плохом состоянии.",
+      "type": "obstacle"
+    },
+    "event_muddy_road": {
+      "name": "Грязь",
+      "name_en": "Muddy Road",
+      "description": "Дорога размыта.",
+      "type": "obstacle"
+    },
+    "event_police_checkpoint": {
+      "name": "Пост ДПС",
+      "name_en": "Police Checkpoint",
+      "description": "Впереди милицейский пост.",
+      "type": "encounter"
+    },
+    "event_rest_stop": {
+      "name": "Место отдыха",
+      "name_en": "Rest Stop",
+      "description": "Площадка для отдыха.",
+      "type": "positive"
+    },
+    "event_pothole_damage": {
+      "name": "Повреждение",
+      "name_en": "Damage",
+      "description": "Попали в яму!",
+      "type": "car_issue"
+    },
+    "event_village_market": {
+      "name": "Рынок",
+      "name_en": "Village Market",
+      "description": "Сельский рынок.",
+      "type": "trade"
+    },
+    "event_forest_path": {
+      "name": "Лесная тропа",
+      "name_en": "Forest Path",
+      "description": "Дорога через лес.",
+      "type": "neutral"
+    },
+    "event_deer": {
+      "name": "Олень",
+      "name_en": "Deer",
+      "description": "Олень перебегает дорогу!",
+      "type": "environmental"
+    },
+    "event_crossroads": {
+      "name": "Развилка",
+      "name_en": "Crossroads",
+      "description": "Развилка дорог.",
+      "type": "neutral"
+    },
+    "event_trucker": {
+      "name": "Дальнобойщик",
+      "name_en": "Trucker",
+      "description": "Дальнобойщик машет рукой.",
+      "type": "encounter"
+    }
+  },
+  "metadata": {
+    "total_nodes": 28,
+    "total_roads": 90,
+    "total_distance": 1286,
+    "estimated_playtime": "10-14 hours",
+    "difficulty": "medium",
+    "theme": "russia_90s_scarcity",
+    "starting_node": 1,
+    "changes_v2": "Increased settlements (9→28), reduced distances (1855km→1286km), added resource scarcity, more villages with limited services",
+    "changes_v2.1": "Added bidirectional roads (33→66+12 cross-connections), web-like structure for free route choice, updated unlockNodes for open exploration",
+    "structure_type": "web",
+    "bidirectional": true,
+    "free_exploration": true
+  }
+}
