@@ -1,6 +1,6 @@
 # CMake generated Testfile for 
-# Source directory: /Users/afftobuss/Documents/GitHub/kkurs
-# Build directory: /Users/afftobuss/Documents/GitHub/kkurs/build
+# Source directory: /Users/afftobuss/Documents/GitHub/kurs
+# Build directory: /Users/afftobuss/Documents/GitHub/kurs/build
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.

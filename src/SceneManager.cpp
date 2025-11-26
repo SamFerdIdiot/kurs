@@ -9,6 +9,8 @@
 #include "AbilityTreeScene.h"
 #include "MapScene.h"
 #include "InventoryScene.h"
+#include "LocationScene.h"
+#include "GameStateManager.h"
 #include <stdexcept>
 #include <iostream>
 
@@ -69,11 +71,18 @@ std::unique_ptr<Scene> SceneManager::createScene(SceneType type) {
         case SceneType::INVENTORY:
             std::cout << "Creating Inventory Scene" << std::endl;
             return std::make_unique<InventoryScene>();
-            
+
+        case SceneType::LOCATION: {
+            std::cout << "Creating Location Scene" << std::endl;
+            // Get location type from GameStateManager
+            LocationType locationType = GameStateManager::getInstance().getCurrentLocationType();
+            return std::make_unique<LocationScene>(locationType);
+        }
+
         case SceneType::EXIT:
             std::cout << "Exit requested" << std::endl;
             return nullptr;
-            
+
         // Add more scenes as they are implemented
         default:
             std::cerr << "Scene type not implemented yet, returning to main menu" << std::endl;

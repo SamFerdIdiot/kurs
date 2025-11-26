@@ -57,10 +57,10 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/afftobuss/Documents/GitHub/kkurs
+CMAKE_SOURCE_DIR = /Users/afftobuss/Documents/GitHub/kurs
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/afftobuss/Documents/GitHub/kkurs/build
+CMAKE_BINARY_DIR = /Users/afftobuss/Documents/GitHub/kurs/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -142,14 +142,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/afftobuss/Documents/GitHub/kkurs/build/CMakeFiles /Users/afftobuss/Documents/GitHub/kkurs/build/tests//CMakeFiles/progress.marks
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/afftobuss/Documents/GitHub/kkurs/build/CMakeFiles 0
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles /Users/afftobuss/Documents/GitHub/kurs/build/tests//CMakeFiles/progress.marks
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/clean
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/clean
 .PHONY : clean
 
 # The main clean target
@@ -158,22 +158,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/preinstall
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/preinstall
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 tests/CMakeFiles/kkurs_lib.dir/rule:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/kkurs_lib.dir/rule
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/kkurs_lib.dir/rule
 .PHONY : tests/CMakeFiles/kkurs_lib.dir/rule
 
 # Convenience name for target.
@@ -182,12 +182,12 @@ kkurs_lib: tests/CMakeFiles/kkurs_lib.dir/rule
 
 # fast build rule for target.
 kkurs_lib/fast:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/build
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/build
 .PHONY : kkurs_lib/fast
 
 # Convenience name for target.
 tests/CMakeFiles/unit_tests.dir/rule:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/unit_tests.dir/rule
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/unit_tests.dir/rule
 .PHONY : tests/CMakeFiles/unit_tests.dir/rule
 
 # Convenience name for target.
@@ -196,7 +196,7 @@ unit_tests: tests/CMakeFiles/unit_tests.dir/rule
 
 # fast build rule for target.
 unit_tests/fast:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/build
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/build
 .PHONY : unit_tests/fast
 
 __/src/AbilityNode.o: __/src/AbilityNode.cpp.o
@@ -204,7 +204,7 @@ __/src/AbilityNode.o: __/src/AbilityNode.cpp.o
 
 # target to build an object file
 __/src/AbilityNode.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityNode.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityNode.cpp.o
 .PHONY : __/src/AbilityNode.cpp.o
 
 __/src/AbilityNode.i: __/src/AbilityNode.cpp.i
@@ -212,7 +212,7 @@ __/src/AbilityNode.i: __/src/AbilityNode.cpp.i
 
 # target to preprocess a source file
 __/src/AbilityNode.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityNode.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityNode.cpp.i
 .PHONY : __/src/AbilityNode.cpp.i
 
 __/src/AbilityNode.s: __/src/AbilityNode.cpp.s
@@ -220,7 +220,7 @@ __/src/AbilityNode.s: __/src/AbilityNode.cpp.s
 
 # target to generate assembly for a file
 __/src/AbilityNode.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityNode.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityNode.cpp.s
 .PHONY : __/src/AbilityNode.cpp.s
 
 __/src/AbilityTreeScene.o: __/src/AbilityTreeScene.cpp.o
@@ -228,7 +228,7 @@ __/src/AbilityTreeScene.o: __/src/AbilityTreeScene.cpp.o
 
 # target to build an object file
 __/src/AbilityTreeScene.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityTreeScene.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityTreeScene.cpp.o
 .PHONY : __/src/AbilityTreeScene.cpp.o
 
 __/src/AbilityTreeScene.i: __/src/AbilityTreeScene.cpp.i
@@ -236,7 +236,7 @@ __/src/AbilityTreeScene.i: __/src/AbilityTreeScene.cpp.i
 
 # target to preprocess a source file
 __/src/AbilityTreeScene.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityTreeScene.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityTreeScene.cpp.i
 .PHONY : __/src/AbilityTreeScene.cpp.i
 
 __/src/AbilityTreeScene.s: __/src/AbilityTreeScene.cpp.s
@@ -244,7 +244,7 @@ __/src/AbilityTreeScene.s: __/src/AbilityTreeScene.cpp.s
 
 # target to generate assembly for a file
 __/src/AbilityTreeScene.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityTreeScene.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityTreeScene.cpp.s
 .PHONY : __/src/AbilityTreeScene.cpp.s
 
 __/src/AbilityTreeSystem.o: __/src/AbilityTreeSystem.cpp.o
@@ -252,7 +252,7 @@ __/src/AbilityTreeSystem.o: __/src/AbilityTreeSystem.cpp.o
 
 # target to build an object file
 __/src/AbilityTreeSystem.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityTreeSystem.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityTreeSystem.cpp.o
 .PHONY : __/src/AbilityTreeSystem.cpp.o
 
 __/src/AbilityTreeSystem.i: __/src/AbilityTreeSystem.cpp.i
@@ -260,7 +260,7 @@ __/src/AbilityTreeSystem.i: __/src/AbilityTreeSystem.cpp.i
 
 # target to preprocess a source file
 __/src/AbilityTreeSystem.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityTreeSystem.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityTreeSystem.cpp.i
 .PHONY : __/src/AbilityTreeSystem.cpp.i
 
 __/src/AbilityTreeSystem.s: __/src/AbilityTreeSystem.cpp.s
@@ -268,7 +268,7 @@ __/src/AbilityTreeSystem.s: __/src/AbilityTreeSystem.cpp.s
 
 # target to generate assembly for a file
 __/src/AbilityTreeSystem.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityTreeSystem.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityTreeSystem.cpp.s
 .PHONY : __/src/AbilityTreeSystem.cpp.s
 
 __/src/Car.o: __/src/Car.cpp.o
@@ -276,7 +276,7 @@ __/src/Car.o: __/src/Car.cpp.o
 
 # target to build an object file
 __/src/Car.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/Car.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/Car.cpp.o
 .PHONY : __/src/Car.cpp.o
 
 __/src/Car.i: __/src/Car.cpp.i
@@ -284,7 +284,7 @@ __/src/Car.i: __/src/Car.cpp.i
 
 # target to preprocess a source file
 __/src/Car.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/Car.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/Car.cpp.i
 .PHONY : __/src/Car.cpp.i
 
 __/src/Car.s: __/src/Car.cpp.s
@@ -292,7 +292,7 @@ __/src/Car.s: __/src/Car.cpp.s
 
 # target to generate assembly for a file
 __/src/Car.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/Car.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/Car.cpp.s
 .PHONY : __/src/Car.cpp.s
 
 __/src/Character.o: __/src/Character.cpp.o
@@ -300,7 +300,7 @@ __/src/Character.o: __/src/Character.cpp.o
 
 # target to build an object file
 __/src/Character.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/Character.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/Character.cpp.o
 .PHONY : __/src/Character.cpp.o
 
 __/src/Character.i: __/src/Character.cpp.i
@@ -308,7 +308,7 @@ __/src/Character.i: __/src/Character.cpp.i
 
 # target to preprocess a source file
 __/src/Character.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/Character.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/Character.cpp.i
 .PHONY : __/src/Character.cpp.i
 
 __/src/Character.s: __/src/Character.cpp.s
@@ -316,7 +316,7 @@ __/src/Character.s: __/src/Character.cpp.s
 
 # target to generate assembly for a file
 __/src/Character.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/Character.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/Character.cpp.s
 .PHONY : __/src/Character.cpp.s
 
 __/src/CharacterCreationMenu.o: __/src/CharacterCreationMenu.cpp.o
@@ -324,7 +324,7 @@ __/src/CharacterCreationMenu.o: __/src/CharacterCreationMenu.cpp.o
 
 # target to build an object file
 __/src/CharacterCreationMenu.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/CharacterCreationMenu.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/CharacterCreationMenu.cpp.o
 .PHONY : __/src/CharacterCreationMenu.cpp.o
 
 __/src/CharacterCreationMenu.i: __/src/CharacterCreationMenu.cpp.i
@@ -332,7 +332,7 @@ __/src/CharacterCreationMenu.i: __/src/CharacterCreationMenu.cpp.i
 
 # target to preprocess a source file
 __/src/CharacterCreationMenu.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/CharacterCreationMenu.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/CharacterCreationMenu.cpp.i
 .PHONY : __/src/CharacterCreationMenu.cpp.i
 
 __/src/CharacterCreationMenu.s: __/src/CharacterCreationMenu.cpp.s
@@ -340,7 +340,7 @@ __/src/CharacterCreationMenu.s: __/src/CharacterCreationMenu.cpp.s
 
 # target to generate assembly for a file
 __/src/CharacterCreationMenu.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/CharacterCreationMenu.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/CharacterCreationMenu.cpp.s
 .PHONY : __/src/CharacterCreationMenu.cpp.s
 
 __/src/CharacterCreationScene.o: __/src/CharacterCreationScene.cpp.o
@@ -348,7 +348,7 @@ __/src/CharacterCreationScene.o: __/src/CharacterCreationScene.cpp.o
 
 # target to build an object file
 __/src/CharacterCreationScene.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/CharacterCreationScene.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/CharacterCreationScene.cpp.o
 .PHONY : __/src/CharacterCreationScene.cpp.o
 
 __/src/CharacterCreationScene.i: __/src/CharacterCreationScene.cpp.i
@@ -356,7 +356,7 @@ __/src/CharacterCreationScene.i: __/src/CharacterCreationScene.cpp.i
 
 # target to preprocess a source file
 __/src/CharacterCreationScene.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/CharacterCreationScene.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/CharacterCreationScene.cpp.i
 .PHONY : __/src/CharacterCreationScene.cpp.i
 
 __/src/CharacterCreationScene.s: __/src/CharacterCreationScene.cpp.s
@@ -364,7 +364,7 @@ __/src/CharacterCreationScene.s: __/src/CharacterCreationScene.cpp.s
 
 # target to generate assembly for a file
 __/src/CharacterCreationScene.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/CharacterCreationScene.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/CharacterCreationScene.cpp.s
 .PHONY : __/src/CharacterCreationScene.cpp.s
 
 __/src/CharacterScene.o: __/src/CharacterScene.cpp.o
@@ -372,7 +372,7 @@ __/src/CharacterScene.o: __/src/CharacterScene.cpp.o
 
 # target to build an object file
 __/src/CharacterScene.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/CharacterScene.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/CharacterScene.cpp.o
 .PHONY : __/src/CharacterScene.cpp.o
 
 __/src/CharacterScene.i: __/src/CharacterScene.cpp.i
@@ -380,7 +380,7 @@ __/src/CharacterScene.i: __/src/CharacterScene.cpp.i
 
 # target to preprocess a source file
 __/src/CharacterScene.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/CharacterScene.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/CharacterScene.cpp.i
 .PHONY : __/src/CharacterScene.cpp.i
 
 __/src/CharacterScene.s: __/src/CharacterScene.cpp.s
@@ -388,7 +388,7 @@ __/src/CharacterScene.s: __/src/CharacterScene.cpp.s
 
 # target to generate assembly for a file
 __/src/CharacterScene.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/CharacterScene.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/CharacterScene.cpp.s
 .PHONY : __/src/CharacterScene.cpp.s
 
 __/src/CompanionsScene.o: __/src/CompanionsScene.cpp.o
@@ -396,7 +396,7 @@ __/src/CompanionsScene.o: __/src/CompanionsScene.cpp.o
 
 # target to build an object file
 __/src/CompanionsScene.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/CompanionsScene.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/CompanionsScene.cpp.o
 .PHONY : __/src/CompanionsScene.cpp.o
 
 __/src/CompanionsScene.i: __/src/CompanionsScene.cpp.i
@@ -404,7 +404,7 @@ __/src/CompanionsScene.i: __/src/CompanionsScene.cpp.i
 
 # target to preprocess a source file
 __/src/CompanionsScene.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/CompanionsScene.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/CompanionsScene.cpp.i
 .PHONY : __/src/CompanionsScene.cpp.i
 
 __/src/CompanionsScene.s: __/src/CompanionsScene.cpp.s
@@ -412,7 +412,7 @@ __/src/CompanionsScene.s: __/src/CompanionsScene.cpp.s
 
 # target to generate assembly for a file
 __/src/CompanionsScene.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/CompanionsScene.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/CompanionsScene.cpp.s
 .PHONY : __/src/CompanionsScene.cpp.s
 
 __/src/DialogueManager.o: __/src/DialogueManager.cpp.o
@@ -420,7 +420,7 @@ __/src/DialogueManager.o: __/src/DialogueManager.cpp.o
 
 # target to build an object file
 __/src/DialogueManager.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/DialogueManager.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/DialogueManager.cpp.o
 .PHONY : __/src/DialogueManager.cpp.o
 
 __/src/DialogueManager.i: __/src/DialogueManager.cpp.i
@@ -428,7 +428,7 @@ __/src/DialogueManager.i: __/src/DialogueManager.cpp.i
 
 # target to preprocess a source file
 __/src/DialogueManager.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/DialogueManager.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/DialogueManager.cpp.i
 .PHONY : __/src/DialogueManager.cpp.i
 
 __/src/DialogueManager.s: __/src/DialogueManager.cpp.s
@@ -436,7 +436,7 @@ __/src/DialogueManager.s: __/src/DialogueManager.cpp.s
 
 # target to generate assembly for a file
 __/src/DialogueManager.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/DialogueManager.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/DialogueManager.cpp.s
 .PHONY : __/src/DialogueManager.cpp.s
 
 __/src/EventManager.o: __/src/EventManager.cpp.o
@@ -444,7 +444,7 @@ __/src/EventManager.o: __/src/EventManager.cpp.o
 
 # target to build an object file
 __/src/EventManager.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/EventManager.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/EventManager.cpp.o
 .PHONY : __/src/EventManager.cpp.o
 
 __/src/EventManager.i: __/src/EventManager.cpp.i
@@ -452,7 +452,7 @@ __/src/EventManager.i: __/src/EventManager.cpp.i
 
 # target to preprocess a source file
 __/src/EventManager.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/EventManager.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/EventManager.cpp.i
 .PHONY : __/src/EventManager.cpp.i
 
 __/src/EventManager.s: __/src/EventManager.cpp.s
@@ -460,7 +460,7 @@ __/src/EventManager.s: __/src/EventManager.cpp.s
 
 # target to generate assembly for a file
 __/src/EventManager.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/EventManager.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/EventManager.cpp.s
 .PHONY : __/src/EventManager.cpp.s
 
 __/src/ExperienceSystem.o: __/src/ExperienceSystem.cpp.o
@@ -468,7 +468,7 @@ __/src/ExperienceSystem.o: __/src/ExperienceSystem.cpp.o
 
 # target to build an object file
 __/src/ExperienceSystem.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/ExperienceSystem.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/ExperienceSystem.cpp.o
 .PHONY : __/src/ExperienceSystem.cpp.o
 
 __/src/ExperienceSystem.i: __/src/ExperienceSystem.cpp.i
@@ -476,7 +476,7 @@ __/src/ExperienceSystem.i: __/src/ExperienceSystem.cpp.i
 
 # target to preprocess a source file
 __/src/ExperienceSystem.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/ExperienceSystem.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/ExperienceSystem.cpp.i
 .PHONY : __/src/ExperienceSystem.cpp.i
 
 __/src/ExperienceSystem.s: __/src/ExperienceSystem.cpp.s
@@ -484,7 +484,7 @@ __/src/ExperienceSystem.s: __/src/ExperienceSystem.cpp.s
 
 # target to generate assembly for a file
 __/src/ExperienceSystem.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/ExperienceSystem.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/ExperienceSystem.cpp.s
 .PHONY : __/src/ExperienceSystem.cpp.s
 
 __/src/GameStateManager.o: __/src/GameStateManager.cpp.o
@@ -492,7 +492,7 @@ __/src/GameStateManager.o: __/src/GameStateManager.cpp.o
 
 # target to build an object file
 __/src/GameStateManager.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/GameStateManager.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/GameStateManager.cpp.o
 .PHONY : __/src/GameStateManager.cpp.o
 
 __/src/GameStateManager.i: __/src/GameStateManager.cpp.i
@@ -500,7 +500,7 @@ __/src/GameStateManager.i: __/src/GameStateManager.cpp.i
 
 # target to preprocess a source file
 __/src/GameStateManager.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/GameStateManager.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/GameStateManager.cpp.i
 .PHONY : __/src/GameStateManager.cpp.i
 
 __/src/GameStateManager.s: __/src/GameStateManager.cpp.s
@@ -508,7 +508,7 @@ __/src/GameStateManager.s: __/src/GameStateManager.cpp.s
 
 # target to generate assembly for a file
 __/src/GameStateManager.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/GameStateManager.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/GameStateManager.cpp.s
 .PHONY : __/src/GameStateManager.cpp.s
 
 __/src/GameTypes.o: __/src/GameTypes.cpp.o
@@ -516,7 +516,7 @@ __/src/GameTypes.o: __/src/GameTypes.cpp.o
 
 # target to build an object file
 __/src/GameTypes.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/GameTypes.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/GameTypes.cpp.o
 .PHONY : __/src/GameTypes.cpp.o
 
 __/src/GameTypes.i: __/src/GameTypes.cpp.i
@@ -524,7 +524,7 @@ __/src/GameTypes.i: __/src/GameTypes.cpp.i
 
 # target to preprocess a source file
 __/src/GameTypes.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/GameTypes.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/GameTypes.cpp.i
 .PHONY : __/src/GameTypes.cpp.i
 
 __/src/GameTypes.s: __/src/GameTypes.cpp.s
@@ -532,7 +532,7 @@ __/src/GameTypes.s: __/src/GameTypes.cpp.s
 
 # target to generate assembly for a file
 __/src/GameTypes.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/GameTypes.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/GameTypes.cpp.s
 .PHONY : __/src/GameTypes.cpp.s
 
 __/src/GridInventorySystem.o: __/src/GridInventorySystem.cpp.o
@@ -540,7 +540,7 @@ __/src/GridInventorySystem.o: __/src/GridInventorySystem.cpp.o
 
 # target to build an object file
 __/src/GridInventorySystem.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/GridInventorySystem.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/GridInventorySystem.cpp.o
 .PHONY : __/src/GridInventorySystem.cpp.o
 
 __/src/GridInventorySystem.i: __/src/GridInventorySystem.cpp.i
@@ -548,7 +548,7 @@ __/src/GridInventorySystem.i: __/src/GridInventorySystem.cpp.i
 
 # target to preprocess a source file
 __/src/GridInventorySystem.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/GridInventorySystem.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/GridInventorySystem.cpp.i
 .PHONY : __/src/GridInventorySystem.cpp.i
 
 __/src/GridInventorySystem.s: __/src/GridInventorySystem.cpp.s
@@ -556,7 +556,7 @@ __/src/GridInventorySystem.s: __/src/GridInventorySystem.cpp.s
 
 # target to generate assembly for a file
 __/src/GridInventorySystem.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/GridInventorySystem.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/GridInventorySystem.cpp.s
 .PHONY : __/src/GridInventorySystem.cpp.s
 
 __/src/InventoryScene.o: __/src/InventoryScene.cpp.o
@@ -564,7 +564,7 @@ __/src/InventoryScene.o: __/src/InventoryScene.cpp.o
 
 # target to build an object file
 __/src/InventoryScene.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/InventoryScene.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/InventoryScene.cpp.o
 .PHONY : __/src/InventoryScene.cpp.o
 
 __/src/InventoryScene.i: __/src/InventoryScene.cpp.i
@@ -572,7 +572,7 @@ __/src/InventoryScene.i: __/src/InventoryScene.cpp.i
 
 # target to preprocess a source file
 __/src/InventoryScene.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/InventoryScene.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/InventoryScene.cpp.i
 .PHONY : __/src/InventoryScene.cpp.i
 
 __/src/InventoryScene.s: __/src/InventoryScene.cpp.s
@@ -580,7 +580,7 @@ __/src/InventoryScene.s: __/src/InventoryScene.cpp.s
 
 # target to generate assembly for a file
 __/src/InventoryScene.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/InventoryScene.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/InventoryScene.cpp.s
 .PHONY : __/src/InventoryScene.cpp.s
 
 __/src/InventorySystem.o: __/src/InventorySystem.cpp.o
@@ -588,7 +588,7 @@ __/src/InventorySystem.o: __/src/InventorySystem.cpp.o
 
 # target to build an object file
 __/src/InventorySystem.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/InventorySystem.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/InventorySystem.cpp.o
 .PHONY : __/src/InventorySystem.cpp.o
 
 __/src/InventorySystem.i: __/src/InventorySystem.cpp.i
@@ -596,7 +596,7 @@ __/src/InventorySystem.i: __/src/InventorySystem.cpp.i
 
 # target to preprocess a source file
 __/src/InventorySystem.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/InventorySystem.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/InventorySystem.cpp.i
 .PHONY : __/src/InventorySystem.cpp.i
 
 __/src/InventorySystem.s: __/src/InventorySystem.cpp.s
@@ -604,7 +604,7 @@ __/src/InventorySystem.s: __/src/InventorySystem.cpp.s
 
 # target to generate assembly for a file
 __/src/InventorySystem.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/InventorySystem.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/InventorySystem.cpp.s
 .PHONY : __/src/InventorySystem.cpp.s
 
 __/src/MainMenuScene.o: __/src/MainMenuScene.cpp.o
@@ -612,7 +612,7 @@ __/src/MainMenuScene.o: __/src/MainMenuScene.cpp.o
 
 # target to build an object file
 __/src/MainMenuScene.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/MainMenuScene.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/MainMenuScene.cpp.o
 .PHONY : __/src/MainMenuScene.cpp.o
 
 __/src/MainMenuScene.i: __/src/MainMenuScene.cpp.i
@@ -620,7 +620,7 @@ __/src/MainMenuScene.i: __/src/MainMenuScene.cpp.i
 
 # target to preprocess a source file
 __/src/MainMenuScene.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/MainMenuScene.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/MainMenuScene.cpp.i
 .PHONY : __/src/MainMenuScene.cpp.i
 
 __/src/MainMenuScene.s: __/src/MainMenuScene.cpp.s
@@ -628,7 +628,7 @@ __/src/MainMenuScene.s: __/src/MainMenuScene.cpp.s
 
 # target to generate assembly for a file
 __/src/MainMenuScene.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/MainMenuScene.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/MainMenuScene.cpp.s
 .PHONY : __/src/MainMenuScene.cpp.s
 
 __/src/MapScene.o: __/src/MapScene.cpp.o
@@ -636,7 +636,7 @@ __/src/MapScene.o: __/src/MapScene.cpp.o
 
 # target to build an object file
 __/src/MapScene.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/MapScene.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/MapScene.cpp.o
 .PHONY : __/src/MapScene.cpp.o
 
 __/src/MapScene.i: __/src/MapScene.cpp.i
@@ -644,7 +644,7 @@ __/src/MapScene.i: __/src/MapScene.cpp.i
 
 # target to preprocess a source file
 __/src/MapScene.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/MapScene.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/MapScene.cpp.i
 .PHONY : __/src/MapScene.cpp.i
 
 __/src/MapScene.s: __/src/MapScene.cpp.s
@@ -652,7 +652,7 @@ __/src/MapScene.s: __/src/MapScene.cpp.s
 
 # target to generate assembly for a file
 __/src/MapScene.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/MapScene.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/MapScene.cpp.s
 .PHONY : __/src/MapScene.cpp.s
 
 __/src/NPC.o: __/src/NPC.cpp.o
@@ -660,7 +660,7 @@ __/src/NPC.o: __/src/NPC.cpp.o
 
 # target to build an object file
 __/src/NPC.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/NPC.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/NPC.cpp.o
 .PHONY : __/src/NPC.cpp.o
 
 __/src/NPC.i: __/src/NPC.cpp.i
@@ -668,7 +668,7 @@ __/src/NPC.i: __/src/NPC.cpp.i
 
 # target to preprocess a source file
 __/src/NPC.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/NPC.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/NPC.cpp.i
 .PHONY : __/src/NPC.cpp.i
 
 __/src/NPC.s: __/src/NPC.cpp.s
@@ -676,7 +676,7 @@ __/src/NPC.s: __/src/NPC.cpp.s
 
 # target to generate assembly for a file
 __/src/NPC.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/NPC.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/NPC.cpp.s
 .PHONY : __/src/NPC.cpp.s
 
 __/src/NodeScene.o: __/src/NodeScene.cpp.o
@@ -684,7 +684,7 @@ __/src/NodeScene.o: __/src/NodeScene.cpp.o
 
 # target to build an object file
 __/src/NodeScene.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/NodeScene.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/NodeScene.cpp.o
 .PHONY : __/src/NodeScene.cpp.o
 
 __/src/NodeScene.i: __/src/NodeScene.cpp.i
@@ -692,7 +692,7 @@ __/src/NodeScene.i: __/src/NodeScene.cpp.i
 
 # target to preprocess a source file
 __/src/NodeScene.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/NodeScene.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/NodeScene.cpp.i
 .PHONY : __/src/NodeScene.cpp.i
 
 __/src/NodeScene.s: __/src/NodeScene.cpp.s
@@ -700,7 +700,7 @@ __/src/NodeScene.s: __/src/NodeScene.cpp.s
 
 # target to generate assembly for a file
 __/src/NodeScene.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/NodeScene.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/NodeScene.cpp.s
 .PHONY : __/src/NodeScene.cpp.s
 
 __/src/PlayerState.o: __/src/PlayerState.cpp.o
@@ -708,7 +708,7 @@ __/src/PlayerState.o: __/src/PlayerState.cpp.o
 
 # target to build an object file
 __/src/PlayerState.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/PlayerState.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/PlayerState.cpp.o
 .PHONY : __/src/PlayerState.cpp.o
 
 __/src/PlayerState.i: __/src/PlayerState.cpp.i
@@ -716,7 +716,7 @@ __/src/PlayerState.i: __/src/PlayerState.cpp.i
 
 # target to preprocess a source file
 __/src/PlayerState.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/PlayerState.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/PlayerState.cpp.i
 .PHONY : __/src/PlayerState.cpp.i
 
 __/src/PlayerState.s: __/src/PlayerState.cpp.s
@@ -724,7 +724,7 @@ __/src/PlayerState.s: __/src/PlayerState.cpp.s
 
 # target to generate assembly for a file
 __/src/PlayerState.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/PlayerState.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/PlayerState.cpp.s
 .PHONY : __/src/PlayerState.cpp.s
 
 __/src/QuestManager.o: __/src/QuestManager.cpp.o
@@ -732,7 +732,7 @@ __/src/QuestManager.o: __/src/QuestManager.cpp.o
 
 # target to build an object file
 __/src/QuestManager.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/QuestManager.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/QuestManager.cpp.o
 .PHONY : __/src/QuestManager.cpp.o
 
 __/src/QuestManager.i: __/src/QuestManager.cpp.i
@@ -740,7 +740,7 @@ __/src/QuestManager.i: __/src/QuestManager.cpp.i
 
 # target to preprocess a source file
 __/src/QuestManager.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/QuestManager.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/QuestManager.cpp.i
 .PHONY : __/src/QuestManager.cpp.i
 
 __/src/QuestManager.s: __/src/QuestManager.cpp.s
@@ -748,7 +748,7 @@ __/src/QuestManager.s: __/src/QuestManager.cpp.s
 
 # target to generate assembly for a file
 __/src/QuestManager.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/QuestManager.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/QuestManager.cpp.s
 .PHONY : __/src/QuestManager.cpp.s
 
 __/src/QuestsScene.o: __/src/QuestsScene.cpp.o
@@ -756,7 +756,7 @@ __/src/QuestsScene.o: __/src/QuestsScene.cpp.o
 
 # target to build an object file
 __/src/QuestsScene.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/QuestsScene.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/QuestsScene.cpp.o
 .PHONY : __/src/QuestsScene.cpp.o
 
 __/src/QuestsScene.i: __/src/QuestsScene.cpp.i
@@ -764,7 +764,7 @@ __/src/QuestsScene.i: __/src/QuestsScene.cpp.i
 
 # target to preprocess a source file
 __/src/QuestsScene.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/QuestsScene.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/QuestsScene.cpp.i
 .PHONY : __/src/QuestsScene.cpp.i
 
 __/src/QuestsScene.s: __/src/QuestsScene.cpp.s
@@ -772,7 +772,7 @@ __/src/QuestsScene.s: __/src/QuestsScene.cpp.s
 
 # target to generate assembly for a file
 __/src/QuestsScene.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/QuestsScene.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/QuestsScene.cpp.s
 .PHONY : __/src/QuestsScene.cpp.s
 
 __/src/SaveSystem.o: __/src/SaveSystem.cpp.o
@@ -780,7 +780,7 @@ __/src/SaveSystem.o: __/src/SaveSystem.cpp.o
 
 # target to build an object file
 __/src/SaveSystem.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/SaveSystem.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/SaveSystem.cpp.o
 .PHONY : __/src/SaveSystem.cpp.o
 
 __/src/SaveSystem.i: __/src/SaveSystem.cpp.i
@@ -788,7 +788,7 @@ __/src/SaveSystem.i: __/src/SaveSystem.cpp.i
 
 # target to preprocess a source file
 __/src/SaveSystem.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/SaveSystem.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/SaveSystem.cpp.i
 .PHONY : __/src/SaveSystem.cpp.i
 
 __/src/SaveSystem.s: __/src/SaveSystem.cpp.s
@@ -796,7 +796,7 @@ __/src/SaveSystem.s: __/src/SaveSystem.cpp.s
 
 # target to generate assembly for a file
 __/src/SaveSystem.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/SaveSystem.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/SaveSystem.cpp.s
 .PHONY : __/src/SaveSystem.cpp.s
 
 __/src/SceneManager.o: __/src/SceneManager.cpp.o
@@ -804,7 +804,7 @@ __/src/SceneManager.o: __/src/SceneManager.cpp.o
 
 # target to build an object file
 __/src/SceneManager.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/SceneManager.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/SceneManager.cpp.o
 .PHONY : __/src/SceneManager.cpp.o
 
 __/src/SceneManager.i: __/src/SceneManager.cpp.i
@@ -812,7 +812,7 @@ __/src/SceneManager.i: __/src/SceneManager.cpp.i
 
 # target to preprocess a source file
 __/src/SceneManager.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/SceneManager.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/SceneManager.cpp.i
 .PHONY : __/src/SceneManager.cpp.i
 
 __/src/SceneManager.s: __/src/SceneManager.cpp.s
@@ -820,7 +820,7 @@ __/src/SceneManager.s: __/src/SceneManager.cpp.s
 
 # target to generate assembly for a file
 __/src/SceneManager.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/SceneManager.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/SceneManager.cpp.s
 .PHONY : __/src/SceneManager.cpp.s
 
 __/src/Structure.o: __/src/Structure.cpp.o
@@ -828,7 +828,7 @@ __/src/Structure.o: __/src/Structure.cpp.o
 
 # target to build an object file
 __/src/Structure.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/Structure.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/Structure.cpp.o
 .PHONY : __/src/Structure.cpp.o
 
 __/src/Structure.i: __/src/Structure.cpp.i
@@ -836,7 +836,7 @@ __/src/Structure.i: __/src/Structure.cpp.i
 
 # target to preprocess a source file
 __/src/Structure.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/Structure.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/Structure.cpp.i
 .PHONY : __/src/Structure.cpp.i
 
 __/src/Structure.s: __/src/Structure.cpp.s
@@ -844,7 +844,7 @@ __/src/Structure.s: __/src/Structure.cpp.s
 
 # target to generate assembly for a file
 __/src/Structure.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/Structure.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/Structure.cpp.s
 .PHONY : __/src/Structure.cpp.s
 
 __/src/UI/HUDPanel.o: __/src/UI/HUDPanel.cpp.o
@@ -852,7 +852,7 @@ __/src/UI/HUDPanel.o: __/src/UI/HUDPanel.cpp.o
 
 # target to build an object file
 __/src/UI/HUDPanel.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/UI/HUDPanel.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/UI/HUDPanel.cpp.o
 .PHONY : __/src/UI/HUDPanel.cpp.o
 
 __/src/UI/HUDPanel.i: __/src/UI/HUDPanel.cpp.i
@@ -860,7 +860,7 @@ __/src/UI/HUDPanel.i: __/src/UI/HUDPanel.cpp.i
 
 # target to preprocess a source file
 __/src/UI/HUDPanel.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/UI/HUDPanel.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/UI/HUDPanel.cpp.i
 .PHONY : __/src/UI/HUDPanel.cpp.i
 
 __/src/UI/HUDPanel.s: __/src/UI/HUDPanel.cpp.s
@@ -868,7 +868,7 @@ __/src/UI/HUDPanel.s: __/src/UI/HUDPanel.cpp.s
 
 # target to generate assembly for a file
 __/src/UI/HUDPanel.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/UI/HUDPanel.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/UI/HUDPanel.cpp.s
 .PHONY : __/src/UI/HUDPanel.cpp.s
 
 __/src/UI/ResourceBar.o: __/src/UI/ResourceBar.cpp.o
@@ -876,7 +876,7 @@ __/src/UI/ResourceBar.o: __/src/UI/ResourceBar.cpp.o
 
 # target to build an object file
 __/src/UI/ResourceBar.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/UI/ResourceBar.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/UI/ResourceBar.cpp.o
 .PHONY : __/src/UI/ResourceBar.cpp.o
 
 __/src/UI/ResourceBar.i: __/src/UI/ResourceBar.cpp.i
@@ -884,7 +884,7 @@ __/src/UI/ResourceBar.i: __/src/UI/ResourceBar.cpp.i
 
 # target to preprocess a source file
 __/src/UI/ResourceBar.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/UI/ResourceBar.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/UI/ResourceBar.cpp.i
 .PHONY : __/src/UI/ResourceBar.cpp.i
 
 __/src/UI/ResourceBar.s: __/src/UI/ResourceBar.cpp.s
@@ -892,7 +892,7 @@ __/src/UI/ResourceBar.s: __/src/UI/ResourceBar.cpp.s
 
 # target to generate assembly for a file
 __/src/UI/ResourceBar.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/UI/ResourceBar.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/UI/ResourceBar.cpp.s
 .PHONY : __/src/UI/ResourceBar.cpp.s
 
 __/src/UI/UIComponent.o: __/src/UI/UIComponent.cpp.o
@@ -900,7 +900,7 @@ __/src/UI/UIComponent.o: __/src/UI/UIComponent.cpp.o
 
 # target to build an object file
 __/src/UI/UIComponent.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/UI/UIComponent.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/UI/UIComponent.cpp.o
 .PHONY : __/src/UI/UIComponent.cpp.o
 
 __/src/UI/UIComponent.i: __/src/UI/UIComponent.cpp.i
@@ -908,7 +908,7 @@ __/src/UI/UIComponent.i: __/src/UI/UIComponent.cpp.i
 
 # target to preprocess a source file
 __/src/UI/UIComponent.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/UI/UIComponent.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/UI/UIComponent.cpp.i
 .PHONY : __/src/UI/UIComponent.cpp.i
 
 __/src/UI/UIComponent.s: __/src/UI/UIComponent.cpp.s
@@ -916,7 +916,7 @@ __/src/UI/UIComponent.s: __/src/UI/UIComponent.cpp.s
 
 # target to generate assembly for a file
 __/src/UI/UIComponent.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/UI/UIComponent.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/UI/UIComponent.cpp.s
 .PHONY : __/src/UI/UIComponent.cpp.s
 
 test_AbilityNode.o: test_AbilityNode.cpp.o
@@ -924,7 +924,7 @@ test_AbilityNode.o: test_AbilityNode.cpp.o
 
 # target to build an object file
 test_AbilityNode.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/test_AbilityNode.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/test_AbilityNode.cpp.o
 .PHONY : test_AbilityNode.cpp.o
 
 test_AbilityNode.i: test_AbilityNode.cpp.i
@@ -932,7 +932,7 @@ test_AbilityNode.i: test_AbilityNode.cpp.i
 
 # target to preprocess a source file
 test_AbilityNode.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/test_AbilityNode.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/test_AbilityNode.cpp.i
 .PHONY : test_AbilityNode.cpp.i
 
 test_AbilityNode.s: test_AbilityNode.cpp.s
@@ -940,7 +940,7 @@ test_AbilityNode.s: test_AbilityNode.cpp.s
 
 # target to generate assembly for a file
 test_AbilityNode.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/test_AbilityNode.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/test_AbilityNode.cpp.s
 .PHONY : test_AbilityNode.cpp.s
 
 test_AbilityTreeSystem.o: test_AbilityTreeSystem.cpp.o
@@ -948,7 +948,7 @@ test_AbilityTreeSystem.o: test_AbilityTreeSystem.cpp.o
 
 # target to build an object file
 test_AbilityTreeSystem.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/test_AbilityTreeSystem.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/test_AbilityTreeSystem.cpp.o
 .PHONY : test_AbilityTreeSystem.cpp.o
 
 test_AbilityTreeSystem.i: test_AbilityTreeSystem.cpp.i
@@ -956,7 +956,7 @@ test_AbilityTreeSystem.i: test_AbilityTreeSystem.cpp.i
 
 # target to preprocess a source file
 test_AbilityTreeSystem.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/test_AbilityTreeSystem.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/test_AbilityTreeSystem.cpp.i
 .PHONY : test_AbilityTreeSystem.cpp.i
 
 test_AbilityTreeSystem.s: test_AbilityTreeSystem.cpp.s
@@ -964,7 +964,7 @@ test_AbilityTreeSystem.s: test_AbilityTreeSystem.cpp.s
 
 # target to generate assembly for a file
 test_AbilityTreeSystem.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/test_AbilityTreeSystem.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/test_AbilityTreeSystem.cpp.s
 .PHONY : test_AbilityTreeSystem.cpp.s
 
 unit/test_npc_dialogue.o: unit/test_npc_dialogue.cpp.o
@@ -972,7 +972,7 @@ unit/test_npc_dialogue.o: unit/test_npc_dialogue.cpp.o
 
 # target to build an object file
 unit/test_npc_dialogue.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_npc_dialogue.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_npc_dialogue.cpp.o
 .PHONY : unit/test_npc_dialogue.cpp.o
 
 unit/test_npc_dialogue.i: unit/test_npc_dialogue.cpp.i
@@ -980,7 +980,7 @@ unit/test_npc_dialogue.i: unit/test_npc_dialogue.cpp.i
 
 # target to preprocess a source file
 unit/test_npc_dialogue.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_npc_dialogue.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_npc_dialogue.cpp.i
 .PHONY : unit/test_npc_dialogue.cpp.i
 
 unit/test_npc_dialogue.s: unit/test_npc_dialogue.cpp.s
@@ -988,7 +988,7 @@ unit/test_npc_dialogue.s: unit/test_npc_dialogue.cpp.s
 
 # target to generate assembly for a file
 unit/test_npc_dialogue.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_npc_dialogue.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_npc_dialogue.cpp.s
 .PHONY : unit/test_npc_dialogue.cpp.s
 
 unit/test_phase4_scenes.o: unit/test_phase4_scenes.cpp.o
@@ -996,7 +996,7 @@ unit/test_phase4_scenes.o: unit/test_phase4_scenes.cpp.o
 
 # target to build an object file
 unit/test_phase4_scenes.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_phase4_scenes.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_phase4_scenes.cpp.o
 .PHONY : unit/test_phase4_scenes.cpp.o
 
 unit/test_phase4_scenes.i: unit/test_phase4_scenes.cpp.i
@@ -1004,7 +1004,7 @@ unit/test_phase4_scenes.i: unit/test_phase4_scenes.cpp.i
 
 # target to preprocess a source file
 unit/test_phase4_scenes.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_phase4_scenes.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_phase4_scenes.cpp.i
 .PHONY : unit/test_phase4_scenes.cpp.i
 
 unit/test_phase4_scenes.s: unit/test_phase4_scenes.cpp.s
@@ -1012,7 +1012,7 @@ unit/test_phase4_scenes.s: unit/test_phase4_scenes.cpp.s
 
 # target to generate assembly for a file
 unit/test_phase4_scenes.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_phase4_scenes.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_phase4_scenes.cpp.s
 .PHONY : unit/test_phase4_scenes.cpp.s
 
 unit/test_phase4_scenes_improved.o: unit/test_phase4_scenes_improved.cpp.o
@@ -1020,7 +1020,7 @@ unit/test_phase4_scenes_improved.o: unit/test_phase4_scenes_improved.cpp.o
 
 # target to build an object file
 unit/test_phase4_scenes_improved.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_phase4_scenes_improved.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_phase4_scenes_improved.cpp.o
 .PHONY : unit/test_phase4_scenes_improved.cpp.o
 
 unit/test_phase4_scenes_improved.i: unit/test_phase4_scenes_improved.cpp.i
@@ -1028,7 +1028,7 @@ unit/test_phase4_scenes_improved.i: unit/test_phase4_scenes_improved.cpp.i
 
 # target to preprocess a source file
 unit/test_phase4_scenes_improved.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_phase4_scenes_improved.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_phase4_scenes_improved.cpp.i
 .PHONY : unit/test_phase4_scenes_improved.cpp.i
 
 unit/test_phase4_scenes_improved.s: unit/test_phase4_scenes_improved.cpp.s
@@ -1036,7 +1036,7 @@ unit/test_phase4_scenes_improved.s: unit/test_phase4_scenes_improved.cpp.s
 
 # target to generate assembly for a file
 unit/test_phase4_scenes_improved.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_phase4_scenes_improved.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_phase4_scenes_improved.cpp.s
 .PHONY : unit/test_phase4_scenes_improved.cpp.s
 
 unit/test_quest_manager.o: unit/test_quest_manager.cpp.o
@@ -1044,7 +1044,7 @@ unit/test_quest_manager.o: unit/test_quest_manager.cpp.o
 
 # target to build an object file
 unit/test_quest_manager.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_quest_manager.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_quest_manager.cpp.o
 .PHONY : unit/test_quest_manager.cpp.o
 
 unit/test_quest_manager.i: unit/test_quest_manager.cpp.i
@@ -1052,7 +1052,7 @@ unit/test_quest_manager.i: unit/test_quest_manager.cpp.i
 
 # target to preprocess a source file
 unit/test_quest_manager.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_quest_manager.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_quest_manager.cpp.i
 .PHONY : unit/test_quest_manager.cpp.i
 
 unit/test_quest_manager.s: unit/test_quest_manager.cpp.s
@@ -1060,7 +1060,7 @@ unit/test_quest_manager.s: unit/test_quest_manager.cpp.s
 
 # target to generate assembly for a file
 unit/test_quest_manager.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_quest_manager.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_quest_manager.cpp.s
 .PHONY : unit/test_quest_manager.cpp.s
 
 unit/test_sanity.o: unit/test_sanity.cpp.o
@@ -1068,7 +1068,7 @@ unit/test_sanity.o: unit/test_sanity.cpp.o
 
 # target to build an object file
 unit/test_sanity.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_sanity.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_sanity.cpp.o
 .PHONY : unit/test_sanity.cpp.o
 
 unit/test_sanity.i: unit/test_sanity.cpp.i
@@ -1076,7 +1076,7 @@ unit/test_sanity.i: unit/test_sanity.cpp.i
 
 # target to preprocess a source file
 unit/test_sanity.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_sanity.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_sanity.cpp.i
 .PHONY : unit/test_sanity.cpp.i
 
 unit/test_sanity.s: unit/test_sanity.cpp.s
@@ -1084,7 +1084,7 @@ unit/test_sanity.s: unit/test_sanity.cpp.s
 
 # target to generate assembly for a file
 unit/test_sanity.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_sanity.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_sanity.cpp.s
 .PHONY : unit/test_sanity.cpp.s
 
 unit/test_ui.o: unit/test_ui.cpp.o
@@ -1092,7 +1092,7 @@ unit/test_ui.o: unit/test_ui.cpp.o
 
 # target to build an object file
 unit/test_ui.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_ui.cpp.o
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_ui.cpp.o
 .PHONY : unit/test_ui.cpp.o
 
 unit/test_ui.i: unit/test_ui.cpp.i
@@ -1100,7 +1100,7 @@ unit/test_ui.i: unit/test_ui.cpp.i
 
 # target to preprocess a source file
 unit/test_ui.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_ui.cpp.i
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_ui.cpp.i
 .PHONY : unit/test_ui.cpp.i
 
 unit/test_ui.s: unit/test_ui.cpp.s
@@ -1108,7 +1108,7 @@ unit/test_ui.s: unit/test_ui.cpp.s
 
 # target to generate assembly for a file
 unit/test_ui.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_ui.cpp.s
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/unit/test_ui.cpp.s
 .PHONY : unit/test_ui.cpp.s
 
 # Help Target
@@ -1251,6 +1251,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /Users/afftobuss/Documents/GitHub/kkurs/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

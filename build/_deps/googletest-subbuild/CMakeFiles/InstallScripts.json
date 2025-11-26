@@ -1,7 +1,7 @@
 {
 	"InstallScripts" : 
 	[
-		"/Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-subbuild/cmake_install.cmake"
+		"/Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-subbuild/cmake_install.cmake"
 	],
 	"Parallel" : false
 }

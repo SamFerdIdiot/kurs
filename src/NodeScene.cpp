@@ -35,10 +35,7 @@ NodeScene::NodeScene(const std::string& nodeId, const std::string& nodeName)
         std::cerr << "NodeScene: WARNING - Could not load any font! Text may not display." << std::endl;
     }
     
-    // Initialize structures first - this populates m_structures
-    initializeStructures();
-    
-    // Initialize menu pages based on available structures
+    // Initialize menu pages
     initializePages();
     
     // Setup visual elements - use responsive scaling
@@ -62,42 +59,11 @@ NodeScene::NodeScene(const std::string& nodeId, const std::string& nodeName)
     m_pageIndicatorText.setPosition(SCALE_POS(layout, 1100.0f, 60.0f));
 }
 
-void NodeScene::initializeStructures() {
-    // Initialize structures that are present in this node
-    // This would normally come from node data, but for now we hardcode some
-    
-    // Add a gas station
-    m_structures.push_back(std::make_unique<Structure>(
-        LocationType::GAS_STATION,
-        "Pete's Gas Station",
-        sf::Vector2f(150.0f, 500.0f)
-    ));
-    
-    // Add a store
-    m_structures.push_back(std::make_unique<Structure>(
-        LocationType::STORE,
-        "Roadside Store",
-        sf::Vector2f(400.0f, 500.0f)
-    ));
-    
-    // Add a motel
-    m_structures.push_back(std::make_unique<Structure>(
-        LocationType::MOTEL,
-        "Highway Motel",
-        sf::Vector2f(650.0f, 500.0f)
-    ));
-    
-    // Note: Different nodes could have different structures
-    // For example, some nodes might have a DINER instead of MOTEL
-    // or a GARAGE instead of STORE
-}
-
 void NodeScene::initializePages() {
-    // Создание единого меню навигации с переходами в разные сцены
-    // Новая структура меню согласно Phase 3 спецификации
+    // Simple menu navigation with all options in one place
     m_pages.clear();
-    
-    // Единственная страница меню с основными опциями
+
+    // Single page menu with all options
     MenuPage mainMenu;
     mainMenu.title = "NODE MENU";
     mainMenu.structureType = "main_menu";
@@ -108,7 +74,10 @@ void NodeScene::initializePages() {
         "3. Inventory",
         "4. Companions",
         "5. Quests",
-        "6. Ability Tree"
+        "6. Ability Tree",
+        "7. Gas Station",
+        "8. Store",
+        "9. Motel"
     };
     mainMenu.descriptions = {
         "View world map and travel to next destination",
@@ -116,7 +85,10 @@ void NodeScene::initializePages() {
         "Manage inventory and equipment",
         "View party members and companions",
         "Check active and completed quests",
-        "Unlock and upgrade abilities"
+        "Unlock and upgrade abilities",
+        "Refuel and buy supplies",
+        "Buy items and equipment",
+        "Rest and save your game"
     };
     m_pages.push_back(mainMenu);
 }
@@ -124,14 +96,6 @@ void NodeScene::initializePages() {
 void NodeScene::handleInput(const sf::Event& event) {
     if (event.type == sf::Event::KeyPressed) {
         switch (event.key.code) {
-            case sf::Keyboard::A:
-            case sf::Keyboard::Left:
-                previousPage();
-                break;
-            case sf::Keyboard::D:
-            case sf::Keyboard::Right:
-                nextPage();
-                break;
             case sf::Keyboard::Up:
                 selectPrevious();
                 break;
@@ -265,20 +229,6 @@ bool NodeScene::isFinished() const {
     return m_finished;
 }
 
-void NodeScene::nextPage() {
-    if (!m_pages.empty()) {
-        m_currentPageIndex = (m_currentPageIndex + 1) % m_pages.size();
-        m_selectedOptionIndex = 0;  // Reset selection when switching pages
-    }
-}
-
-void NodeScene::previousPage() {
-    if (!m_pages.empty()) {
-        m_currentPageIndex = (m_currentPageIndex - 1 + m_pages.size()) % m_pages.size();
-        m_selectedOptionIndex = 0;  // Reset selection when switching pages
-    }
-}
-
 void NodeScene::selectPrevious() {
     if (!m_pages.empty() && m_currentPageIndex < m_pages.size()) {
         const MenuPage& page = m_pages[m_currentPageIndex];
@@ -308,13 +258,11 @@ void NodeScene::confirmSelection() {
 
 void NodeScene::executeAction(int pageIndex, int optionIndex) {
     if (pageIndex < 0 || pageIndex >= m_pages.size()) return;
-    
+
     const MenuPage& page = m_pages[pageIndex];
     std::cout << "Executing action: " << page.title << ", Option " << optionIndex << std::endl;
-    
-    PlayerState& playerState = GameStateManager::getInstance().getPlayerState();
-    
-    // Обработка главного меню
+
+    // Main menu handling
     if (page.structureType == "main_menu") {
         switch (optionIndex) {
             case 0: // Map
@@ -346,6 +294,25 @@ void NodeScene::executeAction(int pageIndex, int optionIndex) {
                 m_finished = true;
                 m_nextScene = SceneType::ABILITY_TREE;
                 std::cout << "Opening ability tree..." << std::endl;
+                break;
+            case 6: // Gas Station
+                // Set location type for LocationScene
+                GameStateManager::getInstance().setCurrentLocationType(LocationType::GAS_STATION);
+                m_finished = true;
+                m_nextScene = SceneType::LOCATION;
+                std::cout << "Opening gas station..." << std::endl;
+                break;
+            case 7: // Store
+                GameStateManager::getInstance().setCurrentLocationType(LocationType::STORE);
+                m_finished = true;
+                m_nextScene = SceneType::LOCATION;
+                std::cout << "Opening store..." << std::endl;
+                break;
+            case 8: // Motel
+                GameStateManager::getInstance().setCurrentLocationType(LocationType::MOTEL);
+                m_finished = true;
+                m_nextScene = SceneType::LOCATION;
+                std::cout << "Opening motel..." << std::endl;
                 break;
         }
     }

@@ -3,6 +3,8 @@
 
 #include "PlayerState.h"
 #include "SaveSystem.h"
+#include "GameTypes.h"
+#include "Location.h"
 #include <memory>
 
 // GameStateManager - Singleton to manage global game state and save/load
@@ -51,12 +53,17 @@ public:
     
     // Get backup list for UI
     std::vector<SaveSystem::BackupInfo> getBackupList() const;
-    
+
+    // Set current location type (for LocationScene)
+    void setCurrentLocationType(LocationType type) { m_currentLocationType = type; }
+    LocationType getCurrentLocationType() const { return m_currentLocationType; }
+
 private:
     GameStateManager();
-    
+
     PlayerState m_playerState;
     SaveSystem m_saveSystem;
+    LocationType m_currentLocationType;
 };
 
 #endif // GAME_STATE_MANAGER_H

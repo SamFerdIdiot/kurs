@@ -1,11 +1,11 @@
 {
 	"InstallScripts" : 
 	[
-		"/Users/afftobuss/Documents/GitHub/kkurs/build/cmake_install.cmake",
-		"/Users/afftobuss/Documents/GitHub/kkurs/build/tests/cmake_install.cmake",
-		"/Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-build/cmake_install.cmake",
-		"/Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-build/googlemock/cmake_install.cmake",
-		"/Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-build/googletest/cmake_install.cmake"
+		"/Users/afftobuss/Documents/GitHub/kurs/build/cmake_install.cmake",
+		"/Users/afftobuss/Documents/GitHub/kurs/build/tests/cmake_install.cmake",
+		"/Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-build/cmake_install.cmake",
+		"/Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-build/googlemock/cmake_install.cmake",
+		"/Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-build/googletest/cmake_install.cmake"
 	],
 	"Parallel" : false
 }

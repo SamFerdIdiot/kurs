@@ -1,6 +1,6 @@
 tests/CMakeFiles/kkurs_lib.dir/__/src/Character.cpp.o: \
-  /Users/afftobuss/Documents/GitHub/kkurs/src/Character.cpp \
-  /Users/afftobuss/Documents/GitHub/kkurs/include/Character.h \
+  /Users/afftobuss/Documents/GitHub/kurs/src/Character.cpp \
+  /Users/afftobuss/Documents/GitHub/kurs/include/Character.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/string \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/max.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/comp.h \

@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/Users/afftobuss/Documents/GitHub/kkurs/include -I/Users/afftobuss/Documents/GitHub/kkurs/tests -isystem /opt/homebrew/opt/sfml@2/include -isystem /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googletest/include -isystem /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googletest
+CXX_INCLUDES = -I/Users/afftobuss/Documents/GitHub/kurs/include -I/Users/afftobuss/Documents/GitHub/kurs/tests -I/Users/afftobuss/Documents/GitHub/kurs/tests/mocks/sfml -isystem /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googletest/include -isystem /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googletest
 
 CXX_FLAGSarm64 = -std=gnu++17 -arch arm64
 

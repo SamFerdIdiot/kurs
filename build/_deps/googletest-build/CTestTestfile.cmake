@@ -1,6 +1,6 @@
 # CMake generated Testfile for 
-# Source directory: /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src
-# Build directory: /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-build
+# Source directory: /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src
+# Build directory: /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-build
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.

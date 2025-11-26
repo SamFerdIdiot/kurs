@@ -1,7 +1,7 @@
 _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o: \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googlemock/src/gmock-all.cc \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googlemock/include/gmock/gmock.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googlemock/include/gmock/gmock-actions.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googlemock/src/gmock-all.cc \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googlemock/include/gmock/gmock.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googlemock/include/gmock/gmock-actions.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/errno.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__config \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__config_site \
@@ -779,7 +779,7 @@ _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/default_searcher.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/not_fn.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/perfect_forward.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googlemock/include/gmock/internal/gmock-internal-utils.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googlemock/include/gmock/internal/gmock-internal-utils.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__ostream/basic_ostream.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/bitset \
@@ -793,21 +793,21 @@ _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/stack.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/print \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/unistd.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googlemock/include/gmock/internal/gmock-port.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googlemock/include/gmock/internal/gmock-port.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/assert.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/_assert.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/_static_assert.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/iostream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/istream \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googlemock/include/gmock/internal/custom/gmock-port.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googletest/include/gtest/internal/gtest-port.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googlemock/include/gmock/internal/custom/gmock-port.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googletest/include/gtest/internal/gtest-port.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/stat.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_s_ifmt.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_filesec_t.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/TargetConditionals.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googletest/include/gtest/internal/custom/gtest-port.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googletest/include/gtest/internal/gtest-port-arch.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googletest/include/gtest/internal/custom/gtest-port.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googletest/include/gtest/internal/gtest-port-arch.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/strings.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/unistd.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_posix_vdisable.h \
@@ -829,47 +829,47 @@ _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/chrono \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__chrono/file_clock.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/forward_list \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googletest/include/gtest/gtest.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googletest/include/gtest/gtest.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/iomanip \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/set \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__tree \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/sstream \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googletest/include/gtest/gtest-assertion-result.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googletest/include/gtest/gtest-message.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googletest/include/gtest/gtest-death-test.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googletest/include/gtest/internal/gtest-death-test-internal.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googletest/include/gtest/gtest-matchers.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googletest/include/gtest/gtest-printers.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googletest/include/gtest/internal/gtest-internal.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googletest/include/gtest/gtest-assertion-result.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googletest/include/gtest/gtest-message.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googletest/include/gtest/gtest-death-test.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googletest/include/gtest/internal/gtest-death-test-internal.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googletest/include/gtest/gtest-matchers.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googletest/include/gtest/gtest-printers.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googletest/include/gtest/internal/gtest-internal.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/float.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/float.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/float.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/map \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googletest/include/gtest/internal/gtest-filepath.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googletest/include/gtest/internal/gtest-string.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googletest/include/gtest/internal/gtest-type-util.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googletest/include/gtest/internal/gtest-filepath.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googletest/include/gtest/internal/gtest-string.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googletest/include/gtest/internal/gtest-type-util.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/cxxabi.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__cxxabi_config.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googletest/include/gtest/internal/custom/gtest-printers.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googletest/include/gtest/gtest-param-test.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googletest/include/gtest/internal/gtest-param-util.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googletest/include/gtest/internal/custom/gtest-printers.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googletest/include/gtest/gtest-param-test.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googletest/include/gtest/internal/gtest-param-util.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/cassert \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googletest/include/gtest/gtest-test-part.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googletest/include/gtest/gtest-typed-test.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googletest/include/gtest/gtest_pred_impl.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googletest/include/gtest/gtest_prod.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googlemock/include/gmock/internal/gmock-pp.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googlemock/include/gmock/gmock-cardinalities.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googlemock/include/gmock/gmock-function-mocker.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googlemock/include/gmock/gmock-spec-builders.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googlemock/include/gmock/gmock-matchers.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googlemock/include/gmock/internal/custom/gmock-matchers.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googlemock/include/gmock/gmock-more-actions.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googlemock/include/gmock/internal/custom/gmock-generated-actions.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googlemock/include/gmock/gmock-more-matchers.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googlemock/include/gmock/gmock-nice-strict.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googlemock/src/gmock-cardinalities.cc \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googlemock/src/gmock-internal-utils.cc \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googlemock/src/gmock-matchers.cc \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googlemock/src/gmock-spec-builders.cc \
-  /Users/afftobuss/Documents/GitHub/kkurs/build/_deps/googletest-src/googlemock/src/gmock.cc
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googletest/include/gtest/gtest-test-part.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googletest/include/gtest/gtest-typed-test.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googletest/include/gtest/gtest_pred_impl.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googletest/include/gtest/gtest_prod.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googlemock/include/gmock/internal/gmock-pp.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googlemock/include/gmock/gmock-cardinalities.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googlemock/include/gmock/gmock-function-mocker.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googlemock/include/gmock/gmock-spec-builders.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googlemock/include/gmock/gmock-matchers.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googlemock/include/gmock/internal/custom/gmock-matchers.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googlemock/include/gmock/gmock-more-actions.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googlemock/include/gmock/internal/custom/gmock-generated-actions.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googlemock/include/gmock/gmock-more-matchers.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googlemock/include/gmock/gmock-nice-strict.h \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googlemock/src/gmock-cardinalities.cc \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googlemock/src/gmock-internal-utils.cc \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googlemock/src/gmock-matchers.cc \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googlemock/src/gmock-spec-builders.cc \
+  /Users/afftobuss/Documents/GitHub/kurs/build/_deps/googletest-src/googlemock/src/gmock.cc

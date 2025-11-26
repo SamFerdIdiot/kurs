@@ -1,8 +1,8 @@
-# 🚗 KKURS - 69 Crossroads (Россия 90-х)
+# 🚗 KKURS - Road Trip Adventure
 
-**A 2D Road Trip Adventure RPG** - Navigate highways, manage resources, interact with NPCs, and experience procedurally generated journey in Russia 90s setting.
+**2D RPG о путешествии по дорогам России 90-х годов**
 
-2D автоприключенческая RPG в антураже России 90-х годов. Путешествуйте по дорогам, управляйте ресурсами и командой, взаимодействуйте с NPC, выполняйте квесты.
+Navigate highways, manage resources, build your team, complete quests.
 
 ---
 
@@ -14,177 +14,29 @@
 - CMake 3.10+
 
 ### Build & Run
-```bash
-mkdir build && cd build
-cmake ..
-make
-./kkurs
-```
 
-### macOS Build
-See [docs/guides/MACOS_BUILD_GUIDE.md](docs/guides/MACOS_BUILD_GUIDE.md)
-
----
-
-## 📊 Project Status
-
-**Current Sprint:** CRUNCH MODE  
-**Delivery:** <7 days  
-**Focus:** Working game over perfect code
-
-### Completed ✅
-- Scene-based architecture
-- PlayerState system
-- Basic inventory
-- NPC framework
-- Dialogue system
-- Event system
-- Save/Load functionality
-- UI components (HUD, menus)
-
-### In Progress 🔄
-- NodeScene menu interface (separate branch)
-- English UI localization
-- Content creation (NPCs, quests, locations)
-
-### Planned 📋
-- CharacterScene
-- CompanionsScene
-- QuestsScene
-- Grid inventory (Tarkov-style)
-- Travel cinematic scene
-
-**See [PROJECT_STATUS.md](PROJECT_STATUS.md) for detailed status**
-
----
-
-## 🏗️ Architecture
-
-**Pattern:** Scene-Based State Machine  
-**Language:** C++17  
-**Framework:** SFML 2.6  
-**Build System:** CMake
-
-### Core Systems
-1. **PlayerState** - Resources, character stats
-2. **InventorySystem** - 24-slot inventory with weight management
-3. **NPC System** - Companions with levels and abilities
-4. **DialogueManager** - Branching dialogue trees
-5. **EventManager** - Random events with conditions
-6. **ExperienceSystem** - Level progression and ability tree
-7. **QuestManager** - Quest objectives and rewards
-8. **SaveSystem** - JSON-based save/load
-9. **UI System** - HUD, menus, resource bars
-
-### Scene Types (18+)
-- MainMenuScene, CharacterCreationScene, MapScene
-- NodeScene, TravelCinematicScene, LocationScene
-- InventoryScene, AbilityTreeScene, GameOverScene
-- And more...
-
----
-
-## 📚 Documentation
-
-### Essential
-- **[PROJECT_STATUS.md](PROJECT_STATUS.md)** - Current project status
-- **[PROJECT_ANALYSIS_COMPLETE.md](PROJECT_ANALYSIS_COMPLETE.md)** - Complete analysis & cleanup plan
-- **[docs/README.md](docs/README.md)** - Documentation index
-
-### Guides
-- **[docs/guides/](docs/guides/)** - User and developer guides
-  - NPC Recruitment Guide
-  - Save System Guide
-  - macOS Build Guide
-  - UI/HUD Guide
-  - Events List
-
-### Specifications
-- **[docs/specifications/](docs/specifications/)** - Technical specifications
-  - Car Specifications
-  - World Map Format
-  - Driving Scene Specification
-  - Location Specifications
-
-### Technical Documentation
-- **[docs/tech/](docs/tech/)** - Architecture and technical docs
-- **[docs/8_CORE_PRINCIPLES.md](docs/8_CORE_PRINCIPLES.md)** - Project principles
-
----
-
-## 🎮 Gameplay Features
-
-### Core Mechanics
-- **Resource Management** - Fuel, money, energy
-- **Inventory System** - 24 slots, weight-based
-- **NPC Companions** - Recruit and manage team
-- **Dialogue System** - Branching conversations
-- **Quest System** - Objectives and rewards
-- **Random Events** - Dynamic road encounters
-- **Character Progression** - Experience and ability tree
-- **Save/Load** - Save your journey
-
-### Game Flow
-```
-Main Menu → Character Creation → World Map →
-  → Node (Menu) → Select Action:
-     - Map (travel)
-     - Character (stats)
-     - Inventory
-     - Companions
-     - Quests
-     - Ability Tree
-     - Structures (gas station, store, motel)
-```
-
----
-
-## 🛠️ Development
-
-### Repository Structure
-```
-kkurs/
-├── src/              # Source code (.cpp)
-├── include/          # Headers (.h/.hpp)
-├── assets/           # Game assets
-├── data/             # Game data (maps, configs)
-├── scripts/          # Build/utility scripts
-├── tests/            # Test code
-├── docs/             # Documentation
-│   ├── guides/       # User guides
-│   ├── specifications/  # Technical specs
-│   ├── tech/         # Technical docs
-│   ├── tasks/        # Task planning
-│   └── progress/     # Progress tracking
-└── archive/          # Historical files
-```
-
-### Contributing
-This project follows **Scene-Based Architecture** with **8 Core Principles**:
-1. Scene-based architecture
-2. Wireframe documentation
-3. Mouse-first UI
-4. Resource management
-5. Grid inventory system
-6. Event system
-7. Character archetypes
-8. Maximum extensibility
-
-See [docs/8_CORE_PRINCIPLES.md](docs/8_CORE_PRINCIPLES.md) for details.
-
-###
- Building from Source
 ```bash
 # Clone repository
 git clone https://github.com/barzikol/kkurs.git
 cd kkurs
 
-# Install SFML (Ubuntu/Debian)
+# Install SFML
+# Ubuntu/Debian:
 sudo apt-get install libsfml-dev
+
+# macOS (Homebrew):
+brew install sfml@2
 
 # Build
 mkdir build && cd build
+
+# macOS:
+cmake .. -DSFML_DIR=/opt/homebrew/opt/sfml@2/lib/cmake/SFML
+
+# Linux:
 cmake ..
+
+# Compile
 make -j$(nproc)
 
 # Run
@@ -193,59 +45,242 @@ make -j$(nproc)
 
 ---
 
-## 📝 Current Priorities (Crunch Mode)
+## 🎮 Gameplay
 
-### This Week
-1. ✅ Archive outdated documentation
-2. ✅ Consolidate README files
-3. 🔄 Merge NodeScene from other branch
-4. 🔄 Implement CharacterScene (basic)
-5. 🔄 Implement CompanionsScene (basic)
-6. 🔄 Implement QuestsScene (basic)
-7. 🔄 English UI localization
-8. 🔄 Add content (5 NPCs, 3 quests, 3 locations)
-9. 🔄 Testing & bug fixes
+### Game Flow
 
-### Acceptable Workarounds
-- Hardcoded data (vs data-driven)
-- Simple UI (vs polished)
-- Basic error handling
-- Limited testing
-- Placeholder graphics
+```
+Main Menu → Character Creation → Node Menu:
+  ├─ Map (travel to next node)
+  ├─ Character (stats & progression)
+  ├─ Inventory (Tarkov-style grid)
+  ├─ Companions (team management)
+  ├─ Quests (quest journal)
+  ├─ Ability Tree (skills)
+  └─ Structures:
+      ├─ Gas Station (refuel, shop)
+      ├─ Store (buy supplies)
+      ├─ Garage (repairs)
+      ├─ Diner (food, energy)
+      ├─ Motel (rest, save)
+      └─ Mechanic (advanced repairs)
+```
 
-**Goal:** Working game that runs and doesn't crash
+### Character Creation
+
+**3 Archetypes:**
+
+| Archetype | Money | Car | Bonus |
+|-----------|-------|-----|-------|
+| Ex-Racer (Гонщик) | 2000₽ | BMW | +20% fuel efficiency |
+| Nomad (Безработный) | 800₽ | Volvo | Event resistance |
+| Sociable (Студент) | 1500₽ | Mercedes | +30% diplomacy |
+
+**3 Car Types:**
+
+| Car | Fuel Tank | Cargo | Consumption |
+|-----|-----------|-------|-------------|
+| BMW | 70L | 64kg | 2.2 L/100km |
+| Volvo | 60L | 55kg | 1.8 L/100km |
+| Mercedes | 65L | 50kg | 2.0 L/100km |
+
+### Core Mechanics
+
+- **Resource Management** - Fuel, money, energy
+- **Grid Inventory** - Tarkov-style (6x4 grid, drag & drop, rotation)
+- **NPC Team** - Recruit companions with unique abilities
+- **Quest System** - Multiple objectives, rewards
+- **Random Events** - Dynamic road encounters
+- **Ability Tree** - 5 categories of skills
+- **Save/Load** - JSON-based saves
 
 ---
 
-## 📦 Dependencies
+## 🎯 Features
 
-- **SFML 2.6** - Graphics, audio, window management
-- **C++17 STL** - Standard library features
-- **CMake 3.10+** - Build system
-- **nlohmann/json** (optional) - JSON parsing for save system
+### ✅ Implemented
+
+- **Scene System** - 13+ game scenes
+- **Resource Management** - Fuel/Money/Energy tracking
+- **Grid Inventory** - Tarkov-style with drag & drop
+- **NPC System** - Companions with levels and abilities
+- **Dialogue System** - Branching conversations
+- **Quest System** - 6 objective types
+- **Event System** - 5+ random events
+- **Experience & Levels** - Progressive leveling (100 * level^1.5)
+- **Ability Tree** - Unlock skills with points
+- **Save/Load** - JSON saves
+- **HUD** - Animated resource bars
+- **UI Components** - Modular UI system
+
+### 🔄 In Progress
+
+- Упрощенное меню Node (все структуры в одном меню)
+- DialogueScene (базовая реализация)
+- MotelScene (отдых и сохранение)
+- GameOverScene (экран окончания игры)
+
+### 📋 Planned
+
+- More content (20+ events, 15+ quests, 15+ NPCs)
+- Graphics & sprites (cars, locations, UI)
+- Audio system (music, sound effects)
+- Advanced features (weather, day/night cycle)
 
 ---
 
-## 📄 License
+## 🕹️ Controls
 
-[License information to be added]
+### Main Menu
+- **↑↓ / W/S** - Navigate
+- **Enter** - Select
+- **Escape** - Exit
+
+### Node Menu (Simplified)
+- **↑↓** - Navigate menu
+- **Enter** - Select option
+- **M** - Quick access to Map
+- **C** - Quick access to Character
+- **I** - Quick access to Inventory
+- **P** - Quick access to Party (Companions)
+- **Q** - Quick access to Quests
+- **T** - Quick access to Ability Tree
+- **Escape** - Close/Back
+
+### Map Scene
+- **Mouse Click** - Select node
+- **Escape** - Back to Node Menu
+
+### Inventory (Grid)
+- **Mouse** - Drag & drop items
+- **Right Click** - Rotate item
+- **Escape** - Close
+
+### Other Scenes
+- **↑↓** - Navigate
+- **Enter** - Confirm
+- **Escape** - Back
+
+---
+
+## 📚 Project Structure
+
+```
+kkurs/
+├── src/              # C++ source files
+├── include/          # Header files
+├── assets/           # Game assets
+│   └── fonts/       # Fonts
+├── data/             # Game data
+│   └── maps/        # Map files
+├── tests/            # Unit tests (Google Test)
+├── build/            # Build directory (gitignored)
+├── CMakeLists.txt    # CMake configuration
+├── README.md         # This file
+├── DOCUMENTATION.md  # Full user documentation
+├── ROADMAP.md        # Development roadmap
+└── TECHNICAL.md      # Technical documentation
+```
+
+---
+
+## 🛠️ Development
+
+### Architecture
+
+**Pattern:** Scene-Based State Machine
+**Language:** C++17
+**Framework:** SFML 2.6
+**Build System:** CMake
+**Testing:** Google Test (88/97 passing, 91%)
+
+### Core Systems
+
+1. **SceneManager** - Scene transitions & lifecycle
+2. **PlayerState** - Resources & character data
+3. **InventorySystem** - Simple + Grid inventory
+4. **ExperienceSystem** - Leveling & skill points
+5. **AbilityTreeSystem** - Skill unlocking
+6. **QuestManager** - Quest tracking & completion
+7. **EventManager** - Random road events
+8. **DialogueManager** - Branching dialogues
+9. **SaveSystem** - JSON-based saves
+
+### 8 Core Principles
+
+This project follows **strict development principles**:
+
+1. **Immediate Functionality** - No TODO comments, everything works
+2. **Independence** - No undocumented dependencies
+3. **Strict Adherence** - Implement exactly as specified
+4. **Unified Plan** - Follow ROADMAP.md
+5. **Clean Structure** - Organized documentation
+6. **UI + Assets** - UI implemented immediately
+7. **Modular Structure** - Clear separation of concerns
+8. **Documentation** - Keep docs updated
+
+See `DOCUMENTATION.md` for details.
+
+---
+
+## 📖 Documentation
+
+- **README.md** (this file) - Quick start & overview
+- **DOCUMENTATION.md** - Full game documentation
+- **ROADMAP.md** - Development plan & TODO
+- **TECHNICAL.md** - Technical code documentation
+
+---
+
+## 🧪 Testing
+
+```bash
+cd build
+ctest --output-on-failure
+```
+
+**Current Status:** 88/97 tests passing (91%)
+
+---
+
+## 📊 Project Status
+
+**Version:** Alpha
+**Completion:** ~75%
+**Phase:** 5 - Advanced Integration
+**Next Milestone:** Content expansion & UI polish
+
+### Timeline
+
+- ✅ Phase 0-4: Core systems (Complete)
+- 🔄 Phase 5: Integration (Current)
+- ⏳ Phase 6: Content expansion
+- ⏳ Phase 7: Graphics & UI
+- ⏳ Phase 8: Audio & polish
+- ⏳ Phase 9: Testing & release
+
+See `ROADMAP.md` for detailed plan.
+
+---
+
+## 🤝 Contributing
+
+This is a learning project following strict architectural principles. See `DOCUMENTATION.md` (section "8 Core Principles") before contributing.
+
+---
+
+## 📝 License
+
+[To be determined]
 
 ---
 
 ## 🔗 Links
 
-- **GitHub:** https://github.com/barzikol/kkurs
+- **Repository:** https://github.com/barzikol/kkurs
 - **Issues:** https://github.com/barzikol/kkurs/issues
-- **Documentation:** [docs/](docs/)
 
 ---
 
-## 👥 Team
-
-Development Team - CRUNCH MODE 🔥
-
----
-
-**Last Updated:** 2025-11-21  
-**Version:** Alpha (Pre-release)  
-**Status:** Active Development - Crunch Mode
+**Last Updated:** 2025-11-26
+**Status:** Active Development

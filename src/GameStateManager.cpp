@@ -2,7 +2,8 @@
 #include <iostream>
 
 // Constructor
-GameStateManager::GameStateManager() {
+GameStateManager::GameStateManager()
+    : m_currentLocationType(LocationType::UNKNOWN) {
     // Constructor intentionally empty - state will be initialized
     // either by loading a save or starting a new game
 }

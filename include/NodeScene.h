@@ -23,9 +23,9 @@ struct TravelSign {
           interactionDistance(50.0f) {}
 };
 
-// NodeScene - Меню-навигация в ноде (город)
-// Страничный интерфейс с переключением на A/D
-// Навигация стрелками, выбор на Enter
+// NodeScene - Menu navigation in a node (city)
+// Simple menu interface with arrow key navigation
+// Navigate with arrows, select with Enter
 class NodeScene : public Scene {
 public:
     NodeScene(const std::string& nodeId, const std::string& nodeName);
@@ -48,17 +48,11 @@ private:
         std::vector<std::string> descriptions;
     };
     
-    void initializeStructures();
     void initializePages();
-    void nextPage();
-    void previousPage();
     void selectPrevious();
     void selectNext();
     void confirmSelection();
     void executeAction(int pageIndex, int optionIndex);
-    
-    // Structures in this node
-    std::vector<std::unique_ptr<Structure>> m_structures;
     
     // Node information
     std::string m_nodeId;

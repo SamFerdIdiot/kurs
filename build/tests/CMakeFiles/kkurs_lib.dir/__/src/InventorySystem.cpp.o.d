@@ -1,7 +1,7 @@
 tests/CMakeFiles/kkurs_lib.dir/__/src/InventorySystem.cpp.o: \
-  /Users/afftobuss/Documents/GitHub/kkurs/src/InventorySystem.cpp \
-  /Users/afftobuss/Documents/GitHub/kkurs/include/InventorySystem.h \
-  /Users/afftobuss/Documents/GitHub/kkurs/include/Item.h \
+  /Users/afftobuss/Documents/GitHub/kurs/src/InventorySystem.cpp \
+  /Users/afftobuss/Documents/GitHub/kurs/include/InventorySystem.h \
+  /Users/afftobuss/Documents/GitHub/kurs/include/Item.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/string \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/max.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/comp.h \

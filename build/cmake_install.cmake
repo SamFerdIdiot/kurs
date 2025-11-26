@@ -1,4 +1,4 @@
-# Install script for directory: /Users/afftobuss/Documents/GitHub/kkurs
+# Install script for directory: /Users/afftobuss/Documents/GitHub/kurs
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -38,11 +38,11 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/Users/afftobuss/Documents/GitHub/kkurs/build/kkurs")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/Users/afftobuss/Documents/GitHub/kurs/build/kkurs")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/kkurs" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/kkurs")
     execute_process(COMMAND /usr/bin/install_name_tool
-      -delete_rpath "/opt/homebrew/opt/sfml@2/lib"
+      -delete_rpath "/opt/homebrew/lib"
       "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/kkurs")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" -u -r "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/kkurs")
@@ -51,19 +51,19 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  include("/Users/afftobuss/Documents/GitHub/kkurs/build/CMakeFiles/kkurs.dir/install-cxx-module-bmi-noconfig.cmake" OPTIONAL)
+  include("/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/kkurs.dir/install-cxx-module-bmi-noconfig.cmake" OPTIONAL)
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/Users/afftobuss/Documents/GitHub/kkurs/build/tests/cmake_install.cmake")
+  include("/Users/afftobuss/Documents/GitHub/kurs/build/tests/cmake_install.cmake")
 
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "/Users/afftobuss/Documents/GitHub/kkurs/build/install_local_manifest.txt"
+  file(WRITE "/Users/afftobuss/Documents/GitHub/kurs/build/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()
 if(CMAKE_INSTALL_COMPONENT)
@@ -79,6 +79,6 @@ else()
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "/Users/afftobuss/Documents/GitHub/kkurs/build/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "/Users/afftobuss/Documents/GitHub/kurs/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

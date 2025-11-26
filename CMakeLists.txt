@@ -27,7 +27,7 @@ option(BUILD_EXECUTABLE "Build the main executable" ON)
 
 # Find SFML
 if(BUILD_EXECUTABLE)
-    find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
+    find_package(SFML 3 COMPONENTS Graphics Window System REQUIRED)
 endif()
 
 # Include directories
@@ -76,8 +76,8 @@ set(SOURCES
 if(BUILD_EXECUTABLE)
     add_executable(kkurs ${SOURCES})
 
-    # Link SFML libraries
-    target_link_libraries(kkurs sfml-graphics sfml-window sfml-system)
+    # Link SFML libraries (SFML 3.x)
+    target_link_libraries(kkurs SFML::Graphics SFML::Window SFML::System)
 
     # Copy assets to build directory so they can be found at runtime
     # Copy fonts
