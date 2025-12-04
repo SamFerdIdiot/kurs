@@ -2,77 +2,47 @@
 #define MAP_SCENE_H
 
 #include "Scene.h"
-#include "UI/HUDPanel.hpp"
-#include "UILayout.h"
 #include <SFML/Graphics.hpp>
-#include <string>
-#include <vector>
+#include <optional>
 
-// Точка на карте (нода)
-struct MapNode {
-    std::string id;
-    std::string name;
-    sf::Vector2f position;  // Позиция на UI карты
-    bool isUnlocked;        // Доступна ли
-    bool isCurrentNode;     // Текущая нода
-    
-    MapNode()
-        : position(0.0f, 0.0f),
-          isUnlocked(false),
-          isCurrentNode(false) {}
-          
-    MapNode(const std::string& nodeId, const std::string& nodeName,
-            const sf::Vector2f& pos, bool unlocked = false, bool current = false)
-        : id(nodeId), name(nodeName), position(pos),
-          isUnlocked(unlocked), isCurrentNode(current) {}
-};
-
-// MapScene - Сцена карты для выбора следующей локации
-// Показывает доступные ноды и позволяет выбрать направление
+// MapScene - Static world map viewer
+// Purpose: Display a large static world map image that can be panned with mouse
+// Features:
+//   - Displays static map image (or placeholder for MVP)
+//   - Mouse drag to pan the map
+//   - ESC to close and return to node
+//   - Reference-only view (no gameplay interaction)
 class MapScene : public Scene {
 public:
     MapScene();
     ~MapScene() override = default;
-    
+
     void handleInput(const sf::Event& event) override;
     void update(float deltaTime) override;
     void render(sf::RenderWindow& window) override;
-    
+
     SceneType getNextScene() const override;
     bool isFinished() const override;
-    
-    // Установить текущую ноду
-    void setCurrentNode(const std::string& nodeId);
-    
-    // Добавить доступную ноду
-    void addAvailableNode(const MapNode& node);
-    
+
 private:
-    void initializeMap();
-    void renderNodes(sf::RenderWindow& window);
-    void renderConnections(sf::RenderWindow& window);
-    void handleNodeSelection(const sf::Vector2f& mousePos);
-    
-    // Map data
-    std::vector<MapNode> m_nodes;
-    std::string m_currentNodeId;
-    std::string m_selectedNodeId;
-    
     // UI elements
-    sf::RectangleShape m_background;
+    sf::RectangleShape m_background;        // Dark background
+    sf::RectangleShape m_mapPlaceholder;    // [MVP] Placeholder for actual map image
     sf::Font m_font;
-    sf::Text m_titleText;
-    sf::Text m_instructionText;
-    
+    std::optional<sf::Text> m_titleText;
+    std::optional<sf::Text> m_instructionText;
+    std::optional<sf::Text> m_placeholderText;  // [MVP] Indicates where image goes
+    bool m_fontLoaded;
+
+    // Map pan/view state
+    sf::Vector2f m_mapOffset;               // Current pan offset
+    bool m_isDragging;                      // Is user dragging?
+    sf::Vector2i m_lastMousePos;            // Last mouse position for drag
+
     // Scene state
     bool m_finished;
     SceneType m_nextScene;
-    
-    // Mouse
-    sf::Vector2i m_mousePosition;
-    
-    // HUD Panel for displaying resources
-    HUDPanel m_hudPanel;
+    SceneType m_returnToScene;              // Scene to return to when closing
 };
 
 #endif // MAP_SCENE_H

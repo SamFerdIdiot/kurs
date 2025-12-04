@@ -43,9 +43,9 @@ void CharacterCreationScene::handleInput(const sf::Event& event) {
         
         // Start new game with chosen origin and car type
         GameStateManager::getInstance().startNewGame(origin, carType);
-        
-        // Transition to first game scene (node scene at starting location)
-        m_nextScene = SceneType::NODE;
+
+        // [MVP] Transition to map/travel selection scene to choose first destination
+        m_nextScene = SceneType::TRAVEL_SELECTION;
         m_isFinished = true;
         
         std::cout << "Character created: Background=" << backgroundIndex 

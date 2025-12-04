@@ -5,29 +5,25 @@
 
 // Enum to identify different scenes in the game
 enum class SceneType {
-    MAIN_MENU,
-    CHARACTER_CREATION,
-    ROUTE_SELECTION,
-    WORLD_MAP,
-    NODE,           // Node gameplay scene (city with car control)
-    DRIVING,
-    SIDE_VIEW,
-    ROAD,
-    TOWN,
-    MOTEL,
-    DIALOGUE,
-    INVENTORY,
-    CHARACTER,      // Character stats and progression scene
-    COMPANIONS,     // Party and companions management scene
-    QUESTS,         // Quest journal and tracking scene
-    ABILITY_TREE,   // Ability tree skill selection scene
-    PAUSE_MENU,
-    GAME_OVER,
-    CINEMATIC_EVENT,
-    TRAVEL_CINEMATIC,  // Cinematic travel scene between nodes
-    REST,
-    LOCATION,       // Generic location scene for gas stations, stores, diners, etc.
-    EXIT
+    MAIN_MENU,           // Main menu scene
+    CHARACTER_CREATION,  // Character creation scene
+    NODE,                // Node gameplay scene (city with car control)
+    MOTEL,               // Motel/rest scene
+    DIALOGUE,            // Dialogue scene with NPCs
+    INVENTORY,           // Inventory management scene
+    CHARACTER,           // Character stats and progression scene
+    COMPANIONS,          // Party and companions management scene
+    QUESTS,              // Quest journal and tracking scene
+    ABILITY_TREE,        // Ability tree skill selection scene
+    GAME_OVER,           // Game over scene
+    END_GAME,            // [MVP] End game victory scene
+    CINEMATIC_EVENT,     // Event scene during travel
+    TRAVEL_CINEMATIC,    // Cinematic travel scene between nodes
+    TRAVEL_SELECTION,    // Travel route selection menu
+    LOCATION,            // Generic location scene (gas stations, stores, diners)
+    NOTES,               // Player notepad for manual note-taking
+    MAP,                 // Static world map viewer (reference only)
+    EXIT                 // Exit game
 };
 
 // Базовый класс для всех игровых сцен

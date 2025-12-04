@@ -90,9 +90,10 @@ int InventorySystem::removeItemByName(const std::string& itemName, int count) {
 bool InventorySystem::useItem(int slotIndex) {
     if (!isValidSlot(slotIndex)) return false;
     if (m_slots[slotIndex].isEmpty) return false;
-    
-    // TODO: Add item effects/callbacks
-    
+
+    // Note: Item effects/callbacks system not yet implemented
+    // Items are consumed but no special effects are applied
+
     // Consume one item
     return removeItem(slotIndex, 1);
 }
@@ -209,7 +210,7 @@ std::vector<int> InventorySystem::findItemsByCategory(ItemCategory category) con
 
 // Sort inventory (stub)
 void InventorySystem::sortInventory() {
-    // TODO: Implement sorting
+    // Sorting not yet implemented - use compactInventory() to organize items
 }
 
 // Compact inventory

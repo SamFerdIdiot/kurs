@@ -10,12 +10,12 @@ QuestsScene::QuestsScene()
       m_currentFilter(QuestStatus::ACTIVE),
       m_scrollOffset(0) {
     
-    // Загрузка шрифта с fallback опциями
-    if (m_font.loadFromFile("assets/fonts/font.ttf")) {
+    // Загрузка шрифта с fallback опциями (SFML 3.x uses openFromFile)
+    if (m_font.openFromFile("assets/fonts/font.ttf")) {
         m_fontLoaded = true;
-    } else if (m_font.loadFromFile("images/Press_Start_2P/PressStart2P-Regular.ttf")) {
+    } else if (m_font.openFromFile("images/Press_Start_2P/PressStart2P-Regular.ttf")) {
         m_fontLoaded = true;
-    } else if (m_font.loadFromFile("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf")) {
+    } else if (m_font.openFromFile("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf")) {
         m_fontLoaded = true;
     } else {
         m_fontLoaded = false;
@@ -27,47 +27,39 @@ QuestsScene::QuestsScene()
 }
 
 void QuestsScene::setupUI() {
-    // Создание адаптивной разметки для MacBook Air M1
-    // Create responsive layout for MacBook Air M1
-    UILayout& layout = GET_LAYOUT("QuestsScene");
-    layout.setTargetResolution(
-        ScreenResolution::MAC_AIR_M1_WIDTH,
-        ScreenResolution::MAC_AIR_M1_HEIGHT
-    );
-    
-    // Фон with responsive sizing
-    m_background.setSize(sf::Vector2f(layout.getTargetWidth(), layout.getTargetHeight()));
+    // Fixed layout for 1440x900 (no responsive scaling)
+    const float SCREEN_WIDTH = 1440.0f;
+    const float SCREEN_HEIGHT = 900.0f;
+
+    // Фон - fixed sizing
+    m_background.setSize(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
     m_background.setFillColor(sf::Color(30, 30, 46)); // Dark blue-gray
-    m_background.setPosition(0.0f, 0.0f);
-    
-    // Заголовок with responsive scaling
-    m_titleText.setFont(m_font);
-    m_titleText.setCharacterSize(SCALE_FONT(layout, 36));
-    m_titleText.setFillColor(sf::Color::White);
-    m_titleText.setPosition(SCALE_POS(layout, 100.0f, 40.0f));
-    m_titleText.setString("QUEST JOURNAL");
-    
-    // Фильтр with responsive scaling
-    m_filterText.setFont(m_font);
-    m_filterText.setCharacterSize(SCALE_FONT(layout, 20));
-    m_filterText.setFillColor(sf::Color(255, 165, 0)); // Orange
-    m_filterText.setPosition(SCALE_POS(layout, 100.0f, 100.0f));
-    
-    // Количество квестов with responsive scaling
-    m_questCountText.setFont(m_font);
-    m_questCountText.setCharacterSize(SCALE_FONT(layout, 18));
-    m_questCountText.setFillColor(sf::Color(204, 204, 204));
-    m_questCountText.setPosition(SCALE_POS(layout, 600.0f, 103.0f));
-    
-    // Подсказка управления with responsive scaling
-    m_controlsText.setFont(m_font);
-    m_controlsText.setCharacterSize(SCALE_FONT(layout, 16));
-    m_controlsText.setFillColor(sf::Color(150, 150, 150));
-    m_controlsText.setPosition(SCALE_POS(layout, 100.0f, 700.0f));
-    m_controlsText.setString("Up/Down: Navigate | Tab: Filter | ESC - Back to Node");
-    
-    // Подсветка выбора with responsive scaling
-    m_selectionHighlight.setSize(SCALE_SIZE(layout, 1100.0f, 100.0f));
+    m_background.setPosition(sf::Vector2f(0.0f, 0.0f));
+
+    if (m_fontLoaded) {
+        // Заголовок
+        m_titleText.emplace(m_font, "QUEST JOURNAL", 36);
+        m_titleText->setFillColor(sf::Color::White);
+        m_titleText->setPosition(sf::Vector2f(100.0f, 40.0f));
+
+        // Фильтр
+        m_filterText.emplace(m_font, "", 20);
+        m_filterText->setFillColor(sf::Color(255, 165, 0)); // Orange
+        m_filterText->setPosition(sf::Vector2f(100.0f, 100.0f));
+
+        // Количество квестов
+        m_questCountText.emplace(m_font, "", 18);
+        m_questCountText->setFillColor(sf::Color(204, 204, 204));
+        m_questCountText->setPosition(sf::Vector2f(600.0f, 103.0f));
+
+        // Подсказка управления
+        m_controlsText.emplace(m_font, "Up/Down: Navigate | Tab: Filter | ESC - Back to Node", 16);
+        m_controlsText->setFillColor(sf::Color(150, 150, 150));
+        m_controlsText->setPosition(sf::Vector2f(100.0f, 700.0f));
+    }
+
+    // Подсветка выбора
+    m_selectionHighlight.setSize(sf::Vector2f(1100.0f, 100.0f));
     m_selectionHighlight.setFillColor(sf::Color(94, 126, 160, 100)); // Light blue with transparency
     m_selectionHighlight.setOutlineColor(sf::Color(94, 126, 160));
     m_selectionHighlight.setOutlineThickness(2.0f);
@@ -95,25 +87,27 @@ void QuestsScene::loadQuests() {
     QuestInfo quest3("Fuel Run", "Collect enough fuel for the journey", QuestStatus::COMPLETED, "100\xE2\x82\xBD");
     quest3.objectives.push_back(QuestObjective("Collect 50L fuel", 50, 50));
     m_quests.push_back(quest3);
-    
-    // TODO: Интеграция с реальным QuestManager
+
+    // Note: Integration with QuestManager not yet implemented
+    // Currently using hardcoded quest data for UI demonstration
     // QuestManager& questManager = QuestManager::getInstance();
-    // Получить список квестов из менеджера
+    // Future: Load quests from QuestManager
 }
 
 void QuestsScene::handleInput(const sf::Event& event) {
-    if (event.type == sf::Event::KeyPressed) {
-        switch (event.key.code) {
-            case sf::Keyboard::Up:
+    // SFML 3.x event handling
+    if (const auto* keyPressed = event.getIf<sf::Event::KeyPressed>()) {
+        switch (keyPressed->code) {
+            case sf::Keyboard::Key::Up:
                 selectPrevious();
                 break;
-            case sf::Keyboard::Down:
+            case sf::Keyboard::Key::Down:
                 selectNext();
                 break;
-            case sf::Keyboard::Tab:
+            case sf::Keyboard::Key::Tab:
                 changeFilter();
                 break;
-            case sf::Keyboard::Enter:
+            case sf::Keyboard::Key::Enter:
                 {
                     // Показать детали квеста
                     auto filteredIndices = getFilteredQuestIndices();
@@ -126,7 +120,7 @@ void QuestsScene::handleInput(const sf::Event& event) {
                     }
                 }
                 break;
-            case sf::Keyboard::Escape:
+            case sf::Keyboard::Key::Escape:
                 m_finished = true;
                 m_nextScene = SceneType::NODE;
                 break;
@@ -150,11 +144,15 @@ void QuestsScene::update(float deltaTime) {
             filterName = "[Failed]";
             break;
     }
-    m_filterText.setString(filterName + " Quests");
-    
+    if (m_filterText) {
+        m_filterText->setString(filterName + " Quests");
+    }
+
     // Обновление счетчика квестов
     auto filteredIndices = getFilteredQuestIndices();
-    m_questCountText.setString("(" + std::to_string(filteredIndices.size()) + ")");
+    if (m_questCountText) {
+        m_questCountText->setString("(" + std::to_string(filteredIndices.size()) + ")");
+    }
 }
 
 void QuestsScene::selectPrevious() {
@@ -193,16 +191,13 @@ std::vector<int> QuestsScene::getFilteredQuestIndices() const {
 void QuestsScene::renderQuest(sf::RenderWindow& window, const QuestInfo& quest, float y, bool isSelected) {
     // Подсветка выбора - repositioned
     if (isSelected) {
-        m_selectionHighlight.setPosition(100.0f, y - 5.0f);
+        m_selectionHighlight.setPosition(sf::Vector2f(100.0f, y - 5.0f));  // Fixed: Vector2f wrapper
         window.draw(m_selectionHighlight);
     }
-    
-    // Заголовок квеста - repositioned
-    sf::Text titleText;
-    titleText.setFont(m_font);  // Always set font
-    titleText.setString((isSelected ? "> " : "  ") + quest.title);
-    titleText.setCharacterSize(20);
-    
+
+    // Заголовок квеста - SFML 3.x: Text requires font in constructor
+    sf::Text titleText(m_font, (isSelected ? "> " : "  ") + quest.title, 20);
+
     // Цвет в зависимости от статуса
     if (quest.status == QuestStatus::ACTIVE) {
         titleText.setFillColor(sf::Color::White);
@@ -211,67 +206,66 @@ void QuestsScene::renderQuest(sf::RenderWindow& window, const QuestInfo& quest, 
     } else {
         titleText.setFillColor(sf::Color(244, 67, 54)); // Red
     }
-    
-    titleText.setPosition(110.0f, y);
+
+    titleText.setPosition(sf::Vector2f(110.0f, y));  // Fixed: Vector2f wrapper
     window.draw(titleText);
     
     // Цели квеста - repositioned
     float objectiveY = y + 25.0f;
     for (const auto& objective : quest.objectives) {
-        sf::Text objectiveText;
-        objectiveText.setFont(m_font);  // Always set font
-        
         std::string checkmark = objective.completed ? "\xE2\x9C\x93" : ""; // Unicode checkmark
-        std::string objectiveStr = "  \xE2\x94\x94 " + objective.description + " (" + 
-                                    std::to_string(objective.current) + "/" + 
+        std::string objectiveStr = "  \xE2\x94\x94 " + objective.description + " (" +
+                                    std::to_string(objective.current) + "/" +
                                     std::to_string(objective.required) + ") " + checkmark;
-        
-        objectiveText.setString(objectiveStr);
-        objectiveText.setCharacterSize(16);
+
+        // SFML 3.x: Text requires font in constructor
+        sf::Text objectiveText(m_font, objectiveStr, 16);
         objectiveText.setFillColor(objective.completed ? sf::Color(76, 175, 80) : sf::Color(204, 204, 204));
-        objectiveText.setPosition(110.0f, objectiveY);
+        objectiveText.setPosition(sf::Vector2f(110.0f, objectiveY));  // Fixed: Vector2f wrapper
         window.draw(objectiveText);
-        
+
         objectiveY += 20.0f;
     }
-    
-    // Награда - repositioned
-    sf::Text rewardText;
-    rewardText.setFont(m_font);  // Always set font
-    rewardText.setString("Reward: " + quest.reward);
-    rewardText.setCharacterSize(16);
+
+    // Награда - SFML 3.x: Text requires font in constructor
+    sf::Text rewardText(m_font, "Reward: " + quest.reward, 16);
     rewardText.setFillColor(sf::Color(255, 193, 7)); // Amber
-    rewardText.setPosition(110.0f, objectiveY);
+    rewardText.setPosition(sf::Vector2f(110.0f, objectiveY));  // Fixed: Vector2f wrapper
     window.draw(rewardText);
 }
 
 void QuestsScene::render(sf::RenderWindow& window) {
     // Отрисовка фона
     window.draw(m_background);
-    
+
     // Отрисовка заголовка
-    window.draw(m_titleText);
-    
+    if (m_titleText) {
+        window.draw(*m_titleText);
+    }
+
     // Отрисовка фильтра
-    window.draw(m_filterText);
-    window.draw(m_questCountText);
-    
+    if (m_filterText) {
+        window.draw(*m_filterText);
+    }
+    if (m_questCountText) {
+        window.draw(*m_questCountText);
+    }
+
     // Отрисовка квестов
     auto filteredIndices = getFilteredQuestIndices();
-    
+
     if (filteredIndices.empty()) {
-        // Нет квестов в этой категории
-        sf::Text emptyText;
-        emptyText.setFont(m_font);  // Always set font
-        emptyText.setString("No quests in this category");
-        emptyText.setCharacterSize(18);
-        emptyText.setFillColor(sf::Color(150, 150, 150));
-        emptyText.setPosition(100.0f, 180.0f);
-        window.draw(emptyText);
+        // Нет квестов в этой категории - SFML 3.x: Text requires font in constructor
+        if (m_fontLoaded) {
+            sf::Text emptyText(m_font, "No quests in this category", 18);
+            emptyText.setFillColor(sf::Color(150, 150, 150));
+            emptyText.setPosition(sf::Vector2f(100.0f, 180.0f));
+            window.draw(emptyText);
+        }
     } else {
         float questY = 150.0f;
         const float questHeight = 120.0f;
-        
+
         // Отрисовка только видимых квестов (максимум 4 for larger window)
         int maxVisible = 4;
         for (size_t i = m_scrollOffset; i < filteredIndices.size() && i < m_scrollOffset + maxVisible; ++i) {
@@ -280,7 +274,9 @@ void QuestsScene::render(sf::RenderWindow& window) {
             questY += questHeight;
         }
     }
-    
+
     // Отрисовка подсказки управления
-    window.draw(m_controlsText);
+    if (m_controlsText) {
+        window.draw(*m_controlsText);
+    }
 }

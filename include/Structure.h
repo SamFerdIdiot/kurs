@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <string>
+#include <optional>
 #include "Location.h"
 
 // Structure - Represents a building/location in the city that player can interact with
@@ -34,7 +35,7 @@ private:
     
     // Visual representation
     sf::RectangleShape m_shape;       // Temporary rectangle representation
-    sf::Text m_label;                 // Name label
+    std::optional<sf::Text> m_label;  // SFML 3.x: Text requires font in constructor
     sf::Color m_color;                // Color based on type
     std::string m_icon;               // Unicode icon (⛽, 🏪, 🏨)
     

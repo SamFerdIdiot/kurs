@@ -5,7 +5,6 @@
 #include "AbilityTreeSystem.h"
 #include "AbilityTypes.h"
 #include "ExperienceSystem.h"
-#include "UILayout.h"
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <string>
@@ -77,8 +76,8 @@ private:
     sf::Color m_colorBorder;        // #00AA00 Medium green
     
     // Layout
-    const float WINDOW_WIDTH = 1366.0f;
-    const float WINDOW_HEIGHT = 768.0f;
+    const float WINDOW_WIDTH = 1300.0f;
+    const float WINDOW_HEIGHT = 800.0f;
     const float BORDER_THICKNESS = 3.0f;
     const float PADDING = 20.0f;
     const float LINE_HEIGHT = 25.0f;

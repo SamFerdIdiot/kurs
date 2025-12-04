@@ -10,7 +10,12 @@
 #include "MapScene.h"
 #include "InventoryScene.h"
 #include "LocationScene.h"
+#include "TravelSelectionScene.h"
+#include "TravelCinematicScene.h"  // [MVP] Travel cinematic scene
+#include "NotesScene.h"
+#include "EndGameScene.h"  // [MVP] End game scene
 #include "GameStateManager.h"
+#include "EventHelper.h"
 #include <stdexcept>
 #include <iostream>
 
@@ -63,11 +68,16 @@ std::unique_ptr<Scene> SceneManager::createScene(SceneType type) {
         case SceneType::ABILITY_TREE:
             std::cout << "Creating Ability Tree Scene" << std::endl;
             return std::make_unique<AbilityTreeScene>();
-            
-        case SceneType::WORLD_MAP:
-            std::cout << "Creating World Map Scene" << std::endl;
-            return std::make_unique<MapScene>();
-            
+
+        case SceneType::END_GAME: {
+            std::cout << "Creating End Game Scene" << std::endl;
+            // [MVP] Get stats from GameStateManager
+            auto& playerState = GameStateManager::getInstance().getPlayerState();
+            float totalTime = playerState.getTotalPlayTime();
+            int citiesVisited = playerState.getCurrentCityIndex() + 1;
+            return std::make_unique<EndGameScene>(totalTime, citiesVisited);
+        }
+
         case SceneType::INVENTORY:
             std::cout << "Creating Inventory Scene" << std::endl;
             return std::make_unique<InventoryScene>();
@@ -78,6 +88,41 @@ std::unique_ptr<Scene> SceneManager::createScene(SceneType type) {
             LocationType locationType = GameStateManager::getInstance().getCurrentLocationType();
             return std::make_unique<LocationScene>(locationType);
         }
+
+        case SceneType::TRAVEL_SELECTION:
+            std::cout << "Creating Travel Selection Scene" << std::endl;
+            // Hardcoded to "moscow" - dynamic city tracking not yet implemented
+            return std::make_unique<TravelSelectionScene>("moscow");
+
+        case SceneType::TRAVEL_CINEMATIC: {
+            std::cout << "Creating Travel Cinematic Scene" << std::endl;
+
+            // Get player's current city
+            auto& playerState = GameStateManager::getInstance().getPlayerState();
+            int currentCity = playerState.getCurrentCityIndex();
+            // [MVP] Always travel forward to next city (currentCity + 1)
+            int destinationCity = currentCity + 1;
+
+            // Build road data with proper city IDs
+            RoadData road;
+            road.fromNodeId = "city_" + std::to_string(currentCity);
+            road.toNodeId = "city_" + std::to_string(destinationCity);
+            road.roadType = "highway";
+            road.distance = 100.0f;
+            road.baseEventChance = 0.0f;  // [MVP] no events yet
+
+            std::cout << "[MVP] Traveling from " << road.fromNodeId << " to " << road.toNodeId << std::endl;
+
+            return std::make_unique<TravelCinematicScene>(road, &playerState);
+        }
+
+        case SceneType::NOTES:
+            std::cout << "Creating Notes Scene" << std::endl;
+            return std::make_unique<NotesScene>();
+
+        case SceneType::MAP:
+            std::cout << "Creating Map Scene" << std::endl;
+            return std::make_unique<MapScene>();
 
         case SceneType::EXIT:
             std::cout << "Exit requested" << std::endl;
@@ -93,22 +138,25 @@ std::unique_ptr<Scene> SceneManager::createScene(SceneType type) {
 // Run game loop
 void SceneManager::run() {
     sf::Clock clock;
-    
+
     while (m_window.isOpen() && m_currentScene) {
         float deltaTime = clock.restart().asSeconds();
-        
-        // Handle events
-        sf::Event event;
-        while (m_window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
+
+        // [MVP] Update playtime tracking
+        auto& playerState = GameStateManager::getInstance().getPlayerState();
+        playerState.updatePlayTime(deltaTime);
+
+        // Handle events (SFML 3.x returns std::optional<sf::Event>)
+        while (const std::optional<sf::Event> event = m_window.pollEvent()) {
+            if (EventHelper::isClosed(*event)) {
                 m_window.close();
                 return;
             }
-            
+
             // Pass event to current scene
-            m_currentScene->handleInput(event);
+            m_currentScene->handleInput(*event);
         }
-        
+
         // Update current scene
         m_currentScene->update(deltaTime);
         

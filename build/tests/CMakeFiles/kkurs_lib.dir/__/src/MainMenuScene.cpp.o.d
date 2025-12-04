@@ -774,6 +774,8 @@ tests/CMakeFiles/kkurs_lib.dir/__/src/MainMenuScene.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/cstdarg \
   /Users/afftobuss/Documents/GitHub/kurs/include/SaveSystem.h \
   /Users/afftobuss/Documents/GitHub/kurs/include/Location.h \
+  /Users/afftobuss/Documents/GitHub/kurs/include/UIConstants.h \
+  /Users/afftobuss/Documents/GitHub/kurs/include/FontLoader.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/iostream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/istream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__ostream/basic_ostream.h \

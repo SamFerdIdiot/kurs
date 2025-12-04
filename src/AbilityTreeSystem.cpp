@@ -159,21 +159,29 @@ bool AbilityTreeSystem::canUseActivePerk(const std::string& perkId) const {
         return false;
     }
     
+    // [MVP] Disabled - Resource checks (uncomment to enable)
+    /*
     // Проверка 3: Достаточно ли ресурсов
     const AbilityEffect& effect = perk->getEffect();
     auto& playerState = GameStateManager::getInstance().getPlayerState();
-    
+
     if (effect.energyCost > 0 && playerState.getEnergy() < effect.energyCost) {
         return false;
     }
-    
+
     if (effect.moneyCost > 0 && playerState.getMoney() < effect.moneyCost) {
         return false;
     }
-    
-    // Проверка предметов (базовая проверка, полная проверка при использовании)
-    // TODO: Добавить проверку предметов через InventorySystem когда он будет готов
-    
+
+    // Проверка предметов через InventorySystem
+    const auto& inventory = GameStateManager::getInstance().getPlayerState().getInventory();
+    for (const auto& itemName : effect.itemRequirements) {
+        if (!inventory.hasItem(itemName, 1)) {
+            return false;  // Не хватает требуемого предмета
+        }
+    }
+    */
+
     return true;
 }
 
@@ -189,27 +197,40 @@ bool AbilityTreeSystem::useActivePerk(const std::string& perkId) {
         return false;  // Нет зарядов
     }
     
+    // [MVP] Disabled - Resource deduction (uncomment to enable)
+    /*
     // Шаг 3: Проверить и списать ресурсы
     const AbilityEffect& effect = perk->getEffect();
     auto& playerState = GameStateManager::getInstance().getPlayerState();
-    
+
     if (effect.energyCost > 0) {
         if (playerState.getEnergy() < effect.energyCost) {
             return false;  // Недостаточно энергии
         }
         playerState.addEnergy(-effect.energyCost);
     }
-    
+
     if (effect.moneyCost > 0) {
         if (playerState.getMoney() < effect.moneyCost) {
             return false;  // Недостаточно денег
         }
         playerState.addMoney(-effect.moneyCost);
     }
-    
-    // Проверка и удаление предметов
-    // TODO: Добавить проверку и удаление предметов через InventorySystem
-    
+
+    // Проверка и удаление предметов через InventorySystem
+    auto& inventory = GameStateManager::getInstance().getPlayerState().getInventory();
+    for (const auto& itemName : effect.itemRequirements) {
+        if (!inventory.hasItem(itemName, 1)) {
+            return false;  // Не хватает требуемого предмета
+        }
+    }
+
+    // Удаление использованных предметов
+    for (const auto& itemName : effect.itemRequirements) {
+        inventory.removeItemByName(itemName, 1);
+    }
+    */
+
     // Шаг 4: Применить эффект перка
     // (Это будет зависеть от контекста использования)
     // Например, через событие или прямое изменение состояния
@@ -264,12 +285,111 @@ int AbilityTreeSystem::getPassiveBonusFlat(const std::string& effectType) const 
 // === Сохранение/загрузка ===
 
 void AbilityTreeSystem::save() const {
-    // TODO: Реализовать сохранение в JSON файл
-    // Сохранять: m_availableSkillPoints, список разблокированных ID, активные перезарядки
+    std::ofstream file("saves/ability_tree.sav");
+    if (!file.is_open()) {
+        std::cerr << "Failed to save ability tree" << std::endl;
+        return;
+    }
+
+    file << "{\n";
+    file << "  \"availableSkillPoints\": " << m_availableSkillPoints << ",\n";
+
+    // Сохранить разблокированные способности
+    file << "  \"unlockedAbilities\": [\n";
+    bool firstAbility = true;
+    for (const auto& ability : m_abilities) {
+        if (ability.isUnlocked()) {
+            if (!firstAbility) file << ",\n";
+            file << "    \"" << ability.getId() << "\"";
+            firstAbility = false;
+        }
+    }
+    file << "\n  ],\n";
+
+    // Сохранить заряды активных перков
+    file << "  \"perkCharges\": [\n";
+    bool firstCharge = true;
+    for (const auto& charges : m_activePerkCharges) {
+        if (!firstCharge) file << ",\n";
+        file << "    {\n";
+        file << "      \"perkId\": \"" << charges.perkId << "\",\n";
+        file << "      \"currentCharges\": " << charges.currentCharges << ",\n";
+        file << "      \"maxCharges\": " << charges.maxCharges << "\n";
+        file << "    }";
+        firstCharge = false;
+    }
+    file << "\n  ]\n";
+
+    file << "}\n";
+    file.close();
 }
 
 void AbilityTreeSystem::load() {
-    // TODO: Реализовать загрузку из JSON файла
+    std::ifstream file("saves/ability_tree.sav");
+    if (!file.is_open()) {
+        // Файл не существует - это нормально для новой игры
+        return;
+    }
+
+    std::string line;
+    std::vector<std::string> unlockedIds;
+
+    // Простой парсер (как в SaveSystem)
+    while (std::getline(file, line)) {
+        // Пропустить пустые строки и скобки
+        if (line.find("{") != std::string::npos ||
+            line.find("}") != std::string::npos ||
+            line.empty()) {
+            continue;
+        }
+
+        // Парсинг availableSkillPoints
+        if (line.find("\"availableSkillPoints\"") != std::string::npos) {
+            size_t colonPos = line.find(":");
+            if (colonPos != std::string::npos) {
+                std::string value = line.substr(colonPos + 1);
+                value.erase(0, value.find_first_not_of(" \t"));
+                value.erase(value.find_last_not_of(" \t,") + 1);
+                m_availableSkillPoints = std::stoi(value);
+            }
+        }
+
+        // Парсинг ID разблокированных способностей
+        if (line.find("\"") != std::string::npos &&
+            line.find("availableSkillPoints") == std::string::npos &&
+            line.find("unlockedAbilities") == std::string::npos &&
+            line.find("perkCharges") == std::string::npos &&
+            line.find("perkId") == std::string::npos &&
+            line.find("currentCharges") == std::string::npos &&
+            line.find("maxCharges") == std::string::npos) {
+
+            size_t firstQuote = line.find("\"");
+            size_t lastQuote = line.rfind("\"");
+            if (firstQuote != std::string::npos && lastQuote != firstQuote) {
+                std::string abilityId = line.substr(firstQuote + 1, lastQuote - firstQuote - 1);
+                unlockedIds.push_back(abilityId);
+            }
+        }
+    }
+
+    file.close();
+
+    // Применить разблокированные способности
+    for (const auto& id : unlockedIds) {
+        AbilityNode* ability = getAbilityMutable(id);
+        if (ability) {
+            ability->setUnlocked(true);
+
+            // Инициализировать заряды для активных перков
+            if (ability->getType() == AbilityType::ACTIVE) {
+                initializePerkCharges(id, ability->getEffect().maxCharges);
+            }
+        }
+    }
+
+    // Примечание: загрузка зарядов перков требует более сложного парсера
+    // Для полной функциональности рекомендуется использовать JSON библиотеку
+    // Сейчас заряды будут восстановлены до максимума при загрузке
 }
 
 // === Система зарядов ===

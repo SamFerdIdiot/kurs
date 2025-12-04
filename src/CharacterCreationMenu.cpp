@@ -17,12 +17,13 @@ CharacterCreationMenu::CharacterCreationMenu()
 
 // Initialize with font
 bool CharacterCreationMenu::initialize(const std::string& fontPath) {
-    if (!m_font.loadFromFile(fontPath)) {
+    // SFML 3.x: openFromFile returns bool
+    if (!m_font.openFromFile(fontPath)) {
         std::cerr << "Failed to load font: " << fontPath << std::endl;
         return false;
     }
     
-    // Setup initial menu items (backgrounds) with Russian descriptions
+    // Setup initial menu items (backgrounds)
     m_menuItems = {
         "1. Ex-Racer",
         "   Bonus: 16% chance to skip events",
@@ -42,37 +43,60 @@ bool CharacterCreationMenu::initialize(const std::string& fontPath) {
 
 // Handle input
 void CharacterCreationMenu::handleInput(const sf::Event& event) {
-    if (event.type == sf::Event::KeyPressed) {
-        switch (event.key.code) {
-            case sf::Keyboard::Up:
-            case sf::Keyboard::W:
+    // SFML 3.x event handling
+    if (const auto* keyPressed = event.getIf<sf::Event::KeyPressed>()) {
+        switch (keyPressed->code) {
+            // Page navigation with A/D keys (previous/next)
+            case sf::Keyboard::Key::A:
+            case sf::Keyboard::Key::Left:
                 if (m_currentStep == 0) {
-                    // Background selection (0, 1, 2)
+                    // Previous background page
                     m_selectedIndex = (m_selectedIndex - 1 + 3) % 3;
                 } else {
-                    // Car selection (0, 1, 2)
+                    // Previous car page
                     m_selectedIndex = (m_selectedIndex - 1 + 3) % 3;
                 }
                 break;
-                
-            case sf::Keyboard::Down:
-            case sf::Keyboard::S:
+
+            case sf::Keyboard::Key::D:
+            case sf::Keyboard::Key::Right:
+                if (m_currentStep == 0) {
+                    // Next background page
+                    m_selectedIndex = (m_selectedIndex + 1) % 3;
+                } else {
+                    // Next car page
+                    m_selectedIndex = (m_selectedIndex + 1) % 3;
+                }
+                break;
+
+            // W/S still work as alternative navigation
+            case sf::Keyboard::Key::Up:
+            case sf::Keyboard::Key::W:
+                if (m_currentStep == 0) {
+                    m_selectedIndex = (m_selectedIndex - 1 + 3) % 3;
+                } else {
+                    m_selectedIndex = (m_selectedIndex - 1 + 3) % 3;
+                }
+                break;
+
+            case sf::Keyboard::Key::Down:
+            case sf::Keyboard::Key::S:
                 if (m_currentStep == 0) {
                     m_selectedIndex = (m_selectedIndex + 1) % 3;
                 } else {
                     m_selectedIndex = (m_selectedIndex + 1) % 3;
                 }
                 break;
-                
-            case sf::Keyboard::Enter:
-            case sf::Keyboard::Space:
+
+            case sf::Keyboard::Key::Enter:
+            case sf::Keyboard::Key::Space:
                 if (m_currentStep == 0) {
                     // Confirm background selection
                     m_selectedBackground = m_selectedIndex;
                     m_currentStep = 1;
                     m_selectedIndex = 0;
-                    
-                    // Update menu items for car selection (from CAR_SPECIFICATIONS.md)
+
+                    // Update menu items for car selection
                     m_menuItems = {
                         "1. BMW E30 Coupe",
                         "   Sports coupe, fast, 3 seats, 32 slots",
@@ -95,24 +119,24 @@ void CharacterCreationMenu::handleInput(const sf::Event& event) {
                     m_isComplete = true;
                 }
                 break;
-                
-            case sf::Keyboard::Escape:
+
+            case sf::Keyboard::Key::Escape:
                 if (m_currentStep == 1) {
                     // Go back to background selection
                     m_currentStep = 0;
                     m_selectedIndex = m_selectedBackground;
                     m_selectedBackground = -1;
-                    
+
                     // Restore background menu
                     m_menuItems = {
-                        "1. Бывший гонщик (Ex-Racer)",
-                        "   Бонус: 16% шанс пропустить событие",
+                        "1. Ex-Racer",
+                        "   Bonus: 16% chance to skip events",
                         "   ",
-                        "2. Студент (Student)",
-                        "   Бонус: Попутчики получают эффект радости",
+                        "2. Student",
+                        "   Bonus: Companions get joy effect",
                         "   ",
-                        "3. Безработный (Unemployed)",
-                        "   Особенность: Хард режим, 2 уникальные концовки"
+                        "3. Unemployed",
+                        "   Feature: Hard mode, 2 unique endings"
                     };
                     
                     m_displayedChars.clear();
@@ -185,94 +209,92 @@ void CharacterCreationMenu::render(sf::RenderWindow& window) {
 
 // Draw frame
 void CharacterCreationMenu::drawFrame(sf::RenderWindow& window) {
-    // Получение адаптивной разметки для MacBook Air M1
-    // Get responsive layout for MacBook Air M1
-    UILayout& layout = GET_LAYOUT("CharacterCreationMenu");
-    layout.setTargetResolution(
-        ScreenResolution::MAC_AIR_M1_WIDTH,
-        ScreenResolution::MAC_AIR_M1_HEIGHT
-    );
-    
+    // Fixed sizing for 1440x900
     sf::RectangleShape frame;
-    frame.setSize(SCALE_SIZE(layout, FRAME_WIDTH, FRAME_HEIGHT));
-    frame.setPosition(SCALE_POS(layout, FRAME_X, FRAME_Y));
+    frame.setSize(sf::Vector2f(FRAME_WIDTH, FRAME_HEIGHT));
+    frame.setPosition(sf::Vector2f(FRAME_X, FRAME_Y));
     frame.setFillColor(sf::Color(20, 20, 30, 220));
     frame.setOutlineColor(sf::Color(0, 255, 0, 180)); // Green terminal border
-    frame.setOutlineThickness(3);
-    
+    frame.setOutlineThickness(3.0f);
+
     window.draw(frame);
 }
 
 // Draw header
 void CharacterCreationMenu::drawHeader(sf::RenderWindow& window) {
-    // Получение адаптивной разметки
-    // Get responsive layout
-    UILayout& layout = GET_LAYOUT("CharacterCreationMenu");
-    
-    sf::Text header;
-    header.setFont(m_font);
-    
+    std::string headerText;
     if (m_currentStep == 0) {
-        // Split into two lines to prevent overflow
-        header.setString("ВЫБОР ПРЕДЫСТОРИИ\nSELECT BACKGROUND");
+        headerText = "SELECT BACKGROUND";
     } else {
-        header.setString("ВЫБОР АВТОМОБИЛЯ\nSELECT VEHICLE");
+        headerText = "SELECT VEHICLE";
     }
-    
-    header.setCharacterSize(SCALE_FONT(layout, 16));  // Slightly smaller font size
+
+    // SFML 3.x: Text requires font in constructor
+    sf::Text header(m_font, headerText, 16);
     header.setFillColor(sf::Color(255, 200, 0)); // Amber/Orange
-    header.setPosition(SCALE_POS(layout, FRAME_X + 280, HEADER_Y));  // More centered
-    header.setLineSpacing(1.2f);
-    
+    header.setPosition(sf::Vector2f(FRAME_X + 280.0f, HEADER_Y));  // Centered
+    // Note: setLineSpacing() removed in SFML 3.x
+
     window.draw(header);
+
+    // Draw page indicator (e.g., "1/3", "2/3", "3/3")
+    std::string pageIndicator = std::to_string(m_selectedIndex + 1) + "/3";
+    sf::Text pageText(m_font, pageIndicator, 14);
+    pageText.setFillColor(sf::Color(100, 255, 100)); // Light green
+    pageText.setPosition(sf::Vector2f(FRAME_X + FRAME_WIDTH - 100.0f, HEADER_Y));
+    window.draw(pageText);
+
+    // Draw navigation hint
+    sf::Text navHint(m_font, "[A/D] Page  [Enter] Select  [Esc] Back", 12);
+    navHint.setFillColor(sf::Color(150, 150, 150)); // Gray
+    navHint.setPosition(sf::Vector2f(FRAME_X + 120.0f, FRAME_Y + FRAME_HEIGHT - 40.0f));
+    window.draw(navHint);
 }
 
-// Draw menu items with typewriter effect
+// Draw menu items with typewriter effect - shows only current page
 void CharacterCreationMenu::drawMenuItems(sf::RenderWindow& window) {
-    // Получение адаптивной разметки
-    // Get responsive layout
-    UILayout& layout = GET_LAYOUT("CharacterCreationMenu");
-    
     float yPos = MENU_START_Y;
-    
-    for (size_t i = 0; i < m_menuItems.size(); ++i) {
-        sf::Text text;
-        text.setFont(m_font);
-        
+
+    // Calculate which lines to show (current page only)
+    // Each option occupies 3 lines: title, description, blank
+    int startLine = m_selectedIndex * 3;
+    int endLine = startLine + 3;
+
+    for (int i = startLine; i < endLine && i < static_cast<int>(m_menuItems.size()); ++i) {
         // Apply typewriter effect
         std::string displayText = m_menuItems[i].substr(0, m_displayedChars[i]);
-        text.setString(displayText);
-        
-        text.setCharacterSize(SCALE_FONT(layout, 14));
-        text.setFillColor(sf::Color(0, 255, 0)); // Green terminal text
-        text.setPosition(SCALE_POS(layout, FRAME_X + 100, yPos));
-        
+
+        // SFML 3.x: Text requires font in constructor
+        unsigned int fontSize = (i == startLine) ? 18 : 14; // Larger for title
+        sf::Text text(m_font, displayText, fontSize);
+
+        // Title line gets brighter color
+        if (i == startLine) {
+            text.setFillColor(sf::Color(0, 255, 100)); // Bright green for title
+        } else {
+            text.setFillColor(sf::Color(0, 200, 0)); // Dimmer green for description
+        }
+
+        text.setPosition(sf::Vector2f(FRAME_X + 150.0f, yPos));
+
         window.draw(text);
-        yPos += 30; // Line spacing (можно тоже масштабировать, но для простоты оставим фиксированным)
+        yPos += 40.0f; // Line spacing
     }
 }
 
-// Draw blinking arrow selector
+// Draw blinking arrow selector (now shows on current page)
 void CharacterCreationMenu::drawArrow(sf::RenderWindow& window) {
     if (!m_arrowVisible) {
         return;
     }
-    
-    // Получение адаптивной разметки
-    // Get responsive layout
-    UILayout& layout = GET_LAYOUT("CharacterCreationMenu");
-    
-    // Calculate arrow position based on selected index
-    // Items 0, 3, 6 are the main options (others are descriptions)
-    int visualIndex = m_selectedIndex * 3;
-    float yPos = MENU_START_Y + (visualIndex * 30);
-    
-    sf::Text arrow;
-    arrow.setFont(m_font);
-    arrow.setString(">");
-    arrow.setCharacterSize(SCALE_FONT(layout, 18));
+
+    // Arrow position for current page display
+    float yPos = MENU_START_Y;
+
+    // SFML 3.x: Text requires font in constructor
+    sf::Text arrow(m_font, ">", 20);
     arrow.setFillColor(sf::Color(255, 150, 0)); // Orange arrow
-    arrow.setPosition(SCALE_POS(layout, FRAME_X + 60, yPos));
-    
+    arrow.setPosition(sf::Vector2f(FRAME_X + 100.0f, yPos));
+
     window.draw(arrow);
 }

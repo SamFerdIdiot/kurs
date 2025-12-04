@@ -65,16 +65,6 @@ CMAKE_BINARY_DIR = /Users/afftobuss/Documents/GitHub/kurs/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running tests..."
-	/opt/homebrew/bin/ctest $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-.PHONY : test/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
@@ -97,7 +87,7 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target list_install_components
 list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\" \"gmock\" \"gtest\""
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\""
 .PHONY : list_install_components
 
 # Special rule for the target list_install_components
@@ -183,84 +173,6 @@ kkurs: cmake_check_build_system
 kkurs/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/build
 .PHONY : kkurs/fast
-
-#=============================================================================
-# Target rules for targets named kkurs_lib
-
-# Build rule for target.
-kkurs_lib: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 kkurs_lib
-.PHONY : kkurs_lib
-
-# fast build rule for target.
-kkurs_lib/fast:
-	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/build
-.PHONY : kkurs_lib/fast
-
-#=============================================================================
-# Target rules for targets named unit_tests
-
-# Build rule for target.
-unit_tests: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 unit_tests
-.PHONY : unit_tests
-
-# fast build rule for target.
-unit_tests/fast:
-	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/build
-.PHONY : unit_tests/fast
-
-#=============================================================================
-# Target rules for targets named gmock
-
-# Build rule for target.
-gmock: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gmock
-.PHONY : gmock
-
-# fast build rule for target.
-gmock/fast:
-	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/build
-.PHONY : gmock/fast
-
-#=============================================================================
-# Target rules for targets named gmock_main
-
-# Build rule for target.
-gmock_main: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gmock_main
-.PHONY : gmock_main
-
-# fast build rule for target.
-gmock_main/fast:
-	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/build
-.PHONY : gmock_main/fast
-
-#=============================================================================
-# Target rules for targets named gtest
-
-# Build rule for target.
-gtest: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gtest
-.PHONY : gtest
-
-# fast build rule for target.
-gtest/fast:
-	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build
-.PHONY : gtest/fast
-
-#=============================================================================
-# Target rules for targets named gtest_main
-
-# Build rule for target.
-gtest_main: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gtest_main
-.PHONY : gtest_main
-
-# fast build rule for target.
-gtest_main/fast:
-	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build
-.PHONY : gtest_main/fast
 
 src/AbilityNode.o: src/AbilityNode.cpp.o
 .PHONY : src/AbilityNode.o
@@ -525,6 +437,30 @@ src/DialogueManager.s: src/DialogueManager.cpp.s
 src/DialogueManager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/DialogueManager.cpp.s
 .PHONY : src/DialogueManager.cpp.s
+
+src/EndGameScene.o: src/EndGameScene.cpp.o
+.PHONY : src/EndGameScene.o
+
+# target to build an object file
+src/EndGameScene.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/EndGameScene.cpp.o
+.PHONY : src/EndGameScene.cpp.o
+
+src/EndGameScene.i: src/EndGameScene.cpp.i
+.PHONY : src/EndGameScene.i
+
+# target to preprocess a source file
+src/EndGameScene.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/EndGameScene.cpp.i
+.PHONY : src/EndGameScene.cpp.i
+
+src/EndGameScene.s: src/EndGameScene.cpp.s
+.PHONY : src/EndGameScene.s
+
+# target to generate assembly for a file
+src/EndGameScene.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/EndGameScene.cpp.s
+.PHONY : src/EndGameScene.cpp.s
 
 src/EventManager.o: src/EventManager.cpp.o
 .PHONY : src/EventManager.o
@@ -814,6 +750,30 @@ src/NodeScene.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/NodeScene.cpp.s
 .PHONY : src/NodeScene.cpp.s
 
+src/NotesScene.o: src/NotesScene.cpp.o
+.PHONY : src/NotesScene.o
+
+# target to build an object file
+src/NotesScene.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/NotesScene.cpp.o
+.PHONY : src/NotesScene.cpp.o
+
+src/NotesScene.i: src/NotesScene.cpp.i
+.PHONY : src/NotesScene.i
+
+# target to preprocess a source file
+src/NotesScene.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/NotesScene.cpp.i
+.PHONY : src/NotesScene.cpp.i
+
+src/NotesScene.s: src/NotesScene.cpp.s
+.PHONY : src/NotesScene.s
+
+# target to generate assembly for a file
+src/NotesScene.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/NotesScene.cpp.s
+.PHONY : src/NotesScene.cpp.s
+
 src/PlayerState.o: src/PlayerState.cpp.o
 .PHONY : src/PlayerState.o
 
@@ -885,30 +845,6 @@ src/QuestsScene.s: src/QuestsScene.cpp.s
 src/QuestsScene.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/QuestsScene.cpp.s
 .PHONY : src/QuestsScene.cpp.s
-
-src/RestScene.o: src/RestScene.cpp.o
-.PHONY : src/RestScene.o
-
-# target to build an object file
-src/RestScene.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/RestScene.cpp.o
-.PHONY : src/RestScene.cpp.o
-
-src/RestScene.i: src/RestScene.cpp.i
-.PHONY : src/RestScene.i
-
-# target to preprocess a source file
-src/RestScene.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/RestScene.cpp.i
-.PHONY : src/RestScene.cpp.i
-
-src/RestScene.s: src/RestScene.cpp.s
-.PHONY : src/RestScene.s
-
-# target to generate assembly for a file
-src/RestScene.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/RestScene.cpp.s
-.PHONY : src/RestScene.cpp.s
 
 src/SaveSystem.o: src/SaveSystem.cpp.o
 .PHONY : src/SaveSystem.o
@@ -1005,6 +941,30 @@ src/TravelCinematicScene.s: src/TravelCinematicScene.cpp.s
 src/TravelCinematicScene.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/TravelCinematicScene.cpp.s
 .PHONY : src/TravelCinematicScene.cpp.s
+
+src/TravelSelectionScene.o: src/TravelSelectionScene.cpp.o
+.PHONY : src/TravelSelectionScene.o
+
+# target to build an object file
+src/TravelSelectionScene.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/TravelSelectionScene.cpp.o
+.PHONY : src/TravelSelectionScene.cpp.o
+
+src/TravelSelectionScene.i: src/TravelSelectionScene.cpp.i
+.PHONY : src/TravelSelectionScene.i
+
+# target to preprocess a source file
+src/TravelSelectionScene.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/TravelSelectionScene.cpp.i
+.PHONY : src/TravelSelectionScene.cpp.i
+
+src/TravelSelectionScene.s: src/TravelSelectionScene.cpp.s
+.PHONY : src/TravelSelectionScene.s
+
+# target to generate assembly for a file
+src/TravelSelectionScene.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/TravelSelectionScene.cpp.s
+.PHONY : src/TravelSelectionScene.cpp.s
 
 src/UI/HUDPanel.o: src/UI/HUDPanel.cpp.o
 .PHONY : src/UI/HUDPanel.o
@@ -1114,14 +1074,7 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... test"
-	@echo "... gmock"
-	@echo "... gmock_main"
-	@echo "... gtest"
-	@echo "... gtest_main"
 	@echo "... kkurs"
-	@echo "... kkurs_lib"
-	@echo "... unit_tests"
 	@echo "... src/AbilityNode.o"
 	@echo "... src/AbilityNode.i"
 	@echo "... src/AbilityNode.s"
@@ -1155,6 +1108,9 @@ help:
 	@echo "... src/DialogueManager.o"
 	@echo "... src/DialogueManager.i"
 	@echo "... src/DialogueManager.s"
+	@echo "... src/EndGameScene.o"
+	@echo "... src/EndGameScene.i"
+	@echo "... src/EndGameScene.s"
 	@echo "... src/EventManager.o"
 	@echo "... src/EventManager.i"
 	@echo "... src/EventManager.s"
@@ -1191,6 +1147,9 @@ help:
 	@echo "... src/NodeScene.o"
 	@echo "... src/NodeScene.i"
 	@echo "... src/NodeScene.s"
+	@echo "... src/NotesScene.o"
+	@echo "... src/NotesScene.i"
+	@echo "... src/NotesScene.s"
 	@echo "... src/PlayerState.o"
 	@echo "... src/PlayerState.i"
 	@echo "... src/PlayerState.s"
@@ -1200,9 +1159,6 @@ help:
 	@echo "... src/QuestsScene.o"
 	@echo "... src/QuestsScene.i"
 	@echo "... src/QuestsScene.s"
-	@echo "... src/RestScene.o"
-	@echo "... src/RestScene.i"
-	@echo "... src/RestScene.s"
 	@echo "... src/SaveSystem.o"
 	@echo "... src/SaveSystem.i"
 	@echo "... src/SaveSystem.s"
@@ -1215,6 +1171,9 @@ help:
 	@echo "... src/TravelCinematicScene.o"
 	@echo "... src/TravelCinematicScene.i"
 	@echo "... src/TravelCinematicScene.s"
+	@echo "... src/TravelSelectionScene.o"
+	@echo "... src/TravelSelectionScene.i"
+	@echo "... src/TravelSelectionScene.s"
 	@echo "... src/UI/HUDPanel.o"
 	@echo "... src/UI/HUDPanel.i"
 	@echo "... src/UI/HUDPanel.s"

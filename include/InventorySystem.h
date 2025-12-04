@@ -56,7 +56,7 @@ public:
     // Parameters:
     //   - slotIndex: Index of the slot
     // Returns: True if item was used successfully
-    // TODO: Add callback or effects system for item usage
+    // Note: Item effects/callbacks system not yet implemented
     bool useItem(int slotIndex);
     
     // Get the item at a specific slot
@@ -130,7 +130,7 @@ public:
     std::vector<int> findItemsByCategory(ItemCategory category) const;
     
     // Sort inventory (stub for future implementation)
-    // TODO: Implement sorting by name, value, weight, rarity, etc.
+    // Note: Sorting not yet implemented - use compactInventory() instead
     void sortInventory();
     
     // Compact inventory (move items to fill empty slots)

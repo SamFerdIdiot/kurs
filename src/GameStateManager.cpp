@@ -20,10 +20,15 @@ void GameStateManager::startNewGame(OriginType origin, CarType carType) {
     // Clear any existing saves
     m_saveSystem.clearAllSaves();
     
+    // [MVP] Disabled - Resource initialization (uncomment to enable)
+    /*
     // Initialize player state with chosen origin and car type
     m_playerState.initializeResources(origin, carType);
+    */
     m_playerState.setCurrentNodeId(0); // Start at node 0
+    /*
     m_playerState.initializeStartingInventory();
+    */
     
     // Save the initial state
     autoSave();

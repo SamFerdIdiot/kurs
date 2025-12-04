@@ -16,7 +16,8 @@ struct EventCondition {
     int maxMoney = 999999;
     float probability = 1.0f;
     std::string requiredLocation = "";
-    
+    std::string requiredRoadType = "";  // "highway", "road", "path", or "" for any
+
     EventCondition() = default;
 };
 
@@ -27,10 +28,11 @@ struct EventChoice {
     float fuelChange = 0.0f;
     float energyChange = 0.0f;
     int moneyChange = 0;
+    float vehicleConditionChange = 0.0f;  // Change in vehicle condition
     bool endsEvent = true;
     std::string perkId = "";  // ID of ability perk if this is a perk choice
     bool isPerkChoice = false;  // True if this choice uses an ability perk
-    
+
     EventChoice(const std::string& text = "", const std::string& outcomeText = "")
         : text(text), outcomeText(outcomeText) {}
 };
@@ -70,13 +72,15 @@ public:
     const std::vector<GameEvent>& getAllEvents() const;
     
     // Check if condition is met for an event
-    bool checkCondition(const EventCondition& condition, 
+    bool checkCondition(const EventCondition& condition,
                        float fuel, float energy, int money,
-                       const std::string& location = "") const;
-    
+                       const std::string& location = "",
+                       const std::string& roadType = "") const;
+
     // Get random event that meets conditions
     GameEvent* getRandomEvent(float fuel, float energy, int money,
-                            const std::string& location = "");
+                            const std::string& location = "",
+                            const std::string& roadType = "");
     
     // Mark event as triggered
     void triggerEvent(const std::string& id);

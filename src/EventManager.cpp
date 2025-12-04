@@ -1,6 +1,7 @@
 #include "EventManager.h"
 #include "AbilityTreeSystem.h"
 #include "AbilityTypes.h"
+#include "GameStateManager.h"
 #include <algorithm>
 #include <random>
 #include <ctime>
@@ -43,55 +44,63 @@ const std::vector<GameEvent>& EventManager::getAllEvents() const {
 // Check if condition is met for an event
 bool EventManager::checkCondition(const EventCondition& condition,
                                  float fuel, float energy, int money,
-                                 const std::string& location) const {
+                                 const std::string& location,
+                                 const std::string& roadType) const {
     // Check fuel range
     if (fuel < condition.minFuel || fuel > condition.maxFuel) {
         return false;
     }
-    
+
     // Check energy range
     if (energy < condition.minEnergy || energy > condition.maxEnergy) {
         return false;
     }
-    
+
     // Check money range
     if (money < condition.minMoney || money > condition.maxMoney) {
         return false;
     }
-    
+
     // Check location if specified
-    if (!condition.requiredLocation.empty() && 
+    if (!condition.requiredLocation.empty() &&
         condition.requiredLocation != location) {
         return false;
     }
-    
+
+    // Check road type if specified
+    if (!condition.requiredRoadType.empty() &&
+        condition.requiredRoadType != roadType) {
+        return false;
+    }
+
     // Check probability
     float roll = randomFloat(0.0f, 1.0f);
     if (roll > condition.probability) {
         return false;
     }
-    
+
     return true;
 }
 
 // Get random event that meets conditions
 GameEvent* EventManager::getRandomEvent(float fuel, float energy, int money,
-                                       const std::string& location) {
+                                       const std::string& location,
+                                       const std::string& roadType) {
     // Collect all eligible events
     std::vector<GameEvent*> eligibleEvents;
-    
+
     for (auto& event : m_events) {
-        if (!event.triggered && 
-            checkCondition(event.condition, fuel, energy, money, location)) {
+        if (!event.triggered &&
+            checkCondition(event.condition, fuel, energy, money, location, roadType)) {
             eligibleEvents.push_back(&event);
         }
     }
-    
+
     // Return nullptr if no eligible events
     if (eligibleEvents.empty()) {
         return nullptr;
     }
-    
+
     // Select random eligible event
     int randomIndex = randomInt(0, static_cast<int>(eligibleEvents.size()) - 1);
     return eligibleEvents[randomIndex];
@@ -822,6 +831,720 @@ void EventManager::initializeDefaultEvents() {
     companionRecruitEvent.choices.push_back(leaveCompanionChoice);
     
     addEvent(companionRecruitEvent);
+
+    // ====== Road-Specific Events ======
+
+    // Highway: Speed trap
+    GameEvent speedTrapEvent;
+    speedTrapEvent.id = "highway_speed_trap";
+    speedTrapEvent.title = "Камера контроля скорости / Speed Camera";
+    speedTrapEvent.description = "Вы заметили камеру контроля скорости на шоссе!\n"
+                                 "You noticed a speed camera on the highway!";
+    speedTrapEvent.condition.requiredRoadType = "highway";
+    speedTrapEvent.condition.probability = 0.2f;
+
+    EventChoice speedCameraSlowChoice;
+    speedCameraSlowChoice.text = "Сбросить скорость / Slow down";
+    speedCameraSlowChoice.outcomeText = "Вы благополучно проехали камеру.\n"
+                                        "You safely passed the camera.";
+    speedCameraSlowChoice.energyChange = -5.0f;  // Time cost
+    speedTrapEvent.choices.push_back(speedCameraSlowChoice);
+
+    EventChoice speedCameraKeepChoice;
+    speedCameraKeepChoice.text = "Продолжить с той же скоростью / Keep speed";
+    speedCameraKeepChoice.outcomeText = "Камера зафиксировала превышение! Штраф придет по почте.\n"
+                                        "Camera caught you speeding! Fine will arrive by mail.";
+    speedCameraKeepChoice.moneyChange = -200;
+    speedTrapEvent.choices.push_back(speedCameraKeepChoice);
+
+    addEvent(speedTrapEvent);
+
+    // Path: Muddy road
+    GameEvent muddyRoadEvent;
+    muddyRoadEvent.id = "path_muddy_road";
+    muddyRoadEvent.title = "Грязная дорога / Muddy Road";
+    muddyRoadEvent.description = "Дорога превратилась в месиво после дождя.\n"
+                                 "The road turned into a muddy mess after rain.";
+    muddyRoadEvent.condition.requiredRoadType = "path";
+    muddyRoadEvent.condition.probability = 0.3f;
+
+    EventChoice carefulChoice;
+    carefulChoice.text = "Осторожно проехать / Drive carefully";
+    carefulChoice.outcomeText = "Вы медленно, но успешно преодолели грязевой участок.\n"
+                                "You slowly but successfully passed the muddy section.";
+    carefulChoice.fuelChange = -10.0f;  // More fuel due to difficult terrain
+    carefulChoice.energyChange = -5.0f;
+    muddyRoadEvent.choices.push_back(carefulChoice);
+
+    EventChoice pushThroughChoice;
+    pushThroughChoice.text = "Продавить на скорости / Push through fast";
+    pushThroughChoice.outcomeText = "Вы прорвались, но машина вся в грязи и немного повреждена.\n"
+                                    "You made it through, but the car is muddy and slightly damaged.";
+    pushThroughChoice.fuelChange = -15.0f;
+    pushThroughChoice.vehicleConditionChange = -10.0f;
+    muddyRoadEvent.choices.push_back(pushThroughChoice);
+
+    addEvent(muddyRoadEvent);
+
+    // Road: Truck convoy
+    GameEvent truckConvoyEvent;
+    truckConvoyEvent.id = "road_truck_convoy";
+    truckConvoyEvent.title = "Колонна грузовиков / Truck Convoy";
+    truckConvoyEvent.description = "Впереди медленная колонна грузовиков.\n"
+                                   "A slow truck convoy is ahead.";
+    truckConvoyEvent.condition.requiredRoadType = "road";
+    truckConvoyEvent.condition.probability = 0.25f;
+
+    EventChoice followChoice;
+    followChoice.text = "Ехать за колонной / Follow the convoy";
+    followChoice.outcomeText = "Вы терпеливо едете за грузовиками.\n"
+                               "You patiently drive behind the trucks.";
+    followChoice.energyChange = -3.0f;  // Boring but safe
+    truckConvoyEvent.choices.push_back(followChoice);
+
+    EventChoice overtakeChoice;
+    overtakeChoice.text = "Обогнать / Overtake";
+    overtakeChoice.outcomeText = "Рискованный маневр, но вы обогнали колонну!\n"
+                                 "Risky maneuver, but you overtook the convoy!";
+    overtakeChoice.fuelChange = -8.0f;  // More fuel for acceleration
+    overtakeChoice.energyChange = -2.0f;
+    truckConvoyEvent.choices.push_back(overtakeChoice);
+
+    addEvent(truckConvoyEvent);
+
+    // Highway: Rest stop
+    GameEvent restStopEvent;
+    restStopEvent.id = "highway_rest_stop";
+    restStopEvent.title = "Придорожная остановка / Rest Stop";
+    restStopEvent.description = "Вы видите современную придорожную остановку с кафе.\n"
+                                "You see a modern rest stop with a cafe.";
+    restStopEvent.condition.requiredRoadType = "highway";
+    restStopEvent.condition.probability = 0.15f;
+
+    EventChoice stopForCoffeeChoice;
+    stopForCoffeeChoice.text = "Остановиться на кофе / Stop for coffee";
+    stopForCoffeeChoice.outcomeText = "Горячий кофе взбодрил вас!\n"
+                                      "Hot coffee refreshed you!";
+    stopForCoffeeChoice.moneyChange = -50;
+    stopForCoffeeChoice.energyChange = 15.0f;
+    restStopEvent.choices.push_back(stopForCoffeeChoice);
+
+    EventChoice keepDrivingChoice;
+    keepDrivingChoice.text = "Продолжить путь / Keep driving";
+    keepDrivingChoice.outcomeText = "Вы решили не останавливаться.\n"
+                                    "You decided not to stop.";
+    restStopEvent.choices.push_back(keepDrivingChoice);
+
+    addEvent(restStopEvent);
+
+    // ====== NEW EVENTS - Extended System ======
+
+    // Event 26: Bridge Collapse Warning - Path specific
+    GameEvent bridgeEvent;
+    bridgeEvent.id = "path_bridge_warning";
+    bridgeEvent.title = "Опасный мост / Dangerous Bridge";
+    bridgeEvent.description = "Старый деревянный мост выглядит ненадежно. Видны трещины.\n"
+                              "Old wooden bridge looks unreliable. Cracks are visible.";
+    bridgeEvent.condition.requiredRoadType = "path";
+    bridgeEvent.condition.probability = 0.25f;
+
+    EventChoice crossSlowlyChoice;
+    crossSlowlyChoice.text = "Переехать медленно / Cross slowly";
+    crossSlowlyChoice.outcomeText = "Вы осторожно переехали. Мост скрипел, но выдержал.\n"
+                                    "You crossed carefully. Bridge creaked but held.";
+    crossSlowlyChoice.energyChange = -10.0f;
+    bridgeEvent.choices.push_back(crossSlowlyChoice);
+
+    EventChoice findDetourChoice;
+    findDetourChoice.text = "Найти объезд / Find detour";
+    findDetourChoice.outcomeText = "Вы нашли другой путь. Дольше, но безопаснее.\n"
+                                   "You found another way. Longer but safer.";
+    findDetourChoice.fuelChange = -15.0f;
+    findDetourChoice.energyChange = -5.0f;
+    bridgeEvent.choices.push_back(findDetourChoice);
+
+    EventChoice riskCrossChoice;
+    riskCrossChoice.text = "Рискнуть на скорости / Risk crossing fast";
+    riskCrossChoice.outcomeText = "ОПАСНО! Мост треснул, но вы успели! Адреналин!\n"
+                                  "DANGEROUS! Bridge cracked but you made it! Adrenaline!";
+    riskCrossChoice.energyChange = -20.0f;
+    riskCrossChoice.vehicleConditionChange = -15.0f;
+    bridgeEvent.choices.push_back(riskCrossChoice);
+
+    addEvent(bridgeEvent);
+
+    // Event 27: Highway Construction - Highway specific
+    GameEvent constructionEvent;
+    constructionEvent.id = "highway_construction";
+    constructionEvent.title = "Дорожные работы / Road Construction";
+    constructionEvent.description = "Впереди ремонт дороги. Движение по одной полосе.\n"
+                                    "Road work ahead. Traffic moving in one lane.";
+    constructionEvent.condition.requiredRoadType = "highway";
+    constructionEvent.condition.probability = 0.3f;
+
+    EventChoice waitInLineChoice;
+    waitInLineChoice.text = "Стоять в пробке / Wait in traffic";
+    waitInLineChoice.outcomeText = "Вы простояли 30 минут. Утомительно.\n"
+                                   "You waited 30 minutes. Tiring.";
+    waitInLineChoice.energyChange = -15.0f;
+    constructionEvent.choices.push_back(waitInLineChoice);
+
+    EventChoice talkToWorkersChoice;
+    talkToWorkersChoice.text = "Поговорить с рабочими / Talk to workers";
+    talkToWorkersChoice.outcomeText = "Рабочие показали короткий объезд!\n"
+                                      "Workers showed you a shortcut!";
+    talkToWorkersChoice.energyChange = -5.0f;
+    constructionEvent.choices.push_back(talkToWorkersChoice);
+
+    addEvent(constructionEvent);
+
+    // Event 28: Stray Dogs - Road specific
+    GameEvent dogsEvent;
+    dogsEvent.id = "road_stray_dogs";
+    dogsEvent.title = "Стая бродячих собак / Stray Dogs Pack";
+    dogsEvent.description = "На дороге стая собак. Они не агрессивны, но блокируют путь.\n"
+                           "A pack of dogs on the road. Not aggressive but blocking the way.";
+    dogsEvent.condition.requiredRoadType = "road";
+    dogsEvent.condition.probability = 0.2f;
+
+    EventChoice honkDogsChoice;
+    honkDogsChoice.text = "Посигналить / Honk";
+    honkDogsChoice.outcomeText = "Собаки убежали с дороги.\n"
+                                 "Dogs ran off the road.";
+    dogsEvent.choices.push_back(honkDogsChoice);
+
+    EventChoice feedDogsChoice;
+    feedDogsChoice.text = "Покормить (50 руб) / Feed them (50 rub)";
+    feedDogsChoice.outcomeText = "Собаки радостно съели еду и ушли. Вы чувствуете себя хорошо.\n"
+                                 "Dogs happily ate and left. You feel good.";
+    feedDogsChoice.moneyChange = -50;
+    feedDogsChoice.energyChange = 10.0f;
+    dogsEvent.choices.push_back(feedDogsChoice);
+
+    EventChoice driveAroundChoice;
+    driveAroundChoice.text = "Объехать по обочине / Drive around";
+    driveAroundChoice.outcomeText = "Вы объехали собак по грунту.\n"
+                                    "You drove around on dirt.";
+    driveAroundChoice.vehicleConditionChange = -5.0f;
+    dogsEvent.choices.push_back(driveAroundChoice);
+
+    addEvent(dogsEvent);
+
+    // Event 29: Abandoned Car - General
+    GameEvent abandonedCarEvent;
+    abandonedCarEvent.id = "abandoned_car";
+    abandonedCarEvent.title = "Брошенная машина / Abandoned Car";
+    abandonedCarEvent.description = "На обочине стоит старая брошенная машина.\n"
+                                    "An old abandoned car sits on the roadside.";
+    abandonedCarEvent.condition.probability = 0.2f;
+
+    EventChoice searchCarChoice;
+    searchCarChoice.text = "Обыскать машину / Search the car";
+    searchCarChoice.outcomeText = "Вы нашли канистру с бензином и немного денег!\n"
+                                  "You found a gas canister and some money!";
+    searchCarChoice.fuelChange = 15.0f;
+    searchCarChoice.moneyChange = 150;
+    searchCarChoice.energyChange = -5.0f;
+    abandonedCarEvent.choices.push_back(searchCarChoice);
+
+    EventChoice takePartsChoice;
+    takePartsChoice.text = "Снять запчасти / Take spare parts";
+    takePartsChoice.outcomeText = "Вы сняли полезные детали. Можно продать позже.\n"
+                                  "You took useful parts. Can sell later.";
+    takePartsChoice.moneyChange = 300;
+    takePartsChoice.energyChange = -15.0f;
+    abandonedCarEvent.choices.push_back(takePartsChoice);
+
+    EventChoice ignoreCarChoice;
+    ignoreCarChoice.text = "Проехать мимо / Drive past";
+    ignoreCarChoice.outcomeText = "Вы решили не останавливаться.\n"
+                                  "You decided not to stop.";
+    abandonedCarEvent.choices.push_back(ignoreCarChoice);
+
+    addEvent(abandonedCarEvent);
+
+    // Event 30: Radio Contest - General
+    GameEvent radioContestEvent;
+    radioContestEvent.id = "radio_contest";
+    radioContestEvent.title = "Конкурс на радио / Radio Contest";
+    radioContestEvent.description = "По радио объявили конкурс! Позвоните и ответьте на вопрос.\n"
+                                    "A radio contest announced! Call and answer the question.";
+    radioContestEvent.condition.probability = 0.15f;
+
+    EventChoice callRadioChoice;
+    callRadioChoice.text = "Позвонить / Call in";
+    callRadioChoice.outcomeText = "Вы ответили правильно и выиграли 1000 рублей!\n"
+                                  "You answered correctly and won 1000 rubles!";
+    callRadioChoice.moneyChange = 1000;
+    callRadioChoice.energyChange = 5.0f;
+    radioContestEvent.choices.push_back(callRadioChoice);
+
+    EventChoice ignoreRadioChoice;
+    ignoreRadioChoice.text = "Не звонить / Don't call";
+    ignoreRadioChoice.outcomeText = "Вы продолжили слушать музыку.\n"
+                                    "You continued listening to music.";
+    radioContestEvent.choices.push_back(ignoreRadioChoice);
+
+    addEvent(radioContestEvent);
+
+    // Event 31: Scenic Viewpoint - Highway specific
+    GameEvent viewpointEvent;
+    viewpointEvent.id = "highway_scenic_viewpoint";
+    viewpointEvent.title = "Смотровая площадка / Scenic Viewpoint";
+    viewpointEvent.description = "Указатель на красивую смотровую площадку.\n"
+                                 "Sign pointing to a beautiful scenic viewpoint.";
+    viewpointEvent.condition.requiredRoadType = "highway";
+    viewpointEvent.condition.probability = 0.2f;
+
+    EventChoice visitViewpointChoice;
+    visitViewpointChoice.text = "Посетить / Visit";
+    visitViewpointChoice.outcomeText = "Потрясающий вид! Вы отдохнули и сделали фото.\n"
+                                       "Amazing view! You rested and took photos.";
+    visitViewpointChoice.energyChange = 20.0f;
+    viewpointEvent.choices.push_back(visitViewpointChoice);
+
+    EventChoice skipViewpointChoice;
+    skipViewpointChoice.text = "Ехать дальше / Drive on";
+    skipViewpointChoice.outcomeText = "Некогда любоваться видами.\n"
+                                      "No time for sightseeing.";
+    viewpointEvent.choices.push_back(skipViewpointChoice);
+
+    addEvent(viewpointEvent);
+
+    // Event 32: Farmers Market - Road specific
+    GameEvent farmersMarketEvent;
+    farmersMarketEvent.id = "road_farmers_market";
+    farmersMarketEvent.title = "Фермерский рынок / Farmers Market";
+    farmersMarketEvent.description = "Придорожный фермерский рынок. Свежие продукты!\n"
+                                     "Roadside farmers market. Fresh produce!";
+    farmersMarketEvent.condition.requiredRoadType = "road";
+    farmersMarketEvent.condition.probability = 0.25f;
+
+    EventChoice buyFoodChoice;
+    buyFoodChoice.text = "Купить еду (200 руб) / Buy food (200 rub)";
+    buyFoodChoice.outcomeText = "Свежие овощи и хлеб! Очень вкусно и полезно.\n"
+                                "Fresh vegetables and bread! Very tasty and healthy.";
+    buyFoodChoice.moneyChange = -200;
+    buyFoodChoice.energyChange = 25.0f;
+    farmersMarketEvent.choices.push_back(buyFoodChoice);
+
+    EventChoice bargainChoice;
+    bargainChoice.text = "Поторговаться / Bargain";
+    bargainChoice.outcomeText = "Продавец дал скидку! Вы купили еду дешевле.\n"
+                                "Seller gave discount! You bought food cheaper.";
+    bargainChoice.moneyChange = -100;
+    bargainChoice.energyChange = 20.0f;
+    farmersMarketEvent.choices.push_back(bargainChoice);
+
+    EventChoice skipMarketChoice;
+    skipMarketChoice.text = "Ехать дальше / Drive on";
+    skipMarketChoice.outcomeText = "Вы продолжили путь.\n"
+                                   "You continued on.";
+    farmersMarketEvent.choices.push_back(skipMarketChoice);
+
+    addEvent(farmersMarketEvent);
+
+    // Event 33: Rockslide - Path specific
+    GameEvent rockslideEvent;
+    rockslideEvent.id = "path_rockslide";
+    rockslideEvent.title = "Камнепад / Rockslide";
+    rockslideEvent.description = "Камни упали на дорогу! Путь частично перекрыт.\n"
+                                 "Rocks fell on the road! Path partially blocked.";
+    rockslideEvent.condition.requiredRoadType = "path";
+    rockslideEvent.condition.probability = 0.2f;
+
+    EventChoice clearRocksChoice;
+    clearRocksChoice.text = "Расчистить путь / Clear the path";
+    clearRocksChoice.outcomeText = "Вы убрали камни. Очень устали, но путь свободен.\n"
+                                   "You cleared rocks. Very tired but path is clear.";
+    clearRocksChoice.energyChange = -30.0f;
+    rockslideEvent.choices.push_back(clearRocksChoice);
+
+    EventChoice squeezeByChoice;
+    squeezeByChoice.text = "Протиснуться / Squeeze by";
+    squeezeByChoice.outcomeText = "Вы проехали между камнями. Машина поцарапана.\n"
+                                  "You drove between rocks. Car is scratched.";
+    squeezeByChoice.vehicleConditionChange = -10.0f;
+    rockslideEvent.choices.push_back(squeezeByChoice);
+
+    EventChoice turnBackChoice;
+    turnBackChoice.text = "Вернуться назад / Turn back";
+    turnBackChoice.outcomeText = "Вы развернулись. Придется искать другой путь.\n"
+                                 "You turned back. Need to find another way.";
+    turnBackChoice.fuelChange = -20.0f;
+    turnBackChoice.energyChange = -10.0f;
+    rockslideEvent.choices.push_back(turnBackChoice);
+
+    addEvent(rockslideEvent);
+
+    // Event 34: Street Racing - Highway specific
+    GameEvent streetRacingEvent;
+    streetRacingEvent.id = "highway_street_racing";
+    streetRacingEvent.title = "Уличные гонщики / Street Racers";
+    streetRacingEvent.description = "Группа молодых гонщиков вызывает вас на гонку!\n"
+                                    "A group of young racers challenges you to a race!";
+    streetRacingEvent.condition.requiredRoadType = "highway";
+    streetRacingEvent.condition.probability = 0.15f;
+
+    EventChoice acceptRaceChoice;
+    acceptRaceChoice.text = "Принять вызов / Accept challenge";
+    acceptRaceChoice.outcomeText = "Вы выиграли гонку! Гонщики уважают вас. Но машина пострадала.\n"
+                                   "You won the race! Racers respect you. But car suffered.";
+    acceptRaceChoice.moneyChange = 500;
+    acceptRaceChoice.fuelChange = -30.0f;
+    acceptRaceChoice.energyChange = -20.0f;
+    acceptRaceChoice.vehicleConditionChange = -20.0f;
+    streetRacingEvent.choices.push_back(acceptRaceChoice);
+
+    EventChoice declineRaceChoice;
+    declineRaceChoice.text = "Отказаться / Decline";
+    declineRaceChoice.outcomeText = "Вы отказались от гонки. Безопасность важнее.\n"
+                                    "You declined the race. Safety first.";
+    streetRacingEvent.choices.push_back(declineRaceChoice);
+
+    addEvent(streetRacingEvent);
+
+    // Event 35: Mysterious Stranger - General
+    GameEvent mysteriousStrangerEvent;
+    mysteriousStrangerEvent.id = "mysterious_stranger";
+    mysteriousStrangerEvent.title = "Таинственный незнакомец / Mysterious Stranger";
+    mysteriousStrangerEvent.description = "На парковке человек в капюшоне предлагает выгодную сделку.\n"
+                                          "At parking lot, a hooded figure offers a lucrative deal.";
+    mysteriousStrangerEvent.condition.probability = 0.1f;
+
+    EventChoice acceptDealChoice;
+    acceptDealChoice.text = "Принять сделку / Accept deal";
+    acceptDealChoice.outcomeText = "Сделка оказалась честной! Вы получили 800 рублей.\n"
+                                   "Deal was legit! You got 800 rubles.";
+    acceptDealChoice.moneyChange = 800;
+    mysteriousStrangerEvent.choices.push_back(acceptDealChoice);
+
+    EventChoice refuseDealChoice;
+    refuseDealChoice.text = "Отказаться / Refuse";
+    refuseDealChoice.outcomeText = "Лучше не рисковать с незнакомцами.\n"
+                                   "Better not risk with strangers.";
+    mysteriousStrangerEvent.choices.push_back(refuseDealChoice);
+
+    addEvent(mysteriousStrangerEvent);
+
+    // Event 36: Roadside Memorial - General
+    GameEvent memorialEvent;
+    memorialEvent.id = "roadside_memorial";
+    memorialEvent.title = "Придорожный памятник / Roadside Memorial";
+    memorialEvent.description = "Крест и цветы на обочине. Памятник погибшим в аварии.\n"
+                                "Cross and flowers on roadside. Memorial for accident victims.";
+    memorialEvent.condition.probability = 0.15f;
+
+    EventChoice payRespectsChoice;
+    payRespectsChoice.text = "Остановиться и почтить память / Stop and pay respects";
+    payRespectsChoice.outcomeText = "Вы остановились на минуту молчания. Напоминание о безопасности.\n"
+                                    "You stopped for a minute of silence. Reminder about safety.";
+    payRespectsChoice.energyChange = -5.0f;
+    memorialEvent.choices.push_back(payRespectsChoice);
+
+    EventChoice drivePastMemorialChoice;
+    drivePastMemorialChoice.text = "Проехать мимо / Drive past";
+    drivePastMemorialChoice.outcomeText = "Вы продолжили путь.\n"
+                                          "You continued on.";
+    memorialEvent.choices.push_back(drivePastMemorialChoice);
+
+    addEvent(memorialEvent);
+
+    // Event 37: Fuel Smugglers - Path specific
+    GameEvent smugglersEvent;
+    smugglersEvent.id = "path_fuel_smugglers";
+    smugglersEvent.title = "Контрабандисты / Fuel Smugglers";
+    smugglersEvent.description = "На глухой дороге встретили контрабандистов. Предлагают дешевый бензин.\n"
+                                 "On a remote road you met smugglers. They offer cheap gas.";
+    smugglersEvent.condition.requiredRoadType = "path";
+    smugglersEvent.condition.minFuel = 0.0f;
+    smugglersEvent.condition.maxFuel = 40.0f;
+    smugglersEvent.condition.probability = 0.15f;
+
+    EventChoice buySmuggledFuelChoice;
+    buySmuggledFuelChoice.text = "Купить бензин (250 руб) / Buy fuel (250 rub)";
+    buySmuggledFuelChoice.outcomeText = "Дешево! Но качество под вопросом.\n"
+                                        "Cheap! But quality is questionable.";
+    buySmuggledFuelChoice.fuelChange = 40.0f;
+    buySmuggledFuelChoice.moneyChange = -250;
+    buySmuggledFuelChoice.vehicleConditionChange = -5.0f;  // Bad fuel
+    smugglersEvent.choices.push_back(buySmuggledFuelChoice);
+
+    EventChoice reportSmugglersChoice;
+    reportSmugglersChoice.text = "Сообщить полиции / Report to police";
+    reportSmugglersChoice.outcomeText = "Полиция благодарна. Вы получили награду.\n"
+                                        "Police are grateful. You got reward.";
+    reportSmugglersChoice.moneyChange = 400;
+    smugglersEvent.choices.push_back(reportSmugglersChoice);
+
+    EventChoice ignoreSmugglers;
+    ignoreSmugglers.text = "Проехать мимо / Drive past";
+    ignoreSmugglers.outcomeText = "Вы не стали связываться.\n"
+                                  "You didn't get involved.";
+    smugglersEvent.choices.push_back(ignoreSmugglers);
+
+    addEvent(smugglersEvent);
+
+    // Event 38: Emergency Vehicle - Highway specific
+    GameEvent emergencyEvent;
+    emergencyEvent.id = "highway_emergency_vehicle";
+    emergencyEvent.title = "Машина скорой помощи / Ambulance";
+    emergencyEvent.description = "Скорая помощь с мигалками едет сзади!\n"
+                                 "Ambulance with sirens is behind you!";
+    emergencyEvent.condition.requiredRoadType = "highway";
+    emergencyEvent.condition.probability = 0.2f;
+
+    EventChoice pullOverChoice;
+    pullOverChoice.text = "Уступить дорогу / Pull over";
+    pullOverChoice.outcomeText = "Вы пропустили скорую. Они спешат спасать жизнь.\n"
+                                 "You let ambulance pass. They're rushing to save a life.";
+    emergencyEvent.choices.push_back(pullOverChoice);
+
+    EventChoice followAmbulanceChoice;
+    followAmbulanceChoice.text = "Следовать за ней / Follow it";
+    followAmbulanceChoice.outcomeText = "Вы едете за скорой. Проехали все пробки быстро!\n"
+                                        "You follow ambulance. Passed all traffic jams quickly!";
+    followAmbulanceChoice.fuelChange = -10.0f;
+    emergencyEvent.choices.push_back(followAmbulanceChoice);
+
+    addEvent(emergencyEvent);
+
+    // Event 39: Flat Tire Stranger Help - General
+    GameEvent flatTireHelpEvent;
+    flatTireHelpEvent.id = "flat_tire_help";
+    flatTireHelpEvent.title = "Прокол! / Flat Tire!";
+    flatTireHelpEvent.description = "У вас спустило колесо! Проблема.\n"
+                                    "You got a flat tire! Problem.";
+    flatTireHelpEvent.condition.probability = 0.25f;
+
+    EventChoice fixYourselfChoice;
+    fixYourselfChoice.text = "Починить самому / Fix yourself";
+    fixYourselfChoice.outcomeText = "Вы заменили колесо. Устали и испачкались.\n"
+                                    "You changed the wheel. Tired and dirty.";
+    fixYourselfChoice.energyChange = -25.0f;
+    flatTireHelpEvent.choices.push_back(fixYourselfChoice);
+
+    EventChoice askStrangerHelpChoice;
+    askStrangerHelpChoice.text = "Попросить помощи у проезжающих / Ask passing drivers";
+    askStrangerHelpChoice.outcomeText = "Добрый водитель остановился и помог! Вы благодарны.\n"
+                                        "Kind driver stopped and helped! You're grateful.";
+    askStrangerHelpChoice.energyChange = -10.0f;
+    flatTireHelpEvent.choices.push_back(askStrangerHelpChoice);
+
+    EventChoice callRoadsideChoice;
+    callRoadsideChoice.text = "Вызвать помощь на дороге (350 руб) / Call roadside (350 rub)";
+    callRoadsideChoice.outcomeText = "Служба приехала и быстро все починила.\n"
+                                     "Service arrived and fixed everything quickly.";
+    callRoadsideChoice.moneyChange = -350;
+    callRoadsideChoice.energyChange = -5.0f;
+    flatTireHelpEvent.choices.push_back(callRoadsideChoice);
+
+    addEvent(flatTireHelpEvent);
+
+    // Event 40: Lost Tourist - Road specific
+    GameEvent lostTouristEvent;
+    lostTouristEvent.id = "road_lost_tourist";
+    lostTouristEvent.title = "Потерявшийся турист / Lost Tourist";
+    lostTouristEvent.description = "Иностранный турист просит помочь найти дорогу.\n"
+                                   "Foreign tourist asks for help finding the way.";
+    lostTouristEvent.condition.requiredRoadType = "road";
+    lostTouristEvent.condition.probability = 0.2f;
+
+    EventChoice helpTouristChoice;
+    helpTouristChoice.text = "Помочь найти дорогу / Help find the way";
+    helpTouristChoice.outcomeText = "Турист благодарен! Дал вам 300 рублей за помощь.\n"
+                                    "Tourist is grateful! Gave you 300 rubles for help.";
+    helpTouristChoice.moneyChange = 300;
+    helpTouristChoice.energyChange = -5.0f;
+    lostTouristEvent.choices.push_back(helpTouristChoice);
+
+    EventChoice giveTouristMapChoice;
+    giveTouristMapChoice.text = "Дать карту / Give map";
+    giveTouristMapChoice.outcomeText = "Турист взял карту и поехал дальше.\n"
+                                       "Tourist took map and drove on.";
+    lostTouristEvent.choices.push_back(giveTouristMapChoice);
+
+    EventChoice ignoreTouristChoice;
+    ignoreTouristChoice.text = "Извиниться и уехать / Apologize and leave";
+    ignoreTouristChoice.outcomeText = "У вас нет времени.\n"
+                                      "You don't have time.";
+    lostTouristEvent.choices.push_back(ignoreTouristChoice);
+
+    addEvent(lostTouristEvent);
+
+    // Event 41: Old Friend Encounter - General
+    GameEvent oldFriendEvent;
+    oldFriendEvent.id = "old_friend_encounter";
+    oldFriendEvent.title = "Старый друг / Old Friend";
+    oldFriendEvent.description = "На заправке вы встретили старого друга!\n"
+                                 "At gas station you met an old friend!";
+    oldFriendEvent.condition.probability = 0.1f;
+
+    EventChoice catchUpChoice;
+    catchUpChoice.text = "Поболтать / Catch up";
+    catchUpChoice.outcomeText = "Отличный разговор! Друг угостил вас кофе.\n"
+                                "Great conversation! Friend treated you to coffee.";
+    catchUpChoice.energyChange = 20.0f;
+    oldFriendEvent.choices.push_back(catchUpChoice);
+
+    EventChoice quickHiChoice;
+    quickHiChoice.text = "Быстро поздороваться / Quick hello";
+    quickHiChoice.outcomeText = "Вы быстро поздоровались и поехали дальше.\n"
+                                "You quickly said hello and drove on.";
+    quickHiChoice.energyChange = 5.0f;
+    oldFriendEvent.choices.push_back(quickHiChoice);
+
+    addEvent(oldFriendEvent);
+
+    // ====== NPC COMPANION EVENTS ======
+    // These events require specific NPCs in party
+
+    // Event 42: Mechanic Fixes Car - Requires Mechanic NPC
+    GameEvent mechanicFixEvent;
+    mechanicFixEvent.id = "companion_mechanic_fix";
+    mechanicFixEvent.title = "Механик помогает / Mechanic Helps";
+    mechanicFixEvent.description = "Михаил (ваш механик) заметил проблему с двигателем.\n"
+                                   "Mikhail (your mechanic) noticed an engine problem.";
+    mechanicFixEvent.condition.minEnergy = 0.0f;
+    mechanicFixEvent.condition.maxEnergy = 60.0f;
+    mechanicFixEvent.condition.probability = 0.4f;
+
+    EventChoice mechanicFixChoice;
+    mechanicFixChoice.text = "Позволить Михаилу починить / Let Mikhail fix it";
+    mechanicFixChoice.outcomeText = "Михаил быстро все починил! Машина работает отлично.\n"
+                                    "Mikhail fixed it quickly! Car works great.";
+    mechanicFixChoice.energyChange = 30.0f;
+    mechanicFixChoice.vehicleConditionChange = 20.0f;
+    mechanicFixEvent.choices.push_back(mechanicFixChoice);
+
+    EventChoice ignoreFixChoice;
+    ignoreFixChoice.text = "Отказаться от помощи / Refuse help";
+    ignoreFixChoice.outcomeText = "Вы решили не тратить время.\n"
+                                  "You decided not to waste time.";
+    mechanicFixEvent.choices.push_back(ignoreFixChoice);
+
+    addEvent(mechanicFixEvent);
+
+    // Event 43: Trader Finds Deal - Requires Trader NPC
+    GameEvent traderDealEvent;
+    traderDealEvent.id = "companion_trader_deal";
+    traderDealEvent.title = "Сара нашла сделку / Sarah Found a Deal";
+    traderDealEvent.description = "Сара (торговка) знает где купить топливо дешево!\n"
+                                  "Sarah (trader) knows where to buy fuel cheap!";
+    traderDealEvent.condition.minFuel = 20.0f;
+    traderDealEvent.condition.maxFuel = 60.0f;
+    traderDealEvent.condition.probability = 0.35f;
+
+    EventChoice traderBuyChoice;
+    traderBuyChoice.text = "Купить топливо (300 руб за 50л) / Buy fuel (300 rub for 50L)";
+    traderBuyChoice.outcomeText = "Отличная сделка! Топливо куплено дешево.\n"
+                                  "Great deal! Fuel bought cheap.";
+    traderBuyChoice.fuelChange = 50.0f;
+    traderBuyChoice.moneyChange = -300;
+    traderDealEvent.choices.push_back(traderBuyChoice);
+
+    EventChoice traderSkipChoice;
+    traderSkipChoice.text = "Не покупать / Don't buy";
+    traderSkipChoice.outcomeText = "Вы решили не покупать.\n"
+                                   "You decided not to buy.";
+    traderDealEvent.choices.push_back(traderSkipChoice);
+
+    addEvent(traderDealEvent);
+
+    // Event 44: Navigator Shortcut - Requires Navigator NPC
+    GameEvent navigatorShortcutEvent;
+    navigatorShortcutEvent.id = "companion_navigator_shortcut";
+    navigatorShortcutEvent.title = "Джек знает короткий путь / Jack Knows a Shortcut";
+    navigatorShortcutEvent.description = "Джек (штурман) предлагает короткий путь через лес.\n"
+                                        "Jack (navigator) suggests a shortcut through the forest.";
+    navigatorShortcutEvent.condition.probability = 0.3f;
+
+    EventChoice takeShortcutChoice;
+    takeShortcutChoice.text = "Поехать коротким путем / Take the shortcut";
+    takeShortcutChoice.outcomeText = "Вы сэкономили топливо! Джек знает дороги.\n"
+                                     "You saved fuel! Jack knows the roads.";
+    takeShortcutChoice.fuelChange = 15.0f;
+    navigatorShortcutEvent.choices.push_back(takeShortcutChoice);
+
+    EventChoice takeMainRoadChoice;
+    takeMainRoadChoice.text = "Ехать основной дорогой / Take main road";
+    takeMainRoadChoice.outcomeText = "Вы поехали привычным путем.\n"
+                                     "You took the usual route.";
+    navigatorShortcutEvent.choices.push_back(takeMainRoadChoice);
+
+    addEvent(navigatorShortcutEvent);
+
+    // Event 45: Medic Helps Fatigue - Requires Medic NPC
+    GameEvent medicHelpEvent;
+    medicHelpEvent.id = "companion_medic_help";
+    medicHelpEvent.title = "Эмма дает лекарство / Emma Gives Medicine";
+    medicHelpEvent.description = "Эмма (врач) заметила, что вы устали. Предлагает витамины.\n"
+                                 "Emma (doctor) noticed you're tired. Offers vitamins.";
+    medicHelpEvent.condition.minEnergy = 0.0f;
+    medicHelpEvent.condition.maxEnergy = 40.0f;
+    medicHelpEvent.condition.probability = 0.45f;
+
+    EventChoice takeMedicineChoice;
+    takeMedicineChoice.text = "Принять витамины / Take vitamins";
+    takeMedicineChoice.outcomeText = "Витамины помогли! Вы чувствуете прилив сил.\n"
+                                     "Vitamins helped! You feel energized.";
+    takeMedicineChoice.energyChange = 35.0f;
+    medicHelpEvent.choices.push_back(takeMedicineChoice);
+
+    EventChoice refuseMedicineChoice;
+    refuseMedicineChoice.text = "Отказаться / Refuse";
+    refuseMedicineChoice.outcomeText = "Вы решили справиться сами.\n"
+                                       "You decided to manage yourself.";
+    medicHelpEvent.choices.push_back(refuseMedicineChoice);
+
+    addEvent(medicHelpEvent);
+
+    // Event 46: Companion Stories - Any companion
+    GameEvent companionStoriesEvent;
+    companionStoriesEvent.id = "companion_stories";
+    companionStoriesEvent.title = "Истории попутчика / Companion Stories";
+    companionStoriesEvent.description = "Алекс рассказывает веселые истории о путешествиях.\n"
+                                        "Alex tells funny travel stories.";
+    companionStoriesEvent.condition.probability = 0.3f;
+
+    EventChoice listenStoriesChoice;
+    listenStoriesChoice.text = "Слушать истории / Listen to stories";
+    listenStoriesChoice.outcomeText = "Вы посмеялись! Настроение улучшилось.\n"
+                                      "You laughed! Mood improved.";
+    listenStoriesChoice.energyChange = 15.0f;
+    companionStoriesEvent.choices.push_back(listenStoriesChoice);
+
+    EventChoice ignoreStoriesChoice;
+    ignoreStoriesChoice.text = "Сконцентрироваться на дороге / Focus on road";
+    ignoreStoriesChoice.outcomeText = "Вы сосредоточились на вождении.\n"
+                                      "You focused on driving.";
+    companionStoriesEvent.choices.push_back(ignoreStoriesChoice);
+
+    addEvent(companionStoriesEvent);
+
+    // Event 47: Team Meal - Multiple companions
+    GameEvent teamMealEvent;
+    teamMealEvent.id = "companion_team_meal";
+    teamMealEvent.title = "Совместный обед / Team Meal";
+    teamMealEvent.description = "Команда предлагает остановиться и пообедать вместе.\n"
+                                "Team suggests stopping for a meal together.";
+    teamMealEvent.condition.probability = 0.25f;
+
+    EventChoice teamEatChoice;
+    teamEatChoice.text = "Пообедать вместе (150 руб) / Eat together (150 rub)";
+    teamEatChoice.outcomeText = "Приятный обед с командой! Все отдохнули и пообщались.\n"
+                                "Pleasant meal with team! Everyone rested and chatted.";
+    teamEatChoice.moneyChange = -150;
+    teamEatChoice.energyChange = 30.0f;
+    teamMealEvent.choices.push_back(teamEatChoice);
+
+    EventChoice skipMealChoice;
+    skipMealChoice.text = "Пропустить обед / Skip meal";
+    skipMealChoice.outcomeText = "Вы решили ехать дальше.\n"
+                                 "You decided to keep driving.";
+    teamMealEvent.choices.push_back(skipMealChoice);
+
+    addEvent(teamMealEvent);
 }
 
 // Add ability perk choices to event
@@ -868,8 +1591,21 @@ void EventManager::addPerkChoicesToEvent(GameEvent* event, float playerFuel, flo
             const auto& effect = perk->getEffect();
             if (effect.energyCost > playerEnergy) continue;
             if (effect.moneyCost > playerMoney) continue;
-            // TODO: Check item requirements when inventory system is integrated
-            
+
+            // [MVP] Disabled - Item requirement checks (uncomment to enable)
+            /*
+            // Check item requirements via InventorySystem
+            const auto& inventory = GameStateManager::getInstance().getPlayerState().getInventory();
+            bool hasAllItems = true;
+            for (const auto& itemName : effect.itemRequirements) {
+                if (!inventory.hasItem(itemName, 1)) {
+                    hasAllItems = false;
+                    break;
+                }
+            }
+            if (!hasAllItems) continue;
+            */
+
             // Create perk choice
             EventChoice perkChoice;
             perkChoice.isPerkChoice = true;
@@ -881,24 +1617,27 @@ void EventManager::addPerkChoicesToEvent(GameEvent* event, float playerFuel, flo
             // Add effect description based on preservation type
             switch (preservationType) {
                 case ResourcePreservationType::CHARACTER_ENERGY:
-                    perkChoice.text += "Сохранить энергию / Preserve energy (+" + 
+                    perkChoice.text += "Сохранить энергию / Preserve energy (+" +
                                       std::to_string(static_cast<int>(effect.preserveAmount)) + ")";
                     perkChoice.energyChange = effect.preserveAmount;
                     break;
                 case ResourcePreservationType::FUEL:
-                    perkChoice.text += "Сохранить топливо / Preserve fuel (+" + 
+                    perkChoice.text += "Сохранить топливо / Preserve fuel (+" +
                                       std::to_string(static_cast<int>(effect.preserveAmount)) + "л)";
                     perkChoice.fuelChange = effect.preserveAmount;
                     break;
                 case ResourcePreservationType::MONEY:
-                    perkChoice.text += "Сохранить деньги / Preserve money (+" + 
+                    perkChoice.text += "Сохранить деньги / Preserve money (+" +
                                       std::to_string(effect.preserveAmount) + "₽)";
                     perkChoice.moneyChange = static_cast<int>(effect.preserveAmount);
                     break;
                 case ResourcePreservationType::VEHICLE_CONDITION:
-                    perkChoice.text += "Сохранить состояние / Preserve condition (+" + 
+                    perkChoice.text += "Сохранить состояние / Preserve condition (+" +
                                       std::to_string(static_cast<int>(effect.preserveAmount)) + "%)";
-                    // TODO: Add vehicle condition change when Car damage system is implemented
+                    perkChoice.vehicleConditionChange = effect.preserveAmount;
+                    break;
+                case ResourcePreservationType::NONE:
+                    // No preservation effect for this perk
                     break;
             }
             
@@ -935,3 +1674,4 @@ float EventManager::randomFloat(float min, float max) const {
 int EventManager::randomInt(int min, int max) const {
     return min + (std::rand() % (max - min + 1));
 }
+    

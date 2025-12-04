@@ -4613,14 +4613,17 @@ tests/CMakeFiles/kkurs_lib.dir/__/src/MainMenuScene.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h
+ /Users/afftobuss/Documents/GitHub/kurs/include/FontLoader.h
  /Users/afftobuss/Documents/GitHub/kurs/include/GameStateManager.h
  /Users/afftobuss/Documents/GitHub/kurs/include/GameTypes.h
  /Users/afftobuss/Documents/GitHub/kurs/include/InventorySystem.h
  /Users/afftobuss/Documents/GitHub/kurs/include/Item.h
+ /Users/afftobuss/Documents/GitHub/kurs/include/Location.h
  /Users/afftobuss/Documents/GitHub/kurs/include/MainMenuScene.h
  /Users/afftobuss/Documents/GitHub/kurs/include/PlayerState.h
  /Users/afftobuss/Documents/GitHub/kurs/include/SaveSystem.h
  /Users/afftobuss/Documents/GitHub/kurs/include/Scene.h
+ /Users/afftobuss/Documents/GitHub/kurs/include/UIConstants.h
  /Users/afftobuss/Documents/GitHub/kurs/include/UILayout.h
  /Users/afftobuss/Documents/GitHub/kurs/tests/mocks/sfml/SFML/Graphics.hpp
  /Users/afftobuss/Documents/GitHub/kurs/tests/mocks/sfml/SFML/System.hpp
@@ -6193,6 +6196,7 @@ tests/CMakeFiles/kkurs_lib.dir/__/src/SceneManager.cpp.o
  /Users/afftobuss/Documents/GitHub/kurs/include/CharacterScene.h
  /Users/afftobuss/Documents/GitHub/kurs/include/CinematicEventScene.h
  /Users/afftobuss/Documents/GitHub/kurs/include/CompanionsScene.h
+ /Users/afftobuss/Documents/GitHub/kurs/include/EventHelper.h
  /Users/afftobuss/Documents/GitHub/kurs/include/EventManager.h
  /Users/afftobuss/Documents/GitHub/kurs/include/ExperienceSystem.h
  /Users/afftobuss/Documents/GitHub/kurs/include/GameStateManager.h

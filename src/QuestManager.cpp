@@ -1,4 +1,6 @@
 #include "QuestManager.h"
+#include "GameStateManager.h"
+#include "ExperienceSystem.h"
 #include <algorithm>
 #include <iostream>
 
@@ -48,8 +50,10 @@ void QuestManager::registerQuest(const Quest& quest) {
 }
 
 void QuestManager::registerQuestsFromFile(const std::string& jsonPath) {
-    // TODO: Implement JSON parsing for quests
+    // JSON quest loading requires a JSON library (e.g., nlohmann/json)
+    // For now, use initializeDefaultQuests() to register quests programmatically
     std::cerr << "Quest loading from JSON not yet implemented: " << jsonPath << std::endl;
+    std::cerr << "Use initializeDefaultQuests() to load hardcoded quests instead" << std::endl;
 }
 
 // Quest management
@@ -270,18 +274,36 @@ void QuestManager::grantReward(const std::string& questId) {
         std::cout << "Quest reward granted for: " << quest->title << std::endl;
         std::cout << "  Money: " << quest->reward.money << std::endl;
         std::cout << "  Experience: " << quest->reward.experience << std::endl;
-        
-        // TODO: Actually grant the reward to player
-        // This would require PlayerState reference
-        // For now, just log it
-        
+
+        // [MVP] Disabled - Resource rewards (uncomment to enable)
+        /*
+        // Grant money reward
+        auto& playerState = GameStateManager::getInstance().getPlayerState();
+        if (quest->reward.money > 0) {
+            playerState.addMoney(static_cast<float>(quest->reward.money));
+        }
+        */
+
+        // Grant experience reward
+        if (quest->reward.experience > 0) {
+            ExperienceSystem::getInstance().addExperience(quest->reward.experience);
+        }
+
+        // [MVP] Disabled - Item rewards (uncomment to enable)
+        /*
+        // Grant item rewards
         if (!quest->reward.itemIds.empty()) {
             std::cout << "  Items: ";
+            auto& inventory = playerState.getInventory();
             for (const auto& itemId : quest->reward.itemIds) {
                 std::cout << itemId << " ";
+                // Note: Adding items requires Item objects, which would need to be
+                // looked up from an item database. For now, just log the reward.
+                // Full implementation requires ItemDatabase or similar system.
             }
             std::cout << std::endl;
         }
+        */
     }
 }
 

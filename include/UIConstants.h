@@ -3,14 +3,14 @@
 
 #include <SFML/Graphics.hpp>
 
-// Fixed UI Constants for MacBook Air M1 (1440x900)
+// Fixed UI Constants (1300x800)
 // No scaling, no responsive design - everything is hardcoded
 
 namespace UI {
 
-// Screen dimensions (MacBook Air M1)
-constexpr float SCREEN_WIDTH = 1440.0f;
-constexpr float SCREEN_HEIGHT = 900.0f;
+// Screen dimensions
+constexpr float SCREEN_WIDTH = 1300.0f;
+constexpr float SCREEN_HEIGHT = 800.0f;
 
 // Colors
 namespace Color {
@@ -65,10 +65,10 @@ namespace Menu {
 
 // HUD positioning
 namespace HUD {
-    constexpr float TOP_RIGHT_X = 1200.0f;
+    constexpr float TOP_RIGHT_X = 1060.0f;  // 1300 - 240
     constexpr float TOP_RIGHT_Y = 20.0f;
-    constexpr float STATUS_Y = 660.0f;
-    constexpr float CONTROLS_Y = 820.0f;
+    constexpr float STATUS_Y = 560.0f;  // 800 - 240
+    constexpr float CONTROLS_Y = 720.0f;  // 800 - 80
 }
 
 // Font paths

@@ -813,6 +813,7 @@ tests/CMakeFiles/kkurs_lib.dir/__/src/SceneManager.cpp.o: \
   /Users/afftobuss/Documents/GitHub/kurs/include/InventorySystem.h \
   /Users/afftobuss/Documents/GitHub/kurs/include/GameStateManager.h \
   /Users/afftobuss/Documents/GitHub/kurs/include/SaveSystem.h \
+  /Users/afftobuss/Documents/GitHub/kurs/include/EventHelper.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/iostream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/istream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__ostream/basic_ostream.h \

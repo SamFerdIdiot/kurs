@@ -3,7 +3,6 @@
 
 #include "Scene.h"
 #include "CharacterCreationMenu.h"
-#include "UILayout.h"
 #include <SFML/Graphics.hpp>
 
 // Character creation scene

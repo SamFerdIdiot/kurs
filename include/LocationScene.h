@@ -3,12 +3,12 @@
 
 #include "Scene.h"
 #include "Location.h"
-#include "InteractionMenu.h"
+#include "PlayerState.h"
 #include "UI/HUDPanel.hpp"
-#include "UILayout.h"
 #include <SFML/Graphics.hpp>
 #include <memory>
 #include <vector>
+#include <optional>
 
 // LocationScene - Generic scene for entering and interacting with locations
 // Purpose: Unified scene for all location types (gas stations, stores, diners, garages, etc.)
@@ -39,12 +39,21 @@ private:
     
     // Handle specific interactions
     void handleRefuel();          // Gas station: refuel vehicle
-    void handleShop();            // Store: buy items
+    void handleShop();            // Store: buy items (opens shop UI)
     void handleRepair();          // Garage/Mechanic: repair vehicle
     void handleEat();             // Diner: buy food/drinks
     void handleRest();            // Any location: quick rest if available
     void handleTalk();            // Talk to NPC if present
     void handleLeave();           // Exit location and return to driving
+
+    // Shop system
+    void initializeStoreInventory();  // Setup items for sale
+    void enterShopMode();             // Enter shopping interface
+    void exitShopMode();              // Exit shopping interface
+    void handleShopInput(const sf::Event& event);  // Handle shop navigation
+    void buySelectedItem();           // Buy from store
+    void sellSelectedItem();          // Sell from inventory
+    void renderShopUI(sf::RenderWindow& window);  // Render shop interface
     
     // Visual elements
     sf::RectangleShape m_background;        // Location interior background
@@ -58,18 +67,14 @@ private:
     
     // UI elements
     sf::Font m_font;
-    sf::Text m_locationNameText;        // Display location name (e.g., "Joe's Gas Station")
-    sf::Text m_instructionsText;        // Instructions for player
-    sf::Text m_statusText;              // Display current resources
+    std::optional<sf::Text> m_locationNameText;  // SFML 3.x: Text requires font in constructor
+    std::optional<sf::Text> m_instructionsText;  // SFML 3.x: Text requires font in constructor
+    std::optional<sf::Text> m_statusText;        // SFML 3.x: Text requires font in constructor
     bool m_fontLoaded;
     
-    // Interaction system
-    std::unique_ptr<InteractionMenu> m_interactionMenu;
+    // Interaction system (simple menu instead of InteractionMenu)
     bool m_showInteractionMenu;
-    
-    // Player state (maintains resources across interactions)
-    PlayerState m_playerState;
-    
+
     // Scene state
     LocationType m_locationType;        // Type of location (gas station, store, etc.)
     std::string m_locationName;         // Custom name for this location
@@ -78,7 +83,16 @@ private:
     
     // HUD Panel for displaying resources
     HUDPanel m_hudPanel;
-    
+
+    // Shop system state
+    bool m_isInShopMode;                    // Whether we're in shopping UI
+    InventorySystem m_storeInventory;       // Store's inventory (items for sale)
+    int m_selectedStoreIndex;               // Selected item in store list
+    int m_selectedPlayerIndex;              // Selected item in player inventory
+    int m_storeScrollOffset;                // Scroll offset for store list
+    int m_playerScrollOffset;               // Scroll offset for player inventory
+    bool m_isStoreListActive;               // Which list is active (true = store, false = inventory)
+
     // Helper to get location description
     std::string getLocationDescription() const;
 };

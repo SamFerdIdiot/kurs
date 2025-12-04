@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <memory>
+#include <optional>
 #include "UI/ResourceBar.h"
 
 // HUDPanel - Retro driving game style HUD panel (Jalopy-inspired)
@@ -97,49 +98,49 @@ private:
     // === Left section: Energy/Status ===
     sf::RectangleShape m_energyPanel;
     sf::RectangleShape m_energyBar;
-    sf::Text m_energyText;
-    sf::Text m_energyValue;
-    
+    std::optional<sf::Text> m_energyText;
+    std::optional<sf::Text> m_energyValue;
+
     sf::RectangleShape m_moneyPanel;
-    sf::Text m_moneyText;
-    sf::Text m_moneyValue;
-    
+    std::optional<sf::Text> m_moneyText;
+    std::optional<sf::Text> m_moneyValue;
+
     sf::RectangleShape m_inventoryPanel;
-    sf::Text m_inventoryText;
-    sf::Text m_inventoryValue;
-    
+    std::optional<sf::Text> m_inventoryText;
+    std::optional<sf::Text> m_inventoryValue;
+
     // === Center section: Odometer and LCD ===
     sf::RectangleShape m_odometerPanel;
-    sf::Text m_odometerText;
-    sf::Text m_odometerValue;
-    
+    std::optional<sf::Text> m_odometerText;
+    std::optional<sf::Text> m_odometerValue;
+
     sf::RectangleShape m_lcdPanel;
-    sf::Text m_lcdText;
-    
+    std::optional<sf::Text> m_lcdText;
+
     sf::RectangleShape m_speedPanel;
-    sf::Text m_speedText;
-    sf::Text m_speedValue;
-    
+    std::optional<sf::Text> m_speedText;
+    std::optional<sf::Text> m_speedValue;
+
     // === Right section: Car indicators ===
     sf::RectangleShape m_fuelPanel;
     sf::RectangleShape m_fuelBar;
-    sf::Text m_fuelText;
-    sf::Text m_fuelValue;
-    
+    std::optional<sf::Text> m_fuelText;
+    std::optional<sf::Text> m_fuelValue;
+
     sf::RectangleShape m_tempPanel;
     sf::RectangleShape m_tempBar;
-    sf::Text m_tempText;
-    sf::Text m_tempValue;
-    
+    std::optional<sf::Text> m_tempText;
+    std::optional<sf::Text> m_tempValue;
+
     // Warning indicators
     sf::RectangleShape m_warningEngine;
-    sf::Text m_warningEngineText;
-    
+    std::optional<sf::Text> m_warningEngineText;
+
     sf::RectangleShape m_warningFuel;
-    sf::Text m_warningFuelText;
-    
+    std::optional<sf::Text> m_warningFuelText;
+
     sf::RectangleShape m_warningCheck;
-    sf::Text m_warningCheckText;
+    std::optional<sf::Text> m_warningCheckText;
     
     // Helper functions
     void initializeLayout();
@@ -163,12 +164,12 @@ private:
     // Resource bars
     ResourceBar m_topRightFuelBar;
     ResourceBar m_topRightEnergyBar;
-    
+
     // Text elements
-    sf::Text m_topRightMoneyText;
-    sf::Text m_topRightFuelText;
-    sf::Text m_topRightEnergyText;
-    sf::Text m_topRightCargoText;
+    std::optional<sf::Text> m_topRightMoneyText;
+    std::optional<sf::Text> m_topRightFuelText;
+    std::optional<sf::Text> m_topRightEnergyText;
+    std::optional<sf::Text> m_topRightCargoText;
     
     // Helper functions for top-right display
     void initializeTopRightDisplay();

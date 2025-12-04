@@ -1,75 +1,139 @@
 #include "MapScene.h"
+#include "UIConstants.h"
+#include "FontLoader.h"
 #include <iostream>
-#include <cmath>
 
 MapScene::MapScene()
-    : m_finished(false),
-      m_nextScene(SceneType::WORLD_MAP),
-      m_hudPanel(1366.0f, 768.0f) {  // Initialize HUD with full window size
-    
-    // Создание адаптивной разметки для MacBook Air M1
-    // Create responsive layout for MacBook Air M1
-    UILayout& layout = GET_LAYOUT("MapScene");
-    layout.setTargetResolution(
-        ScreenResolution::MAC_AIR_M1_WIDTH,
-        ScreenResolution::MAC_AIR_M1_HEIGHT
-    );
-    
-    // Setup background with responsive sizing
-    m_background.setSize(sf::Vector2f(layout.getTargetWidth(), layout.getTargetHeight()));
-    m_background.setFillColor(sf::Color(40, 40, 60));
-    
-    // Setup UI text with responsive scaling
-    m_titleText.setString("Map");
-    m_titleText.setCharacterSize(SCALE_FONT(layout, 32));
-    m_titleText.setFillColor(sf::Color::White);
-    m_titleText.setPosition(SCALE_POS(layout, 600.0f, 50.0f));
-    
-    m_instructionText.setString("Select destination\nESC - Return");
-    m_instructionText.setCharacterSize(SCALE_FONT(layout, 20));
-    m_instructionText.setFillColor(sf::Color::White);
-    m_instructionText.setPosition(SCALE_POS(layout, 400.0f, 650.0f));
-    
-    initializeMap();
+    : m_mapOffset(0.0f, 0.0f),
+      m_isDragging(false),
+      m_lastMousePos(0, 0),
+      m_finished(false),
+      m_nextScene(SceneType::MAP),
+      m_returnToScene(SceneType::NODE),
+      m_fontLoaded(false) {
+
+    // Load font
+    if (auto fontOpt = FontLoader::load()) {
+        m_font = std::move(*fontOpt);
+        m_fontLoaded = true;
+    } else {
+        std::cerr << "MapScene: Failed to load font" << std::endl;
+    }
+
+    // Setup background
+    m_background.setSize(sf::Vector2f(UI::SCREEN_WIDTH, UI::SCREEN_HEIGHT));
+    m_background.setFillColor(UI::Color::BACKGROUND_DARK);
+
+    // [MVP] Setup map placeholder (large draggable area representing world map)
+    // In production, this would be replaced with actual sf::Texture/sf::Sprite
+    m_mapPlaceholder.setSize(sf::Vector2f(2880.0f, 1800.0f));  // 2x screen size for panning demo
+    m_mapPlaceholder.setPosition(sf::Vector2f(0.0f, 0.0f));
+    m_mapPlaceholder.setFillColor(sf::Color(40, 40, 50));  // Dark gray placeholder
+    m_mapPlaceholder.setOutlineColor(UI::Color::ACCENT_BLUE);
+    m_mapPlaceholder.setOutlineThickness(3.0f);
+
+    // SFML 3.x: Text initialization
+    if (m_fontLoaded) {
+        // Title
+        m_titleText.emplace(m_font, "WORLD MAP", UI::FONT_SIZE_HUGE);
+        m_titleText->setFillColor(UI::Color::ACCENT_YELLOW);
+        m_titleText->setPosition(sf::Vector2f(50.0f, 30.0f));
+
+        // Instructions
+        m_instructionText.emplace(m_font, "[Mouse Drag] Pan Map  [Esc] Close", UI::FONT_SIZE_NORMAL);
+        m_instructionText->setFillColor(UI::Color::TEXT_SECONDARY);
+        m_instructionText->setPosition(sf::Vector2f(50.0f, 820.0f));
+
+        // [MVP] Placeholder text in center of map
+        m_placeholderText.emplace(m_font, "[MVP] World Map Image Goes Here\n\nDrag with mouse to pan", UI::FONT_SIZE_SUBTITLE);
+        m_placeholderText->setFillColor(UI::Color::TEXT_SECONDARY);
+        m_placeholderText->setPosition(sf::Vector2f(600.0f, 400.0f));
+    }
+
+    std::cout << "[MVP] MapScene created - static world map viewer" << std::endl;
 }
 
 void MapScene::handleInput(const sf::Event& event) {
-    if (event.type == sf::Event::KeyPressed) {
-        if (event.key.code == sf::Keyboard::Escape) {
+    // ESC to close
+    if (const auto* keyPressed = event.getIf<sf::Event::KeyPressed>()) {
+        if (keyPressed->code == sf::Keyboard::Key::Escape) {
             m_finished = true;
-            m_nextScene = SceneType::NODE;  // Return to node scene
+            m_nextScene = m_returnToScene;
         }
-    } else if (event.type == sf::Event::MouseButtonPressed) {
-        if (event.mouseButton.button == sf::Mouse::Left) {
-            sf::Vector2f mousePos(static_cast<float>(event.mouseButton.x), 
-                                 static_cast<float>(event.mouseButton.y));
-            handleNodeSelection(mousePos);
+    }
+
+    // Mouse button pressed - start dragging
+    if (const auto* mousePressed = event.getIf<sf::Event::MouseButtonPressed>()) {
+        if (mousePressed->button == sf::Mouse::Button::Left) {
+            m_isDragging = true;
+            m_lastMousePos = sf::Mouse::getPosition();
         }
-    } else if (event.type == sf::Event::MouseMoved) {
-        m_mousePosition = sf::Vector2i(event.mouseMove.x, event.mouseMove.y);
+    }
+
+    // Mouse button released - stop dragging
+    if (const auto* mouseReleased = event.getIf<sf::Event::MouseButtonReleased>()) {
+        if (mouseReleased->button == sf::Mouse::Button::Left) {
+            m_isDragging = false;
+        }
+    }
+
+    // Mouse moved - update pan if dragging
+    if (const auto* mouseMoved = event.getIf<sf::Event::MouseMoved>()) {
+        if (m_isDragging) {
+            sf::Vector2i currentMousePos = sf::Mouse::getPosition();
+            sf::Vector2i delta = currentMousePos - m_lastMousePos;
+
+            // Update map offset
+            m_mapOffset.x += static_cast<float>(delta.x);
+            m_mapOffset.y += static_cast<float>(delta.y);
+
+            // Clamp offset to prevent scrolling too far
+            // Map size: 2880x1800, Screen: 1440x900
+            float minX = -(2880.0f - UI::SCREEN_WIDTH);
+            float maxX = 0.0f;
+            float minY = -(1800.0f - UI::SCREEN_HEIGHT);
+            float maxY = 0.0f;
+
+            if (m_mapOffset.x < minX) m_mapOffset.x = minX;
+            if (m_mapOffset.x > maxX) m_mapOffset.x = maxX;
+            if (m_mapOffset.y < minY) m_mapOffset.y = minY;
+            if (m_mapOffset.y > maxY) m_mapOffset.y = maxY;
+
+            m_lastMousePos = currentMousePos;
+        }
     }
 }
 
 void MapScene::update(float deltaTime) {
-    // Update HUD with example values
-    m_hudPanel.setMoney(1250.0f);
-    m_hudPanel.setFuel(65.0f, 100.0f);
-    m_hudPanel.setEnergy(75.0f, 100.0f);
-    m_hudPanel.setCargo(20.0f, 64.0f);
-    m_hudPanel.updateTopRight(deltaTime);
+    // Update map placeholder position based on offset
+    m_mapPlaceholder.setPosition(m_mapOffset);
+
+    // Update placeholder text position to follow map
+    if (m_fontLoaded && m_placeholderText) {
+        m_placeholderText->setPosition(sf::Vector2f(
+            600.0f + m_mapOffset.x,
+            400.0f + m_mapOffset.y
+        ));
+    }
 }
 
 void MapScene::render(sf::RenderWindow& window) {
+    // Draw background
     window.draw(m_background);
-    
-    renderConnections(window);
-    renderNodes(window);
-    
-    window.draw(m_titleText);
-    window.draw(m_instructionText);
-    
-    // Render HUD
-    m_hudPanel.render(window);
+
+    // Draw map placeholder (would be actual map texture in production)
+    window.draw(m_mapPlaceholder);
+
+    // Draw placeholder text
+    if (m_fontLoaded && m_placeholderText) {
+        window.draw(*m_placeholderText);
+    }
+
+    // Draw UI overlay (fixed position, not affected by pan)
+    if (m_fontLoaded) {
+        if (m_titleText) window.draw(*m_titleText);
+        if (m_instructionText) window.draw(*m_instructionText);
+    }
 }
 
 SceneType MapScene::getNextScene() const {
@@ -78,97 +142,4 @@ SceneType MapScene::getNextScene() const {
 
 bool MapScene::isFinished() const {
     return m_finished;
-}
-
-void MapScene::setCurrentNode(const std::string& nodeId) {
-    m_currentNodeId = nodeId;
-    
-    // Update current node flag
-    for (auto& node : m_nodes) {
-        node.isCurrentNode = (node.id == nodeId);
-    }
-}
-
-void MapScene::addAvailableNode(const MapNode& node) {
-    m_nodes.push_back(node);
-}
-
-void MapScene::initializeMap() {
-    // Initialize with one test node (current location)
-    MapNode startNode("node_start", "Начальная точка / Start", 
-                     sf::Vector2f(683.0f, 384.0f), true, true);
-    m_nodes.push_back(startNode);
-    
-    // Add one destination node (for future travel)
-    MapNode nextNode("node_next", "Следующая точка / Next", 
-                    sf::Vector2f(900.0f, 300.0f), true, false);
-    m_nodes.push_back(nextNode);
-    
-    m_currentNodeId = "node_start";
-}
-
-void MapScene::renderNodes(sf::RenderWindow& window) {
-    for (const auto& node : m_nodes) {
-        sf::CircleShape nodeShape(20.0f);
-        nodeShape.setOrigin(20.0f, 20.0f);
-        nodeShape.setPosition(node.position);
-        
-        // Color based on state
-        if (node.isCurrentNode) {
-            nodeShape.setFillColor(sf::Color::Green);  // Current location
-        } else if (node.isUnlocked) {
-            nodeShape.setFillColor(sf::Color::Yellow);  // Available
-        } else {
-            nodeShape.setFillColor(sf::Color(100, 100, 100));  // Locked
-        }
-        
-        window.draw(nodeShape);
-        
-        // Draw node name
-        sf::Text nodeText;
-        nodeText.setString(node.name);
-        nodeText.setCharacterSize(16);
-        nodeText.setFillColor(sf::Color::White);
-        nodeText.setPosition(node.position.x - 40.0f, node.position.y + 25.0f);
-        window.draw(nodeText);
-    }
-}
-
-void MapScene::renderConnections(sf::RenderWindow& window) {
-    // Draw lines between current node and available nodes
-    if (m_nodes.size() < 2) return;
-    
-    for (size_t i = 0; i < m_nodes.size(); ++i) {
-        if (m_nodes[i].isCurrentNode) {
-            for (size_t j = 0; j < m_nodes.size(); ++j) {
-                if (i != j && m_nodes[j].isUnlocked) {
-                    sf::Vertex line[] = {
-                        sf::Vertex(m_nodes[i].position, sf::Color(150, 150, 150)),
-                        sf::Vertex(m_nodes[j].position, sf::Color(150, 150, 150))
-                    };
-                    window.draw(line, 2, sf::Lines);
-                }
-            }
-            break;
-        }
-    }
-}
-
-void MapScene::handleNodeSelection(const sf::Vector2f& mousePos) {
-    // Check if clicked on any available node
-    for (const auto& node : m_nodes) {
-        float dx = mousePos.x - node.position.x;
-        float dy = mousePos.y - node.position.y;
-        float distance = std::sqrt(dx * dx + dy * dy);
-        
-        if (distance <= 20.0f && node.isUnlocked && !node.isCurrentNode) {
-            std::cout << "Selected destination: " << node.name << std::endl;
-            m_selectedNodeId = node.id;
-            
-            // Transition to cinematic mode (placeholder)
-            m_finished = true;
-            m_nextScene = SceneType::MAIN_MENU;  // Temp: return to menu
-            break;
-        }
-    }
 }

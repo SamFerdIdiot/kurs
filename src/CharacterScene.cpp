@@ -17,12 +17,12 @@ CharacterScene::CharacterScene()
       m_charisma(50.0f),
       m_luck(50.0f) {
     
-    // Загрузка шрифта с fallback опциями
-    if (m_font.loadFromFile("assets/fonts/font.ttf")) {
+    // Загрузка шрифта с fallback опциями (SFML 3.x uses openFromFile)
+    if (m_font.openFromFile("assets/fonts/font.ttf")) {
         m_fontLoaded = true;
-    } else if (m_font.loadFromFile("images/Press_Start_2P/PressStart2P-Regular.ttf")) {
+    } else if (m_font.openFromFile("images/Press_Start_2P/PressStart2P-Regular.ttf")) {
         m_fontLoaded = true;
-    } else if (m_font.loadFromFile("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf")) {
+    } else if (m_font.openFromFile("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf")) {
         m_fontLoaded = true;
     } else {
         m_fontLoaded = false;
@@ -34,81 +34,67 @@ CharacterScene::CharacterScene()
 }
 
 void CharacterScene::setupUI() {
-    // Создание адаптивной разметки для MacBook Air M1
-    // Create responsive layout for MacBook Air M1
-    UILayout& layout = GET_LAYOUT("CharacterScene");
-    layout.setTargetResolution(
-        ScreenResolution::MAC_AIR_M1_WIDTH,
-        ScreenResolution::MAC_AIR_M1_HEIGHT
-    );
-    
-    // Фон with responsive sizing
-    m_background.setSize(sf::Vector2f(layout.getTargetWidth(), layout.getTargetHeight()));
-    m_background.setFillColor(sf::Color(30, 30, 46)); // Dark blue-gray (#1E1E2E)
-    m_background.setPosition(0.0f, 0.0f);
-    
-    // Заголовок with responsive scaling
-    m_titleText.setFont(m_font);
-    m_titleText.setCharacterSize(SCALE_FONT(layout, 36));
-    m_titleText.setFillColor(sf::Color::White);
-    m_titleText.setPosition(SCALE_POS(layout, 100.0f, 40.0f));
-    m_titleText.setString("CHARACTER INFORMATION");
-    
-    // Текст имени with responsive scaling
-    m_nameText.setFont(m_font);
-    m_nameText.setCharacterSize(SCALE_FONT(layout, 24));
-    m_nameText.setFillColor(sf::Color(255, 165, 0)); // Orange accent
-    m_nameText.setPosition(SCALE_POS(layout, 100.0f, 110.0f));
-    
-    // Текст предыстории with responsive scaling
-    m_backstoryText.setFont(m_font);
-    m_backstoryText.setCharacterSize(SCALE_FONT(layout, 20));
-    m_backstoryText.setFillColor(sf::Color(204, 204, 204)); // Light gray
-    m_backstoryText.setPosition(SCALE_POS(layout, 100.0f, 150.0f));
-    
-    // Текст уровня with responsive scaling
-    m_levelText.setFont(m_font);
-    m_levelText.setCharacterSize(SCALE_FONT(layout, 22));
-    m_levelText.setFillColor(sf::Color::White);
-    m_levelText.setPosition(SCALE_POS(layout, 100.0f, 195.0f));
-    
-    // Текст опыта with responsive scaling
-    m_experienceText.setFont(m_font);
-    m_experienceText.setCharacterSize(SCALE_FONT(layout, 18));
-    m_experienceText.setFillColor(sf::Color(204, 204, 204));
-    m_experienceText.setPosition(SCALE_POS(layout, 100.0f, 230.0f));
-    
-    // Полоса опыта with responsive scaling
-    m_experienceBarBackground.setSize(SCALE_SIZE(layout, 1000.0f, 30.0f));
-    m_experienceBarBackground.setPosition(SCALE_POS(layout, 100.0f, 265.0f));
+    // Fixed layout for 1440x900 (no responsive scaling)
+    const float SCREEN_WIDTH = 1440.0f;
+    const float SCREEN_HEIGHT = 900.0f;
+
+    // Фон - fixed sizing
+    m_background.setSize(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
+    m_background.setFillColor(sf::Color(30, 30, 46)); // Dark blue-gray
+    m_background.setPosition(sf::Vector2f(0.0f, 0.0f));
+
+    if (m_fontLoaded) {
+        // Заголовок
+        m_titleText.emplace(m_font, "CHARACTER INFORMATION", 36);
+        m_titleText->setFillColor(sf::Color::White);
+        m_titleText->setPosition(sf::Vector2f(100.0f, 40.0f));
+
+        // Текст имени
+        m_nameText.emplace(m_font, "", 24);
+        m_nameText->setFillColor(sf::Color(255, 165, 0)); // Orange accent
+        m_nameText->setPosition(sf::Vector2f(100.0f, 110.0f));
+
+        // Текст предыстории
+        m_backstoryText.emplace(m_font, "", 20);
+        m_backstoryText->setFillColor(sf::Color(204, 204, 204)); // Light gray
+        m_backstoryText->setPosition(sf::Vector2f(100.0f, 150.0f));
+
+        // Текст уровня
+        m_levelText.emplace(m_font, "", 22);
+        m_levelText->setFillColor(sf::Color::White);
+        m_levelText->setPosition(sf::Vector2f(100.0f, 195.0f));
+
+        // Текст опыта
+        m_experienceText.emplace(m_font, "", 18);
+        m_experienceText->setFillColor(sf::Color(204, 204, 204));
+        m_experienceText->setPosition(sf::Vector2f(100.0f, 230.0f));
+
+        // Заголовок статистики
+        m_statsHeaderText.emplace(m_font, "STATS:", 28);
+        m_statsHeaderText->setFillColor(sf::Color::White);
+        m_statsHeaderText->setPosition(sf::Vector2f(100.0f, 320.0f));
+
+        // Заголовок эффектов
+        m_effectsHeaderText.emplace(m_font, "ACTIVE EFFECTS:", 28);
+        m_effectsHeaderText->setFillColor(sf::Color::White);
+        m_effectsHeaderText->setPosition(sf::Vector2f(100.0f, 520.0f));
+
+        // Подсказка управления
+        m_controlsText.emplace(m_font, "ESC - Back to Node", 16);
+        m_controlsText->setFillColor(sf::Color(150, 150, 150));
+        m_controlsText->setPosition(sf::Vector2f(100.0f, 700.0f));
+    }
+
+    // Полоса опыта
+    m_experienceBarBackground.setSize(sf::Vector2f(1000.0f, 30.0f));
+    m_experienceBarBackground.setPosition(sf::Vector2f(100.0f, 265.0f));
     m_experienceBarBackground.setFillColor(sf::Color(62, 62, 78)); // Medium gray
     m_experienceBarBackground.setOutlineColor(sf::Color(94, 126, 160)); // Light blue
     m_experienceBarBackground.setOutlineThickness(2.0f);
-    
-    // Полоса опыта - заполнение - adjusted
-    m_experienceBarFill.setPosition(100.0f, 265.0f);
+
+    // Полоса опыта - заполнение
+    m_experienceBarFill.setPosition(sf::Vector2f(100.0f, 265.0f));
     m_experienceBarFill.setFillColor(sf::Color(76, 175, 80)); // Success green
-    
-    // Заголовок статистики - repositioned
-    m_statsHeaderText.setFont(m_font);  // Always set font
-    m_statsHeaderText.setCharacterSize(28);
-    m_statsHeaderText.setFillColor(sf::Color::White);
-    m_statsHeaderText.setPosition(100.0f, 320.0f);
-    m_statsHeaderText.setString("STATS:");
-    
-    // Заголовок эффектов - repositioned
-    m_effectsHeaderText.setFont(m_font);  // Always set font
-    m_effectsHeaderText.setCharacterSize(28);
-    m_effectsHeaderText.setFillColor(sf::Color::White);
-    m_effectsHeaderText.setPosition(100.0f, 520.0f);
-    m_effectsHeaderText.setString("ACTIVE EFFECTS:");
-    
-    // Подсказка управления - repositioned for full window
-    m_controlsText.setFont(m_font);  // Always set font
-    m_controlsText.setCharacterSize(16);
-    m_controlsText.setFillColor(sf::Color(150, 150, 150));
-    m_controlsText.setPosition(100.0f, 700.0f);
-    m_controlsText.setString("ESC - Back to Node");
 }
 
 void CharacterScene::updateCharacterDisplay() {
@@ -117,26 +103,43 @@ void CharacterScene::updateCharacterDisplay() {
     
     // Имя игрока (пока заглушка, так как Character не хранит имя)
     m_playerName = "Player";
-    m_nameText.setString("Name: " + m_playerName);
-    
+    if (m_nameText) {
+        m_nameText->setString("Name: " + m_playerName);
+    }
+
+    // [MVP] Disabled - Origin type (uncomment to enable)
+    /*
     // Предыстория из OriginType
     OriginType origin = playerState.getOrigin();
     m_backstory = getOriginTypeName(origin);
-    m_backstoryText.setString("Backstory: " + m_backstory);
-    
+    if (m_backstoryText) {
+        m_backstoryText->setString("Backstory: " + m_backstory);
+    }
+    */
+    m_backstory = "Traveler";
+    if (m_backstoryText) {
+        m_backstoryText->setString("Backstory: " + m_backstory);
+    }
+
     // Уровень и опыт из ExperienceSystem
     ExperienceSystem& expSystem = ExperienceSystem::getInstance();
     m_level = expSystem.getLevel();
     m_currentExp = expSystem.getExperience();
     m_maxExp = expSystem.getExperienceForNextLevel();
-    
-    m_levelText.setString("Level: " + std::to_string(m_level));
-    m_experienceText.setString("XP: " + std::to_string(m_currentExp) + "/" + std::to_string(m_maxExp));
+
+    if (m_levelText) {
+        m_levelText->setString("Level: " + std::to_string(m_level));
+    }
+    if (m_experienceText) {
+        m_experienceText->setString("XP: " + std::to_string(m_currentExp) + "/" + std::to_string(m_maxExp));
+    }
     
     // Обновление полосы опыта - adjusted for wider bar
     float expPercentage = static_cast<float>(m_currentExp) / static_cast<float>(m_maxExp);
     m_experienceBarFill.setSize(sf::Vector2f(1000.0f * expPercentage, 30.0f));
     
+    // [MVP] Disabled - Origin-based skills (uncomment to enable)
+    /*
     // Навыки - зависят от предыстории
     switch (origin) {
         case OriginType::EX_RACER:
@@ -160,7 +163,14 @@ void CharacterScene::updateCharacterDisplay() {
             m_luck = 50.0f;
             break;
     }
+    */
+    // [MVP] Default skills
+    m_drivingSkill = 50.0f;
+    m_charisma = 50.0f;
+    m_luck = 50.0f;
     
+    // [MVP] Disabled - Energy-based effects (uncomment to enable)
+    /*
     // Активные эффекты (пример)
     m_activeEffects.clear();
     if (playerState.getEnergy() > 75.0f) {
@@ -169,11 +179,14 @@ void CharacterScene::updateCharacterDisplay() {
     if (playerState.getEnergy() < 30.0f) {
         m_activeEffects.push_back({"- Tired (-5% max energy)", false});
     }
+    */
+    m_activeEffects.clear();
 }
 
 void CharacterScene::handleInput(const sf::Event& event) {
-    if (event.type == sf::Event::KeyPressed) {
-        if (event.key.code == sf::Keyboard::Escape) {
+    // SFML 3.x event handling
+    if (const auto* keyPressed = event.getIf<sf::Event::KeyPressed>()) {
+        if (keyPressed->code == sf::Keyboard::Key::Escape) {
             m_finished = true;
             m_nextScene = SceneType::NODE;
         }
@@ -195,18 +208,17 @@ void CharacterScene::renderSkillCells(sf::RenderWindow& window, float x, float y
     int filledCells = static_cast<int>((percentage / 100.0f) * totalCells);
     
     // Отрисовка метки навыка
-    sf::Text labelText;
-    labelText.setFont(m_font);  // Always set font
-    labelText.setString(label);
-    labelText.setCharacterSize(20);
-    labelText.setFillColor(sf::Color::White);
-    labelText.setPosition(x, y);
-    window.draw(labelText);
-    
+    if (m_fontLoaded) {
+        sf::Text labelText(m_font, label, 20);
+        labelText.setFillColor(sf::Color::White);
+        labelText.setPosition(sf::Vector2f(x, y));
+        window.draw(labelText);
+    }
+
     // Отрисовка ячеек
     for (int i = 0; i < totalCells; ++i) {
         sf::RectangleShape cell(sf::Vector2f(cellWidth, cellHeight));
-        cell.setPosition(x + 200.0f + i * (cellWidth + cellSpacing), y);
+        cell.setPosition(sf::Vector2f(x + 200.0f + i * (cellWidth + cellSpacing), y));
         
         if (i < filledCells) {
             // Заполненная ячейка (горящая)
@@ -226,56 +238,70 @@ void CharacterScene::renderSkillCells(sf::RenderWindow& window, float x, float y
 void CharacterScene::render(sf::RenderWindow& window) {
     // Отрисовка фона
     window.draw(m_background);
-    
+
     // Отрисовка заголовка
-    window.draw(m_titleText);
-    
+    if (m_titleText) {
+        window.draw(*m_titleText);
+    }
+
     // Отрисовка информации о персонаже
-    window.draw(m_nameText);
-    window.draw(m_backstoryText);
-    window.draw(m_levelText);
-    window.draw(m_experienceText);
-    
+    if (m_nameText) {
+        window.draw(*m_nameText);
+    }
+    if (m_backstoryText) {
+        window.draw(*m_backstoryText);
+    }
+    if (m_levelText) {
+        window.draw(*m_levelText);
+    }
+    if (m_experienceText) {
+        window.draw(*m_experienceText);
+    }
+
     // Отрисовка полосы опыта
     window.draw(m_experienceBarBackground);
     window.draw(m_experienceBarFill);
-    
-    // Отрисовка процента опыта - adjusted position
-    float expPercentage = static_cast<float>(m_currentExp) / static_cast<float>(m_maxExp) * 100.0f;
-    sf::Text expPercentText;
-    expPercentText.setFont(m_font);  // Always set font
-    std::ostringstream ss;
-    ss << std::fixed << std::setprecision(0) << expPercentage << "%";
-    expPercentText.setString(ss.str());
-    expPercentText.setCharacterSize(18);
-    expPercentText.setFillColor(sf::Color(204, 204, 204));
-    expPercentText.setPosition(1110.0f, 268.0f);
-    window.draw(expPercentText);
-    
+
+    // Отрисовка процента опыта
+    if (m_fontLoaded) {
+        float expPercentage = static_cast<float>(m_currentExp) / static_cast<float>(m_maxExp) * 100.0f;
+        std::ostringstream ss;
+        ss << std::fixed << std::setprecision(0) << expPercentage << "%";
+        sf::Text expPercentText(m_font, ss.str(), 18);
+        expPercentText.setFillColor(sf::Color(204, 204, 204));
+        expPercentText.setPosition(sf::Vector2f(1110.0f, 268.0f));
+        window.draw(expPercentText);
+    }
+
     // Отрисовка заголовка статистики
-    window.draw(m_statsHeaderText);
-    
-    // Отрисовка навыков в виде ячеек - repositioned
+    if (m_statsHeaderText) {
+        window.draw(*m_statsHeaderText);
+    }
+
+    // Отрисовка навыков в виде ячеек
     renderSkillCells(window, 100.0f, 365.0f, m_drivingSkill, "Driving Skill:");
     renderSkillCells(window, 100.0f, 410.0f, m_charisma, "Charisma:");
     renderSkillCells(window, 100.0f, 455.0f, m_luck, "Luck:");
-    
+
     // Отрисовка заголовка эффектов
-    window.draw(m_effectsHeaderText);
-    
-    // Отрисовка активных эффектов - repositioned
-    float effectY = 565.0f;
-    for (const auto& effect : m_activeEffects) {
-        sf::Text effectText;
-        effectText.setFont(m_font);  // Always set font
-        effectText.setString(effect.first);
-        effectText.setCharacterSize(18);
-        effectText.setFillColor(effect.second ? sf::Color(76, 175, 80) : sf::Color(244, 67, 54)); // Green for positive, red for negative
-        effectText.setPosition(100.0f, effectY);
-        window.draw(effectText);
-        effectY += 30.0f;
+    if (m_effectsHeaderText) {
+        window.draw(*m_effectsHeaderText);
     }
-    
+
+    // Отрисовка активных эффектов
+    if (m_fontLoaded) {
+        float effectY = 565.0f;
+        for (const auto& effect : m_activeEffects) {
+            sf::Text effectText(m_font, effect.first, 18);
+            effectText.setFillColor(effect.second ? sf::Color(76, 175, 80) : sf::Color(244, 67, 54));
+            effectText.setPosition(sf::Vector2f(100.0f, effectY));
+            window.draw(effectText);
+            effectY += 30.0f;
+        }
+    }
+
     // Отрисовка подсказки управления
-    window.draw(m_controlsText);
+    if (m_controlsText) {
+        window.draw(*m_controlsText);
+    }
 }

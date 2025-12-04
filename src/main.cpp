@@ -1,11 +1,14 @@
 #include <SFML/Graphics.hpp>
 #include "SceneManager.h"
+#include "UIConstants.h"
 #include <iostream>
 
 int main() {
-    // Create window with Russian 90s theme
-    // Using ASCII-only title to avoid encoding issues on macOS
-    sf::RenderWindow window(sf::VideoMode(1366, 768), "69 Crossroads - Russia 90s");
+    // Create window with fixed dimensions (1300x800)
+    // SFML 3.x requires VideoMode with braced initialization
+    sf::RenderWindow window(sf::VideoMode({static_cast<unsigned int>(UI::SCREEN_WIDTH),
+                                            static_cast<unsigned int>(UI::SCREEN_HEIGHT)}),
+                           "KKURS");
     window.setFramerateLimit(60);
     
     try {

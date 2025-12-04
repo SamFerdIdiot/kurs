@@ -18,12 +18,12 @@ ResourceBar::ResourceBar(sf::Vector2f pos, sf::Vector2f size)
     
     // Initialize background (dark gray, slightly visible)
     m_background.setSize(sf::Vector2f(size.x - BORDER_THICKNESS * 2, size.y - BORDER_THICKNESS * 2));
-    m_background.setPosition(pos.x + BORDER_THICKNESS, pos.y + BORDER_THICKNESS);
+    m_background.setPosition(sf::Vector2f(pos.x + BORDER_THICKNESS, pos.y + BORDER_THICKNESS));
     m_background.setFillColor(sf::Color(40, 40, 40, 200));
-    
+
     // Initialize fill (starts empty)
     m_fill.setSize(sf::Vector2f(0.0f, size.y - BORDER_THICKNESS * 2));
-    m_fill.setPosition(pos.x + BORDER_THICKNESS, pos.y + BORDER_THICKNESS);
+    m_fill.setPosition(sf::Vector2f(pos.x + BORDER_THICKNESS, pos.y + BORDER_THICKNESS));
     m_fill.setFillColor(getFillColor(0.0f));
 }
 
@@ -38,11 +38,11 @@ void ResourceBar::setValue(float current, float max) {
 
 void ResourceBar::setPosition(sf::Vector2f pos) {
     m_position = pos;
-    
+
     // Update all shape positions
     m_border.setPosition(pos);
-    m_background.setPosition(pos.x + BORDER_THICKNESS, pos.y + BORDER_THICKNESS);
-    m_fill.setPosition(pos.x + BORDER_THICKNESS, pos.y + BORDER_THICKNESS);
+    m_background.setPosition(sf::Vector2f(pos.x + BORDER_THICKNESS, pos.y + BORDER_THICKNESS));
+    m_fill.setPosition(sf::Vector2f(pos.x + BORDER_THICKNESS, pos.y + BORDER_THICKNESS));
 }
 
 void ResourceBar::update(float deltaTime) {

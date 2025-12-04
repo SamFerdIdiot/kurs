@@ -1,15 +1,18 @@
 #include "PlayerState.h"
 #include <algorithm>
 
-// Constructor
-PlayerState::PlayerState() 
-    : m_energy(100.0f),
-      m_money(200.0f),
-      m_fuel(100.0f),
-      m_vehicleCondition(100.0f),
-      m_origin(OriginType::UNKNOWN),
-      m_carType(CarType::UNKNOWN),
-      m_currentNodeId(0) {
+// Constructor with starting resources
+PlayerState::PlayerState()
+    : m_energy(100.0f),           // Full energy
+      m_money(1000.0f),           // Starting money (1000 rubles)
+      m_fuel(100.0f),             // Full fuel
+      m_vehicleCondition(100.0f), // Perfect condition
+      m_origin(OriginType::NOMAD),
+      m_carType(CarType::OLD_SEDAN),
+      m_inventory(24, 50.0f),     // 24 slots, 50kg max weight
+      m_currentCityIndex(0),      // Start at city 0
+      m_totalPlayTime(0.0f),      // No time played yet
+      m_currentNodeId(0) {        // Keep for compatibility
 }
 
 // Energy management
@@ -52,7 +55,7 @@ void PlayerState::initializeResources() {
 void PlayerState::initializeResources(OriginType origin, CarType carType) {
     m_origin = origin;
     m_carType = carType;
-    
+
     // Set starting resources based on character choice
     switch (origin) {
         case OriginType::EX_RACER:
@@ -60,19 +63,19 @@ void PlayerState::initializeResources(OriginType origin, CarType carType) {
             m_fuel = 80.0f;    // Medium fuel
             m_energy = 100.0f; // Full energy
             break;
-            
+
         case OriginType::NOMAD: // Student equivalent
             m_money = 200.0f;  // Standard money
             m_fuel = 100.0f;   // Full fuel
             m_energy = 90.0f;  // Slightly tired from travel
             break;
-            
+
         case OriginType::HITCHHIKER: // Unemployed equivalent
             m_money = 100.0f;  // Less money (hard mode)
             m_fuel = 60.0f;    // Low fuel (hard mode)
             m_energy = 70.0f;  // Low energy (depression)
             break;
-            
+
         default:
             m_money = 200.0f;
             m_fuel = 100.0f;

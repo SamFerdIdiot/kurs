@@ -2,10 +2,10 @@
 #define QUESTS_SCENE_H
 
 #include "Scene.h"
-#include "UILayout.h"
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <vector>
+#include <optional>
 
 // QuestsScene - Журнал квестов и отслеживание целей
 // Отображает активные, завершенные и проваленные квесты
@@ -80,10 +80,10 @@ private:
     
     // UI элементы
     sf::RectangleShape m_background;
-    sf::Text m_titleText;
-    sf::Text m_filterText;
-    sf::Text m_questCountText;
-    sf::Text m_controlsText;
+    std::optional<sf::Text> m_titleText;
+    std::optional<sf::Text> m_filterText;
+    std::optional<sf::Text> m_questCountText;
+    std::optional<sf::Text> m_controlsText;
     sf::RectangleShape m_selectionHighlight;
     
     // Данные о квестах

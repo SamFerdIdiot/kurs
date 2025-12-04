@@ -4,7 +4,6 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <vector>
-#include "UILayout.h"
 
 // Character Creation Menu
 // ASCII/Notebook style menu for character creation with typewriter effect
@@ -93,14 +92,17 @@ private:
         "Sports Coupe"
     };
     
-    // Menu dimensions and positioning
+    // Menu dimensions and positioning (Fixed for 1300x800)
+    static constexpr float SCREEN_WIDTH = 1300.0f;
+    static constexpr float SCREEN_HEIGHT = 800.0f;
+
     static constexpr float FRAME_WIDTH = 800.0f;
     static constexpr float FRAME_HEIGHT = 600.0f;
-    static constexpr float FRAME_X = 283.0f;  // (1366 - 800) / 2
-    static constexpr float FRAME_Y = 84.0f;   // (768 - 600) / 2
-    
-    static constexpr float HEADER_Y = 120.0f;
-    static constexpr float MENU_START_Y = 250.0f;
+    static constexpr float FRAME_X = 250.0f;  // (1300 - 800) / 2
+    static constexpr float FRAME_Y = 100.0f;  // (800 - 600) / 2
+
+    static constexpr float HEADER_Y = 140.0f;  // FRAME_Y + 40
+    static constexpr float MENU_START_Y = 250.0f;  // FRAME_Y + 150
     static constexpr float MENU_ITEM_SPACING = 80.0f;
     
     static constexpr float TYPEWRITER_SPEED = 0.11f;  // Seconds per character

@@ -14,14 +14,14 @@ void Structure::setupVisuals() {
     // Set size and position
     m_shape.setSize(sf::Vector2f(80.0f, 80.0f));
     m_shape.setPosition(m_position);
-    m_shape.setOrigin(40.0f, 40.0f);
-    
+    m_shape.setOrigin(sf::Vector2f(40.0f, 40.0f));  // Fixed: Vector2f wrapper
+
     // Set color based on type
     m_color = getColorForType();
     m_shape.setFillColor(m_color);
     m_shape.setOutlineColor(sf::Color::White);
     m_shape.setOutlineThickness(2.0f);
-    
+
     // Get icon for this type
     m_icon = getIconForType();
 }
@@ -70,22 +70,20 @@ bool Structure::isPlayerNear(const sf::Vector2f& playerPos) const {
 void Structure::render(sf::RenderWindow& window) {
     // Draw the structure shape
     window.draw(m_shape);
-    
-    // TODO: In future, draw icon/sprite instead of rectangle
-    // For now, the colored rectangle represents the structure
+
+    // Note: Sprite/icon system not yet implemented
+    // Currently using colored rectangle to represent the structure
 }
 
 void Structure::renderPrompt(sf::RenderWindow& window, const sf::Font& font) {
-    sf::Text promptText;
-    promptText.setFont(font);
-    promptText.setString("[E] " + m_name);
-    promptText.setCharacterSize(14);
+    // SFML 3.x: Text requires font in constructor
+    sf::Text promptText(font, "[E] " + m_name, 14);
     promptText.setFillColor(sf::Color::White);
     promptText.setOutlineColor(sf::Color::Black);
     promptText.setOutlineThickness(1.0f);
-    
-    // Position above the structure
-    promptText.setPosition(m_position.x - 40.0f, m_position.y - 60.0f);
-    
+
+    // Position above the structure (Fixed: Vector2f wrapper)
+    promptText.setPosition(sf::Vector2f(m_position.x - 40.0f, m_position.y - 60.0f));
+
     window.draw(promptText);
 }

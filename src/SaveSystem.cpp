@@ -165,14 +165,19 @@ std::string SaveSystem::serializePlayerState(const PlayerState& playerState) con
     oss << "  \"version\": 1,\n";
     oss << "  \"timestamp\": " << now << ",\n";
     
+    // [MVP] Disabled - Resource state (uncomment to enable)
+    /*
     // Basic player state
     oss << "  \"energy\": " << playerState.getEnergy() << ",\n";
     oss << "  \"money\": " << playerState.getMoney() << ",\n";
     oss << "  \"fuel\": " << playerState.getFuel() << ",\n";
     oss << "  \"origin\": " << static_cast<int>(playerState.getOrigin()) << ",\n";
     oss << "  \"carType\": " << static_cast<int>(playerState.getCarType()) << ",\n";
+    */
     oss << "  \"currentNodeId\": " << playerState.getCurrentNodeId() << ",\n";
-    
+
+    // [MVP] Disabled - Inventory (uncomment to enable)
+    /*
     // Inventory - serialize item count and total weight
     const InventorySystem& inventory = playerState.getInventory();
     oss << "  \"inventory\": {\n";
@@ -180,7 +185,7 @@ std::string SaveSystem::serializePlayerState(const PlayerState& playerState) con
     oss << "    \"maxWeight\": " << inventory.getMaxWeight() << ",\n";
     oss << "    \"slotCount\": " << inventory.getSlotCount() << ",\n";
     oss << "    \"items\": [\n";
-    
+
     bool firstItem = true;
     for (int i = 0; i < inventory.getSlotCount(); ++i) {
         const InventorySlot& slot = inventory.getSlot(i);
@@ -201,6 +206,7 @@ std::string SaveSystem::serializePlayerState(const PlayerState& playerState) con
     }
     oss << "\n    ]\n";
     oss << "  },\n";
+    */
     
     // Player experience and abilities
     ExperienceSystem& expSystem = ExperienceSystem::getInstance();
@@ -347,11 +353,14 @@ bool SaveSystem::deserializePlayerState(const std::string& data, PlayerState& pl
     }
     
     // Apply values to player state
+    // [MVP] Disabled - Resource loading (uncomment to enable)
+    /*
     playerState.setEnergy(energy);
     playerState.setMoney(money);
     playerState.setFuel(fuel);
     playerState.setOrigin(static_cast<OriginType>(origin));
     playerState.setCarType(static_cast<CarType>(carType));
+    */
     playerState.setCurrentNodeId(currentNodeId);
     
     return true;

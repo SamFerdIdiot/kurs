@@ -52,11 +52,11 @@ set(SOURCES
     src/AbilityNode.cpp
     src/AbilityTreeSystem.cpp
     src/AbilityTreeScene.cpp
-    src/RestScene.cpp
     src/NodeScene.cpp
     src/MapScene.cpp
     src/EventManager.cpp
     src/CinematicEventScene.cpp
+    src/EndGameScene.cpp
     src/TravelCinematicScene.cpp
     src/QuestManager.cpp
     src/LocationScene.cpp
@@ -67,6 +67,8 @@ set(SOURCES
     src/CompanionsScene.cpp
     src/QuestsScene.cpp
     src/InventoryScene.cpp
+    src/TravelSelectionScene.cpp
+    src/NotesScene.cpp
     src/UI/UIComponent.cpp
     src/UI/HUDPanel.cpp
     src/UI/ResourceBar.cpp

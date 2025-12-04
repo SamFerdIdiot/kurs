@@ -2,10 +2,10 @@
 #define CHARACTER_SCENE_H
 
 #include "Scene.h"
-#include "UILayout.h"
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <vector>
+#include <optional>
 
 // CharacterScene - Отображение характеристик персонажа и прогрессии
 // Показывает имя, предысторию, уровень, опыт, навыки, активные эффекты
@@ -44,14 +44,14 @@ private:
     
     // UI элементы
     sf::RectangleShape m_background;
-    sf::Text m_titleText;
-    sf::Text m_nameText;
-    sf::Text m_backstoryText;
-    sf::Text m_levelText;
-    sf::Text m_experienceText;
-    sf::Text m_statsHeaderText;
-    sf::Text m_effectsHeaderText;
-    sf::Text m_controlsText;
+    std::optional<sf::Text> m_titleText;
+    std::optional<sf::Text> m_nameText;
+    std::optional<sf::Text> m_backstoryText;
+    std::optional<sf::Text> m_levelText;
+    std::optional<sf::Text> m_experienceText;
+    std::optional<sf::Text> m_statsHeaderText;
+    std::optional<sf::Text> m_effectsHeaderText;
+    std::optional<sf::Text> m_controlsText;
     
     // Полоса опыта
     sf::RectangleShape m_experienceBarBackground;

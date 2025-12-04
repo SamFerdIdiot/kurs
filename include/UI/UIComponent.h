@@ -138,19 +138,19 @@ private:
  */
 class UILabel : public UIComponent {
 public:
-    UILabel(const std::string& text, const sf::Vector2f& position,
+    UILabel(const sf::Font& font, const std::string& text, const sf::Vector2f& position,
             unsigned int fontSize = 16);
-    
+
     void render(sf::RenderWindow& window) override;
-    
+
     void setText(const std::string& text);
     std::string getText() const { return m_text.getString(); }
-    
+
     void setFont(const sf::Font& font) { m_text.setFont(font); }
     void setFontSize(unsigned int size) { m_text.setCharacterSize(size); }
     void setTextColor(const sf::Color& color) { m_text.setFillColor(color); }
-    void setStyle(sf::Uint32 style) { m_text.setStyle(style); }
-    
+    void setStyle(uint32_t style) { m_text.setStyle(static_cast<sf::Text::Style>(style)); }
+
 private:
     sf::Text m_text;
 };
@@ -161,10 +161,10 @@ private:
 class UIButton : public UIComponent {
 public:
     using ClickCallback = std::function<void()>;
-    
-    UIButton(const std::string& text, const sf::Vector2f& position,
+
+    UIButton(const sf::Font& font, const std::string& text, const sf::Vector2f& position,
              const sf::Vector2f& size);
-    
+
     void render(sf::RenderWindow& window) override;
     bool handleInput(const sf::Event& event) override;
     void update(float deltaTime) override;

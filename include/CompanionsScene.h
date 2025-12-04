@@ -2,10 +2,10 @@
 #define COMPANIONS_SCENE_H
 
 #include "Scene.h"
-#include "UILayout.h"
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <vector>
+#include <optional>
 
 // CompanionsScene - Управление группой и компаньонами
 // Отображает слоты для компаньонов (зависит от вместимости машины)
@@ -62,10 +62,10 @@ private:
     
     // UI элементы
     sf::RectangleShape m_background;
-    sf::Text m_titleText;
-    sf::Text m_vehicleInfoText;
-    sf::Text m_capacityText;
-    sf::Text m_controlsText;
+    std::optional<sf::Text> m_titleText;
+    std::optional<sf::Text> m_vehicleInfoText;
+    std::optional<sf::Text> m_capacityText;
+    std::optional<sf::Text> m_controlsText;
     sf::RectangleShape m_selectionHighlight;
     
     // Данные о компаньонах

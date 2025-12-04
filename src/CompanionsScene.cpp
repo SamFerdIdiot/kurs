@@ -11,12 +11,12 @@ CompanionsScene::CompanionsScene()
       m_maxCompanions(2),
       m_selectedSlot(0) {
     
-    // Загрузка шрифта с fallback опциями
-    if (m_font.loadFromFile("assets/fonts/font.ttf")) {
+    // Загрузка шрифта с fallback опциями (SFML 3.x uses openFromFile)
+    if (m_font.openFromFile("assets/fonts/font.ttf")) {
         m_fontLoaded = true;
-    } else if (m_font.loadFromFile("images/Press_Start_2P/PressStart2P-Regular.ttf")) {
+    } else if (m_font.openFromFile("images/Press_Start_2P/PressStart2P-Regular.ttf")) {
         m_fontLoaded = true;
-    } else if (m_font.loadFromFile("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf")) {
+    } else if (m_font.openFromFile("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf")) {
         m_fontLoaded = true;
     } else {
         m_fontLoaded = false;
@@ -28,57 +28,51 @@ CompanionsScene::CompanionsScene()
 }
 
 void CompanionsScene::setupUI() {
-    // Создание адаптивной разметки для MacBook Air M1
-    // Create responsive layout for MacBook Air M1
-    UILayout& layout = GET_LAYOUT("CompanionsScene");
-    layout.setTargetResolution(
-        ScreenResolution::MAC_AIR_M1_WIDTH,
-        ScreenResolution::MAC_AIR_M1_HEIGHT
-    );
-    
-    // Фон with responsive sizing
-    m_background.setSize(sf::Vector2f(layout.getTargetWidth(), layout.getTargetHeight()));
+    // Fixed layout for 1440x900 (no responsive scaling)
+    const float SCREEN_WIDTH = 1440.0f;
+    const float SCREEN_HEIGHT = 900.0f;
+
+    // Фон - fixed sizing
+    m_background.setSize(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
     m_background.setFillColor(sf::Color(30, 30, 46)); // Dark blue-gray
-    m_background.setPosition(0.0f, 0.0f);
-    
-    // Заголовок with responsive scaling
-    m_titleText.setFont(m_font);
-    m_titleText.setCharacterSize(SCALE_FONT(layout, 36));
-    m_titleText.setFillColor(sf::Color::White);
-    m_titleText.setPosition(SCALE_POS(layout, 100.0f, 40.0f));
-    m_titleText.setString("PARTY & COMPANIONS");
-    
-    // Информация о машине with responsive scaling
-    m_vehicleInfoText.setFont(m_font);
-    m_vehicleInfoText.setCharacterSize(SCALE_FONT(layout, 22));
-    m_vehicleInfoText.setFillColor(sf::Color(204, 204, 204));
-    m_vehicleInfoText.setPosition(SCALE_POS(layout, 100.0f, 100.0f));
-    
-    // Вместимость with responsive scaling
-    m_capacityText.setFont(m_font);
-    m_capacityText.setCharacterSize(SCALE_FONT(layout, 20));
-    m_capacityText.setFillColor(sf::Color(255, 165, 0)); // Orange
-    m_capacityText.setPosition(SCALE_POS(layout, 100.0f, 135.0f));
-    
-    // Подсказка управления with responsive scaling
-    m_controlsText.setFont(m_font);
-    m_controlsText.setCharacterSize(SCALE_FONT(layout, 16));
-    m_controlsText.setFillColor(sf::Color(150, 150, 150));
-    m_controlsText.setPosition(SCALE_POS(layout, 100.0f, 700.0f));
-    m_controlsText.setString("Up/Down: Navigate | Enter: Select | ESC - Back to Node");
-    
-    // Подсветка выбора with responsive scaling
-    m_selectionHighlight.setSize(SCALE_SIZE(layout, 1100.0f, 80.0f));
+    m_background.setPosition(sf::Vector2f(0.0f, 0.0f));
+
+    if (m_fontLoaded) {
+        // Заголовок
+        m_titleText.emplace(m_font, "PARTY & COMPANIONS", 36);
+        m_titleText->setFillColor(sf::Color::White);
+        m_titleText->setPosition(sf::Vector2f(100.0f, 40.0f));
+
+        // Информация о машине
+        m_vehicleInfoText.emplace(m_font, "", 22);
+        m_vehicleInfoText->setFillColor(sf::Color(204, 204, 204));
+        m_vehicleInfoText->setPosition(sf::Vector2f(100.0f, 100.0f));
+
+        // Вместимость
+        m_capacityText.emplace(m_font, "", 20);
+        m_capacityText->setFillColor(sf::Color(255, 165, 0)); // Orange
+        m_capacityText->setPosition(sf::Vector2f(100.0f, 135.0f));
+
+        // Подсказка управления
+        m_controlsText.emplace(m_font, "Up/Down: Navigate | Enter: Select | ESC - Back to Node", 16);
+        m_controlsText->setFillColor(sf::Color(150, 150, 150));
+        m_controlsText->setPosition(sf::Vector2f(100.0f, 700.0f));
+    }
+
+    // Подсветка выбора
+    m_selectionHighlight.setSize(sf::Vector2f(1100.0f, 80.0f));
     m_selectionHighlight.setFillColor(sf::Color(94, 126, 160, 100)); // Light blue with transparency
     m_selectionHighlight.setOutlineColor(sf::Color(94, 126, 160));
     m_selectionHighlight.setOutlineThickness(2.0f);
 }
 
 void CompanionsScene::updateCompanionsDisplay() {
+    // [MVP] Disabled - Car type system (uncomment to enable)
+    /*
     // Получение данных из PlayerState
     PlayerState& playerState = GameStateManager::getInstance().getPlayerState();
     CarType carType = playerState.getCarType();
-    
+
     // Определение вместимости в зависимости от типа машины
     if (carType == CarType::OFFROAD_VAN) {
         m_maxCompanions = 4; // Фургон - много места
@@ -89,25 +83,35 @@ void CompanionsScene::updateCompanionsDisplay() {
     } else {
         m_maxCompanions = 2; // По умолчанию
     }
-    
+
     // Название машины
     m_vehicleName = getCarTypeName(carType);
-    m_vehicleInfoText.setString("Vehicle: " + m_vehicleName);
-    
+    if (m_vehicleInfoText) {
+        m_vehicleInfoText->setString("Vehicle: " + m_vehicleName);
+    }
+    */
+
+    // [MVP] Default values
+    m_maxCompanions = 3;
+    m_vehicleName = "Car";
+    if (m_vehicleInfoText) {
+        m_vehicleInfoText->setString("Vehicle: " + m_vehicleName);
+    }
+
     // Получение реальных компаньонов из NPCManager
     NPCManager& npcManager = NPCManager::getInstance();
     const std::vector<std::unique_ptr<NPC>>& team = npcManager.getTeam();
-    
+
     // Инициализация слотов компаньонов
     m_companions.clear();
     for (int i = 0; i < m_maxCompanions; ++i) {
         if (i < team.size() && team[i]) {
             // Реальный компаньон из NPCManager
             NPC* npc = team[i].get();
-            std::string ability = npc->hasPassiveAbility() 
-                ? npc->getPassiveAbility().description 
+            std::string ability = npc->hasPassiveAbility()
+                ? npc->getPassiveAbility().description
                 : "No special ability";
-            
+
             // Мораль пока 75% по умолчанию (может быть добавлена в NPC позже)
             m_companions.push_back(CompanionInfo(
                 npc->getName(),
@@ -120,22 +124,25 @@ void CompanionsScene::updateCompanionsDisplay() {
             m_companions.push_back(CompanionInfo());
         }
     }
-    
+
     // Подсчет набранных компаньонов
     int recruitedCount = static_cast<int>(team.size());
-    m_capacityText.setString("Capacity: " + std::to_string(recruitedCount) + "/" + std::to_string(m_maxCompanions) + " companions");
+    if (m_capacityText) {
+        m_capacityText->setString("Capacity: " + std::to_string(recruitedCount) + "/" + std::to_string(m_maxCompanions) + " companions");
+    }
 }
 
 void CompanionsScene::handleInput(const sf::Event& event) {
-    if (event.type == sf::Event::KeyPressed) {
-        switch (event.key.code) {
-            case sf::Keyboard::Up:
+    // SFML 3.x event handling
+    if (const auto* keyPressed = event.getIf<sf::Event::KeyPressed>()) {
+        switch (keyPressed->code) {
+            case sf::Keyboard::Key::Up:
                 selectPrevious();
                 break;
-            case sf::Keyboard::Down:
+            case sf::Keyboard::Key::Down:
                 selectNext();
                 break;
-            case sf::Keyboard::Enter:
+            case sf::Keyboard::Key::Enter:
                 // Выбор слота компаньона
                 if (m_selectedSlot >= 0 && m_selectedSlot < m_companions.size()) {
                     const CompanionInfo& companion = m_companions[m_selectedSlot];
@@ -147,7 +154,7 @@ void CompanionsScene::handleInput(const sf::Event& event) {
                     }
                 }
                 break;
-            case sf::Keyboard::Escape:
+            case sf::Keyboard::Key::Escape:
                 m_finished = true;
                 m_nextScene = SceneType::NODE;
                 break;
@@ -179,23 +186,22 @@ void CompanionsScene::renderMoraleCells(sf::RenderWindow& window, float x, float
     const float cellWidth = 20.0f;
     const float cellHeight = 15.0f;
     const float cellSpacing = 3.0f;
-    
+
     // Подсчет заполненных ячеек
     int filledCells = static_cast<int>((morale / 100.0f) * totalCells);
-    
+
     // Метка
-    sf::Text moraleLabel;
-    moraleLabel.setFont(m_font);  // Always set font
-    moraleLabel.setString("Morale:");
-    moraleLabel.setCharacterSize(16);
-    moraleLabel.setFillColor(sf::Color::White);
-    moraleLabel.setPosition(x, y);
-    window.draw(moraleLabel);
+    if (m_fontLoaded) {
+        sf::Text moraleLabel(m_font, "Morale:", 16);
+        moraleLabel.setFillColor(sf::Color::White);
+        moraleLabel.setPosition(sf::Vector2f(x, y));
+        window.draw(moraleLabel);
+    }
     
     // Отрисовка ячеек
     for (int i = 0; i < totalCells; ++i) {
         sf::RectangleShape cell(sf::Vector2f(cellWidth, cellHeight));
-        cell.setPosition(x + 80.0f + i * (cellWidth + cellSpacing), y + 3.0f);
+        cell.setPosition(sf::Vector2f(x + 80.0f + i * (cellWidth + cellSpacing), y + 3.0f));
         
         if (i < filledCells) {
             // Заполненная ячейка
@@ -214,69 +220,71 @@ void CompanionsScene::renderMoraleCells(sf::RenderWindow& window, float x, float
 
 void CompanionsScene::renderCompanionSlot(sf::RenderWindow& window, int slotIndex, float y, bool isSelected) {
     if (slotIndex >= m_companions.size()) return;
-    
+
     const CompanionInfo& companion = m_companions[slotIndex];
-    
+
     // Подсветка выбора - repositioned
     if (isSelected) {
-        m_selectionHighlight.setPosition(100.0f, y - 5.0f);
+        m_selectionHighlight.setPosition(sf::Vector2f(100.0f, y - 5.0f));
         window.draw(m_selectionHighlight);
     }
-    
-    // Заголовок слота - repositioned
-    sf::Text slotTitle;
-    slotTitle.setFont(m_font);  // Always set font
-    slotTitle.setString("SLOT " + std::to_string(slotIndex + 1) + ": " + 
-                        (companion.isRecruited ? "[" + companion.name + " - " + companion.role + "]" : "[Empty]"));
-    slotTitle.setCharacterSize(20);
-    slotTitle.setFillColor(companion.isRecruited ? sf::Color::White : sf::Color(150, 150, 150));
-    slotTitle.setPosition(110.0f, y);
-    window.draw(slotTitle);
-    
-    if (companion.isRecruited) {
-        // Мораль - repositioned
-        renderMoraleCells(window, 110.0f, y + 30.0f, companion.morale);
-        
-        // Способность - repositioned
-        sf::Text abilityText;
-        abilityText.setFont(m_font);  // Always set font
-        abilityText.setString("Ability: " + companion.ability);
-        abilityText.setCharacterSize(16);
-        abilityText.setFillColor(sf::Color(255, 193, 7)); // Amber/yellow
-        abilityText.setPosition(110.0f, y + 50.0f);
-        window.draw(abilityText);
-    } else {
-        // Пустой слот - repositioned
-        sf::Text emptyText;
-        emptyText.setFont(m_font);  // Always set font
-        emptyText.setString("> Recruit Companion");
-        emptyText.setCharacterSize(16);
-        emptyText.setFillColor(sf::Color(150, 150, 150));
-        emptyText.setPosition(110.0f, y + 30.0f);
-        window.draw(emptyText);
+
+    if (m_fontLoaded) {
+        // Заголовок слота - repositioned
+        std::string slotTitleStr = "SLOT " + std::to_string(slotIndex + 1) + ": " +
+                            (companion.isRecruited ? "[" + companion.name + " - " + companion.role + "]" : "[Empty]");
+        sf::Text slotTitle(m_font, slotTitleStr, 20);
+        slotTitle.setFillColor(companion.isRecruited ? sf::Color::White : sf::Color(150, 150, 150));
+        slotTitle.setPosition(sf::Vector2f(110.0f, y));
+        window.draw(slotTitle);
+
+        if (companion.isRecruited) {
+            // Мораль - repositioned
+            renderMoraleCells(window, 110.0f, y + 30.0f, companion.morale);
+
+            // Способность - repositioned
+            sf::Text abilityText(m_font, "Ability: " + companion.ability, 16);
+            abilityText.setFillColor(sf::Color(255, 193, 7)); // Amber/yellow
+            abilityText.setPosition(sf::Vector2f(110.0f, y + 50.0f));
+            window.draw(abilityText);
+        } else {
+            // Пустой слот - repositioned
+            sf::Text emptyText(m_font, "> Recruit Companion", 16);
+            emptyText.setFillColor(sf::Color(150, 150, 150));
+            emptyText.setPosition(sf::Vector2f(110.0f, y + 30.0f));
+            window.draw(emptyText);
+        }
     }
 }
 
 void CompanionsScene::render(sf::RenderWindow& window) {
     // Отрисовка фона
     window.draw(m_background);
-    
+
     // Отрисовка заголовка
-    window.draw(m_titleText);
-    
+    if (m_titleText) {
+        window.draw(*m_titleText);
+    }
+
     // Отрисовка информации о машине
-    window.draw(m_vehicleInfoText);
-    window.draw(m_capacityText);
-    
+    if (m_vehicleInfoText) {
+        window.draw(*m_vehicleInfoText);
+    }
+    if (m_capacityText) {
+        window.draw(*m_capacityText);
+    }
+
     // Отрисовка слотов компаньонов - repositioned for full window
     float slotY = 180.0f;
     const float slotHeight = 90.0f;
-    
+
     for (size_t i = 0; i < m_companions.size(); ++i) {
         renderCompanionSlot(window, i, slotY, i == m_selectedSlot);
         slotY += slotHeight;
     }
-    
+
     // Отрисовка подсказки управления
-    window.draw(m_controlsText);
+    if (m_controlsText) {
+        window.draw(*m_controlsText);
+    }
 }

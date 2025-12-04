@@ -4,10 +4,10 @@
 #include "Scene.h"
 #include "EventManager.h"
 #include "UI/HUDPanel.hpp"
-#include "UILayout.h"
 #include <SFML/Graphics.hpp>
 #include <memory>
 #include <vector>
+#include <optional>
 
 // Forward declaration
 class PlayerState;
@@ -46,23 +46,31 @@ private:
     // UI elements
     sf::Font m_font;
     bool m_fontLoaded;
-    
+
     sf::RectangleShape m_overlay;
     sf::RectangleShape m_dialogBox;
-    sf::Text m_titleText;
-    sf::Text m_descriptionText;
+    std::optional<sf::Text> m_titleText;  // SFML 3.x: Text requires font in constructor
+    std::optional<sf::Text> m_descriptionText;  // SFML 3.x: Text requires font in constructor
     std::vector<sf::RectangleShape> m_choiceBoxes;
     std::vector<sf::Text> m_choiceTexts;
-    sf::Text m_outcomeText;
-    sf::Text m_continuePrompt;
+    std::optional<sf::Text> m_outcomeText;  // SFML 3.x: Text requires font in constructor
+    std::optional<sf::Text> m_continuePrompt;  // SFML 3.x: Text requires font in constructor
     
     // HUD Panel for displaying resources
     HUDPanel m_hudPanel;
-    
+
+    // Visual effects
+    float m_fadeAlpha;
+    float m_animationTime;
+    sf::RectangleShape m_eventIcon;  // Icon indicator for event type
+    std::optional<sf::Text> m_eventTypeText;  // Event type label
+
     // Helper methods
     void setupUI();
     void updateChoiceHover(const sf::Vector2i& mousePos);
     std::string wrapText(const std::string& text, int maxWidth, const sf::Font& font, unsigned int charSize);
+    sf::Color getEventTypeColor() const;
+    std::string getEventTypeLabel() const;
 };
 
 #endif // CINEMATIC_EVENT_SCENE_H

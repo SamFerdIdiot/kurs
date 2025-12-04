@@ -4607,14 +4607,17 @@ tests/CMakeFiles/kkurs_lib.dir/__/src/MainMenuScene.cpp.o: /Users/afftobuss/Docu
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h \
+  /Users/afftobuss/Documents/GitHub/kurs/include/FontLoader.h \
   /Users/afftobuss/Documents/GitHub/kurs/include/GameStateManager.h \
   /Users/afftobuss/Documents/GitHub/kurs/include/GameTypes.h \
   /Users/afftobuss/Documents/GitHub/kurs/include/InventorySystem.h \
   /Users/afftobuss/Documents/GitHub/kurs/include/Item.h \
+  /Users/afftobuss/Documents/GitHub/kurs/include/Location.h \
   /Users/afftobuss/Documents/GitHub/kurs/include/MainMenuScene.h \
   /Users/afftobuss/Documents/GitHub/kurs/include/PlayerState.h \
   /Users/afftobuss/Documents/GitHub/kurs/include/SaveSystem.h \
   /Users/afftobuss/Documents/GitHub/kurs/include/Scene.h \
+  /Users/afftobuss/Documents/GitHub/kurs/include/UIConstants.h \
   /Users/afftobuss/Documents/GitHub/kurs/include/UILayout.h \
   /Users/afftobuss/Documents/GitHub/kurs/tests/mocks/sfml/SFML/Graphics.hpp \
   /Users/afftobuss/Documents/GitHub/kurs/tests/mocks/sfml/SFML/System.hpp \
@@ -6185,6 +6188,7 @@ tests/CMakeFiles/kkurs_lib.dir/__/src/SceneManager.cpp.o: /Users/afftobuss/Docum
   /Users/afftobuss/Documents/GitHub/kurs/include/CharacterScene.h \
   /Users/afftobuss/Documents/GitHub/kurs/include/CinematicEventScene.h \
   /Users/afftobuss/Documents/GitHub/kurs/include/CompanionsScene.h \
+  /Users/afftobuss/Documents/GitHub/kurs/include/EventHelper.h \
   /Users/afftobuss/Documents/GitHub/kurs/include/EventManager.h \
   /Users/afftobuss/Documents/GitHub/kurs/include/ExperienceSystem.h \
   /Users/afftobuss/Documents/GitHub/kurs/include/GameStateManager.h \
@@ -6221,8 +6225,6 @@ tests/CMakeFiles/kkurs_lib.dir/__/src/SceneManager.cpp.o: /Users/afftobuss/Docum
 
 /Users/afftobuss/Documents/GitHub/kurs/include/MapScene.h:
 
-/Users/afftobuss/Documents/GitHub/kurs/include/Location.h:
-
 /Users/afftobuss/Documents/GitHub/kurs/include/InventoryScene.h:
 
 /Users/afftobuss/Documents/GitHub/kurs/include/InteractionMenu.h:
@@ -6244,6 +6246,8 @@ tests/CMakeFiles/kkurs_lib.dir/__/src/SceneManager.cpp.o: /Users/afftobuss/Docum
 /Users/afftobuss/Documents/GitHub/kurs/src/SceneManager.cpp:
 
 /Users/afftobuss/Documents/GitHub/kurs/include/MainMenuScene.h:
+
+/Users/afftobuss/Documents/GitHub/kurs/include/Location.h:
 
 /Users/afftobuss/Documents/GitHub/kurs/src/InventorySystem.cpp:
 
@@ -7097,6 +7101,8 @@ tests/CMakeFiles/kkurs_lib.dir/__/src/SceneManager.cpp.o: /Users/afftobuss/Docum
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__hash_table:
 
+/Users/afftobuss/Documents/GitHub/kurs/include/EventHelper.h:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__undef_macros:
 
 /Users/afftobuss/Documents/GitHub/kurs/tests/mocks/sfml/SFML/System.hpp:
@@ -7234,6 +7240,8 @@ tests/CMakeFiles/kkurs_lib.dir/__/src/SceneManager.cpp.o: /Users/afftobuss/Docum
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__format/extended_grapheme_cluster_table.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/iterator:
+
+/Users/afftobuss/Documents/GitHub/kurs/include/FontLoader.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/_stdio.h:
 
@@ -7824,6 +7832,8 @@ tests/CMakeFiles/kkurs_lib.dir/__/src/SceneManager.cpp.o: /Users/afftobuss/Docum
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/_types/_intmax_t.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/stdint.h:
+
+/Users/afftobuss/Documents/GitHub/kurs/include/UIConstants.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/poll_with_backoff.h:
 

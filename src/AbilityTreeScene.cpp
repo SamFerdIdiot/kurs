@@ -31,23 +31,16 @@ void AbilityTreeScene::setupTerminalStyle() {
 }
 
 void AbilityTreeScene::setupUI() {
-    // Создание адаптивной разметки для MacBook Air M1
-    // Create responsive layout for MacBook Air M1
-    UILayout& layout = GET_LAYOUT("AbilityTreeScene");
-    layout.setTargetResolution(
-        ScreenResolution::MAC_AIR_M1_WIDTH,
-        ScreenResolution::MAC_AIR_M1_HEIGHT
-    );
-    
-    // Try to load monospace font
+    // Fixed layout for 1440x900 (MacBook Air M1)
+    // Try to load monospace font (SFML 3.x: openFromFile returns bool)
     // Prefer terminal-style fonts like Courier New or Fixedsys
-    m_fontLoaded = m_terminalFont.loadFromFile("/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf");
-    
+    m_fontLoaded = m_terminalFont.openFromFile("/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf");
+
     if (!m_fontLoaded) {
         // Try alternative fonts
-        m_fontLoaded = m_terminalFont.loadFromFile("/usr/share/fonts/truetype/liberation/LiberationMono-Regular.ttf");
+        m_fontLoaded = m_terminalFont.openFromFile("/usr/share/fonts/truetype/liberation/LiberationMono-Regular.ttf");
     }
-    
+
     if (!m_fontLoaded) {
         std::cerr << "Warning: Could not load monospace font for AbilityTreeScene" << std::endl;
     }
@@ -112,10 +105,10 @@ void AbilityTreeScene::attemptUnlock() {
         std::cout << "Unlocked ability: " << m_selectedAbility->getName() << std::endl;
         // Refresh data
         loadAbilityData();
-        // TODO: Play unlock sound
+        // Note: Sound effect would play here if sound system is implemented
     } else {
         std::cout << "Cannot unlock ability: " << m_selectedAbility->getName() << std::endl;
-        // TODO: Play error sound
+        // Note: Error sound would play here if sound system is implemented
     }
 }
 
@@ -124,45 +117,46 @@ void AbilityTreeScene::goBack() {
 }
 
 void AbilityTreeScene::handleInput(const sf::Event& event) {
-    if (event.type == sf::Event::KeyPressed) {
-        switch (event.key.code) {
+    // SFML 3.x event handling
+    if (const auto* keyPressed = event.getIf<sf::Event::KeyPressed>()) {
+        switch (keyPressed->code) {
             // Navigation
-            case sf::Keyboard::Up:
-            case sf::Keyboard::W:
+            case sf::Keyboard::Key::Up:
+            case sf::Keyboard::Key::W:
                 navigateUp();
                 break;
-            case sf::Keyboard::Down:
-            case sf::Keyboard::S:
+            case sf::Keyboard::Key::Down:
+            case sf::Keyboard::Key::S:
                 navigateDown();
                 break;
-            
+
             // Category selection (1-5 keys)
-            case sf::Keyboard::Num1:
+            case sf::Keyboard::Key::Num1:
                 switchCategory(AbilityCategory::DRIVING);
                 break;
-            case sf::Keyboard::Num2:
+            case sf::Keyboard::Key::Num2:
                 switchCategory(AbilityCategory::TRADING);
                 break;
-            case sf::Keyboard::Num3:
+            case sf::Keyboard::Key::Num3:
                 switchCategory(AbilityCategory::SURVIVAL);
                 break;
-            case sf::Keyboard::Num4:
+            case sf::Keyboard::Key::Num4:
                 switchCategory(AbilityCategory::MECHANICS);
                 break;
-            case sf::Keyboard::Num5:
+            case sf::Keyboard::Key::Num5:
                 switchCategory(AbilityCategory::SOCIAL);
                 break;
-            
+
             // Actions
-            case sf::Keyboard::Enter:
-            case sf::Keyboard::Space:
+            case sf::Keyboard::Key::Enter:
+            case sf::Keyboard::Key::Space:
                 attemptUnlock();
                 break;
-            case sf::Keyboard::Escape:
-            case sf::Keyboard::Tab:
+            case sf::Keyboard::Key::Escape:
+            case sf::Keyboard::Key::Tab:
                 goBack();
                 break;
-            
+
             default:
                 break;
         }
@@ -203,7 +197,7 @@ void AbilityTreeScene::renderTerminalBorder(sf::RenderWindow& window) {
     // Outer border - ASCII box drawing characters
     sf::RectangleShape border;
     border.setSize(sf::Vector2f(WINDOW_WIDTH - 2 * PADDING, WINDOW_HEIGHT - 2 * PADDING));
-    border.setPosition(PADDING, PADDING);
+    border.setPosition(sf::Vector2f(PADDING, PADDING));
     border.setFillColor(sf::Color::Transparent);
     border.setOutlineColor(m_colorBorder);
     border.setOutlineThickness(BORDER_THICKNESS);
@@ -211,32 +205,26 @@ void AbilityTreeScene::renderTerminalBorder(sf::RenderWindow& window) {
 }
 
 void AbilityTreeScene::renderHeader(sf::RenderWindow& window) {
-    // Title
-    sf::Text title;
-    title.setFont(m_terminalFont);
-    title.setCharacterSize(28);
+    // Title (SFML 3.x: Text requires font in constructor)
+    sf::Text title(m_terminalFont, "ABILITY TREE", 28);
     title.setFillColor(m_colorText);
-    title.setString("ДЕРЕВО СПОСОБНОСТЕЙ / ABILITY TREE");
-    title.setPosition(WINDOW_WIDTH / 2 - 300, PADDING + 15);
+    title.setPosition(sf::Vector2f(WINDOW_WIDTH / 2 - 300, PADDING + 15));
     window.draw(title);
-    
+
     // Player info
     std::ostringstream ss;
-    ss << "УРОВЕНЬ / LEVEL: " << m_playerLevel 
-       << "   ОЧКИ / POINTS: " << m_availableSkillPoints;
-    
-    sf::Text info;
-    info.setFont(m_terminalFont);
-    info.setCharacterSize(CHAR_SIZE);
+    ss << "LEVEL: " << m_playerLevel
+       << "   POINTS: " << m_availableSkillPoints;
+
+    sf::Text info(m_terminalFont, ss.str(), CHAR_SIZE);
     info.setFillColor(m_colorTextDim);
-    info.setString(ss.str());
-    info.setPosition(WINDOW_WIDTH / 2 - 200, PADDING + 55);
+    info.setPosition(sf::Vector2f(WINDOW_WIDTH / 2 - 200, PADDING + 55));
     window.draw(info);
-    
+
     // Separator line
     sf::RectangleShape separator;
     separator.setSize(sf::Vector2f(WINDOW_WIDTH - 4 * PADDING, 2));
-    separator.setPosition(2 * PADDING, PADDING + 90);
+    separator.setPosition(sf::Vector2f(2 * PADDING, PADDING + 90));
     separator.setFillColor(m_colorBorder);
     window.draw(separator);
 }
@@ -246,27 +234,21 @@ void AbilityTreeScene::renderCategoryList(sf::RenderWindow& window) {
     
     // Category tabs
     std::vector<std::pair<AbilityCategory, std::string>> categories = {
-        {AbilityCategory::DRIVING, "[1] ВОЖДЕНИЕ / DRIVING"},
-        {AbilityCategory::TRADING, "[2] ТОРГОВЛЯ / TRADING"},
-        {AbilityCategory::SURVIVAL, "[3] ВЫЖИВАНИЕ / SURVIVAL"},
-        {AbilityCategory::MECHANICS, "[4] МЕХАНИКА / MECHANICS"},
-        {AbilityCategory::SOCIAL, "[5] СОЦИАЛЬНЫЕ / SOCIAL"}
+        {AbilityCategory::DRIVING, "[1] DRIVING"},
+        {AbilityCategory::TRADING, "[2] TRADING"},
+        {AbilityCategory::SURVIVAL, "[3] SURVIVAL"},
+        {AbilityCategory::MECHANICS, "[4] MECHANICS"},
+        {AbilityCategory::SOCIAL, "[5] SOCIAL"}
     };
     
     for (const auto& [cat, name] : categories) {
-        sf::Text catText;
-        catText.setFont(m_terminalFont);
-        catText.setCharacterSize(CHAR_SIZE);
-        
-        if (cat == m_currentCategory) {
-            catText.setFillColor(m_colorHighlight);
-            catText.setString("> " + name);
-        } else {
-            catText.setFillColor(m_colorTextDim);
-            catText.setString("  " + name);
-        }
-        
-        catText.setPosition(2 * PADDING, yPos);
+        std::string displayText = (cat == m_currentCategory) ? ("> " + name) : ("  " + name);
+        sf::Color textColor = (cat == m_currentCategory) ? m_colorHighlight : m_colorTextDim;
+
+        // SFML 3.x: Text requires font in constructor
+        sf::Text catText(m_terminalFont, displayText, CHAR_SIZE);
+        catText.setFillColor(textColor);
+        catText.setPosition(sf::Vector2f(2 * PADDING, yPos));
         window.draw(catText);
         yPos += LINE_HEIGHT;
     }
@@ -275,33 +257,26 @@ void AbilityTreeScene::renderCategoryList(sf::RenderWindow& window) {
 void AbilityTreeScene::renderAbilityTree(sf::RenderWindow& window) {
     float yPos = PADDING + 110;
     float xPos = WINDOW_WIDTH / 2 - 200;
-    
-    // Tree title
-    sf::Text treeTitle;
-    treeTitle.setFont(m_terminalFont);
-    treeTitle.setCharacterSize(CHAR_SIZE + 2);
+
+    // Tree title (SFML 3.x: Text requires font in constructor)
+    sf::Text treeTitle(m_terminalFont, "ABILITIES", CHAR_SIZE + 2);
     treeTitle.setFillColor(m_colorText);
-    treeTitle.setString("СПОСОБНОСТИ / ABILITIES");
-    treeTitle.setPosition(xPos, yPos);
+    treeTitle.setPosition(sf::Vector2f(xPos, yPos));
     window.draw(treeTitle);
     yPos += LINE_HEIGHT + 10;
-    
+
     // Render abilities in tree structure
     for (size_t i = 0; i < m_displayedAbilities.size(); ++i) {
         const AbilityNode* ability = m_displayedAbilities[i];
         if (!ability) continue;
-        
-        sf::Text abilityText;
-        abilityText.setFont(m_terminalFont);
-        abilityText.setCharacterSize(CHAR_SIZE);
-        abilityText.setFillColor(getAbilityColor(ability));
-        
+
         // Add cursor for selected
         std::string line = (i == static_cast<size_t>(m_selectedIndex) && m_blinkState) ? "> " : "  ";
         line += getAbilityLine(ability, 0);
-        
-        abilityText.setString(line);
-        abilityText.setPosition(xPos, yPos);
+
+        sf::Text abilityText(m_terminalFont, line, CHAR_SIZE);
+        abilityText.setFillColor(getAbilityColor(ability));
+        abilityText.setPosition(sf::Vector2f(xPos, yPos));
         window.draw(abilityText);
         yPos += LINE_HEIGHT;
     }
@@ -316,71 +291,60 @@ void AbilityTreeScene::renderDetailPanel(sf::RenderWindow& window) {
     // Panel border
     sf::RectangleShape panel;
     panel.setSize(sf::Vector2f(400, 500));
-    panel.setPosition(xPos, yPos);
+    panel.setPosition(sf::Vector2f(xPos, yPos));  // Fixed: Vector2f wrapper
     panel.setFillColor(sf::Color::Transparent);
     panel.setOutlineColor(m_colorBorder);
     panel.setOutlineThickness(2);
     window.draw(panel);
-    
+
     yPos += 15;
     xPos += 15;
-    
-    // Ability name
-    sf::Text name;
-    name.setFont(m_terminalFont);
-    name.setCharacterSize(20);
+
+    // Ability name (SFML 3.x: Text requires font in constructor)
+    sf::Text name(m_terminalFont, m_selectedAbility->getName(), 20);
     name.setFillColor(m_colorText);
-    name.setString(m_selectedAbility->getName());
-    name.setPosition(xPos, yPos);
+    name.setPosition(sf::Vector2f(xPos, yPos));  // Fixed: Vector2f wrapper
     window.draw(name);
     yPos += LINE_HEIGHT + 10;
-    
-    // State symbol
+
+    // State symbol (SFML 3.x: Text requires font in constructor)
     std::string stateStr = getAbilityStateSymbol(m_selectedAbility);
-    sf::Text state;
-    state.setFont(m_terminalFont);
-    state.setCharacterSize(CHAR_SIZE);
+    sf::Text state(m_terminalFont, stateStr, CHAR_SIZE);
     state.setFillColor(getAbilityColor(m_selectedAbility));
-    state.setString(stateStr);
-    state.setPosition(xPos, yPos);
+    state.setPosition(sf::Vector2f(xPos, yPos));  // Fixed: Vector2f wrapper
     window.draw(state);
     yPos += LINE_HEIGHT + 10;
-    
-    // Description (wrapped)
-    sf::Text desc;
-    desc.setFont(m_terminalFont);
-    desc.setCharacterSize(16);
+
+    // Description (wrapped) (SFML 3.x: Text requires font in constructor)
+    sf::Text desc(m_terminalFont, m_selectedAbility->getDescription(), 16);
     desc.setFillColor(m_colorTextDim);
-    desc.setString(m_selectedAbility->getDescription());
-    desc.setPosition(xPos, yPos);
+    desc.setPosition(sf::Vector2f(xPos, yPos));  // Fixed: Vector2f wrapper
     window.draw(desc);
     yPos += LINE_HEIGHT * 3;
-    
+
     // Requirements
     const auto& req = m_selectedAbility->getRequirement();
     std::ostringstream reqSS;
-    reqSS << "Требования / Requirements:\n"
-          << "Уровень / Level: " << req.requiredLevel << "\n"
-          << "Очки / Cost: " << req.skillPointCost;
-    
-    sf::Text reqText;
-    reqText.setFont(m_terminalFont);
-    reqText.setCharacterSize(16);
+    reqSS << "Requirements:\n"
+          << "Level: " << req.requiredLevel << "\n"
+          << "Cost: " << req.skillPointCost;
+
+    // SFML 3.x: Text requires font in constructor
+    sf::Text reqText(m_terminalFont, reqSS.str(), 16);
     reqText.setFillColor(m_colorTextDim);
-    reqText.setString(reqSS.str());
-    reqText.setPosition(xPos, yPos);
+    reqText.setPosition(sf::Vector2f(xPos, yPos));  // Fixed: Vector2f wrapper
     window.draw(reqText);
     yPos += LINE_HEIGHT * 4;
-    
+
     // Effect
     const auto& effect = m_selectedAbility->getEffect();
     std::ostringstream effectSS;
-    effectSS << "Эффект / Effect:\n";
-    
+    effectSS << "Effect:\n";
+
     if (m_selectedAbility->getType() == AbilityType::PASSIVE) {
         if (effect.bonusMultiplier != 0.0f) {
-            effectSS << "Множитель / Multiplier: +" 
-                    << std::fixed << std::setprecision(3) 
+            effectSS << "Multiplier: +"
+                    << std::fixed << std::setprecision(3)
                     << effect.bonusMultiplier << "\n";
         }
         if (effect.bonusFlat != 0) {
@@ -388,34 +352,32 @@ void AbilityTreeScene::renderDetailPanel(sf::RenderWindow& window) {
         }
     } else {
         if (effect.preserveAmount > 0) {
-            effectSS << "Preserve: " 
+            effectSS << "Preserve: "
                     << effect.preserveAmount << "\n";
         }
         if (effect.maxCharges > 0) {
-            effectSS << "Max Charges: " 
+            effectSS << "Max Charges: "
                     << effect.maxCharges << "\n";
         }
     }
-    
-    sf::Text effectText;
-    effectText.setFont(m_terminalFont);
-    effectText.setCharacterSize(16);
+
+    // SFML 3.x: Text requires font in constructor
+    sf::Text effectText(m_terminalFont, effectSS.str(), 16);
     effectText.setFillColor(m_colorText);
-    effectText.setString(effectSS.str());
-    effectText.setPosition(xPos, yPos);
+    effectText.setPosition(sf::Vector2f(xPos, yPos));  // Fixed: Vector2f wrapper
     window.draw(effectText);
 }
 
 void AbilityTreeScene::renderFooter(sf::RenderWindow& window) {
     float yPos = WINDOW_HEIGHT - PADDING - 40;
-    
-    sf::Text controls;
-    controls.setFont(m_terminalFont);
-    controls.setCharacterSize(16);
+
+    // SFML 3.x: Text requires font in constructor
+    sf::Text controls(m_terminalFont,
+                     "[1-5] Category  [W/S] Navigate  "
+                     "[Enter] Unlock  [Esc] Exit",
+                     16);
     controls.setFillColor(m_colorTextDim);
-    controls.setString("[1-5] Категория / Category  [W/S] Навигация / Navigate  "
-                      "[Enter] Открыть / Unlock  [Esc] Выход / Exit");
-    controls.setPosition(WINDOW_WIDTH / 2 - 500, yPos);
+    controls.setPosition(sf::Vector2f(WINDOW_WIDTH / 2 - 500, yPos));  // Fixed: Vector2f wrapper
     window.draw(controls);
 }
 
@@ -423,9 +385,9 @@ std::string AbilityTreeScene::getAbilityStateSymbol(const AbilityNode* ability) 
     if (!ability) return "[?]";
     
     if (ability->isUnlocked()) {
-        return "[✓] ОТКРЫТО / UNLOCKED";
+        return "[✓] UNLOCKED";
     }
-    
+
     // Check if can be unlocked
     std::vector<std::string> unlockedIds;
     for (const auto& node : AbilityTreeSystem::getInstance().getAllAbilities()) {
@@ -433,12 +395,12 @@ std::string AbilityTreeScene::getAbilityStateSymbol(const AbilityNode* ability) 
             unlockedIds.push_back(node.getId());
         }
     }
-    
+
     if (ability->canUnlock(m_playerLevel, m_availableSkillPoints, unlockedIds)) {
-        return "[ ] ДОСТУПНО / AVAILABLE";
+        return "[ ] AVAILABLE";
     }
-    
-    return "[✗] ЗАБЛОКИРОВАНО / LOCKED";
+
+    return "[✗] LOCKED";
 }
 
 std::string AbilityTreeScene::getAbilityLine(const AbilityNode* ability, int indentLevel) const {

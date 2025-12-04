@@ -18,26 +18,26 @@ bool UIComponent::handleInput(const sf::Event& event) {
     if (!m_visible || !m_enabled) {
         return false;
     }
-    
+
     // Handle mouse movement for hover state
-    if (event.type == sf::Event::MouseMoved) {
-        sf::Vector2f mousePos(static_cast<float>(event.mouseMove.x),
-                             static_cast<float>(event.mouseMove.y));
+    if (const auto* mouseMoved = event.getIf<sf::Event::MouseMoved>()) {
+        sf::Vector2f mousePos(static_cast<float>(mouseMoved->position.x),
+                             static_cast<float>(mouseMoved->position.y));
         bool wasHovered = m_hovered;
         m_hovered = containsPoint(mousePos);
-        
+
         if (m_hovered && !wasHovered) {
             onMouseEnter();
         } else if (!m_hovered && wasHovered) {
             onMouseLeave();
         }
     }
-    
+
     // Let children handle input first
     if (handleChildrenInput(event)) {
         return true;
     }
-    
+
     return false;
 }
 
@@ -164,18 +164,17 @@ void UIPanel::render(sf::RenderWindow& window) {
 // UILabel - Text label implementation
 // ============================================================================
 
-UILabel::UILabel(const std::string& text, const sf::Vector2f& position,
+UILabel::UILabel(const sf::Font& font, const std::string& text, const sf::Vector2f& position,
                  unsigned int fontSize)
-    : UIComponent(position, {0.f, 0.f}) {
-    
-    m_text.setString(text);
-    m_text.setCharacterSize(fontSize);
+    : UIComponent(position, {0.f, 0.f}),
+      m_text(font, text, fontSize) {
+
     m_text.setFillColor(sf::Color::White);
     m_text.setPosition(position);
-    
+
     // Update size based on text bounds
     sf::FloatRect bounds = m_text.getLocalBounds();
-    m_size = sf::Vector2f(bounds.width, bounds.height);
+    m_size = bounds.size;
 }
 
 void UILabel::render(sf::RenderWindow& window) {
@@ -190,19 +189,20 @@ void UILabel::render(sf::RenderWindow& window) {
 
 void UILabel::setText(const std::string& text) {
     m_text.setString(text);
-    
+
     // Update size based on new text bounds
     sf::FloatRect bounds = m_text.getLocalBounds();
-    m_size = sf::Vector2f(bounds.width, bounds.height);
+    m_size = bounds.size;
 }
 
 // ============================================================================
 // UIButton - Interactive button implementation
 // ============================================================================
 
-UIButton::UIButton(const std::string& text, const sf::Vector2f& position,
+UIButton::UIButton(const sf::Font& font, const std::string& text, const sf::Vector2f& position,
                    const sf::Vector2f& size)
     : UIComponent(position, size),
+      m_text(font, text, 18),
       m_normalColor(sf::Color(60, 60, 70)),
       m_hoverColor(sf::Color(80, 80, 100)),
       m_pressedColor(sf::Color(100, 150, 100)),
@@ -210,23 +210,21 @@ UIButton::UIButton(const std::string& text, const sf::Vector2f& position,
       m_textColor(sf::Color::White),
       m_currentColor(sf::Color(60, 60, 70)),
       m_pressed(false) {
-    
+
     m_shape.setPosition(position);
     m_shape.setSize(size);
     m_shape.setFillColor(m_normalColor);
     m_shape.setOutlineColor(sf::Color(100, 100, 110));
     m_shape.setOutlineThickness(2.f);
-    
-    m_text.setString(text);
-    m_text.setCharacterSize(18);
+
     m_text.setFillColor(m_textColor);
-    
+
     // Center text in button
     sf::FloatRect textBounds = m_text.getLocalBounds();
-    m_text.setPosition(
-        position.x + (size.x - textBounds.width) / 2.f - textBounds.left,
-        position.y + (size.y - textBounds.height) / 2.f - textBounds.top
-    );
+    m_text.setPosition(sf::Vector2f(
+        position.x + (size.x - textBounds.size.x) / 2.f - textBounds.position.x,
+        position.y + (size.y - textBounds.size.y) / 2.f - textBounds.position.y
+    ));
 }
 
 void UIButton::render(sf::RenderWindow& window) {
@@ -247,24 +245,24 @@ bool UIButton::handleInput(const sf::Event& event) {
     if (!m_visible || !m_enabled) {
         return false;
     }
-    
+
     // Call base class to handle hover
     UIComponent::handleInput(event);
-    
+
     // Handle mouse button events
-    if (event.type == sf::Event::MouseButtonPressed) {
-        if (event.mouseButton.button == sf::Mouse::Left) {
-            sf::Vector2f mousePos(static_cast<float>(event.mouseButton.x),
-                                 static_cast<float>(event.mouseButton.y));
+    if (const auto* mousePressed = event.getIf<sf::Event::MouseButtonPressed>()) {
+        if (mousePressed->button == sf::Mouse::Button::Left) {
+            sf::Vector2f mousePos(static_cast<float>(mousePressed->position.x),
+                                 static_cast<float>(mousePressed->position.y));
             if (containsPoint(mousePos)) {
                 m_pressed = true;
                 return true;
             }
         }
-    } else if (event.type == sf::Event::MouseButtonReleased) {
-        if (event.mouseButton.button == sf::Mouse::Left && m_pressed) {
-            sf::Vector2f mousePos(static_cast<float>(event.mouseButton.x),
-                                 static_cast<float>(event.mouseButton.y));
+    } else if (const auto* mouseReleased = event.getIf<sf::Event::MouseButtonReleased>()) {
+        if (mouseReleased->button == sf::Mouse::Button::Left && m_pressed) {
+            sf::Vector2f mousePos(static_cast<float>(mouseReleased->position.x),
+                                 static_cast<float>(mouseReleased->position.y));
             if (containsPoint(mousePos)) {
                 // Button was clicked
                 if (m_callback) {
@@ -276,7 +274,7 @@ bool UIButton::handleInput(const sf::Event& event) {
             m_pressed = false;
         }
     }
-    
+
     return false;
 }
 
@@ -297,13 +295,13 @@ void UIButton::update(float deltaTime) {
 
 void UIButton::setText(const std::string& text) {
     m_text.setString(text);
-    
+
     // Re-center text
     sf::FloatRect textBounds = m_text.getLocalBounds();
-    m_text.setPosition(
-        m_position.x + (m_size.x - textBounds.width) / 2.f - textBounds.left,
-        m_position.y + (m_size.y - textBounds.height) / 2.f - textBounds.top
-    );
+    m_text.setPosition(sf::Vector2f(
+        m_position.x + (m_size.x - textBounds.size.x) / 2.f - textBounds.position.x,
+        m_position.y + (m_size.y - textBounds.size.y) / 2.f - textBounds.position.y
+    ));
 }
 
 void UIButton::onMouseEnter() {
@@ -369,17 +367,17 @@ void UIProgressBar::setValue(float value) {
 
 UIImage::UIImage(const sf::Texture& texture, const sf::Vector2f& position,
                  const sf::Vector2f& size)
-    : UIComponent(position, size) {
-    
-    m_sprite.setTexture(texture);
+    : UIComponent(position, size),
+      m_sprite(texture) {
+
     m_sprite.setPosition(position);
-    
+
     // If size is specified, scale sprite to fit
     if (size.x > 0.f && size.y > 0.f) {
         sf::Vector2u textureSize = texture.getSize();
         float scaleX = size.x / textureSize.x;
         float scaleY = size.y / textureSize.y;
-        m_sprite.setScale(scaleX, scaleY);
+        m_sprite.setScale(sf::Vector2f(scaleX, scaleY));
     } else {
         // Use texture size
         sf::Vector2u textureSize = texture.getSize();
