@@ -18,7 +18,9 @@ LocationScene::LocationScene(LocationType locationType, const std::string& locat
       m_selectedPlayerIndex(0),
       m_storeScrollOffset(0),
       m_playerScrollOffset(0),
-      m_isStoreListActive(true) {     // Start with store list active
+      m_isStoreListActive(true),     // Start with store list active
+      m_isInRefuelMode(false),       // Not in refuel mode initially
+      m_selectedRefuelOption(0) {    // First option selected
 
     // [MVP] Advance to next city when arriving at a new location
     auto& playerState = GameStateManager::getInstance().getPlayerState();
@@ -33,6 +35,11 @@ LocationScene::LocationScene(LocationType locationType, const std::string& locat
         initializeStoreInventory();
         // Auto-enter shop mode for stores
         enterShopMode();
+    }
+
+    // Auto-enter refuel mode for gas stations
+    if (m_locationType == LocationType::GAS_STATION) {
+        enterRefuelMode();
     }
 }
 
@@ -131,6 +138,12 @@ void LocationScene::setupInteractionOptions() {
 }
 
 void LocationScene::handleInput(const sf::Event& event) {
+    // If in refuel mode, handle refuel-specific input
+    if (m_isInRefuelMode) {
+        handleRefuelInput(event);
+        return;
+    }
+
     // If in shop mode, handle shop-specific input
     if (m_isInShopMode) {
         handleShopInput(event);
@@ -192,6 +205,12 @@ void LocationScene::update(float deltaTime) {
 }
 
 void LocationScene::render(sf::RenderWindow& window) {
+    // If in refuel mode, render refuel UI instead
+    if (m_isInRefuelMode) {
+        renderRefuelUI(window);
+        return;
+    }
+
     // If in shop mode, render shop UI instead
     if (m_isInShopMode) {
         renderShopUI(window);
@@ -245,26 +264,9 @@ bool LocationScene::isFinished() const {
     return m_isFinished;
 }
 
-// [MVP] Disabled - Service interactions (uncomment to enable)
-/*
-// Interaction handlers
 void LocationScene::handleRefuel() {
-    float fuelCost = 50.0f; // Cost per liter
-    float fuelAmount = 50.0f; // Amount to refuel
-    float totalCost = fuelAmount * fuelCost;
-
-    if (m_playerState.canAfford(totalCost)) {
-        m_playerState.addMoney(-totalCost);
-        m_playerState.addFuel(fuelAmount);
-        std::cout << "Refueled " << fuelAmount << "L for $" << totalCost << std::endl;
-    } else {
-        std::cout << "Not enough money to refuel!" << std::endl;
-    }
-}
-*/
-
-void LocationScene::handleRefuel() {
-    // [MVP] Disabled - Resource management not active
+    // Enter refuel mode to show UI
+    enterRefuelMode();
 }
 
 void LocationScene::handleShop() {
@@ -656,5 +658,230 @@ std::string LocationScene::getLocationDescription() const {
             return "Mechanic Shop";
         default:
             return "Unknown Location";
+    }
+}
+
+// ============================================================================
+// REFUEL SYSTEM IMPLEMENTATION
+// ============================================================================
+
+void LocationScene::enterRefuelMode() {
+    m_isInRefuelMode = true;
+    m_selectedRefuelOption = 0;
+
+    auto& playerState = GameStateManager::getInstance().getPlayerState();
+
+    // Get current fuel in liters
+    float fuelPercent = playerState.getFuel();
+    float currentFuelLiters = (fuelPercent / 100.0f) * FuelSystem::FUEL_TANK_CAPACITY;
+
+    // Generate refuel options
+    FuelSystem::RefuelPricing pricing = FuelSystem::getDefaultPricing();
+    CarType carType = playerState.getCarType();
+
+    m_refuelOptions = RefuelOptionsGenerator::generateOptions(
+        currentFuelLiters,
+        FuelSystem::FUEL_TANK_CAPACITY,
+        playerState.getMoney(),
+        pricing,
+        100.0f,  // Assume 100km to next station
+        carType
+    );
+
+    std::cout << "[REFUEL] Entered refuel mode with " << m_refuelOptions.size()
+              << " options" << std::endl;
+}
+
+void LocationScene::exitRefuelMode() {
+    m_isInRefuelMode = false;
+    m_refuelOptions.clear();
+    m_selectedRefuelOption = 0;
+    std::cout << "[REFUEL] Exited refuel mode" << std::endl;
+}
+
+void LocationScene::handleRefuelInput(const sf::Event& event) {
+    // SFML 3.x event handling
+    if (const auto* keyPressed = event.getIf<sf::Event::KeyPressed>()) {
+        if (keyPressed->code == sf::Keyboard::Key::Escape) {
+            // Exit refuel mode
+            exitRefuelMode();
+        } else if (keyPressed->code == sf::Keyboard::Key::W ||
+                   keyPressed->code == sf::Keyboard::Key::Up) {
+            // Navigate up
+            if (m_selectedRefuelOption > 0) {
+                m_selectedRefuelOption--;
+            }
+        } else if (keyPressed->code == sf::Keyboard::Key::S ||
+                   keyPressed->code == sf::Keyboard::Key::Down) {
+            // Navigate down
+            if (m_selectedRefuelOption < static_cast<int>(m_refuelOptions.size()) - 1) {
+                m_selectedRefuelOption++;
+            }
+        } else if (keyPressed->code == sf::Keyboard::Key::Enter ||
+                   keyPressed->code == sf::Keyboard::Key::Space) {
+            // Confirm refuel
+            confirmRefuel();
+        }
+    }
+}
+
+void LocationScene::selectRefuelOption(int index) {
+    if (index >= 0 && index < static_cast<int>(m_refuelOptions.size())) {
+        m_selectedRefuelOption = index;
+    }
+}
+
+void LocationScene::confirmRefuel() {
+    if (m_refuelOptions.empty() || m_selectedRefuelOption >= static_cast<int>(m_refuelOptions.size())) {
+        return;
+    }
+
+    auto& playerState = GameStateManager::getInstance().getPlayerState();
+    const RefuelOption& selectedOption = m_refuelOptions[m_selectedRefuelOption];
+
+    // Check if player can afford it
+    if (playerState.getMoney() < selectedOption.cost) {
+        std::cout << "[REFUEL] Not enough money! Need " << selectedOption.cost
+                  << " but have " << playerState.getMoney() << std::endl;
+        return;
+    }
+
+    // Deduct money
+    playerState.addMoney(-selectedOption.cost);
+
+    // Add fuel (convert liters to percentage)
+    float currentFuelPercent = playerState.getFuel();
+    float currentFuelLiters = (currentFuelPercent / 100.0f) * FuelSystem::FUEL_TANK_CAPACITY;
+    float newFuelLiters = currentFuelLiters + selectedOption.liters;
+    float newFuelPercent = (newFuelLiters / FuelSystem::FUEL_TANK_CAPACITY) * 100.0f;
+
+    // Clamp to 100%
+    newFuelPercent = std::min(newFuelPercent, 100.0f);
+    playerState.setFuel(newFuelPercent);
+
+    std::cout << "[REFUEL] Refueled " << selectedOption.liters << "L for "
+              << selectedOption.cost << " RUB. New fuel level: "
+              << newFuelPercent << "%" << std::endl;
+
+    // Exit refuel mode after successful refuel
+    exitRefuelMode();
+}
+
+void LocationScene::renderRefuelUI(sf::RenderWindow& window) {
+    if (!m_fontLoaded) return;
+
+    auto& playerState = GameStateManager::getInstance().getPlayerState();
+
+    // Background
+    sf::RectangleShape bg;
+    bg.setSize(sf::Vector2f(UI::SCREEN_WIDTH, UI::SCREEN_HEIGHT));
+    bg.setFillColor(UI::Color::BACKGROUND_DARK);
+    window.draw(bg);
+
+    // Title
+    sf::Text titleText(m_font, "GAS STATION - REFUELING", UI::FONT_SIZE_HUGE);
+    titleText.setFillColor(UI::Color::ACCENT_YELLOW);
+    titleText.setPosition(sf::Vector2f(50.0f, 20.0f));
+    window.draw(titleText);
+
+    // Player resources
+    float money = playerState.getMoney();
+    float fuelPercent = playerState.getFuel();
+    float fuelLiters = (fuelPercent / 100.0f) * FuelSystem::FUEL_TANK_CAPACITY;
+
+    std::ostringstream resourcesStream;
+    resourcesStream << std::fixed << std::setprecision(1);
+    resourcesStream << "Money: " << static_cast<int>(money) << " RUB  |  ";
+    resourcesStream << "Current Fuel: " << fuelLiters << "L (" << fuelPercent << "%)";
+
+    sf::Text resourcesText(m_font, resourcesStream.str(), UI::FONT_SIZE_NORMAL);
+    resourcesText.setFillColor(UI::Color::ACCENT_BLUE);
+    resourcesText.setPosition(sf::Vector2f(50.0f, 80.0f));
+    window.draw(resourcesText);
+
+    // Fuel warning if low
+    int warningLevel = FuelSystem::getFuelWarningLevel(fuelPercent);
+    if (warningLevel > 0) {
+        std::string warningMsg = FuelSystem::getFuelWarningMessage(warningLevel);
+        sf::Text warningText(m_font, warningMsg, UI::FONT_SIZE_NORMAL);
+
+        sf::Color warningColor = (warningLevel >= 2) ?
+            UI::Color::ACCENT_RED : UI::Color::ACCENT_YELLOW;
+        warningText.setFillColor(warningColor);
+        warningText.setPosition(sf::Vector2f(50.0f, 120.0f));
+        window.draw(warningText);
+    }
+
+    // Instructions
+    sf::Text instructionsText(m_font, "[W/S] Navigate  [Enter] Refuel  [Esc] Cancel", UI::FONT_SIZE_SMALL);
+    instructionsText.setFillColor(UI::Color::TEXT_SECONDARY);
+    instructionsText.setPosition(sf::Vector2f(50.0f, UI::SCREEN_HEIGHT - 50.0f));
+    window.draw(instructionsText);
+
+    // Refuel options
+    float startY = 180.0f;
+    float optionHeight = 100.0f;
+    float spacing = 10.0f;
+
+    for (size_t i = 0; i < m_refuelOptions.size(); ++i) {
+        const RefuelOption& option = m_refuelOptions[i];
+        float yPos = startY + i * (optionHeight + spacing);
+
+        // Option background
+        sf::RectangleShape optionBg;
+        optionBg.setSize(sf::Vector2f(1200.0f, optionHeight));
+        optionBg.setPosition(sf::Vector2f(50.0f, yPos));
+
+        // Highlight selected option
+        if (i == static_cast<size_t>(m_selectedRefuelOption)) {
+            optionBg.setFillColor(UI::Color::BUTTON_HOVER);
+            optionBg.setOutlineColor(UI::Color::ACCENT_GREEN);
+            optionBg.setOutlineThickness(3.0f);
+        } else {
+            optionBg.setFillColor(UI::Color::BUTTON_NORMAL);
+            optionBg.setOutlineColor(UI::Color::BORDER_COLOR);
+            optionBg.setOutlineThickness(2.0f);
+        }
+        window.draw(optionBg);
+
+        // Option name and recommended badge
+        std::string nameStr = option.name;
+        if (option.isRecommended) {
+            nameStr += " [RECOMMENDED]";
+        }
+
+        sf::Text nameText(m_font, nameStr, UI::FONT_SIZE_SUBTITLE);
+        sf::Color nameColor = option.isRecommended ?
+            UI::Color::ACCENT_GREEN : UI::Color::TEXT_PRIMARY;
+        nameText.setFillColor(nameColor);
+        nameText.setPosition(sf::Vector2f(70.0f, yPos + 10.0f));
+        window.draw(nameText);
+
+        // Option details
+        std::ostringstream detailsStream;
+        detailsStream << std::fixed << std::setprecision(1);
+        detailsStream << option.liters << "L  →  "
+                      << option.finalFuelLevel << "% full  |  Cost: "
+                      << static_cast<int>(option.cost) << " RUB";
+
+        sf::Text detailsText(m_font, detailsStream.str(), UI::FONT_SIZE_NORMAL);
+        detailsText.setFillColor(UI::Color::TEXT_SECONDARY);
+        detailsText.setPosition(sf::Vector2f(70.0f, yPos + 45.0f));
+        window.draw(detailsText);
+
+        // Option description
+        sf::Text descText(m_font, option.description, UI::FONT_SIZE_SMALL);
+        descText.setFillColor(UI::Color::TEXT_SECONDARY);
+        descText.setPosition(sf::Vector2f(70.0f, yPos + 75.0f));
+        window.draw(descText);
+    }
+
+    // No options available message
+    if (m_refuelOptions.empty()) {
+        sf::Text noOptionsText(m_font, "No refuel options available (insufficient funds or tank full)",
+                              UI::FONT_SIZE_NORMAL);
+        noOptionsText.setFillColor(UI::Color::ACCENT_RED);
+        noOptionsText.setPosition(sf::Vector2f(50.0f, 200.0f));
+        window.draw(noOptionsText);
     }
 }

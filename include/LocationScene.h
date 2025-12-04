@@ -4,6 +4,7 @@
 #include "Scene.h"
 #include "Location.h"
 #include "PlayerState.h"
+#include "FuelSystem.h"
 #include "UI/HUDPanel.hpp"
 #include <SFML/Graphics.hpp>
 #include <memory>
@@ -92,6 +93,19 @@ private:
     int m_storeScrollOffset;                // Scroll offset for store list
     int m_playerScrollOffset;               // Scroll offset for player inventory
     bool m_isStoreListActive;               // Which list is active (true = store, false = inventory)
+
+    // Refuel system state
+    bool m_isInRefuelMode;                  // Whether we're in refuel UI
+    std::vector<RefuelOption> m_refuelOptions;  // Available refuel options
+    int m_selectedRefuelOption;             // Currently selected option
+
+    // Refuel methods
+    void enterRefuelMode();
+    void exitRefuelMode();
+    void handleRefuelInput(const sf::Event& event);
+    void selectRefuelOption(int index);
+    void confirmRefuel();
+    void renderRefuelUI(sf::RenderWindow& window);
 
     // Helper to get location description
     std::string getLocationDescription() const;

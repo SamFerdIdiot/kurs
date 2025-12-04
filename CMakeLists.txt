@@ -60,6 +60,7 @@ set(SOURCES
     src/TravelCinematicScene.cpp
     src/QuestManager.cpp
     src/LocationScene.cpp
+    src/FuelSystem.cpp
     src/Structure.cpp
     src/GameStateManager.cpp
     src/SaveSystem.cpp
