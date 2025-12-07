@@ -37,7 +37,7 @@ MainMenuScene::MainMenuScene()
     m_continueText->setFillColor(hasSave ? UI::Color::ACCENT_GREEN : UI::Color::TEXT_SECONDARY);
     m_continueText->setPosition(sf::Vector2f(550.0f, 420.0f));
 
-    m_journalText.emplace(m_font, "JOURNAL (TEST)", UI::FONT_SIZE_SUBTITLE);
+    m_journalText.emplace(m_font, "БЛОКНОТ (ТЕСТ)", UI::FONT_SIZE_SUBTITLE);
     m_journalText->setFillColor(UI::Color::ACCENT_GREEN);
     m_journalText->setPosition(sf::Vector2f(550.0f, 490.0f));
 
@@ -97,8 +97,8 @@ void MainMenuScene::handleInput(const sf::Event& event) {
                             std::cout << "No save file found, cannot continue" << std::endl;
                         }
                         break;
-                    case 2: // Journal (Test)
-                        m_nextScene = SceneType::JOURNAL;
+                    case 2: // Notebook (Test)
+                        m_nextScene = SceneType::NOTEBOOK;
                         m_isFinished = true;
                         break;
                     case 3: // Exit

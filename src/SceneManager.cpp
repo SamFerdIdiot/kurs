@@ -15,6 +15,7 @@
 #include "NotesScene.h"
 #include "EndGameScene.h"  // [MVP] End game scene
 #include "Journal/JournalScene.h"  // [NEW] Unified journal system
+#include "Notebook/NotebookScene.h"  // [NEWEST] Notebook with text printing animation
 #include "GameStateManager.h"
 #include "EventHelper.h"
 #include <stdexcept>
@@ -131,6 +132,14 @@ std::unique_ptr<Scene> SceneManager::createScene(SceneType type) {
             auto& playerState = GameStateManager::getInstance().getPlayerState();
             // Start in Moscow
             return std::make_unique<JournalScene>(&playerState, "moscow");
+        }
+
+        case SceneType::NOTEBOOK: {
+            std::cout << "Creating Notebook Scene" << std::endl;
+            // Get player state from GameStateManager
+            auto& playerState = GameStateManager::getInstance().getPlayerState();
+            // Start with tutorial entry
+            return std::make_unique<NotebookScene>(&playerState, "tutorial_start");
         }
 
         case SceneType::EXIT:

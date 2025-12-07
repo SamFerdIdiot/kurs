@@ -75,10 +75,12 @@ set(SOURCES
     src/UI/UIComponent.cpp
     src/UI/HUDPanel.cpp
     src/UI/ResourceBar.cpp
-    # Journal system (unified text-based gameplay)
+    # Journal system (unified text-based gameplay - LEGACY)
     src/Journal/Note.cpp
     src/Journal/CityNote.cpp
     src/Journal/JournalScene.cpp
+    # Notebook system (NEW - text printing animation)
+    src/Notebook/NotebookScene.cpp
 )
 
 # Create executable

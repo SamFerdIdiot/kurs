@@ -24,6 +24,7 @@ enum class SceneType {
     NOTES,               // Player notepad for manual note-taking
     MAP,                 // Static world map viewer (reference only)
     JOURNAL,             // [NEW] Unified journal-based gameplay (replaces multiple scenes)
+    NOTEBOOK,            // [NEWEST] Notebook with text printing animation - final gameplay system
     EXIT                 // Exit game
 };
 
