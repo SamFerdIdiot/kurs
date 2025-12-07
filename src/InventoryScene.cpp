@@ -80,9 +80,6 @@ InventoryScene::InventoryScene()
         m_controlsText->setPosition(sf::Vector2f(270.0f, 770.0f));
     }
 
-    // Add test items for demonstration
-    addTestItems();
-
     // Initialize total weight
     updateTotalWeight();
 }
@@ -117,8 +114,18 @@ void InventoryScene::handleInput(const sf::Event& event) {
 }
 
 void InventoryScene::update(float deltaTime) {
+    auto& playerState = GameStateManager::getInstance().getPlayerState();
+
+    // Count non-empty slots
+    int nonEmptyCount = 0;
+    for (int i = 0; i < playerState.getInventory().getSlotCount(); ++i) {
+        if (!playerState.getInventory().getSlot(i).isEmpty) {
+            nonEmptyCount++;
+        }
+    }
+
     // Update selection highlight position
-    if (!m_items.empty() && m_selectedIndex >= 0 && m_selectedIndex < static_cast<int>(m_items.size())) {
+    if (nonEmptyCount > 0 && m_selectedIndex >= 0 && m_selectedIndex < nonEmptyCount) {
         int displayIndex = m_selectedIndex - m_scrollOffset;
         float highlightY = m_listStartY + (displayIndex * m_itemHeight) + 2.0f;
         m_selectionHighlight.setPosition(sf::Vector2f(280.0f, highlightY));
@@ -126,6 +133,8 @@ void InventoryScene::update(float deltaTime) {
 }
 
 void InventoryScene::render(sf::RenderWindow& window) {
+    auto& playerState = GameStateManager::getInstance().getPlayerState();
+
     // Draw background overlay
     window.draw(m_backgroundBox);
 
@@ -133,8 +142,15 @@ void InventoryScene::render(sf::RenderWindow& window) {
     window.draw(m_listContainer);
     window.draw(m_headerBar);
 
-    // Draw selection highlight
-    if (!m_items.empty()) {
+    // Draw selection highlight (check if there are any non-empty items)
+    bool hasItems = false;
+    for (int i = 0; i < playerState.getInventory().getSlotCount(); ++i) {
+        if (!playerState.getInventory().getSlot(i).isEmpty) {
+            hasItems = true;
+            break;
+        }
+    }
+    if (hasItems) {
         window.draw(m_selectionHighlight);
     }
 
@@ -161,11 +177,21 @@ bool InventoryScene::isFinished() const {
 }
 
 void InventoryScene::selectPrevious() {
-    if (m_items.empty()) return;
+    auto& playerState = GameStateManager::getInstance().getPlayerState();
+
+    // Count non-empty slots
+    int nonEmptyCount = 0;
+    for (int i = 0; i < playerState.getInventory().getSlotCount(); ++i) {
+        if (!playerState.getInventory().getSlot(i).isEmpty) {
+            nonEmptyCount++;
+        }
+    }
+
+    if (nonEmptyCount == 0) return;
 
     m_selectedIndex--;
     if (m_selectedIndex < 0) {
-        m_selectedIndex = static_cast<int>(m_items.size()) - 1;
+        m_selectedIndex = nonEmptyCount - 1;
     }
 
     // Adjust scroll offset
@@ -178,10 +204,20 @@ void InventoryScene::selectPrevious() {
 }
 
 void InventoryScene::selectNext() {
-    if (m_items.empty()) return;
+    auto& playerState = GameStateManager::getInstance().getPlayerState();
+
+    // Count non-empty slots
+    int nonEmptyCount = 0;
+    for (int i = 0; i < playerState.getInventory().getSlotCount(); ++i) {
+        if (!playerState.getInventory().getSlot(i).isEmpty) {
+            nonEmptyCount++;
+        }
+    }
+
+    if (nonEmptyCount == 0) return;
 
     m_selectedIndex++;
-    if (m_selectedIndex >= static_cast<int>(m_items.size())) {
+    if (m_selectedIndex >= nonEmptyCount) {
         m_selectedIndex = 0;
     }
 
@@ -195,26 +231,59 @@ void InventoryScene::selectNext() {
 }
 
 void InventoryScene::useSelectedItem() {
-    if (m_items.empty() || m_selectedIndex < 0 || m_selectedIndex >= static_cast<int>(m_items.size())) {
+    auto& playerState = GameStateManager::getInstance().getPlayerState();
+
+    // Get list of non-empty slots
+    std::vector<int> nonEmptySlots;
+    for (int i = 0; i < playerState.getInventory().getSlotCount(); ++i) {
+        if (!playerState.getInventory().getSlot(i).isEmpty) {
+            nonEmptySlots.push_back(i);
+        }
+    }
+
+    if (nonEmptySlots.empty() || m_selectedIndex < 0 || m_selectedIndex >= static_cast<int>(nonEmptySlots.size())) {
         return;
     }
 
+    int actualSlotIndex = nonEmptySlots[m_selectedIndex];
+    const InventorySlot& slot = playerState.getInventory().getSlot(actualSlotIndex);
+
     // [MVP] Simple message for now - actual item usage not implemented
-    std::cout << "Using item: " << m_items[m_selectedIndex].item.name << std::endl;
+    std::cout << "Using item: " << slot.item.name << std::endl;
 }
 
 void InventoryScene::renderItemList(sf::RenderWindow& window) {
-    if (!m_fontLoaded || m_items.empty()) return;
+    if (!m_fontLoaded) return;
+
+    auto& playerState = GameStateManager::getInstance().getPlayerState();
+
+    // Get list of non-empty slots from real inventory
+    std::vector<int> nonEmptySlots;
+    for (int i = 0; i < playerState.getInventory().getSlotCount(); ++i) {
+        if (!playerState.getInventory().getSlot(i).isEmpty) {
+            nonEmptySlots.push_back(i);
+        }
+    }
+
+    if (nonEmptySlots.empty()) {
+        // Show empty message
+        sf::Text emptyText(m_font, "[ Inventory is empty ]", UI::FONT_SIZE_NORMAL);
+        emptyText.setFillColor(UI::Color::TEXT_SECONDARY);
+        emptyText.setPosition(sf::Vector2f(600.0f, 400.0f));
+        window.draw(emptyText);
+        return;
+    }
 
     // Calculate visible range
     int startIdx = m_scrollOffset;
-    int endIdx = std::min(startIdx + m_maxVisibleItems, static_cast<int>(m_items.size()));
+    int endIdx = std::min(startIdx + m_maxVisibleItems, static_cast<int>(nonEmptySlots.size()));
 
     for (int i = startIdx; i < endIdx; ++i) {
         int displayIdx = i - m_scrollOffset;
         float yPos = m_listStartY + (displayIdx * m_itemHeight);
 
-        const InventorySlot& slot = m_items[i];
+        int actualSlotIndex = nonEmptySlots[i];
+        const InventorySlot& slot = playerState.getInventory().getSlot(actualSlotIndex);
 
         // Item name
         sf::Text nameText(m_font, slot.item.name, UI::FONT_SIZE_NORMAL);
@@ -250,9 +319,9 @@ void InventoryScene::renderItemList(sf::RenderWindow& window) {
     }
 
     // Scroll indicator
-    if (static_cast<int>(m_items.size()) > m_maxVisibleItems) {
+    if (static_cast<int>(nonEmptySlots.size()) > m_maxVisibleItems) {
         sf::Text scrollText(m_font,
-            "(" + std::to_string(m_selectedIndex + 1) + "/" + std::to_string(m_items.size()) + ")",
+            "(" + std::to_string(m_selectedIndex + 1) + "/" + std::to_string(nonEmptySlots.size()) + ")",
             UI::FONT_SIZE_SMALL);
         scrollText.setFillColor(UI::Color::TEXT_SECONDARY);
         scrollText.setPosition(sf::Vector2f(1100.0f, m_listStartY - 30.0f));
@@ -263,54 +332,12 @@ void InventoryScene::renderItemList(sf::RenderWindow& window) {
 void InventoryScene::updateTotalWeight() {
     if (!m_fontLoaded || !m_totalWeightText) return;
 
-    float totalWeight = 0.0f;
-    for (const auto& slot : m_items) {
-        if (!slot.isEmpty) {
-            totalWeight += slot.item.weight * slot.count;
-        }
-    }
+    auto& playerState = GameStateManager::getInstance().getPlayerState();
+    float totalWeight = playerState.getInventory().getTotalWeight();
+    float maxWeight = playerState.getInventory().getMaxWeight();
 
     std::ostringstream weightStr;
-    weightStr << "Total: " << std::fixed << std::setprecision(1) << totalWeight << " kg";
+    weightStr << "Total: " << std::fixed << std::setprecision(1) << totalWeight << "/" << maxWeight << " kg";
     m_totalWeightText->setString(weightStr.str());
 }
 
-void InventoryScene::addTestItems() {
-    // [MVP] Add some test items for demonstration
-
-    // Medical supplies
-    Item medkit("First Aid Kit", "Restores 50 HP", ItemCategory::CONSUMABLE, ItemRarity::COMMON, 150, 0.5f, false, 1);
-    m_items.push_back(InventorySlot(medkit, 1));
-
-    Item water("Bottled Water", "Restores 20 energy", ItemCategory::CONSUMABLE, ItemRarity::COMMON, 10, 0.3f, true, 10);
-    m_items.push_back(InventorySlot(water, 5));
-
-    Item food("Canned Food", "Restores 30 energy", ItemCategory::CONSUMABLE, ItemRarity::COMMON, 15, 0.4f, true, 10);
-    m_items.push_back(InventorySlot(food, 3));
-
-    // Tools
-    Item toolkit("Repair Kit", "Repairs car parts", ItemCategory::TOOL, ItemRarity::UNCOMMON, 200, 2.0f, false, 1);
-    m_items.push_back(InventorySlot(toolkit, 1));
-
-    Item flashlight("Flashlight", "Illuminates dark areas", ItemCategory::TOOL, ItemRarity::COMMON, 50, 0.3f, false, 1);
-    m_items.push_back(InventorySlot(flashlight, 1));
-
-    Item map("Road Map", "Shows nearby locations", ItemCategory::TOOL, ItemRarity::COMMON, 25, 0.1f, false, 1);
-    m_items.push_back(InventorySlot(map, 1));
-
-    // Equipment
-    Item spareTire("Spare Tire", "Emergency tire replacement", ItemCategory::EQUIPMENT, ItemRarity::UNCOMMON, 300, 8.0f, false, 1);
-    m_items.push_back(InventorySlot(spareTire, 1));
-
-    Item roofRack("Roof Rack", "Increases carrying capacity", ItemCategory::EQUIPMENT, ItemRarity::RARE, 500, 15.0f, false, 1);
-    m_items.push_back(InventorySlot(roofRack, 1));
-
-    // Junk
-    Item scrapMetal("Scrap Metal", "Can be sold for money", ItemCategory::JUNK, ItemRarity::COMMON, 5, 1.0f, true, 99);
-    m_items.push_back(InventorySlot(scrapMetal, 12));
-
-    Item oldPhoto("Old Photograph", "A memory from the past", ItemCategory::JUNK, ItemRarity::UNCOMMON, 20, 0.1f, false, 1);
-    m_items.push_back(InventorySlot(oldPhoto, 1));
-
-    std::cout << "[MVP] Added " << m_items.size() << " test items to inventory" << std::endl;
-}

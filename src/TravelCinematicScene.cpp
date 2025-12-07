@@ -3,6 +3,8 @@
 #include "AbilityTreeSystem.h"
 #include "UIConstants.h"
 #include "FontLoader.h"
+#include "EventFactory.h"
+#include "NPC.h"
 #include <iostream>
 #include <cmath>
 
@@ -36,17 +38,21 @@ TravelCinematicScene::TravelCinematicScene(const RoadData& roadData, PlayerState
       m_arrivalNotificationTimer(0.0f),
       m_showArrivalNotification(false) {
 
-    // [MVP] Disabled - Event system initialization (uncomment to enable)
-    /*
-    // Initialize default events
-    m_eventManager.initializeDefaultEvents();
-    */
+    // Event system initialization with Russian events and companions
+    std::cout << "[COMPANION SYSTEM] Initializing events and NPCs..." << std::endl;
+    EventFactory::initializeAllEvents(m_eventManager);
+    std::cout << "[COMPANION SYSTEM] Loaded " << m_eventManager.getAllEvents().size() << " events" << std::endl;
 
-    // [MVP] Disabled - Dialogue system initialization (uncomment to enable)
-    /*
-    // Initialize travel dialogues
-    initializeTravelDialogues();
-    */
+    // Initialize NPC pool (create all possible companions)
+    // They will be encountered through events
+    NPCManager& npcManager = NPCManager::getInstance();
+    npcManager.addNPC(NPCFactory::createRussianMechanic());
+    npcManager.addNPC(NPCFactory::createUnemployed());
+    npcManager.addNPC(NPCFactory::createPunk());
+    npcManager.addNPC(NPCFactory::createGranny());
+    npcManager.addNPC(NPCFactory::createTrucker());
+    npcManager.addNPC(NPCFactory::createStudent());
+    std::cout << "[COMPANION SYSTEM] Created 6 Russian NPC companions" << std::endl;
 
     setupUI();
 }
@@ -295,8 +301,8 @@ void TravelCinematicScene::setupUI() {
     }
 
     // [Decorative] Initialize Keep Driving style HUD panel
-    const float HUD_HEIGHT = 150.0f;
-    const float HUD_Y = UI::SCREEN_HEIGHT - HUD_HEIGHT;  // Bottom of screen
+    const float HUD_HEIGHT = 120.0f;  // Reduced from 150px to 120px
+    const float HUD_Y = 550.0f;  // ПОДНЯТ! Было 650 (800-150), теперь 550 - видно на экране
 
     // Main HUD background
     m_hudBackground.setSize(sf::Vector2f(UI::SCREEN_WIDTH, HUD_HEIGHT));
@@ -430,11 +436,8 @@ void TravelCinematicScene::update(float deltaTime) {
     // Update travel progress
     updateTravel(deltaTime);
 
-    // [MVP] Disabled - Resource consumption (uncomment to enable)
-    /*
-    // Consume resources
+    // Consume resources (fuel)
     consumeResources(deltaTime);
-    */
 
     // [MVP] Disabled - Random events (uncomment to enable)
     /*
@@ -615,15 +618,12 @@ void TravelCinematicScene::update(float deltaTime) {
     m_hudPanel.updateTopRight(deltaTime);
     */
 
-    // [MVP] Disabled - Warning indicators (uncomment to enable)
-    /*
     // UI Improvements: Update warning flash animation (flash every 0.5 seconds)
     m_warningFlashTimer += deltaTime;
     if (m_warningFlashTimer >= 0.5f) {
         m_warningFlashVisible = !m_warningFlashVisible;
         m_warningFlashTimer = 0.0f;
     }
-    */
 
     // [MVP] ACTIVE - Speedometer (showing ~90 km/h visual speed)
     // Calculate display speed (baseSpeed 400 → 90 km/h, time still 1 min)
@@ -680,51 +680,46 @@ void TravelCinematicScene::updateTravel(float deltaTime) {
     }
 }
 
-// [MVP] Disabled - Resource consumption (uncomment to enable)
 void TravelCinematicScene::consumeResources(float deltaTime) {
-    /*
     if (!m_playerState || m_arrived) return;
 
     // Calculate fuel consumption rate based on car and road type
-    float fuelPerKm = calculateFuelConsumption();
-    float distanceThisFrame = m_travelSpeed * deltaTime;
-    float fuelConsumed = distanceThisFrame * fuelPerKm;
+    float fuelPerKm = calculateFuelConsumption();  // Liters per km
+    float distanceThisFrame = m_travelSpeed * deltaTime;  // km traveled this frame
+    float fuelConsumedLiters = distanceThisFrame * fuelPerKm;  // Liters consumed
 
-    m_playerState->addFuel(-fuelConsumed);
+    // Convert liters to percentage for PlayerState
+    float fuelConsumedPercent = (fuelConsumedLiters / FuelSystem::FUEL_TANK_CAPACITY) * 100.0f;
+
+    m_playerState->addFuel(-fuelConsumedPercent);
 
     // Check if out of fuel
     if (m_playerState->getFuel() <= 0.0f) {
         m_playerState->setFuel(0.0f);
-        // Out of fuel - special event system not yet implemented
-        std::cerr << "Out of fuel!" << std::endl;
+        // Out of fuel - force arrival at current position
+        std::cerr << "Out of fuel! Stranded at " << m_distanceTraveled << " km!" << std::endl;
+        m_arrived = true;
+        m_isFinished = true;
     }
-    */
 }
 
 float TravelCinematicScene::calculateFuelConsumption() const {
-    if (!m_playerState) return 2.0f;
-    
-    // Get base fuel consumption based on car type and road type
-    float baseFuel = 2.0f; // Default for "road" type
-    
-    // Adjust based on road type
-    if (m_roadData.roadType == "highway") {
-        baseFuel = 1.5f;
-    } else if (m_roadData.roadType == "road") {
-        baseFuel = 2.0f;
-    } else if (m_roadData.roadType == "path") {
-        baseFuel = 2.8f;
-    }
+    if (!m_playerState) return 0.0f;
 
-    // Note: Car-specific fuel modifiers not yet implemented
-    // Currently using base values for all car types
+    // Use FuelSystem to calculate fuel consumption per km
+    // For a 1km distance to get rate per km
+    float fuelPer100km = FuelSystem::calculateFuelConsumption(
+        m_playerState->getCarType(),
+        100.0f,  // 100 km to get L/100km rate
+        m_roadData.roadType
+    );
 
-    return baseFuel;
+    // Convert to liters per km
+    return fuelPer100km / 100.0f;
 }
 
-// [MVP] Disabled - Random events (uncomment to enable)
+// Random events with companion system
 void TravelCinematicScene::tryTriggerEvent() {
-    /*
     if (!m_playerState) return;
 
     // Don't trigger events if almost arrived
@@ -748,10 +743,9 @@ void TravelCinematicScene::tryTriggerEvent() {
             static_cast<int>(m_playerState->getMoney())
         );
 
-        std::cout << "Event triggered: " << event->title << std::endl;
+        std::cout << "[EVENT] Triggered: " << event->title << " (Type: " << static_cast<int>(event->type) << ")" << std::endl;
         m_activeEvent = std::make_unique<CinematicEventScene>(event, m_playerState);
     }
-    */
 }
 
 void TravelCinematicScene::checkArrival() {
@@ -916,13 +910,20 @@ void TravelCinematicScene::render(sf::RenderWindow& window) {
         window.draw(*m_speedText);
     }
 
-    // [MVP] Disabled - Warning indicators (uncomment to enable)
-    /*
+    // Warning indicators (flashing when low)
     if (m_playerState && m_warningFlashVisible) {
-        // Low fuel warning (< 20%)
-        if (m_playerState->getFuel() < 20.0f) {
+        // Low fuel warning - use FuelSystem thresholds
+        if (m_playerState->getFuel() <= FuelSystem::FUEL_WARNING_LOW) {
             window.draw(m_fuelWarningIcon);
             if (m_fontLoaded && m_fuelWarningText) {
+                // Update warning text based on severity
+                if (m_playerState->getFuel() <= FuelSystem::FUEL_WARNING_CRITICAL) {
+                    m_fuelWarningText->setString("CRITICAL FUEL!");
+                    m_fuelWarningText->setFillColor(sf::Color::Red);
+                } else {
+                    m_fuelWarningText->setString("LOW FUEL!");
+                    m_fuelWarningText->setFillColor(sf::Color(255, 200, 0));  // Orange
+                }
                 window.draw(*m_fuelWarningText);
             }
         }
@@ -935,7 +936,6 @@ void TravelCinematicScene::render(sf::RenderWindow& window) {
             }
         }
     }
-    */
 
     // [MVP] Disabled - Travel dialogues (uncomment to enable)
     /*

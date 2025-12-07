@@ -14,6 +14,7 @@
 #include "TravelCinematicScene.h"  // [MVP] Travel cinematic scene
 #include "NotesScene.h"
 #include "EndGameScene.h"  // [MVP] End game scene
+#include "Journal/JournalScene.h"  // [NEW] Unified journal system
 #include "GameStateManager.h"
 #include "EventHelper.h"
 #include <stdexcept>
@@ -123,6 +124,14 @@ std::unique_ptr<Scene> SceneManager::createScene(SceneType type) {
         case SceneType::MAP:
             std::cout << "Creating Map Scene" << std::endl;
             return std::make_unique<MapScene>();
+
+        case SceneType::JOURNAL: {
+            std::cout << "Creating Journal Scene" << std::endl;
+            // Get player state from GameStateManager
+            auto& playerState = GameStateManager::getInstance().getPlayerState();
+            // Start in Moscow
+            return std::make_unique<JournalScene>(&playerState, "moscow");
+        }
 
         case SceneType::EXIT:
             std::cout << "Exit requested" << std::endl;

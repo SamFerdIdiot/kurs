@@ -3,11 +3,23 @@
 
 #include <string>
 #include <vector>
+#include <map>
 #include <functional>
 #include <memory>
 
+// Event types for categorization
+enum class EventType {
+    ROAD,           // Дорожное событие
+    COMPANION,      // Событие с компаньоном
+    RESOURCE,       // Ресурсное событие
+    SHOP,           // Магазин
+    ENCOUNTER,      // Встреча с NPC
+    CONFLICT        // Конфликт в команде
+};
+
 // Event condition structure
 struct EventCondition {
+    // Базовые условия ресурсов
     float minFuel = 0.0f;
     float maxFuel = 100.0f;
     float minEnergy = 0.0f;
@@ -17,6 +29,14 @@ struct EventCondition {
     float probability = 1.0f;
     std::string requiredLocation = "";
     std::string requiredRoadType = "";  // "highway", "road", "path", or "" for any
+
+    // Новые условия для компаньонов
+    std::vector<std::string> requiredNPCsInParty;    // NPC должны быть в команде
+    std::map<std::string, int> minRelationships;      // Минимальные отношения с NPC (npcId -> минимум)
+    std::vector<std::string> requiredItems;           // Требуемые предметы в инвентаре
+    std::vector<std::string> blockedIfTriggered;      // Блокируется если эти события уже были
+    int minPartySize = 0;                             // Минимальный размер команды
+    int maxPartySize = 999;                           // Максимальный размер команды
 
     EventCondition() = default;
 };
@@ -33,6 +53,14 @@ struct EventChoice {
     std::string perkId = "";  // ID of ability perk if this is a perk choice
     bool isPerkChoice = false;  // True if this choice uses an ability perk
 
+    // Новые поля для системы событий с компаньонами
+    std::map<std::string, int> relationshipChanges;  // Изменения отношений с NPC (npcId -> дельта)
+    std::vector<std::string> addItems;                // Добавить предметы в инвентарь
+    std::vector<std::string> removeItems;             // Убрать предметы из инвентаря
+    std::string recruitNPC = "";                      // ID NPC для рекрутинга (добавить в команду)
+    std::string removeNPC = "";                       // ID NPC для удаления из команды
+    std::string triggerEvent = "";                    // ID события для немедленного триггера
+
     EventChoice(const std::string& text = "", const std::string& outcomeText = "")
         : text(text), outcomeText(outcomeText) {}
 };
@@ -45,8 +73,15 @@ struct GameEvent {
     EventCondition condition;
     std::vector<EventChoice> choices;
     bool triggered = false;
-    
-    GameEvent(const std::string& id = "", const std::string& title = "", 
+
+    // Новые поля для системы событий
+    EventType type = EventType::ROAD;             // Тип события
+    float weight = 1.0f;                          // Вес для случайного выбора (по умолчанию 1.0)
+    bool oneTimeOnly = false;                     // Может произойти только раз
+    std::vector<std::string> blocksEvents;        // Блокирует другие события
+    std::string associatedNPC = "";               // Связанный NPC (для COMPANION событий)
+
+    GameEvent(const std::string& id = "", const std::string& title = "",
               const std::string& description = "")
         : id(id), title(title), description(description) {}
 };

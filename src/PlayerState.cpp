@@ -1,5 +1,6 @@
 #include "PlayerState.h"
 #include <algorithm>
+#include <iostream>
 
 // Constructor with starting resources
 PlayerState::PlayerState()
@@ -13,6 +14,30 @@ PlayerState::PlayerState()
       m_currentCityIndex(0),      // Start at city 0
       m_totalPlayTime(0.0f),      // No time played yet
       m_currentNodeId(0) {        // Keep for compatibility
+
+    // Add starting items to inventory
+    std::cout << "[PlayerState] Adding starting items to inventory..." << std::endl;
+
+    // Basic food
+    Item bread("Bread", "Fresh bread", ItemCategory::CONSUMABLE, ItemRarity::COMMON, 50, 0.5f, true, 10);
+    m_inventory.addItem(bread, 3);
+
+    Item water("Water", "Bottle of water", ItemCategory::CONSUMABLE, ItemRarity::COMMON, 30, 1.0f, true, 20);
+    m_inventory.addItem(water, 5);
+
+    // Basic tools
+    Item map("Map", "Road map", ItemCategory::TOOL, ItemRarity::COMMON, 100, 0.2f, false, 1);
+    m_inventory.addItem(map, 1);
+
+    Item flashlight("Flashlight", "LED flashlight", ItemCategory::TOOL, ItemRarity::COMMON, 150, 0.5f, false, 1);
+    m_inventory.addItem(flashlight, 1);
+
+    // Some junk to sell
+    Item scrap("Scrap Metal", "Valuable scrap", ItemCategory::JUNK, ItemRarity::COMMON, 20, 2.0f, true, 50);
+    m_inventory.addItem(scrap, 3);
+
+    std::cout << "[PlayerState] Starting items added. Inventory weight: "
+              << m_inventory.getTotalWeight() << "/" << m_inventory.getMaxWeight() << " kg" << std::endl;
 }
 
 // Energy management

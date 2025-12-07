@@ -3,6 +3,7 @@
 #include "FontLoader.h"
 #include "GameStateManager.h"
 #include <iostream>
+#include <sstream>
 
 LocationScene::LocationScene(LocationType locationType, const std::string& locationName)
     : m_locationType(locationType),
@@ -393,8 +394,12 @@ void LocationScene::handleShopInput(const sf::Event& event) {
             case sf::Keyboard::Key::Down:
                 // Move selection down
                 if (m_isStoreListActive) {
-                    int storeSlotCount = m_storeInventory.getSlotCount();
-                    if (m_selectedStoreIndex < storeSlotCount - 1) {
+                    // Count non-empty store slots
+                    int nonEmptyCount = 0;
+                    for (int i = 0; i < m_storeInventory.getSlotCount(); ++i) {
+                        if (!m_storeInventory.getSlot(i).isEmpty) nonEmptyCount++;
+                    }
+                    if (m_selectedStoreIndex < nonEmptyCount - 1) {
                         m_selectedStoreIndex++;
                         // Scroll down if needed (show 10 items at once)
                         if (m_selectedStoreIndex >= m_storeScrollOffset + 10) {
@@ -403,8 +408,12 @@ void LocationScene::handleShopInput(const sf::Event& event) {
                     }
                 } else {
                     auto& playerState = GameStateManager::getInstance().getPlayerState();
-                    int playerSlotCount = playerState.getInventory().getSlotCount();
-                    if (m_selectedPlayerIndex < playerSlotCount - 1) {
+                    // Count non-empty player slots
+                    int nonEmptyCount = 0;
+                    for (int i = 0; i < playerState.getInventory().getSlotCount(); ++i) {
+                        if (!playerState.getInventory().getSlot(i).isEmpty) nonEmptyCount++;
+                    }
+                    if (m_selectedPlayerIndex < nonEmptyCount - 1) {
                         m_selectedPlayerIndex++;
                         if (m_selectedPlayerIndex >= m_playerScrollOffset + 10) {
                             m_playerScrollOffset = m_selectedPlayerIndex - 9;
@@ -431,12 +440,23 @@ void LocationScene::handleShopInput(const sf::Event& event) {
 
 void LocationScene::buySelectedItem() {
     auto& playerState = GameStateManager::getInstance().getPlayerState();
-    const InventorySlot& storeSlot = m_storeInventory.getSlot(m_selectedStoreIndex);
 
-    if (storeSlot.isEmpty) {
-        std::cout << "[SHOP] No item in selected slot" << std::endl;
+    // Get list of non-empty store slots
+    std::vector<int> nonEmptyStoreSlots;
+    for (int i = 0; i < m_storeInventory.getSlotCount(); ++i) {
+        if (!m_storeInventory.getSlot(i).isEmpty) {
+            nonEmptyStoreSlots.push_back(i);
+        }
+    }
+
+    // Check if selection is valid
+    if (m_selectedStoreIndex >= static_cast<int>(nonEmptyStoreSlots.size())) {
+        std::cout << "[SHOP] Invalid selection" << std::endl;
         return;
     }
+
+    int actualSlotIndex = nonEmptyStoreSlots[m_selectedStoreIndex];
+    const InventorySlot& storeSlot = m_storeInventory.getSlot(actualSlotIndex);
 
     const Item& item = storeSlot.item;
     int price = item.value;
@@ -459,8 +479,21 @@ void LocationScene::buySelectedItem() {
     if (playerState.getInventory().addItem(item, 1)) {
         // Success! Deduct money and remove from store
         playerState.addMoney(-static_cast<float>(price));
-        m_storeInventory.removeItem(m_selectedStoreIndex, 1);
+        m_storeInventory.removeItem(actualSlotIndex, 1);
         std::cout << "[SHOP] Bought " << item.name << " for " << price << " rubles" << std::endl;
+
+        // RECALCULATE nonEmptyStoreSlots after removal (store inventory changed!)
+        nonEmptyStoreSlots.clear();
+        for (int i = 0; i < m_storeInventory.getSlotCount(); ++i) {
+            if (!m_storeInventory.getSlot(i).isEmpty) {
+                nonEmptyStoreSlots.push_back(i);
+            }
+        }
+
+        // Reset selection if we're past the end
+        if (m_selectedStoreIndex >= static_cast<int>(nonEmptyStoreSlots.size())) {
+            m_selectedStoreIndex = std::max(0, static_cast<int>(nonEmptyStoreSlots.size()) - 1);
+        }
     } else {
         std::cout << "[SHOP] Inventory full!" << std::endl;
     }
@@ -468,21 +501,45 @@ void LocationScene::buySelectedItem() {
 
 void LocationScene::sellSelectedItem() {
     auto& playerState = GameStateManager::getInstance().getPlayerState();
-    const InventorySlot& playerSlot = playerState.getInventory().getSlot(m_selectedPlayerIndex);
 
-    if (playerSlot.isEmpty) {
-        std::cout << "[SHOP] No item in selected slot" << std::endl;
+    // Get list of non-empty player slots
+    std::vector<int> nonEmptySlots;
+    for (int i = 0; i < playerState.getInventory().getSlotCount(); ++i) {
+        if (!playerState.getInventory().getSlot(i).isEmpty) {
+            nonEmptySlots.push_back(i);
+        }
+    }
+
+    // Check if selection is valid
+    if (m_selectedPlayerIndex >= static_cast<int>(nonEmptySlots.size())) {
+        std::cout << "[SHOP] Invalid selection" << std::endl;
         return;
     }
+
+    int actualSlotIndex = nonEmptySlots[m_selectedPlayerIndex];
+    const InventorySlot& playerSlot = playerState.getInventory().getSlot(actualSlotIndex);
 
     const Item& item = playerSlot.item;
     int sellPrice = item.value / 2;  // Sell for half price
 
     // Add item to store and give money to player
     if (m_storeInventory.addItem(item, 1)) {
-        playerState.getInventory().removeItem(m_selectedPlayerIndex, 1);
+        playerState.getInventory().removeItem(actualSlotIndex, 1);
         playerState.addMoney(static_cast<float>(sellPrice));
         std::cout << "[SHOP] Sold " << item.name << " for " << sellPrice << " rubles" << std::endl;
+
+        // RECALCULATE nonEmptySlots after removal (inventory changed!)
+        nonEmptySlots.clear();
+        for (int i = 0; i < playerState.getInventory().getSlotCount(); ++i) {
+            if (!playerState.getInventory().getSlot(i).isEmpty) {
+                nonEmptySlots.push_back(i);
+            }
+        }
+
+        // Reset selection if we're past the end
+        if (m_selectedPlayerIndex >= static_cast<int>(nonEmptySlots.size())) {
+            m_selectedPlayerIndex = std::max(0, static_cast<int>(nonEmptySlots.size()) - 1);
+        }
     } else {
         std::cout << "[SHOP] Store inventory full!" << std::endl;
     }
@@ -518,10 +575,10 @@ void LocationScene::renderShopUI(sf::RenderWindow& window) {
     resourcesText.setPosition(sf::Vector2f(50.0f, 80.0f));
     window.draw(resourcesText);
 
-    // Instructions
+    // Instructions (moved up to be visible on 800px screen)
     sf::Text instructionsText(m_font, "[Tab] Switch List  [W/S] Navigate  [Enter] Buy/Sell  [Esc] Exit", UI::FONT_SIZE_SMALL);
     instructionsText.setFillColor(UI::Color::TEXT_SECONDARY);
-    instructionsText.setPosition(sf::Vector2f(50.0f, 820.0f));
+    instructionsText.setPosition(sf::Vector2f(50.0f, 760.0f));  // Was 820, now 760 to fit on screen
     window.draw(instructionsText);
 
     // Two columns: Store items (left) and Player inventory (right)
@@ -545,11 +602,21 @@ void LocationScene::renderShopUI(sf::RenderWindow& window) {
     storeHeaderText.setPosition(sf::Vector2f(leftX + 10.0f, startY - 45.0f));
     window.draw(storeHeaderText);
 
-    // Render store items
-    for (int i = 0; i < maxVisibleRows; ++i) {
-        int slotIndex = m_storeScrollOffset + i;
-        if (slotIndex >= m_storeInventory.getSlotCount()) break;
+    // Render store items (ONLY NON-EMPTY SLOTS)
+    // First, collect non-empty slots from store
+    std::vector<int> nonEmptyStoreSlots;
+    for (int i = 0; i < m_storeInventory.getSlotCount(); ++i) {
+        if (!m_storeInventory.getSlot(i).isEmpty) {
+            nonEmptyStoreSlots.push_back(i);
+        }
+    }
 
+    // Render non-empty store slots with scroll support
+    for (int i = 0; i < maxVisibleRows; ++i) {
+        int listIndex = m_storeScrollOffset + i;
+        if (listIndex >= static_cast<int>(nonEmptyStoreSlots.size())) break;
+
+        int slotIndex = nonEmptyStoreSlots[listIndex];
         const InventorySlot& slot = m_storeInventory.getSlot(slotIndex);
         float y = startY + i * rowHeight;
 
@@ -558,7 +625,7 @@ void LocationScene::renderShopUI(sf::RenderWindow& window) {
         itemBg.setSize(sf::Vector2f(columnWidth, rowHeight - 5.0f));
         itemBg.setPosition(sf::Vector2f(leftX, y));
 
-        if (m_isStoreListActive && slotIndex == m_selectedStoreIndex) {
+        if (m_isStoreListActive && listIndex == m_selectedStoreIndex) {
             itemBg.setFillColor(UI::Color::ACCENT_YELLOW);
             itemBg.setOutlineColor(UI::Color::TEXT_PRIMARY);
             itemBg.setOutlineThickness(2.0f);
@@ -567,22 +634,28 @@ void LocationScene::renderShopUI(sf::RenderWindow& window) {
         }
         window.draw(itemBg);
 
-        if (!slot.isEmpty) {
-            // Item name
-            std::string itemStr = slot.item.name + " x" + std::to_string(slot.count);
-            sf::Text itemText(m_font, itemStr, UI::FONT_SIZE_NORMAL);
-            itemText.setFillColor(UI::Color::TEXT_PRIMARY);
-            itemText.setPosition(sf::Vector2f(leftX + 10.0f, y + 5.0f));
-            window.draw(itemText);
+        // Item name
+        std::string itemStr = slot.item.name + " x" + std::to_string(slot.count);
+        sf::Text itemText(m_font, itemStr, UI::FONT_SIZE_NORMAL);
+        itemText.setFillColor(UI::Color::TEXT_PRIMARY);
+        itemText.setPosition(sf::Vector2f(leftX + 10.0f, y + 5.0f));
+        window.draw(itemText);
 
-            // Item price and weight
-            std::string priceStr = std::to_string(slot.item.value) + " RUB  " +
-                                   std::to_string(static_cast<int>(slot.item.weight * 10) / 10.0f) + " kg";
-            sf::Text priceText(m_font, priceStr, UI::FONT_SIZE_SMALL);
-            priceText.setFillColor(UI::Color::TEXT_SECONDARY);
-            priceText.setPosition(sf::Vector2f(leftX + 10.0f, y + 32.0f));
-            window.draw(priceText);
-        }
+        // Item price and weight
+        std::string priceStr = std::to_string(slot.item.value) + " RUB  " +
+                               std::to_string(static_cast<int>(slot.item.weight * 10) / 10.0f) + " kg";
+        sf::Text priceText(m_font, priceStr, UI::FONT_SIZE_SMALL);
+        priceText.setFillColor(UI::Color::TEXT_SECONDARY);
+        priceText.setPosition(sf::Vector2f(leftX + 10.0f, y + 32.0f));
+        window.draw(priceText);
+    }
+
+    // Show message if store is empty
+    if (nonEmptyStoreSlots.empty()) {
+        sf::Text emptyText(m_font, "[ Store sold out - come back later ]", UI::FONT_SIZE_NORMAL);
+        emptyText.setFillColor(UI::Color::TEXT_SECONDARY);
+        emptyText.setPosition(sf::Vector2f(leftX + 10.0f, startY + 10.0f));
+        window.draw(emptyText);
     }
 
     // ===== RIGHT COLUMN: PLAYER INVENTORY =====
@@ -598,11 +671,21 @@ void LocationScene::renderShopUI(sf::RenderWindow& window) {
     invHeaderText.setPosition(sf::Vector2f(rightX + 10.0f, startY - 45.0f));
     window.draw(invHeaderText);
 
-    // Render player inventory
-    for (int i = 0; i < maxVisibleRows; ++i) {
-        int slotIndex = m_playerScrollOffset + i;
-        if (slotIndex >= playerState.getInventory().getSlotCount()) break;
+    // Render player inventory (ONLY NON-EMPTY SLOTS)
+    // First, collect non-empty slots
+    std::vector<int> nonEmptySlots;
+    for (int i = 0; i < playerState.getInventory().getSlotCount(); ++i) {
+        if (!playerState.getInventory().getSlot(i).isEmpty) {
+            nonEmptySlots.push_back(i);
+        }
+    }
 
+    // Render non-empty slots with scroll support
+    for (int i = 0; i < maxVisibleRows; ++i) {
+        int listIndex = m_playerScrollOffset + i;
+        if (listIndex >= static_cast<int>(nonEmptySlots.size())) break;
+
+        int slotIndex = nonEmptySlots[listIndex];
         const InventorySlot& slot = playerState.getInventory().getSlot(slotIndex);
         float y = startY + i * rowHeight;
 
@@ -611,7 +694,7 @@ void LocationScene::renderShopUI(sf::RenderWindow& window) {
         itemBg.setSize(sf::Vector2f(columnWidth, rowHeight - 5.0f));
         itemBg.setPosition(sf::Vector2f(rightX, y));
 
-        if (!m_isStoreListActive && slotIndex == m_selectedPlayerIndex) {
+        if (!m_isStoreListActive && listIndex == m_selectedPlayerIndex) {
             itemBg.setFillColor(UI::Color::ACCENT_YELLOW);
             itemBg.setOutlineColor(UI::Color::TEXT_PRIMARY);
             itemBg.setOutlineThickness(2.0f);
@@ -620,23 +703,29 @@ void LocationScene::renderShopUI(sf::RenderWindow& window) {
         }
         window.draw(itemBg);
 
-        if (!slot.isEmpty) {
-            // Item name
-            std::string itemStr = slot.item.name + " x" + std::to_string(slot.count);
-            sf::Text itemText(m_font, itemStr, UI::FONT_SIZE_NORMAL);
-            itemText.setFillColor(UI::Color::TEXT_PRIMARY);
-            itemText.setPosition(sf::Vector2f(rightX + 10.0f, y + 5.0f));
-            window.draw(itemText);
+        // Item name
+        std::string itemStr = slot.item.name + " x" + std::to_string(slot.count);
+        sf::Text itemText(m_font, itemStr, UI::FONT_SIZE_NORMAL);
+        itemText.setFillColor(UI::Color::TEXT_PRIMARY);
+        itemText.setPosition(sf::Vector2f(rightX + 10.0f, y + 5.0f));
+        window.draw(itemText);
 
-            // Sell price and weight
-            int sellPrice = slot.item.value / 2;
-            std::string priceStr = std::to_string(sellPrice) + " RUB  " +
-                                   std::to_string(static_cast<int>(slot.item.weight * 10) / 10.0f) + " kg";
-            sf::Text priceText(m_font, priceStr, UI::FONT_SIZE_SMALL);
-            priceText.setFillColor(UI::Color::TEXT_SECONDARY);
-            priceText.setPosition(sf::Vector2f(rightX + 10.0f, y + 32.0f));
-            window.draw(priceText);
-        }
+        // Sell price and weight
+        int sellPrice = slot.item.value / 2;
+        std::string priceStr = std::to_string(sellPrice) + " RUB  " +
+                               std::to_string(static_cast<int>(slot.item.weight * 10) / 10.0f) + " kg";
+        sf::Text priceText(m_font, priceStr, UI::FONT_SIZE_SMALL);
+        priceText.setFillColor(UI::Color::TEXT_SECONDARY);
+        priceText.setPosition(sf::Vector2f(rightX + 10.0f, y + 32.0f));
+        window.draw(priceText);
+    }
+
+    // Show message if inventory is empty
+    if (nonEmptySlots.empty()) {
+        sf::Text emptyText(m_font, "[ Empty - Buy items from store ]", UI::FONT_SIZE_NORMAL);
+        emptyText.setFillColor(UI::Color::TEXT_SECONDARY);
+        emptyText.setPosition(sf::Vector2f(rightX + 10.0f, startY + 10.0f));
+        window.draw(emptyText);
     }
 }
 
@@ -733,6 +822,7 @@ void LocationScene::selectRefuelOption(int index) {
 
 void LocationScene::confirmRefuel() {
     if (m_refuelOptions.empty() || m_selectedRefuelOption >= static_cast<int>(m_refuelOptions.size())) {
+        std::cout << "[REFUEL] No options available!" << std::endl;
         return;
     }
 
@@ -763,8 +853,26 @@ void LocationScene::confirmRefuel() {
               << selectedOption.cost << " RUB. New fuel level: "
               << newFuelPercent << "%" << std::endl;
 
-    // Exit refuel mode after successful refuel
-    exitRefuelMode();
+    // REGENERATE options with new fuel level (don't exit mode)
+    // This allows player to refuel multiple times
+    float newFuelLiters2 = (playerState.getFuel() / 100.0f) * FuelSystem::FUEL_TANK_CAPACITY;
+    FuelSystem::RefuelPricing pricing = FuelSystem::getDefaultPricing();
+
+    m_refuelOptions = RefuelOptionsGenerator::generateOptions(
+        newFuelLiters2,
+        FuelSystem::FUEL_TANK_CAPACITY,
+        playerState.getMoney(),
+        pricing,
+        100.0f,
+        playerState.getCarType()
+    );
+
+    m_selectedRefuelOption = 0;  // Reset selection to first option
+
+    // If tank is full or no money left, show message and allow exit
+    if (m_refuelOptions.empty()) {
+        std::cout << "[REFUEL] Tank full or no money left. Press ESC to exit." << std::endl;
+    }
 }
 
 void LocationScene::renderRefuelUI(sf::RenderWindow& window) {
@@ -818,10 +926,10 @@ void LocationScene::renderRefuelUI(sf::RenderWindow& window) {
     instructionsText.setPosition(sf::Vector2f(50.0f, UI::SCREEN_HEIGHT - 50.0f));
     window.draw(instructionsText);
 
-    // Refuel options
-    float startY = 180.0f;
-    float optionHeight = 100.0f;
-    float spacing = 10.0f;
+    // Refuel options (compact to fit on 800px screen)
+    float startY = 160.0f;
+    float optionHeight = 70.0f;  // Reduced from 100px to fit more options
+    float spacing = 5.0f;
 
     for (size_t i = 0; i < m_refuelOptions.size(); ++i) {
         const RefuelOption& option = m_refuelOptions[i];
@@ -850,11 +958,11 @@ void LocationScene::renderRefuelUI(sf::RenderWindow& window) {
             nameStr += " [RECOMMENDED]";
         }
 
-        sf::Text nameText(m_font, nameStr, UI::FONT_SIZE_SUBTITLE);
+        sf::Text nameText(m_font, nameStr, UI::FONT_SIZE_NORMAL);  // Smaller font
         sf::Color nameColor = option.isRecommended ?
             UI::Color::ACCENT_GREEN : UI::Color::TEXT_PRIMARY;
         nameText.setFillColor(nameColor);
-        nameText.setPosition(sf::Vector2f(70.0f, yPos + 10.0f));
+        nameText.setPosition(sf::Vector2f(70.0f, yPos + 8.0f));
         window.draw(nameText);
 
         // Option details
@@ -864,9 +972,9 @@ void LocationScene::renderRefuelUI(sf::RenderWindow& window) {
                       << option.finalFuelLevel << "% full  |  Cost: "
                       << static_cast<int>(option.cost) << " RUB";
 
-        sf::Text detailsText(m_font, detailsStream.str(), UI::FONT_SIZE_NORMAL);
+        sf::Text detailsText(m_font, detailsStream.str(), UI::FONT_SIZE_SMALL);  // Smaller font
         detailsText.setFillColor(UI::Color::TEXT_SECONDARY);
-        detailsText.setPosition(sf::Vector2f(70.0f, yPos + 45.0f));
+        detailsText.setPosition(sf::Vector2f(70.0f, yPos + 32.0f));
         window.draw(detailsText);
 
         // Option description

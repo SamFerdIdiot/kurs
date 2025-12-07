@@ -77,6 +77,21 @@ public:
     void detachQuest(const std::string& questId);
     bool hasQuest(const std::string& questId) const;
     const std::vector<std::string>& getAttachedQuests() const { return m_attachedQuests; }
+
+    // Система отношений
+    int getRelationship() const { return m_relationship; }
+    void setRelationship(int value);
+    void modifyRelationship(int delta);
+
+    // Состояние встречи и команды
+    bool hasMetBefore() const { return m_metBefore; }
+    void setMetBefore(bool met) { m_metBefore = met; }
+
+    bool isInParty() const { return m_inParty; }
+    void setInParty(bool inParty) { m_inParty = inParty; }
+
+    std::string getCurrentLocation() const { return m_currentLocation; }
+    void setCurrentLocation(const std::string& loc) { m_currentLocation = loc; }
     
 private:
     std::string m_id;           // Уникальный идентификатор
@@ -93,6 +108,12 @@ private:
     
     // Квесты
     std::vector<std::string> m_attachedQuests;  // Привязанные квесты
+
+    // Система отношений и состояния
+    int m_relationship;              // Отношения с игроком (-100 до +100)
+    bool m_metBefore;                // Встречался ли ранее
+    bool m_inParty;                  // В команде ли сейчас
+    std::string m_currentLocation;   // Где находится (если не в команде)
 };
 
 // Менеджер NPC - управление командой попутчиков
@@ -136,11 +157,20 @@ private:
 
 // Фабрика для создания предопределённых NPC
 namespace NPCFactory {
+    // Оригинальные NPC
     std::unique_ptr<NPC> createMechanic(const std::string& id = "mechanic_mike");
     std::unique_ptr<NPC> createTrader(const std::string& id = "trader_sarah");
     std::unique_ptr<NPC> createCompanion(const std::string& id = "companion_alex");
     std::unique_ptr<NPC> createMedic(const std::string& id = "medic_emma");
     std::unique_ptr<NPC> createNavigator(const std::string& id = "navigator_jack");
+
+    // Русские персонажи
+    std::unique_ptr<NPC> createRussianMechanic(const std::string& id = "mechanic_mikhalych");     // Механик Михалыч
+    std::unique_ptr<NPC> createUnemployed(const std::string& id = "unemployed_vitaliy");          // Безработный Виталий
+    std::unique_ptr<NPC> createPunk(const std::string& id = "punk_vasya");                        // Панк Вася
+    std::unique_ptr<NPC> createGranny(const std::string& id = "granny_galina");                   // Бабушка Галина
+    std::unique_ptr<NPC> createTrucker(const std::string& id = "trucker_petrovich");              // Дальнобойщик Петрович
+    std::unique_ptr<NPC> createStudent(const std::string& id = "student_lyokha");                 // Студент Лёха
 }
 
 #endif // NPC_H

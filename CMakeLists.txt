@@ -52,9 +52,11 @@ set(SOURCES
     src/AbilityNode.cpp
     src/AbilityTreeSystem.cpp
     src/AbilityTreeScene.cpp
+    src/AbilityEffectManager.cpp
     src/NodeScene.cpp
     src/MapScene.cpp
     src/EventManager.cpp
+    src/EventFactory.cpp
     src/CinematicEventScene.cpp
     src/EndGameScene.cpp
     src/TravelCinematicScene.cpp
@@ -73,6 +75,10 @@ set(SOURCES
     src/UI/UIComponent.cpp
     src/UI/HUDPanel.cpp
     src/UI/ResourceBar.cpp
+    # Journal system (unified text-based gameplay)
+    src/Journal/Note.cpp
+    src/Journal/CityNote.cpp
+    src/Journal/JournalScene.cpp
 )
 
 # Create executable

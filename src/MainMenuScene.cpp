@@ -37,9 +37,13 @@ MainMenuScene::MainMenuScene()
     m_continueText->setFillColor(hasSave ? UI::Color::ACCENT_GREEN : UI::Color::TEXT_SECONDARY);
     m_continueText->setPosition(sf::Vector2f(550.0f, 420.0f));
 
+    m_journalText.emplace(m_font, "JOURNAL (TEST)", UI::FONT_SIZE_SUBTITLE);
+    m_journalText->setFillColor(UI::Color::ACCENT_GREEN);
+    m_journalText->setPosition(sf::Vector2f(550.0f, 490.0f));
+
     m_exitText.emplace(m_font, "EXIT", UI::FONT_SIZE_SUBTITLE);
     m_exitText->setFillColor(UI::Color::ACCENT_GREEN);
-    m_exitText->setPosition(sf::Vector2f(550.0f, 490.0f));
+    m_exitText->setPosition(sf::Vector2f(550.0f, 560.0f));
 
     // Setup background boxes with fixed dimensions
     m_titleBox.setSize(sf::Vector2f(600.0f, 80.0f));
@@ -60,12 +64,12 @@ void MainMenuScene::handleInput(const sf::Event& event) {
         switch (keyPressed->code) {
             case sf::Keyboard::Key::Up:
             case sf::Keyboard::Key::W:
-                m_selectedIndex = (m_selectedIndex - 1 + 3) % 3;
+                m_selectedIndex = (m_selectedIndex - 1 + 4) % 4;
                 break;
 
             case sf::Keyboard::Key::Down:
             case sf::Keyboard::Key::S:
-                m_selectedIndex = (m_selectedIndex + 1) % 3;
+                m_selectedIndex = (m_selectedIndex + 1) % 4;
                 break;
 
             case sf::Keyboard::Key::Enter:
@@ -93,7 +97,11 @@ void MainMenuScene::handleInput(const sf::Event& event) {
                             std::cout << "No save file found, cannot continue" << std::endl;
                         }
                         break;
-                    case 2: // Exit
+                    case 2: // Journal (Test)
+                        m_nextScene = SceneType::JOURNAL;
+                        m_isFinished = true;
+                        break;
+                    case 3: // Exit
                         m_nextScene = SceneType::EXIT;
                         m_isFinished = true;
                         break;
@@ -114,7 +122,7 @@ void MainMenuScene::handleInput(const sf::Event& event) {
 // Update
 void MainMenuScene::update(float deltaTime) {
     // Update selector position based on selected index with fixed positions
-    float yPositions[] = {350.0f, 420.0f, 490.0f};
+    float yPositions[] = {350.0f, 420.0f, 490.0f, 560.0f};
     m_selectorBox.setPosition(sf::Vector2f(500.0f, yPositions[m_selectedIndex]));
 
     // Simple blinking effect for selector
@@ -143,8 +151,11 @@ void MainMenuScene::update(float deltaTime) {
             m_continueText->setFillColor(hasSave ? UI::Color::ACCENT_GREEN : UI::Color::TEXT_SECONDARY);
         }
     }
+    if (m_journalText) {
+        m_journalText->setFillColor((m_selectedIndex == 2) ? UI::Color::ACCENT_YELLOW : UI::Color::ACCENT_GREEN);
+    }
     if (m_exitText) {
-        m_exitText->setFillColor((m_selectedIndex == 2) ? UI::Color::ACCENT_YELLOW : UI::Color::ACCENT_GREEN);
+        m_exitText->setFillColor((m_selectedIndex == 3) ? UI::Color::ACCENT_YELLOW : UI::Color::ACCENT_GREEN);
     }
 }
 
@@ -169,6 +180,9 @@ void MainMenuScene::render(sf::RenderWindow& window) {
     }
     if (m_continueText) {
         window.draw(*m_continueText);
+    }
+    if (m_journalText) {
+        window.draw(*m_journalText);
     }
     if (m_exitText) {
         window.draw(*m_exitText);

@@ -34,10 +34,11 @@ private:
     std::optional<sf::Text> m_titleText;          // Game title text
     std::optional<sf::Text> m_newGameText;        // "New Game" text
     std::optional<sf::Text> m_continueText;       // "Continue" text
+    std::optional<sf::Text> m_journalText;        // "Journal (Test)" text
     std::optional<sf::Text> m_exitText;           // "Exit" text
     bool m_fontLoaded;                            // Font loading status
     
-    int m_selectedIndex;                // Currently selected menu item (0-2)
+    int m_selectedIndex;                // Currently selected menu item (0-3)
     bool m_isFinished;                  // Scene completion flag
     SceneType m_nextScene;              // Next scene to transition to
 };

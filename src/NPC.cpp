@@ -6,13 +6,17 @@
 // NPC Class Implementation
 // ============================================================================
 
-NPC::NPC(const std::string& id, const std::string& name, 
+NPC::NPC(const std::string& id, const std::string& name,
          const std::string& bio, int initialLevel)
     : m_id(id),
       m_name(name),
       m_bio(bio),
       m_level(std::max(1, std::min(3, initialLevel))),
-      m_experience(0) {
+      m_experience(0),
+      m_relationship(0),          // Нейтральные отношения по умолчанию
+      m_metBefore(false),         // Еще не встречались
+      m_inParty(false),           // Не в команде
+      m_currentLocation("") {     // Местоположение не задано
 }
 
 int NPC::getExperienceForNextLevel() const {
@@ -80,8 +84,18 @@ void NPC::detachQuest(const std::string& questId) {
 }
 
 bool NPC::hasQuest(const std::string& questId) const {
-    return std::find(m_attachedQuests.begin(), m_attachedQuests.end(), questId) 
+    return std::find(m_attachedQuests.begin(), m_attachedQuests.end(), questId)
            != m_attachedQuests.end();
+}
+
+// Система отношений
+void NPC::setRelationship(int value) {
+    // Ограничиваем значение от -100 до +100
+    m_relationship = std::max(-100, std::min(100, value));
+}
+
+void NPC::modifyRelationship(int delta) {
+    setRelationship(m_relationship + delta);
 }
 
 // ============================================================================
@@ -262,6 +276,136 @@ namespace NPCFactory {
                             "Находит короткий путь / Finds shortcut", 240.0f);
         npc->setActiveAbility(active);
         
+        return npc;
+    }
+
+    // ============================================================================
+    // Русские персонажи
+    // ============================================================================
+
+    std::unique_ptr<NPC> createRussianMechanic(const std::string& id) {
+        auto npc = std::make_unique<NPC>(
+            id,
+            "Механик Михалыч",
+            "Опытный механик из деревни, всю жизнь проработал в автосервисе. "
+            "Замасленная спецовка, седые виски, вечная сигарета в зубах.",
+            1
+        );
+
+        PassiveAbility passive("mechanic_repair", "Ремонт машины",
+                              "Каждый день чинит машину (+5% состояния если <90%)",
+                              PassiveAbilityAttachment::CAR);
+        npc->setPassiveAbility(passive);
+
+        ActiveAbility active("mechanic_field_repair", "Полевой ремонт",
+                            "Восстановить 20% состояния машины", 72.0f);  // 3 дня кулдаун
+        npc->setActiveAbility(active);
+
+        return npc;
+    }
+
+    std::unique_ptr<NPC> createUnemployed(const std::string& id) {
+        auto npc = std::make_unique<NPC>(
+            id,
+            "Безработный Виталий",
+            "Бывший бухгалтер, уволенный при сокращении штата. "
+            "Потрёпанный костюм, портфель с документами о безработице.",
+            1
+        );
+
+        PassiveAbility passive("unemployed_benefit", "Пособие по безработице",
+                              "Получает +100 рублей раз в неделю",
+                              PassiveAbilityAttachment::MAIN_HERO);
+        npc->setPassiveAbility(passive);
+
+        ActiveAbility active("unemployed_discount", "Знание цен",
+                            "Скидка -20% в магазинах", 168.0f);  // 7 дней кулдаун
+        npc->setActiveAbility(active);
+
+        return npc;
+    }
+
+    std::unique_ptr<NPC> createPunk(const std::string& id) {
+        auto npc = std::make_unique<NPC>(
+            id,
+            "Панк Вася",
+            "Молодой панк-рокер, путешествует с гитарой по стране. "
+            "Ирокез, кожаная куртка, множество значков.",
+            1
+        );
+
+        PassiveAbility passive("punk_guitar", "Гитара",
+                              "Имеет гитару (не продаётся), +10 к отношениям с молодыми NPC",
+                              PassiveAbilityAttachment::NPC);
+        npc->setPassiveAbility(passive);
+
+        ActiveAbility active("punk_concert", "Концерт",
+                            "Устроить концерт на заправке (+200₽, риск штрафа)", 120.0f);  // 5 дней
+        npc->setActiveAbility(active);
+
+        return npc;
+    }
+
+    std::unique_ptr<NPC> createGranny(const std::string& id) {
+        auto npc = std::make_unique<NPC>(
+            id,
+            "Бабушка Галина",
+            "Добрая старушка, везёт гостинцы внукам в другой город. "
+            "Платочек, большая сумка с пирожками.",
+            1
+        );
+
+        PassiveAbility passive("granny_pies", "Пирожки",
+                              "Восстанавливает 10 энергии каждый день",
+                              PassiveAbilityAttachment::MAIN_HERO);
+        npc->setPassiveAbility(passive);
+
+        ActiveAbility active("granny_advice", "Материнский совет",
+                            "Даёт подсказку о событии заранее (1 раз за игру)", 0.0f);
+        npc->setActiveAbility(active);
+
+        return npc;
+    }
+
+    std::unique_ptr<NPC> createTrucker(const std::string& id) {
+        auto npc = std::make_unique<NPC>(
+            id,
+            "Дальнобойщик Петрович",
+            "Опытный водитель-дальнобойщик, знает все дороги России. "
+            "Кепка, термос с чаем, радиоприёмник.",
+            1
+        );
+
+        PassiveAbility passive("trucker_fuel_economy", "Знание дорог",
+                              "Экономия топлива -15%",
+                              PassiveAbilityAttachment::CAR);
+        npc->setPassiveAbility(passive);
+
+        ActiveAbility active("trucker_radio", "Связь с дальнобойщиками",
+                            "Найти дешёвую заправку или получить инфо о дороге", 72.0f);  // 3 дня
+        npc->setActiveAbility(active);
+
+        return npc;
+    }
+
+    std::unique_ptr<NPC> createStudent(const std::string& id) {
+        auto npc = std::make_unique<NPC>(
+            id,
+            "Студент Лёха",
+            "Студент, путешествует автостопом на каникулах. "
+            "Рюкзак, джинсы, кроссовки.",
+            1
+        );
+
+        PassiveAbility passive("student_youth", "Молодость",
+                              "+10 к максимальной энергии",
+                              PassiveAbilityAttachment::MAIN_HERO);
+        npc->setPassiveAbility(passive);
+
+        ActiveAbility active("student_help_driving", "Помощь в пути",
+                            "Может водить машину (восстановление энергии +20)", 48.0f);  // 2 дня
+        npc->setActiveAbility(active);
+
         return npc;
     }
 }

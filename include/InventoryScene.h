@@ -26,9 +26,8 @@ public:
     bool isFinished() const override;
 
 private:
-    // Inventory data
-    std::vector<InventorySlot> m_items;      // List of items in inventory
-    int m_selectedIndex;                      // Currently selected item index
+    // Selection state
+    int m_selectedIndex;                      // Currently selected item index (in non-empty list)
 
     // UI elements
     sf::RectangleShape m_backgroundBox;      // Semi-transparent overlay
@@ -63,9 +62,6 @@ private:
     void useSelectedItem();
     void renderItemList(sf::RenderWindow& window);
     void updateTotalWeight();
-
-    // Add some test items for demonstration
-    void addTestItems();
 };
 
 #endif // INVENTORY_SCENE_H

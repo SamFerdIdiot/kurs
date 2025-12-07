@@ -2,6 +2,8 @@
 #include "AbilityTreeSystem.h"
 #include "AbilityTypes.h"
 #include "GameStateManager.h"
+#include "NPC.h"
+#include "PlayerState.h"
 #include <algorithm>
 #include <random>
 #include <ctime>
@@ -79,10 +81,56 @@ bool EventManager::checkCondition(const EventCondition& condition,
         return false;
     }
 
+    // ============================================================================
+    // Новые проверки для системы компаньонов
+    // ============================================================================
+
+    // Получить менеджер NPC
+    NPCManager& npcManager = NPCManager::getInstance();
+    const auto& team = npcManager.getTeam();
+
+    // Проверить размер команды
+    int partySize = static_cast<int>(team.size());
+    if (partySize < condition.minPartySize || partySize > condition.maxPartySize) {
+        return false;
+    }
+
+    // Проверить наличие требуемых NPC в команде
+    for (const std::string& requiredNPCId : condition.requiredNPCsInParty) {
+        NPC* npc = npcManager.getNPC(requiredNPCId);
+        if (!npc || !npc->isInParty()) {
+            return false;
+        }
+    }
+
+    // Проверить минимальные отношения с NPC
+    for (const auto& pair : condition.minRelationships) {
+        const std::string& npcId = pair.first;
+        int minRelationship = pair.second;
+
+        NPC* npc = npcManager.getNPC(npcId);
+        if (!npc || npc->getRelationship() < minRelationship) {
+            return false;
+        }
+    }
+
+    // TODO: Проверка requiredItems требует доступа к инвентарю
+    // Пока пропускаем, можно добавить параметр PlayerState* в будущем
+
+    // Проверить блокировку триггерами других событий
+    if (!condition.blockedIfTriggered.empty()) {
+        for (const std::string& blockingEventId : condition.blockedIfTriggered) {
+            GameEvent* blockingEvent = const_cast<EventManager*>(this)->getEvent(blockingEventId);
+            if (blockingEvent && blockingEvent->triggered) {
+                return false; // Событие заблокировано
+            }
+        }
+    }
+
     return true;
 }
 
-// Get random event that meets conditions
+// Get random event that meets conditions (with weighted selection)
 GameEvent* EventManager::getRandomEvent(float fuel, float energy, int money,
                                        const std::string& location,
                                        const std::string& roadType) {
@@ -90,8 +138,12 @@ GameEvent* EventManager::getRandomEvent(float fuel, float energy, int money,
     std::vector<GameEvent*> eligibleEvents;
 
     for (auto& event : m_events) {
-        if (!event.triggered &&
-            checkCondition(event.condition, fuel, energy, money, location, roadType)) {
+        // Проверка на oneTimeOnly - событие уже сработало
+        if (event.oneTimeOnly && event.triggered) {
+            continue;
+        }
+
+        if (checkCondition(event.condition, fuel, energy, money, location, roadType)) {
             eligibleEvents.push_back(&event);
         }
     }
@@ -101,9 +153,36 @@ GameEvent* EventManager::getRandomEvent(float fuel, float energy, int money,
         return nullptr;
     }
 
-    // Select random eligible event
-    int randomIndex = randomInt(0, static_cast<int>(eligibleEvents.size()) - 1);
-    return eligibleEvents[randomIndex];
+    // ============================================================================
+    // Весовой выбор события (weighted random selection)
+    // ============================================================================
+
+    // Подсчитать суммарный вес всех подходящих событий
+    float totalWeight = 0.0f;
+    for (const auto* event : eligibleEvents) {
+        totalWeight += event->weight;
+    }
+
+    // Если суммарный вес 0 или меньше, использовать uniform random
+    if (totalWeight <= 0.0f) {
+        int randomIndex = randomInt(0, static_cast<int>(eligibleEvents.size()) - 1);
+        return eligibleEvents[randomIndex];
+    }
+
+    // Генерировать случайное число от 0 до totalWeight
+    float randomValue = randomFloat(0.0f, totalWeight);
+
+    // Пройтись по событиям, накапливая вес
+    float accumulatedWeight = 0.0f;
+    for (auto* event : eligibleEvents) {
+        accumulatedWeight += event->weight;
+        if (randomValue <= accumulatedWeight) {
+            return event;
+        }
+    }
+
+    // Fallback (не должно произойти, но на всякий случай)
+    return eligibleEvents.back();
 }
 
 // Mark event as triggered
@@ -129,9 +208,56 @@ void EventManager::resetTriggeredEvents() {
 // Apply event choice outcome
 void EventManager::applyChoice(const EventChoice& choice,
                               float& fuel, float& energy, int& money) {
+    // ============================================================================
+    // Базовые изменения ресурсов (совместимость с прежней версией)
+    // ============================================================================
     fuel = std::max(0.0f, std::min(100.0f, fuel + choice.fuelChange));
     energy = std::max(0.0f, std::min(100.0f, energy + choice.energyChange));
     money = std::max(0, money + choice.moneyChange);
+
+    // ============================================================================
+    // Новые эффекты для системы компаньонов
+    // ============================================================================
+
+    NPCManager& npcManager = NPCManager::getInstance();
+
+    // Изменить отношения с NPC
+    for (const auto& pair : choice.relationshipChanges) {
+        const std::string& npcId = pair.first;
+        int delta = pair.second;
+
+        NPC* npc = npcManager.getNPC(npcId);
+        if (npc) {
+            npc->modifyRelationship(delta);
+        }
+    }
+
+    // Рекрутировать NPC в команду
+    if (!choice.recruitNPC.empty()) {
+        NPC* npc = npcManager.getNPC(choice.recruitNPC);
+        if (npc) {
+            npc->setInParty(true);
+            npc->setMetBefore(true);
+        }
+    }
+
+    // Удалить NPC из команды
+    if (!choice.removeNPC.empty()) {
+        NPC* npc = npcManager.getNPC(choice.removeNPC);
+        if (npc) {
+            npc->setInParty(false);
+        }
+    }
+
+    // Триггер другого события
+    if (!choice.triggerEvent.empty()) {
+        triggerEvent(choice.triggerEvent);
+    }
+
+    // TODO: Обработка addItems и removeItems требует доступа к инвентарю
+    // Можно добавить параметр PlayerState* в будущей версии
+    // if (!choice.addItems.empty()) { ... }
+    // if (!choice.removeItems.empty()) { ... }
 }
 
 // Set callback for when event triggers

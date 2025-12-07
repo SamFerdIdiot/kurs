@@ -5,6 +5,7 @@
 #include "EventManager.h"
 #include "PlayerState.h"
 #include "CinematicEventScene.h"
+#include "FuelSystem.h"
 #include "UI/HUDPanel.hpp"
 #include <SFML/Graphics.hpp>
 #include <memory>

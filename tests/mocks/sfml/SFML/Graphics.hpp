@@ -152,12 +152,17 @@ public:
     };
     
     Font() {}
-    
+
     bool loadFromFile(const std::string& filename) {
         // Mock: always succeeds
         m_filename = filename;
         m_info.family = "MockFont";
         return true;
+    }
+
+    // SFML 3.x API
+    bool openFromFile(const std::string& filename) {
+        return loadFromFile(filename);
     }
     
     const std::string& getFilename() const { return m_filename; }
@@ -183,7 +188,13 @@ public:
     };
     
     Text() : m_characterSize(30), m_style(Regular) {}
+
+    // SFML 2.x API
     Text(const std::string& string, const Font& font, unsigned int characterSize = 30)
+        : m_string(string), m_font(&font), m_characterSize(characterSize), m_style(Regular) {}
+
+    // SFML 3.x API (different parameter order)
+    Text(const Font& font, const std::string& string, unsigned int characterSize = 30)
         : m_string(string), m_font(&font), m_characterSize(characterSize), m_style(Regular) {}
     
     void setString(const std::string& string) { m_string = string; }

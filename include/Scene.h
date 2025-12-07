@@ -23,6 +23,7 @@ enum class SceneType {
     LOCATION,            // Generic location scene (gas stations, stores, diners)
     NOTES,               // Player notepad for manual note-taking
     MAP,                 // Static world map viewer (reference only)
+    JOURNAL,             // [NEW] Unified journal-based gameplay (replaces multiple scenes)
     EXIT                 // Exit game
 };
 
