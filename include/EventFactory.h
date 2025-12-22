@@ -46,6 +46,18 @@ namespace EventFactory {
     // Конфликт между компаньонами
     GameEvent createCompanionConflict();
 
+    // Дальнобойщик делится опытом дороги
+    GameEvent createTruckerStories();
+
+    // Студент философствует о дороге
+    GameEvent createStudentPhilosophy();
+
+    // Безработный даёт советы по экономии
+    GameEvent createUnemployedAdvice();
+
+    // Механик обучает ремонту (one-time event)
+    GameEvent createMechanicTeachSkill();
+
     // ============================================================================
     // Дорожные события (ROAD)
     // ============================================================================

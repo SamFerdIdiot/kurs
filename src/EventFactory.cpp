@@ -312,6 +312,130 @@ GameEvent createCompanionConflict() {
     return event;
 }
 
+GameEvent createTruckerStories() {
+    GameEvent event("trucker_stories",
+                    "Дальнобойщик делится опытом",
+                    "Дальнобойщик рассказывает байки о дороге: "
+                    "'А помню, раз ехал я зимой, трассу замело так, что хоть кол на голове теши...'");
+
+    event.type = EventType::COMPANION;
+    event.weight = 0.9f;
+    event.oneTimeOnly = false;
+    event.associatedNPC = "trucker_petrovich";
+
+    event.condition.requiredNPCsInParty = {"trucker_petrovich"};
+
+    EventChoice listen;
+    listen.text = "Послушать байки";
+    listen.outcomeText = "Вы узнаёте полезные советы о дороге. Дальнобойщик рад, что вы слушаете!";
+    listen.energyChange = 10.0f;
+    listen.relationshipChanges["trucker_petrovich"] = 10;
+
+    EventChoice askAdvice;
+    askAdvice.text = "Спросить совет по маршруту";
+    askAdvice.outcomeText = "Дальнобойщик советует лучший путь. Вы экономите топливо!";
+    askAdvice.fuelChange = 5.0f;
+    askAdvice.relationshipChanges["trucker_petrovich"] = 15;
+
+    event.choices = {listen, askAdvice};
+    return event;
+}
+
+GameEvent createStudentPhilosophy() {
+    GameEvent event("student_philosophy",
+                    "Студент философствует",
+                    "Студент достаёт книжку и начинает рассуждать о смысле жизни и дорог: "
+                    "'Знаешь, дорога — это метафора нашего пути...'");
+
+    event.type = EventType::COMPANION;
+    event.weight = 0.7f;
+    event.oneTimeOnly = false;
+    event.associatedNPC = "student_lyokha";
+
+    event.condition.requiredNPCsInParty = {"student_lyokha"};
+
+    EventChoice discuss;
+    discuss.text = "Поддержать беседу";
+    discuss.outcomeText = "Интересный разговор скрашивает дорогу. Вы чувствуете себя бодрее!";
+    discuss.energyChange = 15.0f;
+    discuss.relationshipChanges["student_lyokha"] = 10;
+
+    EventChoice askHelp;
+    askHelp.text = "Попросить почитать карту";
+    askHelp.outcomeText = "Студент находит более короткий маршрут!";
+    askHelp.fuelChange = 8.0f;
+    askHelp.relationshipChanges["student_lyokha"] = 5;
+
+    EventChoice politeDecline;
+    politeDecline.text = "Вежливо попросить помолчать";
+    politeDecline.outcomeText = "Студент обижается и замолкает.";
+    politeDecline.relationshipChanges["student_lyokha"] = -5;
+
+    event.choices = {discuss, askHelp, politeDecline};
+    return event;
+}
+
+GameEvent createUnemployedAdvice() {
+    GameEvent event("unemployed_advice",
+                    "Безработный даёт советы по экономии",
+                    "Безработный говорит: 'Слушай, я тут знаю один способ сэкономить на заправке. "
+                    "Если заправляться утром, топливо холоднее и его больше влезет...'");
+
+    event.type = EventType::COMPANION;
+    event.weight = 0.8f;
+    event.oneTimeOnly = false;
+    event.associatedNPC = "unemployed_vitaliy";
+
+    event.condition.requiredNPCsInParty = {"unemployed_vitaliy"};
+
+    EventChoice listenAdvice;
+    listenAdvice.text = "Послушать советы";
+    listenAdvice.outcomeText = "Вы узнаёте несколько хитростей экономии!";
+    listenAdvice.relationshipChanges["unemployed_vitaliy"] = 10;
+
+    EventChoice askBudget;
+    askBudget.text = "Спросить, как растянуть деньги";
+    askBudget.outcomeText = "Безработный помогает пересчитать бюджет. Находится лишняя сотня!";
+    askBudget.moneyChange = 100;
+    askBudget.relationshipChanges["unemployed_vitaliy"] = 15;
+
+    EventChoice ignore;
+    ignore.text = "Не слушать, сосредоточиться на дороге";
+    ignore.outcomeText = "Безработный замолкает.";
+
+    event.choices = {listenAdvice, askBudget, ignore};
+    return event;
+}
+
+GameEvent createMechanicTeachSkill() {
+    GameEvent event("mechanic_teach_skill",
+                    "Михалыч учит ремонту",
+                    "На стоянке Михалыч предлагает: 'Давай покажу, как масло менять правильно. "
+                    "Пригодится в дороге!'");
+
+    event.type = EventType::COMPANION;
+    event.weight = 0.6f;
+    event.oneTimeOnly = true;  // Обучение только раз
+    event.associatedNPC = "mechanic_mikhalych";
+
+    event.condition.requiredNPCsInParty = {"mechanic_mikhalych"};
+
+    EventChoice learn;
+    learn.text = "Согласиться поучиться";
+    learn.outcomeText = "Михалыч показывает все тонкости. Теперь вы можете чинить машину эффективнее!";
+    learn.energyChange = -10.0f;
+    learn.vehicleConditionChange = 5.0f;
+    learn.relationshipChanges["mechanic_mikhalych"] = 20;
+
+    EventChoice decline;
+    decline.text = "Отказаться, нужно ехать дальше";
+    decline.outcomeText = "Михалыч пожимает плечами: 'Как знаешь...'";
+    decline.relationshipChanges["mechanic_mikhalych"] = -3;
+
+    event.choices = {learn, decline};
+    return event;
+}
+
 // ============================================================================
 // Дорожные события (ROAD)
 // ============================================================================
@@ -1559,6 +1683,10 @@ void initializeAllEvents(EventManager& eventManager) {
     eventManager.addEvent(createPunkConcertEvent());
     eventManager.addEvent(createGrannyStoriesEvent());
     eventManager.addEvent(createCompanionConflict());
+    eventManager.addEvent(createTruckerStories());
+    eventManager.addEvent(createStudentPhilosophy());
+    eventManager.addEvent(createUnemployedAdvice());
+    eventManager.addEvent(createMechanicTeachSkill());
 
     // Дорожные события
     eventManager.addEvent(createCarBreakdown());

@@ -137,13 +137,13 @@ TEST(CompanionSystem, EventFactory) {
     std::cout << "    - Дорожные события (ROAD): " << roadCount << std::endl;
     std::cout << "    - Ресурсные события (RESOURCE): " << resourceCount << std::endl;
 
-    // Обновлённые значения после добавления 26 новых событий + 10 ресурсных:
+    // Обновлённые значения после добавления 26 новых событий + 10 ресурсных + 4 новых диалога:
     // 6 базовых + 1 случайное (random_hitchhiker) = 7 ENCOUNTER
-    // 4 базовых = 4 COMPANION
+    // 4 базовых + 4 новых диалога (Trucker/Student/Unemployed/MechanicTeach) = 8 COMPANION
     // 4 базовых + 15 для веток A/B/C + 1 для ветки D (shortcut) + 4 случайных = 24 ROAD
     // 2 базовых + 4 для ветки D + 1 случайное (random_hungry) + 10 новых ресурсных = 17 RESOURCE
     EXPECT_EQ(encounterCount, 7);   // 7 встреч с NPC
-    EXPECT_EQ(companionCount, 4);   // 4 события с компаньонами
+    EXPECT_EQ(companionCount, 8);   // 8 событий с компаньонами (добавлены 4 новых диалога)
     EXPECT_EQ(roadCount, 24);       // 24 дорожных события
     EXPECT_EQ(resourceCount, 17);   // 17 ресурсных событий
 
