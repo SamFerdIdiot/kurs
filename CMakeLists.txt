@@ -81,6 +81,7 @@ set(SOURCES
     src/Journal/JournalScene.cpp
     # Notebook system (NEW - text printing animation)
     src/Notebook/NotebookScene.cpp
+    src/Notebook/NotebookEntry.cpp
 )
 
 # Create executable

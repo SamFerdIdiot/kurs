@@ -43,6 +43,17 @@ public:
     // Vehicle condition management
     float getVehicleCondition() const { return m_vehicleCondition; }
     void setVehicleCondition(float condition);
+    void modifyVehicleCondition(float amount);
+
+    // Mood management (0-100%)
+    float getMood() const { return m_mood; }
+    void setMood(float mood);
+    void modifyMood(float amount);
+
+    // Reputation management (-50..+50)
+    int getReputation() const { return m_reputation; }
+    void setReputation(int reputation);
+    void modifyReputation(int amount);
 
     // Character and car type management
     OriginType getOrigin() const { return m_origin; }
@@ -72,10 +83,34 @@ public:
     void updatePlayTime(float deltaTime) { m_totalPlayTime += deltaTime; }
     void resetPlayTime() { m_totalPlayTime = 0.0f; }
 
+    // Notebook progress tracking
+    std::string getCurrentNotebookEntryId() const { return m_currentNotebookEntryId; }
+    void setCurrentNotebookEntryId(const std::string& entryId) { m_currentNotebookEntryId = entryId; }
+
     // Inventory management
     InventorySystem& getInventory() { return m_inventory; }
     const InventorySystem& getInventory() const { return m_inventory; }
     void initializeStartingInventory();
+
+    // Principles and traits system (hidden attributes for conditional choices)
+    // Принципы (приобретенные уроки): "understanding_context", "listen_material", "ask_experienced", "resource_efficient"
+    // Черты характера: "patient", "impulsive", "analytical", "intuitive"
+    // Артефакты: "technical_journal", "burned_finger", "photo_at_machine", "spare_starter"
+    void addPrinciple(const std::string& principleId);
+    void addTrait(const std::string& traitId);
+    void addStoryItem(const std::string& itemId);
+
+    bool hasPrinciple(const std::string& principleId) const;
+    bool hasTrait(const std::string& traitId) const;
+    bool hasStoryItem(const std::string& itemId) const;
+
+    const std::vector<std::string>& getPrinciples() const { return m_principles; }
+    const std::vector<std::string>& getTraits() const { return m_traits; }
+    const std::vector<std::string>& getStoryItems() const { return m_storyItems; }
+
+    void clearPrinciples() { m_principles.clear(); }
+    void clearTraits() { m_traits.clear(); }
+    void clearStoryItems() { m_storyItems.clear(); }
 
 private:
     // Resources and inventory
@@ -83,6 +118,8 @@ private:
     float m_money;       // Player money
     float m_fuel;        // Car fuel (0-100)
     float m_vehicleCondition; // Vehicle condition (0-100)
+    float m_mood;        // Player mood (0-100%)
+    int m_reputation;    // Player reputation (-50..+50)
     OriginType m_origin; // Character background
     CarType m_carType;   // Vehicle type
     InventorySystem m_inventory; // Player inventory system
@@ -91,6 +128,12 @@ private:
     int m_currentCityIndex;  // Current city (0-4)
     float m_totalPlayTime;   // Total time played in seconds
     int m_currentNodeId;     // Current node on world map
+    std::string m_currentNotebookEntryId;  // Current notebook entry for save/load
+
+    // Hidden state for conditional choices (День 0 и далее)
+    std::vector<std::string> m_principles;   // Приобретенные принципы/уроки
+    std::vector<std::string> m_traits;       // Черты характера
+    std::vector<std::string> m_storyItems;   // Сюжетные артефакты (не в инвентаре)
 };
 
 #endif // PLAYER_STATE_H

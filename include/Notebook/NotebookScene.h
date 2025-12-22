@@ -4,11 +4,13 @@
 #include "Scene.h"
 #include "PlayerState.h"
 #include "FontLoader.h"
+#include "Notebook/NotebookEntry.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <memory>
 #include <string>
 #include <vector>
+#include <map>
 
 /**
  * @brief NotebookScene - Сцена блокнота путешественника
@@ -69,7 +71,8 @@ private:
 
     // === ТЕКУЩАЯ ЗАПИСЬ ===
     std::string m_currentEntryId;
-    std::string m_fullText;                     // Полный текст записи
+    NotebookEntry m_currentEntry;               // Текущая запись
+    std::string m_fullText;                     // Полный текст записи (кэш)
     std::string m_revealedText;                 // Уже показанный текст
 
     // === АНИМАЦИЯ ПЕЧАТИ ТЕКСТА ===
@@ -79,15 +82,11 @@ private:
     bool m_canSkipText;                         // Можно пропустить текст?
 
     // === ВЫБОРЫ ===
-    struct SimpleChoice {
-        std::string text;
-        std::string nextEntryId;
-        bool isDisabled;
-        std::string disabledReason;
-    };
-
-    std::vector<SimpleChoice> m_choices;
+    std::vector<NotebookChoice> m_choices;      // Выборы для текущей записи
     int m_selectedChoiceIndex;
+
+    // === ХРАНИЛИЩЕ ЗАПИСЕЙ ===
+    std::map<std::string, NotebookEntry> m_entries;  // Все загруженные записи
 
     // === ВИЗУАЛИЗАЦИЯ ===
     sf::Font m_font;
@@ -148,6 +147,59 @@ private:
      * @brief Загрузить запись о выезде из города (день 1)
      */
     void loadDayOneDeparture();
+
+    /**
+     * @brief Загрузить тестовую PAST запись (воспоминание о Сергее)
+     */
+    void loadPastMemory();
+
+    /**
+     * @brief Загрузить тестовую THOUGHT запись (внутренний монолог)
+     */
+    void loadThoughtEntry();
+
+    // === ДЕНЬ 0: УРОКИ ДОРОГИ (будущая реализация) ===
+
+    /**
+     * @brief ЗАПИСЬ 1.1: Стук в дверь (PAST)
+     */
+    void loadDay0_KnockOnDoor();
+
+    /**
+     * @brief ЗАПИСЬ 1.2: Волга (PAST)
+     */
+    void loadDay0_Volga();
+
+    /**
+     * @brief ЗАПИСЬ 2: Первая задача - выбор подхода (PAST)
+     */
+    void loadDay0_FirstTask();
+
+    // Ветка А: Системный анализ
+    void loadDay0_BranchA_MapAndTower();
+    void loadDay0_BranchA_Geologist();
+
+    // Ветка Б: Чувство материала
+    void loadDay0_BranchB_EngineSong();
+    void loadDay0_BranchB_Blacksmith();
+
+    // Ветка В: Командная эксплуатация
+    void loadDay0_BranchC_TruckOnRoadside();
+    void loadDay0_BranchC_CafeStories();
+
+    // Ветка Г: Ресурсоэффективность
+    void loadDay0_BranchD_EconomicRoute();
+    void loadDay0_BranchD_BoysAndScrap();
+
+    /**
+     * @brief ЗАПИСЬ 7: Финал в гараже (PAST, общий для всех веток)
+     */
+    void loadDay0_GarageFinale();
+
+    /**
+     * @brief ЗАПИСЬ 8: Переход в настоящее (PRESENT)
+     */
+    void loadDay0_TransitionToPresent();
 };
 
 #endif // NOTEBOOK_SCENE_H

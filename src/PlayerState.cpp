@@ -8,12 +8,15 @@ PlayerState::PlayerState()
       m_money(1000.0f),           // Starting money (1000 rubles)
       m_fuel(100.0f),             // Full fuel
       m_vehicleCondition(100.0f), // Perfect condition
+      m_mood(70.0f),              // Starting mood (neutral-positive)
+      m_reputation(0),            // Neutral reputation
       m_origin(OriginType::NOMAD),
       m_carType(CarType::OLD_SEDAN),
       m_inventory(24, 50.0f),     // 24 slots, 50kg max weight
       m_currentCityIndex(0),      // Start at city 0
       m_totalPlayTime(0.0f),      // No time played yet
-      m_currentNodeId(0) {        // Keep for compatibility
+      m_currentNodeId(0),         // Keep for compatibility
+      m_currentNotebookEntryId("tutorial_start") {  // Start from tutorial
 
     // Add starting items to inventory
     std::cout << "[PlayerState] Adding starting items to inventory..." << std::endl;
@@ -72,6 +75,28 @@ void PlayerState::setVehicleCondition(float condition) {
     m_vehicleCondition = std::max(0.0f, std::min(condition, 100.0f));
 }
 
+void PlayerState::modifyVehicleCondition(float amount) {
+    setVehicleCondition(m_vehicleCondition + amount);
+}
+
+// Mood management (0-100%)
+void PlayerState::setMood(float mood) {
+    m_mood = std::max(0.0f, std::min(mood, 100.0f));
+}
+
+void PlayerState::modifyMood(float amount) {
+    setMood(m_mood + amount);
+}
+
+// Reputation management (-50..+50)
+void PlayerState::setReputation(int reputation) {
+    m_reputation = std::max(-50, std::min(reputation, 50));
+}
+
+void PlayerState::modifyReputation(int amount) {
+    setReputation(m_reputation + amount);
+}
+
 // Initialize resources based on origin and car type
 void PlayerState::initializeResources() {
     initializeResources(m_origin, m_carType);
@@ -118,4 +143,48 @@ bool PlayerState::isGameOver() const {
 void PlayerState::initializeStartingInventory() {
     // Basic starting items - can be expanded
     // For now, inventory starts empty
+}
+
+// ========== PRINCIPLES AND TRAITS SYSTEM ==========
+
+// Add a principle (acquired lesson/philosophy)
+void PlayerState::addPrinciple(const std::string& principleId) {
+    // Check if already exists
+    if (std::find(m_principles.begin(), m_principles.end(), principleId) == m_principles.end()) {
+        m_principles.push_back(principleId);
+        std::cout << "[PlayerState] Acquired principle: " << principleId << std::endl;
+    }
+}
+
+// Add a character trait
+void PlayerState::addTrait(const std::string& traitId) {
+    // Check if already exists
+    if (std::find(m_traits.begin(), m_traits.end(), traitId) == m_traits.end()) {
+        m_traits.push_back(traitId);
+        std::cout << "[PlayerState] Acquired trait: " << traitId << std::endl;
+    }
+}
+
+// Add a story item (narrative artifact)
+void PlayerState::addStoryItem(const std::string& itemId) {
+    // Check if already exists
+    if (std::find(m_storyItems.begin(), m_storyItems.end(), itemId) == m_storyItems.end()) {
+        m_storyItems.push_back(itemId);
+        std::cout << "[PlayerState] Acquired story item: " << itemId << std::endl;
+    }
+}
+
+// Check if player has a specific principle
+bool PlayerState::hasPrinciple(const std::string& principleId) const {
+    return std::find(m_principles.begin(), m_principles.end(), principleId) != m_principles.end();
+}
+
+// Check if player has a specific trait
+bool PlayerState::hasTrait(const std::string& traitId) const {
+    return std::find(m_traits.begin(), m_traits.end(), traitId) != m_traits.end();
+}
+
+// Check if player has a specific story item
+bool PlayerState::hasStoryItem(const std::string& itemId) const {
+    return std::find(m_storyItems.begin(), m_storyItems.end(), itemId) != m_storyItems.end();
 }
