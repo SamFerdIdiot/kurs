@@ -1795,21 +1795,19 @@ NotebookEntry NotebookScene::convertEventToEntry(const GameEvent& event) {
     );
 
     // Конвертировать каждый выбор события в выбор блокнота
+    int choiceIndex = 0;
     for (const auto& eventChoice : event.choices) {
         NotebookChoice notebookChoice;
         notebookChoice.text = eventChoice.text;
 
-        // ИСПРАВЛЕНО: Использовать сохраненный ID следующей записи
-        // Если событие прервало переход, то после него продолжим с сохраненной записи
-        if (!m_pendingNextEntryId.empty()) {
-            notebookChoice.nextEntryIds = {m_pendingNextEntryId};
-        } else {
-            // Если нет сохраненной записи (не должно произойти), остаться на текущей
-            notebookChoice.nextEntryIds = {m_currentEntryId};
-        }
+        // Создать уникальный ID для страницы результата
+        std::string outcomeId = "event_outcome_" + event.id + "_choice" + std::to_string(choiceIndex);
+
+        // Выбор ведет к странице результата
+        notebookChoice.nextEntryIds = {outcomeId};
 
         // Применить эффекты события через action
-        notebookChoice.action = [eventChoice, this](PlayerState* player) {
+        notebookChoice.action = [eventChoice](PlayerState* player) {
             // Применить изменения ресурсов
             player->modifyEnergy(eventChoice.energyChange);
             player->modifyMoney(eventChoice.moneyChange);
@@ -1829,14 +1827,36 @@ NotebookEntry NotebookScene::convertEventToEntry(const GameEvent& event) {
             std::cout << "  Money: " << eventChoice.moneyChange << std::endl;
             std::cout << "  Fuel: " << eventChoice.fuelChange << std::endl;
             std::cout << "  Vehicle: " << eventChoice.vehicleConditionChange << std::endl;
-
-            // Показать результат выбора
-            if (!eventChoice.outcomeText.empty()) {
-                std::cout << "[Event] Outcome: " << eventChoice.outcomeText << std::endl;
-            }
         };
 
         entry.addChoice(notebookChoice);
+
+        // Создать страницу результата для этого выбора
+        if (!eventChoice.outcomeText.empty()) {
+            NotebookEntry outcomeEntry(outcomeId, EntryType::PRESENT, eventChoice.outcomeText);
+            outcomeEntry.printSpeed = 60.0f;
+            outcomeEntry.canSkip = true;
+
+            // Один выбор - продолжить к следующей записи
+            NotebookChoice continueChoice;
+            continueChoice.text = "[Продолжить]";
+
+            // Использовать сохраненный ID следующей записи
+            if (!m_pendingNextEntryId.empty()) {
+                continueChoice.nextEntryIds = {m_pendingNextEntryId};
+            } else {
+                continueChoice.nextEntryIds = {m_currentEntryId};
+            }
+
+            outcomeEntry.addChoice(continueChoice);
+
+            // Добавить страницу результата в хранилище
+            m_entries[outcomeId] = outcomeEntry;
+
+            std::cout << "[Event] Created outcome page: " << outcomeId << " -> " << m_pendingNextEntryId << std::endl;
+        }
+
+        choiceIndex++;
     }
 
     return entry;
