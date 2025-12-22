@@ -718,12 +718,12 @@ void NotebookScene::loadDay0_BranchA_Geologist() {
     // Выбор 1: Взять журнал (знания - правильный путь)
     NotebookChoice choiceJournal;
     choiceJournal.text = "[Взять заметки о станках]";
-    choiceJournal.nextEntryIds = {"day0_provocation"};
+    choiceJournal.nextEntryIds = {"day0_branch_a_3"};  // Теперь ведет к 3-й записи ветки
     choiceJournal.action = [](PlayerState* player) {
         player->addStoryItem("technical_journal");  // Артефакт: Журнал
         player->addPrinciple("understanding_context");  // ПРИНЦИП: Понимание контекста
         player->modifyEnergy(-5.0f);  // Чтение и изучение
-        std::cout << "[Day0-A] Получен артефакт: Журнал с пометками о немецких станках" << std::endl;
+        std::cout << "[Day0-A] Получен артефакт: Журнал с пометками" << std::endl;
         std::cout << "[Day0-A] Получен принцип: Системное понимание контекста" << std::endl;
     };
     entry.addChoice(choiceJournal);

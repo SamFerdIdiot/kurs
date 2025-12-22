@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "timestamp": 1766416257,
+  "energy": 80,
+  "money": 1250,
+  "fuel": 85,
+  "vehicleCondition": 100,
+  "mood": 85,
+  "reputation": 15,
+  "origin": 0,
+  "carType": 0,
+  "currentNodeId": 0,
+  "currentNotebookEntryId": "tutorial_start",
+  "experience": {
+    "level": 2,
+    "exp": 0,
+    "unlockedAbilities": [
+      "ability_driving_1"
+    ]
+  },
+  "quests": [
+
+  ],
+  "dialogueHistory": [
+  ],
+  "npcs": [
+    {
+      "id": "mechanic_mikhalych",
+      "name": "Механик Михалыч",
+      "level": 1,
+      "experience": 0,
+      "passiveAbilityId": "mechanic_repair",
+      "activeAbilityId": "mechanic_field_repair"
+    }
+  ],
+  "principles": [
+    "understanding_context"
+  ],
+  "traits": [
+    "analytical"
+  ],
+  "storyItems": [
+    "technical_journal"
+  ]
+}

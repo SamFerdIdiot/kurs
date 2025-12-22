@@ -43,6 +43,7 @@ events:
     search_context:
       ENV{PATH}:
         - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
         - "/opt/homebrew/sbin"
         - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
         - "/usr/local/bin"
@@ -99,6 +100,7 @@ events:
     found: "/opt/homebrew/bin/gmake"
     search_context:
       ENV{PATH}:
+        - "/opt/homebrew/bin"
         - "/opt/homebrew/bin"
         - "/opt/homebrew/sbin"
         - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
@@ -161,6 +163,7 @@ events:
     search_context:
       ENV{PATH}:
         - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
         - "/opt/homebrew/sbin"
         - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
         - "/usr/local/bin"
@@ -200,6 +203,7 @@ events:
     found: "/opt/homebrew/share/cmake/Modules/CMakeCCompilerId.c.in"
     search_context:
       ENV{PATH}:
+        - "/opt/homebrew/bin"
         - "/opt/homebrew/bin"
         - "/opt/homebrew/sbin"
         - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
@@ -313,6 +317,7 @@ events:
     search_context:
       ENV{PATH}:
         - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
         - "/opt/homebrew/sbin"
         - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
         - "/usr/local/bin"
@@ -361,6 +366,7 @@ events:
     found: "/usr/bin/ranlib"
     search_context:
       ENV{PATH}:
+        - "/opt/homebrew/bin"
         - "/opt/homebrew/bin"
         - "/opt/homebrew/sbin"
         - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
@@ -411,6 +417,7 @@ events:
     search_context:
       ENV{PATH}:
         - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
         - "/opt/homebrew/sbin"
         - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
         - "/usr/local/bin"
@@ -459,6 +466,7 @@ events:
     found: "/usr/bin/ld"
     search_context:
       ENV{PATH}:
+        - "/opt/homebrew/bin"
         - "/opt/homebrew/bin"
         - "/opt/homebrew/sbin"
         - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
@@ -509,6 +517,7 @@ events:
     search_context:
       ENV{PATH}:
         - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
         - "/opt/homebrew/sbin"
         - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
         - "/usr/local/bin"
@@ -557,6 +566,7 @@ events:
     found: "/usr/bin/objdump"
     search_context:
       ENV{PATH}:
+        - "/opt/homebrew/bin"
         - "/opt/homebrew/bin"
         - "/opt/homebrew/sbin"
         - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
@@ -621,6 +631,7 @@ events:
     search_context:
       ENV{PATH}:
         - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
         - "/opt/homebrew/sbin"
         - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
         - "/usr/local/bin"
@@ -683,6 +694,7 @@ events:
     found: false
     search_context:
       ENV{PATH}:
+        - "/opt/homebrew/bin"
         - "/opt/homebrew/bin"
         - "/opt/homebrew/sbin"
         - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
@@ -747,6 +759,7 @@ events:
     search_context:
       ENV{PATH}:
         - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
         - "/opt/homebrew/sbin"
         - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
         - "/usr/local/bin"
@@ -809,6 +822,7 @@ events:
     found: false
     search_context:
       ENV{PATH}:
+        - "/opt/homebrew/bin"
         - "/opt/homebrew/bin"
         - "/opt/homebrew/sbin"
         - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
@@ -873,6 +887,7 @@ events:
     search_context:
       ENV{PATH}:
         - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
         - "/opt/homebrew/sbin"
         - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
         - "/usr/local/bin"
@@ -916,6 +931,7 @@ events:
     search_context:
       ENV{PATH}:
         - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
         - "/opt/homebrew/sbin"
         - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
         - "/usr/local/bin"
@@ -955,6 +971,7 @@ events:
     found: "/opt/homebrew/share/cmake/Modules/CMakeCXXCompilerId.cpp.in"
     search_context:
       ENV{PATH}:
+        - "/opt/homebrew/bin"
         - "/opt/homebrew/bin"
         - "/opt/homebrew/sbin"
         - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
@@ -1074,6 +1091,7 @@ events:
     search_context:
       ENV{PATH}:
         - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
         - "/opt/homebrew/sbin"
         - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
         - "/usr/local/bin"
@@ -1096,8 +1114,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-ppW1Ru"
-      binary: "/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-ppW1Ru"
+      source: "/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-x34v67"
+      binary: "/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-x34v67"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_C_FLAGS_DEBUG: "-g"
@@ -1109,19 +1127,19 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-ppW1Ru'
+        Change Dir: '/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-x34v67'
         
-        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /opt/homebrew/bin/gmake -f Makefile cmTC_42809/fast
-        /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_42809.dir/build.make CMakeFiles/cmTC_42809.dir/build
-        gmake[1]: Entering directory '/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-ppW1Ru'
-        Building C object CMakeFiles/cmTC_42809.dir/CMakeCCompilerABI.c.o
-        /usr/bin/cc   -arch arm64   -v -Wl,-v -MD -MT CMakeFiles/cmTC_42809.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_42809.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_42809.dir/CMakeCCompilerABI.c.o -c /opt/homebrew/share/cmake/Modules/CMakeCCompilerABI.c
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /opt/homebrew/bin/gmake -f Makefile cmTC_6acea/fast
+        /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_6acea.dir/build.make CMakeFiles/cmTC_6acea.dir/build
+        gmake[1]: Entering directory '/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-x34v67'
+        Building C object CMakeFiles/cmTC_6acea.dir/CMakeCCompilerABI.c.o
+        /usr/bin/cc   -arch arm64   -v -Wl,-v -MD -MT CMakeFiles/cmTC_6acea.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_6acea.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_6acea.dir/CMakeCCompilerABI.c.o -c /opt/homebrew/share/cmake/Modules/CMakeCCompilerABI.c
         Apple clang version 17.0.0 (clang-1700.0.13.5)
         Target: arm64-apple-darwin24.6.0
         Thread model: posix
         InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
         clang: warning: -Wl,-v: 'linker' input unused [-Wunused-command-line-argument]
-         "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple arm64-apple-macosx15.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=15.5 -fvisibility-inlines-hidden-static-local-var -fdefine-target-os-macros -fno-assume-unique-vtables -fno-modulemap-allow-subdirectory-search -target-cpu apple-m1 -target-feature +zcm -target-feature +zcz -target-feature +v8.5a -target-feature +aes -target-feature +altnzcv -target-feature +ccdp -target-feature +complxnum -target-feature +crc -target-feature +dotprod -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +fptoint -target-feature +fullfp16 -target-feature +jsconv -target-feature +lse -target-feature +neon -target-feature +pauth -target-feature +perfmon -target-feature +predres -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sb -target-feature +sha2 -target-feature +sha3 -target-feature +specrestrict -target-feature +ssbs -target-abi darwinpcs -debugger-tuning=lldb -fdebug-compilation-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-ppW1Ru -target-linker-version 1167.5 -v -fcoverage-compilation-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-ppW1Ru -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17 -dependency-file CMakeFiles/cmTC_42809.dir/CMakeCCompilerABI.c.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_42809.dir/CMakeCCompilerABI.c.o -sys-header-deps -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -I/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_42809.dir/CMakeCCompilerABI.c.o -x c /opt/homebrew/share/cmake/Modules/CMakeCCompilerABI.c
+         "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple arm64-apple-macosx15.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=15.5 -fvisibility-inlines-hidden-static-local-var -fdefine-target-os-macros -fno-assume-unique-vtables -fno-modulemap-allow-subdirectory-search -target-cpu apple-m1 -target-feature +zcm -target-feature +zcz -target-feature +v8.5a -target-feature +aes -target-feature +altnzcv -target-feature +ccdp -target-feature +complxnum -target-feature +crc -target-feature +dotprod -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +fptoint -target-feature +fullfp16 -target-feature +jsconv -target-feature +lse -target-feature +neon -target-feature +pauth -target-feature +perfmon -target-feature +predres -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sb -target-feature +sha2 -target-feature +sha3 -target-feature +specrestrict -target-feature +ssbs -target-abi darwinpcs -debugger-tuning=lldb -fdebug-compilation-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-x34v67 -target-linker-version 1167.5 -v -fcoverage-compilation-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-x34v67 -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17 -dependency-file CMakeFiles/cmTC_6acea.dir/CMakeCCompilerABI.c.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_6acea.dir/CMakeCCompilerABI.c.o -sys-header-deps -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -I/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_6acea.dir/CMakeCCompilerABI.c.o -x c /opt/homebrew/share/cmake/Modules/CMakeCCompilerABI.c
         clang -cc1 version 17.0.0 (clang-1700.0.13.5) default target arm64-apple-darwin24.6.0
         ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include"
         ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/SubFrameworks"
@@ -1134,13 +1152,13 @@ events:
          /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include
          /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
         End of search list.
-        Linking C executable cmTC_42809
-        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_42809.dir/link.txt --verbose=1
+        Linking C executable cmTC_6acea
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6acea.dir/link.txt --verbose=1
         Apple clang version 17.0.0 (clang-1700.0.13.5)
         Target: arm64-apple-darwin24.6.0
         Thread model: posix
         InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
-         "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 15.0.0 15.5 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mllvm -enable-linkonceodr-outlining -o cmTC_42809 -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_42809.dir/CMakeCCompilerABI.c.o -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a
+         "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 15.0.0 15.5 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mllvm -enable-linkonceodr-outlining -o cmTC_6acea -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_6acea.dir/CMakeCCompilerABI.c.o -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a
         @(#)PROGRAM:ld PROJECT:ld-1167.5
         BUILD 01:45:05 Apr 30 2025
         configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
@@ -1153,8 +1171,8 @@ events:
         	/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/swift
         Framework search paths:
         	/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks
-        /usr/bin/cc  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_42809.dir/CMakeCCompilerABI.c.o -o cmTC_42809
-        gmake[1]: Leaving directory '/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-ppW1Ru'
+        /usr/bin/cc  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_6acea.dir/CMakeCCompilerABI.c.o -o cmTC_6acea
+        gmake[1]: Leaving directory '/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-x34v67'
         
       exitCode: 0
   -
@@ -1198,19 +1216,19 @@ events:
       Parsed C implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
-        ignore line: [Change Dir: '/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-ppW1Ru']
+        ignore line: [Change Dir: '/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-x34v67']
         ignore line: []
-        ignore line: [Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /opt/homebrew/bin/gmake -f Makefile cmTC_42809/fast]
-        ignore line: [/opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_42809.dir/build.make CMakeFiles/cmTC_42809.dir/build]
-        ignore line: [gmake[1]: Entering directory '/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-ppW1Ru']
-        ignore line: [Building C object CMakeFiles/cmTC_42809.dir/CMakeCCompilerABI.c.o]
-        ignore line: [/usr/bin/cc   -arch arm64   -v -Wl -v -MD -MT CMakeFiles/cmTC_42809.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_42809.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_42809.dir/CMakeCCompilerABI.c.o -c /opt/homebrew/share/cmake/Modules/CMakeCCompilerABI.c]
+        ignore line: [Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /opt/homebrew/bin/gmake -f Makefile cmTC_6acea/fast]
+        ignore line: [/opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_6acea.dir/build.make CMakeFiles/cmTC_6acea.dir/build]
+        ignore line: [gmake[1]: Entering directory '/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-x34v67']
+        ignore line: [Building C object CMakeFiles/cmTC_6acea.dir/CMakeCCompilerABI.c.o]
+        ignore line: [/usr/bin/cc   -arch arm64   -v -Wl -v -MD -MT CMakeFiles/cmTC_6acea.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_6acea.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_6acea.dir/CMakeCCompilerABI.c.o -c /opt/homebrew/share/cmake/Modules/CMakeCCompilerABI.c]
         ignore line: [Apple clang version 17.0.0 (clang-1700.0.13.5)]
         ignore line: [Target: arm64-apple-darwin24.6.0]
         ignore line: [Thread model: posix]
         ignore line: [InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
         ignore line: [clang: warning: -Wl -v: 'linker' input unused [-Wunused-command-line-argument]]
-        ignore line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple arm64-apple-macosx15.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=15.5 -fvisibility-inlines-hidden-static-local-var -fdefine-target-os-macros -fno-assume-unique-vtables -fno-modulemap-allow-subdirectory-search -target-cpu apple-m1 -target-feature +zcm -target-feature +zcz -target-feature +v8.5a -target-feature +aes -target-feature +altnzcv -target-feature +ccdp -target-feature +complxnum -target-feature +crc -target-feature +dotprod -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +fptoint -target-feature +fullfp16 -target-feature +jsconv -target-feature +lse -target-feature +neon -target-feature +pauth -target-feature +perfmon -target-feature +predres -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sb -target-feature +sha2 -target-feature +sha3 -target-feature +specrestrict -target-feature +ssbs -target-abi darwinpcs -debugger-tuning=lldb -fdebug-compilation-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-ppW1Ru -target-linker-version 1167.5 -v -fcoverage-compilation-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-ppW1Ru -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17 -dependency-file CMakeFiles/cmTC_42809.dir/CMakeCCompilerABI.c.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_42809.dir/CMakeCCompilerABI.c.o -sys-header-deps -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -I/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_42809.dir/CMakeCCompilerABI.c.o -x c /opt/homebrew/share/cmake/Modules/CMakeCCompilerABI.c]
+        ignore line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple arm64-apple-macosx15.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=15.5 -fvisibility-inlines-hidden-static-local-var -fdefine-target-os-macros -fno-assume-unique-vtables -fno-modulemap-allow-subdirectory-search -target-cpu apple-m1 -target-feature +zcm -target-feature +zcz -target-feature +v8.5a -target-feature +aes -target-feature +altnzcv -target-feature +ccdp -target-feature +complxnum -target-feature +crc -target-feature +dotprod -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +fptoint -target-feature +fullfp16 -target-feature +jsconv -target-feature +lse -target-feature +neon -target-feature +pauth -target-feature +perfmon -target-feature +predres -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sb -target-feature +sha2 -target-feature +sha3 -target-feature +specrestrict -target-feature +ssbs -target-abi darwinpcs -debugger-tuning=lldb -fdebug-compilation-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-x34v67 -target-linker-version 1167.5 -v -fcoverage-compilation-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-x34v67 -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17 -dependency-file CMakeFiles/cmTC_6acea.dir/CMakeCCompilerABI.c.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_6acea.dir/CMakeCCompilerABI.c.o -sys-header-deps -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -I/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_6acea.dir/CMakeCCompilerABI.c.o -x c /opt/homebrew/share/cmake/Modules/CMakeCCompilerABI.c]
         ignore line: [clang -cc1 version 17.0.0 (clang-1700.0.13.5) default target arm64-apple-darwin24.6.0]
         ignore line: [ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include"]
         ignore line: [ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/SubFrameworks"]
@@ -1223,13 +1241,13 @@ events:
         ignore line: [ /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
         ignore line: [ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)]
         ignore line: [End of search list.]
-        ignore line: [Linking C executable cmTC_42809]
-        ignore line: [/opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_42809.dir/link.txt --verbose=1]
+        ignore line: [Linking C executable cmTC_6acea]
+        ignore line: [/opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6acea.dir/link.txt --verbose=1]
         ignore line: [Apple clang version 17.0.0 (clang-1700.0.13.5)]
         ignore line: [Target: arm64-apple-darwin24.6.0]
         ignore line: [Thread model: posix]
         ignore line: [InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
-        link line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 15.0.0 15.5 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mllvm -enable-linkonceodr-outlining -o cmTC_42809 -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_42809.dir/CMakeCCompilerABI.c.o -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a]
+        link line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 15.0.0 15.5 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mllvm -enable-linkonceodr-outlining -o cmTC_6acea -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_6acea.dir/CMakeCCompilerABI.c.o -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a]
           arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld] ==> ignore
           arg [-demangle] ==> ignore
           arg [-lto_library] ==> ignore, skip following value
@@ -1246,12 +1264,12 @@ events:
           arg [-mllvm] ==> ignore
           arg [-enable-linkonceodr-outlining] ==> ignore
           arg [-o] ==> ignore
-          arg [cmTC_42809] ==> ignore
+          arg [cmTC_6acea] ==> ignore
           arg [-L/usr/local/lib] ==> dir [/usr/local/lib]
           arg [-search_paths_first] ==> ignore
           arg [-headerpad_max_install_names] ==> ignore
           arg [-v] ==> ignore
-          arg [CMakeFiles/cmTC_42809.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [CMakeFiles/cmTC_6acea.dir/CMakeCCompilerABI.c.o] ==> ignore
           arg [-lSystem] ==> lib [System]
           arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a] ==> lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a]
         linker tool for 'C': /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld
@@ -1294,8 +1312,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-7nbDHN"
-      binary: "/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-7nbDHN"
+      source: "/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-gu8UeU"
+      binary: "/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-gu8UeU"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_CXX_FLAGS_DEBUG: "-g"
@@ -1308,20 +1326,20 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-7nbDHN'
+        Change Dir: '/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-gu8UeU'
         
-        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /opt/homebrew/bin/gmake -f Makefile cmTC_818a5/fast
-        /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_818a5.dir/build.make CMakeFiles/cmTC_818a5.dir/build
-        gmake[1]: Entering directory '/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-7nbDHN'
-        Building CXX object CMakeFiles/cmTC_818a5.dir/CMakeCXXCompilerABI.cpp.o
-        /usr/bin/c++   -arch arm64   -v -Wl,-v -MD -MT CMakeFiles/cmTC_818a5.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_818a5.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_818a5.dir/CMakeCXXCompilerABI.cpp.o -c /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /opt/homebrew/bin/gmake -f Makefile cmTC_1ab23/fast
+        /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_1ab23.dir/build.make CMakeFiles/cmTC_1ab23.dir/build
+        gmake[1]: Entering directory '/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-gu8UeU'
+        Building CXX object CMakeFiles/cmTC_1ab23.dir/CMakeCXXCompilerABI.cpp.o
+        /usr/bin/c++   -arch arm64   -v -Wl,-v -MD -MT CMakeFiles/cmTC_1ab23.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_1ab23.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_1ab23.dir/CMakeCXXCompilerABI.cpp.o -c /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp
         Apple clang version 17.0.0 (clang-1700.0.13.5)
         Target: arm64-apple-darwin24.6.0
         Thread model: posix
         InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
         clang++: warning: -Wl,-v: 'linker' input unused [-Wunused-command-line-argument]
         ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"
-         "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple arm64-apple-macosx15.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=15.5 -fvisibility-inlines-hidden-static-local-var -fdefine-target-os-macros -fno-assume-unique-vtables -fno-modulemap-allow-subdirectory-search -target-cpu apple-m1 -target-feature +zcm -target-feature +zcz -target-feature +v8.5a -target-feature +aes -target-feature +altnzcv -target-feature +ccdp -target-feature +complxnum -target-feature +crc -target-feature +dotprod -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +fptoint -target-feature +fullfp16 -target-feature +jsconv -target-feature +lse -target-feature +neon -target-feature +pauth -target-feature +perfmon -target-feature +predres -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sb -target-feature +sha2 -target-feature +sha3 -target-feature +specrestrict -target-feature +ssbs -target-abi darwinpcs -debugger-tuning=lldb -fdebug-compilation-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-7nbDHN -target-linker-version 1167.5 -v -fcoverage-compilation-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-7nbDHN -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17 -dependency-file CMakeFiles/cmTC_818a5.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_818a5.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -I/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -fdeprecated-macro -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_818a5.dir/CMakeCXXCompilerABI.cpp.o -x c++ /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+         "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple arm64-apple-macosx15.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=15.5 -fvisibility-inlines-hidden-static-local-var -fdefine-target-os-macros -fno-assume-unique-vtables -fno-modulemap-allow-subdirectory-search -target-cpu apple-m1 -target-feature +zcm -target-feature +zcz -target-feature +v8.5a -target-feature +aes -target-feature +altnzcv -target-feature +ccdp -target-feature +complxnum -target-feature +crc -target-feature +dotprod -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +fptoint -target-feature +fullfp16 -target-feature +jsconv -target-feature +lse -target-feature +neon -target-feature +pauth -target-feature +perfmon -target-feature +predres -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sb -target-feature +sha2 -target-feature +sha3 -target-feature +specrestrict -target-feature +ssbs -target-abi darwinpcs -debugger-tuning=lldb -fdebug-compilation-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-gu8UeU -target-linker-version 1167.5 -v -fcoverage-compilation-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-gu8UeU -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17 -dependency-file CMakeFiles/cmTC_1ab23.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_1ab23.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -I/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -fdeprecated-macro -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_1ab23.dir/CMakeCXXCompilerABI.cpp.o -x c++ /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp
         clang -cc1 version 17.0.0 (clang-1700.0.13.5) default target arm64-apple-darwin24.6.0
         ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include"
         ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/SubFrameworks"
@@ -1335,13 +1353,13 @@ events:
          /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include
          /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
         End of search list.
-        Linking CXX executable cmTC_818a5
-        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_818a5.dir/link.txt --verbose=1
+        Linking CXX executable cmTC_1ab23
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1ab23.dir/link.txt --verbose=1
         Apple clang version 17.0.0 (clang-1700.0.13.5)
         Target: arm64-apple-darwin24.6.0
         Thread model: posix
         InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
-         "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 15.0.0 15.5 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mllvm -enable-linkonceodr-outlining -o cmTC_818a5 -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_818a5.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a
+         "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 15.0.0 15.5 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mllvm -enable-linkonceodr-outlining -o cmTC_1ab23 -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_1ab23.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a
         @(#)PROGRAM:ld PROJECT:ld-1167.5
         BUILD 01:45:05 Apr 30 2025
         configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
@@ -1354,8 +1372,8 @@ events:
         	/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/swift
         Framework search paths:
         	/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks
-        /usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_818a5.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_818a5
-        gmake[1]: Leaving directory '/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-7nbDHN'
+        /usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_1ab23.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_1ab23
+        gmake[1]: Leaving directory '/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-gu8UeU'
         
       exitCode: 0
   -
@@ -1401,20 +1419,20 @@ events:
       Parsed CXX implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
-        ignore line: [Change Dir: '/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-7nbDHN']
+        ignore line: [Change Dir: '/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-gu8UeU']
         ignore line: []
-        ignore line: [Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /opt/homebrew/bin/gmake -f Makefile cmTC_818a5/fast]
-        ignore line: [/opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_818a5.dir/build.make CMakeFiles/cmTC_818a5.dir/build]
-        ignore line: [gmake[1]: Entering directory '/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-7nbDHN']
-        ignore line: [Building CXX object CMakeFiles/cmTC_818a5.dir/CMakeCXXCompilerABI.cpp.o]
-        ignore line: [/usr/bin/c++   -arch arm64   -v -Wl -v -MD -MT CMakeFiles/cmTC_818a5.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_818a5.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_818a5.dir/CMakeCXXCompilerABI.cpp.o -c /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /opt/homebrew/bin/gmake -f Makefile cmTC_1ab23/fast]
+        ignore line: [/opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_1ab23.dir/build.make CMakeFiles/cmTC_1ab23.dir/build]
+        ignore line: [gmake[1]: Entering directory '/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-gu8UeU']
+        ignore line: [Building CXX object CMakeFiles/cmTC_1ab23.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/usr/bin/c++   -arch arm64   -v -Wl -v -MD -MT CMakeFiles/cmTC_1ab23.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_1ab23.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_1ab23.dir/CMakeCXXCompilerABI.cpp.o -c /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
         ignore line: [Apple clang version 17.0.0 (clang-1700.0.13.5)]
         ignore line: [Target: arm64-apple-darwin24.6.0]
         ignore line: [Thread model: posix]
         ignore line: [InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
         ignore line: [clang++: warning: -Wl -v: 'linker' input unused [-Wunused-command-line-argument]]
         ignore line: [ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"]
-        ignore line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple arm64-apple-macosx15.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=15.5 -fvisibility-inlines-hidden-static-local-var -fdefine-target-os-macros -fno-assume-unique-vtables -fno-modulemap-allow-subdirectory-search -target-cpu apple-m1 -target-feature +zcm -target-feature +zcz -target-feature +v8.5a -target-feature +aes -target-feature +altnzcv -target-feature +ccdp -target-feature +complxnum -target-feature +crc -target-feature +dotprod -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +fptoint -target-feature +fullfp16 -target-feature +jsconv -target-feature +lse -target-feature +neon -target-feature +pauth -target-feature +perfmon -target-feature +predres -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sb -target-feature +sha2 -target-feature +sha3 -target-feature +specrestrict -target-feature +ssbs -target-abi darwinpcs -debugger-tuning=lldb -fdebug-compilation-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-7nbDHN -target-linker-version 1167.5 -v -fcoverage-compilation-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-7nbDHN -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17 -dependency-file CMakeFiles/cmTC_818a5.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_818a5.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -I/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -fdeprecated-macro -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_818a5.dir/CMakeCXXCompilerABI.cpp.o -x c++ /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple arm64-apple-macosx15.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=15.5 -fvisibility-inlines-hidden-static-local-var -fdefine-target-os-macros -fno-assume-unique-vtables -fno-modulemap-allow-subdirectory-search -target-cpu apple-m1 -target-feature +zcm -target-feature +zcz -target-feature +v8.5a -target-feature +aes -target-feature +altnzcv -target-feature +ccdp -target-feature +complxnum -target-feature +crc -target-feature +dotprod -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +fptoint -target-feature +fullfp16 -target-feature +jsconv -target-feature +lse -target-feature +neon -target-feature +pauth -target-feature +perfmon -target-feature +predres -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sb -target-feature +sha2 -target-feature +sha3 -target-feature +specrestrict -target-feature +ssbs -target-abi darwinpcs -debugger-tuning=lldb -fdebug-compilation-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-gu8UeU -target-linker-version 1167.5 -v -fcoverage-compilation-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-gu8UeU -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17 -dependency-file CMakeFiles/cmTC_1ab23.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_1ab23.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -I/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -fdeprecated-macro -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_1ab23.dir/CMakeCXXCompilerABI.cpp.o -x c++ /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
         ignore line: [clang -cc1 version 17.0.0 (clang-1700.0.13.5) default target arm64-apple-darwin24.6.0]
         ignore line: [ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include"]
         ignore line: [ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/SubFrameworks"]
@@ -1428,13 +1446,13 @@ events:
         ignore line: [ /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
         ignore line: [ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)]
         ignore line: [End of search list.]
-        ignore line: [Linking CXX executable cmTC_818a5]
-        ignore line: [/opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_818a5.dir/link.txt --verbose=1]
+        ignore line: [Linking CXX executable cmTC_1ab23]
+        ignore line: [/opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1ab23.dir/link.txt --verbose=1]
         ignore line: [Apple clang version 17.0.0 (clang-1700.0.13.5)]
         ignore line: [Target: arm64-apple-darwin24.6.0]
         ignore line: [Thread model: posix]
         ignore line: [InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
-        link line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 15.0.0 15.5 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mllvm -enable-linkonceodr-outlining -o cmTC_818a5 -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_818a5.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a]
+        link line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 15.0.0 15.5 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mllvm -enable-linkonceodr-outlining -o cmTC_1ab23 -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_1ab23.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a]
           arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld] ==> ignore
           arg [-demangle] ==> ignore
           arg [-lto_library] ==> ignore, skip following value
@@ -1451,12 +1469,12 @@ events:
           arg [-mllvm] ==> ignore
           arg [-enable-linkonceodr-outlining] ==> ignore
           arg [-o] ==> ignore
-          arg [cmTC_818a5] ==> ignore
+          arg [cmTC_1ab23] ==> ignore
           arg [-L/usr/local/lib] ==> dir [/usr/local/lib]
           arg [-search_paths_first] ==> ignore
           arg [-headerpad_max_install_names] ==> ignore
           arg [-v] ==> ignore
-          arg [CMakeFiles/cmTC_818a5.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [CMakeFiles/cmTC_1ab23.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
           arg [-lc++] ==> lib [c++]
           arg [-lSystem] ==> lib [System]
           arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a] ==> lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a]
@@ -1491,538 +1509,6 @@ events:
       will use ld-classic for: armv6 armv7 armv7s i386 armv6m armv7k armv7m armv7em
       LTO support using: LLVM version 17.0.0 (static support for 29, runtime is 29)
       TAPI support using: Apple TAPI version 17.0.0 (tapi-1700.0.3.5)
-  -
-    kind: "find_package-v1"
-    backtrace:
-      - "CMakeLists.txt:30 (find_package)"
-    name: "SFML"
-    components:
-      -
-        name: "graphics"
-        required: true
-        found: false
-      -
-        name: "window"
-        required: true
-        found: false
-      -
-        name: "system"
-        required: true
-        found: false
-    configs:
-      -
-        filename: "SFMLConfig.cmake"
-        kind: "cmake"
-      -
-        filename: "sfml-config.cmake"
-        kind: "cmake"
-    version_request:
-      version: "2.5"
-      version_complete: "2.5"
-      exact: false
-    settings:
-      required: "required_explicit"
-      quiet: false
-      global: false
-      policy_scope: true
-      bypass_provider: false
-      names:
-        - "SFML"
-      path_suffixes:
-        - ""
-      paths:
-        CMAKE_FIND_USE_CMAKE_PATH: true
-        CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
-        CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-        CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-        CMAKE_FIND_USE_INSTALL_PREFIX: true
-        CMAKE_FIND_USE_PACKAGE_ROOT_PATH: true
-        CMAKE_FIND_USE_CMAKE_PACKAGE_REGISTRY: true
-        CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY: true
-        CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
-    candidates:
-      -
-        path: "/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/pkgRedirects/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/pkgRedirects/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/opt/homebrew/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/opt/homebrew/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/opt/homebrew/lib/cmake/SFML/SFMLConfig.cmake"
-        mode: "config"
-        reason: "insufficient_version"
-      -
-        path: "/opt/homebrew/lib/cmake/SFML/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Library/Frameworks/Python.framework/Versions/3.12/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Library/Frameworks/Python.framework/Versions/3.12/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/usr/local/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/usr/local/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/usr/local/lib/cmake/SFML/SFMLConfig.cmake"
-        mode: "config"
-        reason: "insufficient_version"
-      -
-        path: "/usr/local/lib/cmake/SFML/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/System/Cryptexes/App/usr/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/System/Cryptexes/App/usr/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/usr/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/usr/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Library/Apple/usr/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Library/Apple/usr/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/opt/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/opt/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Library/Frameworks/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Library/Frameworks/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/System/Library/Frameworks/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/System/Library/Frameworks/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Users/afftobuss/Applications/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Users/afftobuss/Applications/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Applications/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Applications/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Applications/Xcode.app/Contents/Applications/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Applications/Xcode.app/Contents/Applications/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Applications/Xcode.app/Contents/Developer/Applications/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Applications/Xcode.app/Contents/Developer/Applications/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-    found: null
-    search_context:
-      ENV{PATH}:
-        - "/opt/homebrew/bin"
-        - "/opt/homebrew/sbin"
-        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
-        - "/usr/local/bin"
-        - "/System/Cryptexes/App/usr/bin"
-        - "/usr/bin"
-        - "/bin"
-        - "/usr/sbin"
-        - "/sbin"
-        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
-        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
-        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
-        - "/Library/Apple/usr/bin"
-      CMAKE_INSTALL_PREFIX: "/usr/local"
-      CMAKE_SYSTEM_PREFIX_PATH:
-        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr"
-        - "/opt/homebrew"
-        - "/usr/local"
-        - "/usr"
-        - "/"
-        - "/opt/homebrew"
-        - "/usr/local"
-        - "/usr/X11R6"
-        - "/usr/pkg"
-        - "/opt"
-        - "/sw"
-        - "/opt/local"
-      CMAKE_SYSTEM_FRAMEWORK_PATH:
-        - "~/Library/Frameworks"
-        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Library/Frameworks"
-        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Network/Library/Frameworks"
-        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"
-        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks"
-        - "/Applications/Xcode.app/Contents/Developer/Library/Frameworks"
-        - "/Library/Frameworks"
-        - "/Network/Library/Frameworks"
-        - "/System/Library/Frameworks"
-...
-
----
-events:
-  -
-    kind: "find_package-v1"
-    backtrace:
-      - "CMakeLists.txt:30 (find_package)"
-    name: "SFML"
-    components:
-      -
-        name: "graphics"
-        required: true
-        found: false
-      -
-        name: "window"
-        required: true
-        found: false
-      -
-        name: "system"
-        required: true
-        found: false
-    configs:
-      -
-        filename: "SFMLConfig.cmake"
-        kind: "cmake"
-      -
-        filename: "sfml-config.cmake"
-        kind: "cmake"
-    version_request:
-      version: "2.5"
-      version_complete: "2.5"
-      exact: false
-    settings:
-      required: "required_explicit"
-      quiet: false
-      global: false
-      policy_scope: true
-      bypass_provider: false
-      names:
-        - "SFML"
-      path_suffixes:
-        - ""
-      paths:
-        CMAKE_FIND_USE_CMAKE_PATH: true
-        CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
-        CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-        CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-        CMAKE_FIND_USE_INSTALL_PREFIX: true
-        CMAKE_FIND_USE_PACKAGE_ROOT_PATH: true
-        CMAKE_FIND_USE_CMAKE_PACKAGE_REGISTRY: true
-        CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY: true
-        CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
-    candidates:
-      -
-        path: "/opt/homebrew/lib/cmake/SFML/SFMLConfig.cmake"
-        mode: "none?"
-        reason: "insufficient_version"
-      -
-        path: "/opt/homebrew/lib/cmake/SFML/sfml-config.cmake"
-        mode: "none?"
-        reason: "no_exist"
-      -
-        path: "/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/pkgRedirects/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/pkgRedirects/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/opt/homebrew/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/opt/homebrew/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/opt/homebrew/lib/cmake/SFML/SFMLConfig.cmake"
-        mode: "config"
-        reason: "insufficient_version"
-      -
-        path: "/opt/homebrew/lib/cmake/SFML/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Library/Frameworks/Python.framework/Versions/3.12/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Library/Frameworks/Python.framework/Versions/3.12/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/usr/local/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/usr/local/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/usr/local/lib/cmake/SFML/SFMLConfig.cmake"
-        mode: "config"
-        reason: "insufficient_version"
-      -
-        path: "/usr/local/lib/cmake/SFML/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/System/Cryptexes/App/usr/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/System/Cryptexes/App/usr/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/usr/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/usr/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Library/Apple/usr/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Library/Apple/usr/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/opt/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/opt/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Library/Frameworks/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Library/Frameworks/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/System/Library/Frameworks/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/System/Library/Frameworks/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Users/afftobuss/Applications/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Users/afftobuss/Applications/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Applications/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Applications/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Applications/Xcode.app/Contents/Applications/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Applications/Xcode.app/Contents/Applications/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Applications/Xcode.app/Contents/Developer/Applications/SFMLConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "/Applications/Xcode.app/Contents/Developer/Applications/sfml-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-    found: null
-    search_context:
-      ENV{PATH}:
-        - "/opt/homebrew/bin"
-        - "/opt/homebrew/sbin"
-        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
-        - "/usr/local/bin"
-        - "/System/Cryptexes/App/usr/bin"
-        - "/usr/bin"
-        - "/bin"
-        - "/usr/sbin"
-        - "/sbin"
-        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
-        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
-        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
-        - "/Library/Apple/usr/bin"
-      CMAKE_INSTALL_PREFIX: "/usr/local"
-      CMAKE_SYSTEM_PREFIX_PATH:
-        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr"
-        - "/opt/homebrew"
-        - "/usr/local"
-        - "/usr"
-        - "/"
-        - "/opt/homebrew"
-        - "/usr/local"
-        - "/usr/X11R6"
-        - "/usr/pkg"
-        - "/opt"
-        - "/sw"
-        - "/opt/local"
-      CMAKE_SYSTEM_FRAMEWORK_PATH:
-        - "~/Library/Frameworks"
-        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Library/Frameworks"
-        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Network/Library/Frameworks"
-        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"
-        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks"
-        - "/Applications/Xcode.app/Contents/Developer/Library/Frameworks"
-        - "/Library/Frameworks"
-        - "/Network/Library/Frameworks"
-        - "/System/Library/Frameworks"
-...
-
----
-events:
   -
     kind: "find-v1"
     backtrace:
@@ -2243,6 +1729,7 @@ events:
     search_context:
       ENV{PATH}:
         - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
         - "/opt/homebrew/sbin"
         - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
         - "/usr/local/bin"
@@ -2271,6 +1758,116 @@ events:
         - "/opt/local"
       CMAKE_SYSTEM_INCLUDE_PATH:
         - "/usr/include/X11"
+      CMAKE_SYSTEM_FRAMEWORK_PATH:
+        - "~/Library/Frameworks"
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Library/Frameworks"
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Network/Library/Frameworks"
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks"
+        - "/Applications/Xcode.app/Contents/Developer/Library/Frameworks"
+        - "/Library/Frameworks"
+        - "/Network/Library/Frameworks"
+        - "/System/Library/Frameworks"
+  -
+    kind: "find_package-v1"
+    backtrace:
+      - "CMakeLists.txt:30 (find_package)"
+    name: "SFML"
+    components:
+      -
+        name: "Graphics"
+        required: true
+        found: false
+      -
+        name: "Window"
+        required: true
+        found: false
+      -
+        name: "System"
+        required: true
+        found: false
+    configs:
+      -
+        filename: "SFMLConfig.cmake"
+        kind: "cmake"
+      -
+        filename: "sfml-config.cmake"
+        kind: "cmake"
+    version_request:
+      version: "3"
+      version_complete: "3"
+      exact: false
+    settings:
+      required: "required_explicit"
+      quiet: false
+      global: false
+      policy_scope: true
+      bypass_provider: false
+      names:
+        - "SFML"
+      path_suffixes:
+        - ""
+      paths:
+        CMAKE_FIND_USE_CMAKE_PATH: true
+        CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+        CMAKE_FIND_USE_INSTALL_PREFIX: true
+        CMAKE_FIND_USE_PACKAGE_ROOT_PATH: true
+        CMAKE_FIND_USE_CMAKE_PACKAGE_REGISTRY: true
+        CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY: true
+        CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
+    candidates:
+      -
+        path: "/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/pkgRedirects/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/pkgRedirects/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+    found:
+      path: "/opt/homebrew/lib/cmake/SFML/SFMLConfig.cmake"
+      mode: "config"
+      version: "3.0.2"
+    search_context:
+      ENV{PATH}:
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/Library/Apple/usr/bin"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr"
+        - "/opt/homebrew"
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/opt/homebrew"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+        - "/sw"
+        - "/opt/local"
       CMAKE_SYSTEM_FRAMEWORK_PATH:
         - "~/Library/Frameworks"
         - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Library/Frameworks"
@@ -2355,6 +1952,7 @@ events:
     search_context:
       ENV{PATH}:
         - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
         - "/opt/homebrew/sbin"
         - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
         - "/usr/local/bin"
@@ -2415,84 +2013,18 @@ events:
       - "python3.14d"
       - "python3"
       - "python"
-    found: false
+    candidate_directories:
+      - "/opt/homebrew/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/opt/homebrew/Frameworks/Python.framework/Versions/3.14/Scripts/"
+      - "/opt/homebrew/Frameworks/Python.framework/Versions/3.14/"
+    searched_directories:
+      - "/opt/homebrew/Frameworks/Python.framework/Versions/3.14/bin/python3.14mu"
+      - "/opt/homebrew/Frameworks/Python.framework/Versions/3.14/bin/python3.14m"
+      - "/opt/homebrew/Frameworks/Python.framework/Versions/3.14/bin/python3.14u"
+    found: "/opt/homebrew/Frameworks/Python.framework/Versions/3.14/bin/python3.14"
     search_context:
       ENV{PATH}:
         - "/opt/homebrew/bin"
-        - "/opt/homebrew/sbin"
-        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
-        - "/usr/local/bin"
-        - "/System/Cryptexes/App/usr/bin"
-        - "/usr/bin"
-        - "/bin"
-        - "/usr/sbin"
-        - "/sbin"
-        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
-        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
-        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
-        - "/Library/Apple/usr/bin"
-      CMAKE_INSTALL_PREFIX: "/usr/local"
-      CMAKE_SYSTEM_PREFIX_PATH:
-        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr"
-        - "/opt/homebrew"
-        - "/usr/local"
-        - "/usr"
-        - "/"
-        - "/opt/homebrew"
-        - "/usr/local"
-        - "/usr/X11R6"
-        - "/usr/pkg"
-        - "/opt"
-        - "/sw"
-        - "/opt/local"
-      CMAKE_SYSTEM_APPBUNDLE_PATH:
-        - "/Users/afftobuss/Applications"
-        - "/Applications"
-        - "/Applications/Xcode.app/Contents/Applications"
-        - "/Applications/Xcode.app/Contents/Developer/Applications"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "/opt/homebrew/share/cmake/Modules/FindPython/Support.cmake:2158 (find_program)"
-      - "/opt/homebrew/share/cmake/Modules/FindPython3.cmake:656 (include)"
-      - "build/_deps/googletest-src/googletest/cmake/internal_utils.cmake:250 (find_package)"
-      - "build/_deps/googletest-src/googletest/CMakeLists.txt:81 (include)"
-    mode: "program"
-    variable: "_Python3_EXECUTABLE"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: false
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "python3.12mu"
-      - "python3.12m"
-      - "python3.12u"
-      - "python3.12"
-      - "python3.12dmu"
-      - "python3.12dm"
-      - "python3.12du"
-      - "python3.12d"
-      - "python3"
-      - "python"
-    candidate_directories:
-      - "/opt/homebrew/Frameworks/Python.framework/Versions/3.12/bin/"
-      - "/opt/homebrew/Frameworks/Python.framework/Versions/3.12/Scripts/"
-      - "/opt/homebrew/Frameworks/Python.framework/Versions/3.12/"
-      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/"
-      - "/Library/Frameworks/Python.framework/Versions/3.12/Scripts/"
-      - "/Library/Frameworks/Python.framework/Versions/3.12/"
-    searched_directories:
-      - "/opt/homebrew/Frameworks/Python.framework/Versions/3.12/bin/python3.12mu"
-      - "/opt/homebrew/Frameworks/Python.framework/Versions/3.12/bin/python3.12m"
-      - "/opt/homebrew/Frameworks/Python.framework/Versions/3.12/bin/python3.12u"
-    found: "/opt/homebrew/Frameworks/Python.framework/Versions/3.12/bin/python3.12"
-    search_context:
-      ENV{PATH}:
         - "/opt/homebrew/bin"
         - "/opt/homebrew/sbin"
         - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
@@ -2537,8 +2069,8 @@ events:
     checks:
       - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
     directories:
-      source: "/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-zz71PN"
-      binary: "/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-zz71PN"
+      source: "/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-I5L3kB"
+      binary: "/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-I5L3kB"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_C_FLAGS_DEBUG: "-g"
@@ -2550,23 +2082,23 @@ events:
       variable: "CMAKE_HAVE_LIBC_PTHREAD"
       cached: true
       stdout: |
-        Change Dir: '/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-zz71PN'
+        Change Dir: '/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-I5L3kB'
         
-        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /opt/homebrew/bin/gmake -f Makefile cmTC_d43b2/fast
-        /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_d43b2.dir/build.make CMakeFiles/cmTC_d43b2.dir/build
-        gmake[1]: Entering directory '/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-zz71PN'
-        Building C object CMakeFiles/cmTC_d43b2.dir/src.c.o
-        /usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD  -arch arm64 -MD -MT CMakeFiles/cmTC_d43b2.dir/src.c.o -MF CMakeFiles/cmTC_d43b2.dir/src.c.o.d -o CMakeFiles/cmTC_d43b2.dir/src.c.o -c /Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-zz71PN/src.c
-        Linking C executable cmTC_d43b2
-        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d43b2.dir/link.txt --verbose=1
-        /usr/bin/cc  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_d43b2.dir/src.c.o -o cmTC_d43b2
-        gmake[1]: Leaving directory '/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-zz71PN'
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /opt/homebrew/bin/gmake -f Makefile cmTC_adb0e/fast
+        /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_adb0e.dir/build.make CMakeFiles/cmTC_adb0e.dir/build
+        gmake[1]: Entering directory '/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-I5L3kB'
+        Building C object CMakeFiles/cmTC_adb0e.dir/src.c.o
+        /usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD  -arch arm64 -MD -MT CMakeFiles/cmTC_adb0e.dir/src.c.o -MF CMakeFiles/cmTC_adb0e.dir/src.c.o.d -o CMakeFiles/cmTC_adb0e.dir/src.c.o -c /Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-I5L3kB/src.c
+        Linking C executable cmTC_adb0e
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_adb0e.dir/link.txt --verbose=1
+        /usr/bin/cc  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_adb0e.dir/src.c.o -o cmTC_adb0e
+        gmake[1]: Leaving directory '/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/CMakeScratch/TryCompile-I5L3kB'
         
       exitCode: 0
   -
     kind: "find_package-v1"
     backtrace:
-      - "tests/CMakeLists.txt:62 (find_package)"
+      - "tests/CMakeLists.txt:65 (find_package)"
     name: "SFML"
     components:
       -
@@ -2793,6 +2325,7 @@ events:
     search_context:
       ENV{PATH}:
         - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
         - "/opt/homebrew/sbin"
         - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
         - "/usr/local/bin"
@@ -2836,7 +2369,7 @@ events:
   -
     kind: "find_package-v1"
     backtrace:
-      - "tests/CMakeLists.txt:62 (find_package)"
+      - "tests/CMakeLists.txt:65 (find_package)"
     name: "SFML"
     components:
       -
@@ -3062,6 +2595,938 @@ events:
     found: null
     search_context:
       ENV{PATH}:
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/Library/Apple/usr/bin"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr"
+        - "/opt/homebrew"
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/opt/homebrew"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+        - "/sw"
+        - "/opt/local"
+      CMAKE_SYSTEM_FRAMEWORK_PATH:
+        - "~/Library/Frameworks"
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Library/Frameworks"
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Network/Library/Frameworks"
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks"
+        - "/Applications/Xcode.app/Contents/Developer/Library/Frameworks"
+        - "/Library/Frameworks"
+        - "/Network/Library/Frameworks"
+        - "/System/Library/Frameworks"
+...
+
+---
+events:
+  -
+    kind: "find_package-v1"
+    backtrace:
+      - "tests/CMakeLists.txt:65 (find_package)"
+    name: "SFML"
+    components:
+      -
+        name: "graphics"
+        required: true
+        found: false
+      -
+        name: "window"
+        required: true
+        found: false
+      -
+        name: "system"
+        required: true
+        found: false
+    configs:
+      -
+        filename: "SFMLConfig.cmake"
+        kind: "cmake"
+      -
+        filename: "sfml-config.cmake"
+        kind: "cmake"
+    version_request:
+      version: "2.5"
+      version_complete: "2.5"
+      exact: false
+    settings:
+      required: "optional"
+      quiet: true
+      global: false
+      policy_scope: true
+      bypass_provider: false
+      names:
+        - "SFML"
+      path_suffixes:
+        - ""
+      paths:
+        CMAKE_FIND_USE_CMAKE_PATH: true
+        CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+        CMAKE_FIND_USE_INSTALL_PREFIX: true
+        CMAKE_FIND_USE_PACKAGE_ROOT_PATH: true
+        CMAKE_FIND_USE_CMAKE_PACKAGE_REGISTRY: true
+        CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY: true
+        CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
+    candidates:
+      -
+        path: "/opt/homebrew/lib/cmake/SFML/SFMLConfig.cmake"
+        mode: "none?"
+        reason: "insufficient_version"
+      -
+        path: "/opt/homebrew/lib/cmake/SFML/sfml-config.cmake"
+        mode: "none?"
+        reason: "no_exist"
+      -
+        path: "/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/pkgRedirects/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/pkgRedirects/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/lib/cmake/SFML/SFMLConfig.cmake"
+        mode: "config"
+        reason: "insufficient_version"
+      -
+        path: "/opt/homebrew/lib/cmake/SFML/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Library/Frameworks/Python.framework/Versions/3.12/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Library/Frameworks/Python.framework/Versions/3.12/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/local/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/local/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/local/lib/cmake/SFML/SFMLConfig.cmake"
+        mode: "config"
+        reason: "insufficient_version"
+      -
+        path: "/usr/local/lib/cmake/SFML/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/System/Cryptexes/App/usr/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/System/Cryptexes/App/usr/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Library/Apple/usr/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Library/Apple/usr/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Library/Frameworks/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Library/Frameworks/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/System/Library/Frameworks/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/System/Library/Frameworks/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/afftobuss/Applications/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/afftobuss/Applications/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Applications/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Applications/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Developer/Applications/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Developer/Applications/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+    found: null
+    search_context:
+      ENV{PATH}:
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/Library/Apple/usr/bin"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr"
+        - "/opt/homebrew"
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/opt/homebrew"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+        - "/sw"
+        - "/opt/local"
+      CMAKE_SYSTEM_FRAMEWORK_PATH:
+        - "~/Library/Frameworks"
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Library/Frameworks"
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Network/Library/Frameworks"
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks"
+        - "/Applications/Xcode.app/Contents/Developer/Library/Frameworks"
+        - "/Library/Frameworks"
+        - "/Network/Library/Frameworks"
+        - "/System/Library/Frameworks"
+...
+
+---
+events:
+  -
+    kind: "find_package-v1"
+    backtrace:
+      - "CMakeLists.txt:30 (find_package)"
+    name: "SFML"
+    components:
+      -
+        name: "Graphics"
+        required: true
+        found: false
+      -
+        name: "Window"
+        required: true
+        found: false
+      -
+        name: "System"
+        required: true
+        found: false
+    configs:
+      -
+        filename: "SFMLConfig.cmake"
+        kind: "cmake"
+      -
+        filename: "sfml-config.cmake"
+        kind: "cmake"
+    version_request:
+      version: "3"
+      version_complete: "3"
+      exact: false
+    settings:
+      required: "required_explicit"
+      quiet: false
+      global: false
+      policy_scope: true
+      bypass_provider: false
+      names:
+        - "SFML"
+      path_suffixes:
+        - ""
+      paths:
+        CMAKE_FIND_USE_CMAKE_PATH: true
+        CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+        CMAKE_FIND_USE_INSTALL_PREFIX: true
+        CMAKE_FIND_USE_PACKAGE_ROOT_PATH: true
+        CMAKE_FIND_USE_CMAKE_PACKAGE_REGISTRY: true
+        CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY: true
+        CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
+    candidates:
+      -
+        path: "/opt/homebrew/opt/sfml@2/lib/cmake/SFML/SFMLConfig.cmake"
+        mode: "none?"
+        reason: "insufficient_version"
+      -
+        path: "/opt/homebrew/opt/sfml@2/lib/cmake/SFML/sfml-config.cmake"
+        mode: "none?"
+        reason: "no_exist"
+      -
+        path: "/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/pkgRedirects/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/pkgRedirects/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+    found:
+      path: "/opt/homebrew/lib/cmake/SFML/SFMLConfig.cmake"
+      mode: "config"
+      version: "3.0.2"
+    search_context:
+      ENV{PATH}:
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/Library/Apple/usr/bin"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr"
+        - "/opt/homebrew"
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/opt/homebrew"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+        - "/sw"
+        - "/opt/local"
+      CMAKE_SYSTEM_FRAMEWORK_PATH:
+        - "~/Library/Frameworks"
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Library/Frameworks"
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Network/Library/Frameworks"
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks"
+        - "/Applications/Xcode.app/Contents/Developer/Library/Frameworks"
+        - "/Library/Frameworks"
+        - "/Network/Library/Frameworks"
+        - "/System/Library/Frameworks"
+  -
+    kind: "find_package-v1"
+    backtrace:
+      - "tests/CMakeLists.txt:65 (find_package)"
+    name: "SFML"
+    components:
+      -
+        name: "graphics"
+        required: true
+        found: false
+      -
+        name: "window"
+        required: true
+        found: false
+      -
+        name: "system"
+        required: true
+        found: false
+    configs:
+      -
+        filename: "SFMLConfig.cmake"
+        kind: "cmake"
+      -
+        filename: "sfml-config.cmake"
+        kind: "cmake"
+    version_request:
+      version: "2.5"
+      version_complete: "2.5"
+      exact: false
+    settings:
+      required: "optional"
+      quiet: true
+      global: false
+      policy_scope: true
+      bypass_provider: false
+      names:
+        - "SFML"
+      path_suffixes:
+        - ""
+      paths:
+        CMAKE_FIND_USE_CMAKE_PATH: true
+        CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+        CMAKE_FIND_USE_INSTALL_PREFIX: true
+        CMAKE_FIND_USE_PACKAGE_ROOT_PATH: true
+        CMAKE_FIND_USE_CMAKE_PACKAGE_REGISTRY: true
+        CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY: true
+        CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
+    candidates:
+      -
+        path: "/opt/homebrew/lib/cmake/SFML/SFMLConfig.cmake"
+        mode: "none?"
+        reason: "insufficient_version"
+      -
+        path: "/opt/homebrew/lib/cmake/SFML/sfml-config.cmake"
+        mode: "none?"
+        reason: "no_exist"
+      -
+        path: "/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/pkgRedirects/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/pkgRedirects/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/lib/cmake/SFML/SFMLConfig.cmake"
+        mode: "config"
+        reason: "insufficient_version"
+      -
+        path: "/opt/homebrew/lib/cmake/SFML/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Library/Frameworks/Python.framework/Versions/3.12/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Library/Frameworks/Python.framework/Versions/3.12/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/local/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/local/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/local/lib/cmake/SFML/SFMLConfig.cmake"
+        mode: "config"
+        reason: "insufficient_version"
+      -
+        path: "/usr/local/lib/cmake/SFML/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/System/Cryptexes/App/usr/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/System/Cryptexes/App/usr/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Library/Apple/usr/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Library/Apple/usr/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Library/Frameworks/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Library/Frameworks/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/System/Library/Frameworks/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/System/Library/Frameworks/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/afftobuss/Applications/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/afftobuss/Applications/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Applications/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Applications/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Developer/Applications/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Developer/Applications/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+    found: null
+    search_context:
+      ENV{PATH}:
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/Library/Apple/usr/bin"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr"
+        - "/opt/homebrew"
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/opt/homebrew"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+        - "/sw"
+        - "/opt/local"
+      CMAKE_SYSTEM_FRAMEWORK_PATH:
+        - "~/Library/Frameworks"
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Library/Frameworks"
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Network/Library/Frameworks"
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"
+        - "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks"
+        - "/Applications/Xcode.app/Contents/Developer/Library/Frameworks"
+        - "/Library/Frameworks"
+        - "/Network/Library/Frameworks"
+        - "/System/Library/Frameworks"
+...
+
+---
+events:
+  -
+    kind: "find_package-v1"
+    backtrace:
+      - "tests/CMakeLists.txt:65 (find_package)"
+    name: "SFML"
+    components:
+      -
+        name: "graphics"
+        required: true
+        found: false
+      -
+        name: "window"
+        required: true
+        found: false
+      -
+        name: "system"
+        required: true
+        found: false
+    configs:
+      -
+        filename: "SFMLConfig.cmake"
+        kind: "cmake"
+      -
+        filename: "sfml-config.cmake"
+        kind: "cmake"
+    version_request:
+      version: "2.5"
+      version_complete: "2.5"
+      exact: false
+    settings:
+      required: "optional"
+      quiet: true
+      global: false
+      policy_scope: true
+      bypass_provider: false
+      names:
+        - "SFML"
+      path_suffixes:
+        - ""
+      paths:
+        CMAKE_FIND_USE_CMAKE_PATH: true
+        CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+        CMAKE_FIND_USE_INSTALL_PREFIX: true
+        CMAKE_FIND_USE_PACKAGE_ROOT_PATH: true
+        CMAKE_FIND_USE_CMAKE_PACKAGE_REGISTRY: true
+        CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY: true
+        CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
+    candidates:
+      -
+        path: "/opt/homebrew/lib/cmake/SFML/SFMLConfig.cmake"
+        mode: "none?"
+        reason: "insufficient_version"
+      -
+        path: "/opt/homebrew/lib/cmake/SFML/sfml-config.cmake"
+        mode: "none?"
+        reason: "no_exist"
+      -
+        path: "/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/pkgRedirects/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/pkgRedirects/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/homebrew/lib/cmake/SFML/SFMLConfig.cmake"
+        mode: "config"
+        reason: "insufficient_version"
+      -
+        path: "/opt/homebrew/lib/cmake/SFML/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Library/Frameworks/Python.framework/Versions/3.12/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Library/Frameworks/Python.framework/Versions/3.12/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/local/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/local/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/local/lib/cmake/SFML/SFMLConfig.cmake"
+        mode: "config"
+        reason: "insufficient_version"
+      -
+        path: "/usr/local/lib/cmake/SFML/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/System/Cryptexes/App/usr/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/System/Cryptexes/App/usr/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Library/Apple/usr/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Library/Apple/usr/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/opt/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Library/Frameworks/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Library/Frameworks/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/System/Library/Frameworks/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/System/Library/Frameworks/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/afftobuss/Applications/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Users/afftobuss/Applications/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Applications/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Applications/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Developer/Applications/SFMLConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/Applications/Xcode.app/Contents/Developer/Applications/sfml-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+    found: null
+    search_context:
+      ENV{PATH}:
+        - "/opt/homebrew/bin"
         - "/opt/homebrew/bin"
         - "/opt/homebrew/sbin"
         - "/Library/Frameworks/Python.framework/Versions/3.12/bin"

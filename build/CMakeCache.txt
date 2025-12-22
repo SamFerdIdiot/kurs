@@ -21,7 +21,7 @@ BUILD_EXECUTABLE:BOOL=ON
 BUILD_GMOCK:BOOL=ON
 
 //Build tests
-BUILD_TESTS:BOOL=OFF
+BUILD_TESTS:BOOL=ON
 
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=CMAKE_ADDR2LINE-NOTFOUND
@@ -319,8 +319,8 @@ GTEST_HAS_ABSL:BOOL=OFF
 // may want to turn this OFF.)
 INSTALL_GTEST:BOOL=ON
 
-//No help, variable specified on the command line.
-SFML_DIR:UNINITIALIZED=/opt/homebrew/opt/sfml/lib/cmake/SFML
+//The directory containing a CMake configuration file for SFML.
+SFML_DIR:PATH=SFML_DIR-NOTFOUND
 
 //Path to a file.
 SFML_DOC_DIR:PATH=/opt/homebrew/share/doc/SFML
@@ -515,7 +515,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=5
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -561,7 +561,7 @@ CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding Python3
-FIND_PACKAGE_MESSAGE_DETAILS_Python3:INTERNAL=[/opt/homebrew/Frameworks/Python.framework/Versions/3.12/bin/python3.12][found components: Interpreter ][v3.12.11()]
+FIND_PACKAGE_MESSAGE_DETAILS_Python3:INTERNAL=[/opt/homebrew/Frameworks/Python.framework/Versions/3.14/bin/python3.14][found components: Interpreter ][v3.14.1()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //ADVANCED property for variable: GIT_EXECUTABLE
@@ -573,10 +573,10 @@ _Python3_Compiler_REASON_FAILURE:INTERNAL=
 //Development reason failure
 _Python3_Development_REASON_FAILURE:INTERNAL=
 //Path to a program.
-_Python3_EXECUTABLE:INTERNAL=/opt/homebrew/Frameworks/Python.framework/Versions/3.12/bin/python3.12
+_Python3_EXECUTABLE:INTERNAL=/opt/homebrew/Frameworks/Python.framework/Versions/3.14/bin/python3.14
 //Python3 Properties
-_Python3_INTERPRETER_PROPERTIES:INTERNAL=Python;3;12;11;64;32;<none>;cpython-312-darwin;abi3;/opt/homebrew/opt/python@3.12/Frameworks/Python.framework/Versions/3.12/lib/python3.12;/opt/homebrew/opt/python@3.12/Frameworks/Python.framework/Versions/3.12/lib/python3.12;/opt/homebrew/lib/python3.12/site-packages;/opt/homebrew/lib/python3.12/site-packages
-_Python3_INTERPRETER_SIGNATURE:INTERNAL=4a88e62a1732031393af8d56e6300efe
+_Python3_INTERPRETER_PROPERTIES:INTERNAL=Python;3;14;1;64;32;<none>;cpython-314-darwin;abi3;/opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14/lib/python3.14;/opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14/lib/python3.14;/opt/homebrew/lib/python3.14/site-packages;/opt/homebrew/lib/python3.14/site-packages
+_Python3_INTERPRETER_SIGNATURE:INTERNAL=4da903b75b0cefdfd671caa39a759f65
 //NumPy reason failure
 _Python3_NumPy_REASON_FAILURE:INTERNAL=
 cmake_package_name:INTERNAL=GTest

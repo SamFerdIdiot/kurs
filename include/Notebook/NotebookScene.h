@@ -5,6 +5,8 @@
 #include "PlayerState.h"
 #include "FontLoader.h"
 #include "Notebook/NotebookEntry.h"
+#include "EventManager.h"  // Добавлено для интеграции событий
+#include "ResourceEventSystem.h"  // Система событий по ресурсам
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <memory>
@@ -84,12 +86,22 @@ private:
     // === ВЫБОРЫ ===
     std::vector<NotebookChoice> m_choices;      // Выборы для текущей записи
     int m_selectedChoiceIndex;
+    float m_choiceTimer;                        // Время с момента появления выбора
+
+    // === СИСТЕМА СОБЫТИЙ ===
+    EventManager m_eventManager;                // Менеджер случайных событий
+    ResourceEventSystem m_resourceEventSystem;  // Система событий по ресурсам
+    float m_eventTriggerChance;                 // Шанс случайного события (0.0-1.0)
+    std::string m_pendingEventId;               // ID ожидающего события (если есть)
+    std::string m_pendingNextEntryId;           // ID следующей записи после события
 
     // === ХРАНИЛИЩЕ ЗАПИСЕЙ ===
     std::map<std::string, NotebookEntry> m_entries;  // Все загруженные записи
 
     // === ВИЗУАЛИЗАЦИЯ ===
-    sf::Font m_font;
+    sf::Font m_fontPresent;   // Шрифт для PRESENT (настоящее время)
+    sf::Font m_fontPast;      // Шрифт для PAST (воспоминания)
+    sf::Font m_fontThought;   // Шрифт для THOUGHT (мысли)
     bool m_fontLoaded;
 
     // === ЗВУК (для будущего) ===
@@ -139,24 +151,45 @@ private:
     void moveSelectionDown();
 
     /**
-     * @brief Загрузить тестовую запись (для прототипа)
+     * @brief Получить шрифт для текущего типа записи
      */
-    void loadTestEntry();
+    const sf::Font& getCurrentFont() const;
 
     /**
-     * @brief Загрузить запись о выезде из города (день 1)
+     * @brief Получить цвет текста для текущего типа записи
      */
-    void loadDayOneDeparture();
+    sf::Color getCurrentTextColor() const;
 
     /**
-     * @brief Загрузить тестовую PAST запись (воспоминание о Сергее)
+     * @brief Получить размер шрифта для текущего типа записи
      */
-    void loadPastMemory();
+    unsigned int getCurrentFontSize() const;
 
     /**
-     * @brief Загрузить тестовую THOUGHT запись (внутренний монолог)
+     * @brief Перенести текст по словам с учетом максимальной ширины
      */
-    void loadThoughtEntry();
+    std::string wrapText(const std::string& text, const sf::Font& font, unsigned int fontSize, float maxWidth) const;
+
+    // === ИНТЕГРАЦИЯ СОБЫТИЙ ===
+
+    /**
+     * @brief Попытаться вызвать случайное событие
+     * @return true если событие сработало
+     */
+    bool tryTriggerRandomEvent();
+
+    /**
+     * @brief Конвертировать GameEvent в NotebookEntry
+     * @param event Игровое событие
+     * @return Запись блокнота
+     */
+    NotebookEntry convertEventToEntry(const GameEvent& event);
+
+    /**
+     * @brief Показать событие как запись блокнота
+     * @param eventId ID события для показа
+     */
+    void showEventAsEntry(const std::string& eventId);
 
     // === ДЕНЬ 0: УРОКИ ДОРОГИ (будущая реализация) ===
 
@@ -175,31 +208,118 @@ private:
      */
     void loadDay0_FirstTask();
 
-    // Ветка А: Системный анализ
-    void loadDay0_BranchA_MapAndTower();
-    void loadDay0_BranchA_Geologist();
+    // Ветка А: Системный анализ (Понимание контекста)
+    void loadDay0_BranchA_MapAndTower();     // Запись 3А: Карта из ничего
+    void loadDay0_BranchA_Geologist();       // Запись 4А: Геолог
 
-    // Ветка Б: Чувство материала
-    void loadDay0_BranchB_EngineSong();
-    void loadDay0_BranchB_Blacksmith();
+    // Ветка Б: Слушать материал (Чувство машины)
+    void loadDay0_BranchB_Engine();          // Запись 3Б: Ритм двигателя
+    void loadDay0_BranchB_Blacksmith();      // Запись 4Б: Кузнец
+    void loadDay0_BranchB_Driver();          // Старое имя (для совместимости)
 
-    // Ветка В: Командная эксплуатация
-    void loadDay0_BranchC_TruckOnRoadside();
-    void loadDay0_BranchC_CafeStories();
+    // Ветка В: Спроси бывалого (Командная работа)
+    void loadDay0_BranchC_Truck();           // Запись 3В: Помощь на обочине
+    void loadDay0_BranchC_Teahouse();        // Запись 4В: Чай и разговоры
+    void loadDay0_BranchC_Package();         // Старое имя (для совместимости)
 
-    // Ветка Г: Ресурсоэффективность
-    void loadDay0_BranchD_EconomicRoute();
-    void loadDay0_BranchD_BoysAndScrap();
+    // Ветка Г: Ресурсоэффективность (Быстро и по делу)
+    void loadDay0_BranchD_Route();           // Запись 3Г: Расчёт маршрута
+    void loadDay0_BranchD_Boys();            // Запись 4Г: Мальчишки и металл
+    void loadDay0_BranchD_Choice();          // Старое имя (для совместимости)
+
+    // Общие записи (для всех веток)
+    /**
+     * @brief ЗАПИСЬ 5: Провокация (после всех веток)
+     */
+    void loadDay0_Provocation();
 
     /**
-     * @brief ЗАПИСЬ 7: Финал в гараже (PAST, общий для всех веток)
+     * @brief ЗАПИСЬ 6: Финал в гараже (PAST, общий для всех веток)
      */
     void loadDay0_GarageFinale();
 
     /**
-     * @brief ЗАПИСЬ 8: Переход в настоящее (PRESENT)
+     * @brief ЗАПИСЬ 7: Переход в настоящее (PRESENT)
      */
-    void loadDay0_TransitionToPresent();
+    void loadDay0_TransitionPresent();
+
+    // День 1: Переход границы
+    void loadDay1_BorderCrossing();
+    void loadDay1_CustomsCheck();
+
+    // === ТЕСТОВЫЕ ЗАПИСИ ===
+
+    /**
+     * @brief Тестовая запись для проверки ThoughtSystem (короткие задержки 5/10/15 сек)
+     */
+    void loadTestThoughtSystem();
+
+    // === ДЕМО-КОНТЕНТ (простой пример для быстрого тестирования) ===
+
+    /**
+     * @brief ДЕМО: Запись 1 - Начало (PAST, без выбора)
+     */
+    void loadDemo_Start();
+
+    /**
+     * @brief ДЕМО: Запись 2 - Дорога (PAST, без выбора)
+     */
+    void loadDemo_Road();
+
+    /**
+     * @brief ДЕМО: Запись 3 - Развилка (PRESENT, 2 выбора)
+     */
+    void loadDemo_Choice();
+
+    /**
+     * @brief ДЕМО: Запись 4A - Трасса (PAST)
+     */
+    void loadDemo_Highway();
+
+    /**
+     * @brief ДЕМО: Запись 4B - Проселок (PAST)
+     */
+    void loadDemo_Backroad();
+
+    /**
+     * @brief ДЕМО: Запись 5 - Финал (THOUGHT)
+     */
+    void loadDemo_Finale();
+
+    /**
+     * @brief ДЕМО: Придорожное кафе
+     */
+    void loadDemo_RestStop();
+
+    /**
+     * @brief ДЕМО: Встреча с механиком
+     */
+    void loadDemo_MechanicEncounter();
+
+    /**
+     * @brief ДЕМО: Низкий уровень топлива
+     */
+    void loadDemo_LowFuel();
+
+    /**
+     * @brief ДЕМО: Финальный выбор пути
+     */
+    void loadDemo_FinalChoice();
+
+    /**
+     * @brief ДЕМО: Путь через лес
+     */
+    void loadDemo_ForestPath();
+
+    /**
+     * @brief ДЕМО: Путь через город
+     */
+    void loadDemo_CityPath();
+
+    /**
+     * @brief ДЕМО: Конец демонстрации
+     */
+    void loadDemo_End();
 };
 
 #endif // NOTEBOOK_SCENE_H

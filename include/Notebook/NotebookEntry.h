@@ -26,12 +26,18 @@ struct NotebookChoice {
     std::vector<std::string> nextEntryIds;               // Возможные следующие записи (ветвление!)
     float probability = 1.0f;                            // Вероятность перехода к каждой записи
 
-    // Требования для активации выбора
+    // Требования для активации выбора (базовые ресурсы)
     float energyRequired = 0.0f;                         // Нужна энергия
     float fuelRequired = 0.0f;                           // Нужен бензин
     float moneyRequired = 0.0f;                          // Нужны деньги
     bool isDisabled = false;                             // Выбор заблокирован
     std::string disabledReason;                          // Причина блокировки
+
+    // Условия для скрытых выборов (появляются только при выполнении условий)
+    std::vector<std::string> requiredPrinciples;         // Требуемые принципы
+    std::vector<std::string> requiredTraits;             // Требуемые черты
+    std::vector<std::string> requiredStoryItems;         // Требуемые сюжетные предметы
+    bool isHidden = false;                               // Скрытый выбор (показывается только при выполнении условий)
 
     /**
      * @brief Проверить, доступен ли выбор для игрока

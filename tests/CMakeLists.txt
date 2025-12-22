@@ -51,6 +51,7 @@ set(LIB_SOURCES
     ${CMAKE_SOURCE_DIR}/src/Structure.cpp
     ${CMAKE_SOURCE_DIR}/src/GameStateManager.cpp
     ${CMAKE_SOURCE_DIR}/src/SaveSystem.cpp
+    ${CMAKE_SOURCE_DIR}/src/Notebook/NotebookEntry.cpp  # Для тестов Дня 0
     # ${CMAKE_SOURCE_DIR}/src/CharacterScene.cpp  # Excluded - uses SFML 3.x Event API
     # ${CMAKE_SOURCE_DIR}/src/CompanionsScene.cpp  # Excluded - uses SFML 3.x Event API
     # ${CMAKE_SOURCE_DIR}/src/QuestsScene.cpp  # Excluded - uses SFML 3.x Event API
@@ -89,9 +90,11 @@ set(UNIT_TEST_SOURCES
     # ${CMAKE_CURRENT_SOURCE_DIR}/unit/test_ui.cpp  # Excluded - requires UI classes
     # ${CMAKE_CURRENT_SOURCE_DIR}/unit/test_phase4_scenes.cpp  # Excluded - requires UI classes
     # ${CMAKE_CURRENT_SOURCE_DIR}/unit/test_phase4_scenes_improved.cpp  # Excluded - requires UI classes
-    ${CMAKE_CURRENT_SOURCE_DIR}/test_AbilityNode.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/test_AbilityTreeSystem.cpp
+    # ${CMAKE_CURRENT_SOURCE_DIR}/test_AbilityNode.cpp  # Excluded - abilities moved to inventory
+    # ${CMAKE_CURRENT_SOURCE_DIR}/test_AbilityTreeSystem.cpp  # Excluded - abilities moved to inventory
     ${CMAKE_CURRENT_SOURCE_DIR}/test_companion_system.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/test_day0_complete.cpp  # День 0: полное тестирование
+    ${CMAKE_CURRENT_SOURCE_DIR}/test_full_system_integration.cpp  # Полная интеграция систем
     # Add more unit test files here as they are created
     # ${CMAKE_CURRENT_SOURCE_DIR}/unit/test_character.cpp
     # ${CMAKE_CURRENT_SOURCE_DIR}/unit/test_car.cpp

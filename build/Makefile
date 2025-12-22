@@ -65,6 +65,16 @@ CMAKE_BINARY_DIR = /Users/afftobuss/Documents/GitHub/kurs/build
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running tests..."
+	/opt/homebrew/bin/ctest $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+.PHONY : test/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
@@ -87,7 +97,7 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target list_install_components
 list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\""
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\" \"gmock\" \"gtest\""
 .PHONY : list_install_components
 
 # Special rule for the target list_install_components
@@ -174,6 +184,108 @@ kkurs/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/build
 .PHONY : kkurs/fast
 
+#=============================================================================
+# Target rules for targets named kkurs_lib
+
+# Build rule for target.
+kkurs_lib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 kkurs_lib
+.PHONY : kkurs_lib
+
+# fast build rule for target.
+kkurs_lib/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/build
+.PHONY : kkurs_lib/fast
+
+#=============================================================================
+# Target rules for targets named unit_tests
+
+# Build rule for target.
+unit_tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 unit_tests
+.PHONY : unit_tests
+
+# fast build rule for target.
+unit_tests/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/build
+.PHONY : unit_tests/fast
+
+#=============================================================================
+# Target rules for targets named gmock
+
+# Build rule for target.
+gmock: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gmock
+.PHONY : gmock
+
+# fast build rule for target.
+gmock/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/build
+.PHONY : gmock/fast
+
+#=============================================================================
+# Target rules for targets named gmock_main
+
+# Build rule for target.
+gmock_main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gmock_main
+.PHONY : gmock_main
+
+# fast build rule for target.
+gmock_main/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/build
+.PHONY : gmock_main/fast
+
+#=============================================================================
+# Target rules for targets named gtest
+
+# Build rule for target.
+gtest: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gtest
+.PHONY : gtest
+
+# fast build rule for target.
+gtest/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build
+.PHONY : gtest/fast
+
+#=============================================================================
+# Target rules for targets named gtest_main
+
+# Build rule for target.
+gtest_main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gtest_main
+.PHONY : gtest_main
+
+# fast build rule for target.
+gtest_main/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build
+.PHONY : gtest_main/fast
+
+src/AbilityEffectManager.o: src/AbilityEffectManager.cpp.o
+.PHONY : src/AbilityEffectManager.o
+
+# target to build an object file
+src/AbilityEffectManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/AbilityEffectManager.cpp.o
+.PHONY : src/AbilityEffectManager.cpp.o
+
+src/AbilityEffectManager.i: src/AbilityEffectManager.cpp.i
+.PHONY : src/AbilityEffectManager.i
+
+# target to preprocess a source file
+src/AbilityEffectManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/AbilityEffectManager.cpp.i
+.PHONY : src/AbilityEffectManager.cpp.i
+
+src/AbilityEffectManager.s: src/AbilityEffectManager.cpp.s
+.PHONY : src/AbilityEffectManager.s
+
+# target to generate assembly for a file
+src/AbilityEffectManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/AbilityEffectManager.cpp.s
+.PHONY : src/AbilityEffectManager.cpp.s
+
 src/AbilityNode.o: src/AbilityNode.cpp.o
 .PHONY : src/AbilityNode.o
 
@@ -197,30 +309,6 @@ src/AbilityNode.s: src/AbilityNode.cpp.s
 src/AbilityNode.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/AbilityNode.cpp.s
 .PHONY : src/AbilityNode.cpp.s
-
-src/AbilityTreeScene.o: src/AbilityTreeScene.cpp.o
-.PHONY : src/AbilityTreeScene.o
-
-# target to build an object file
-src/AbilityTreeScene.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/AbilityTreeScene.cpp.o
-.PHONY : src/AbilityTreeScene.cpp.o
-
-src/AbilityTreeScene.i: src/AbilityTreeScene.cpp.i
-.PHONY : src/AbilityTreeScene.i
-
-# target to preprocess a source file
-src/AbilityTreeScene.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/AbilityTreeScene.cpp.i
-.PHONY : src/AbilityTreeScene.cpp.i
-
-src/AbilityTreeScene.s: src/AbilityTreeScene.cpp.s
-.PHONY : src/AbilityTreeScene.s
-
-# target to generate assembly for a file
-src/AbilityTreeScene.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/AbilityTreeScene.cpp.s
-.PHONY : src/AbilityTreeScene.cpp.s
 
 src/AbilityTreeSystem.o: src/AbilityTreeSystem.cpp.o
 .PHONY : src/AbilityTreeSystem.o
@@ -294,126 +382,6 @@ src/Character.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/Character.cpp.s
 .PHONY : src/Character.cpp.s
 
-src/CharacterCreationMenu.o: src/CharacterCreationMenu.cpp.o
-.PHONY : src/CharacterCreationMenu.o
-
-# target to build an object file
-src/CharacterCreationMenu.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/CharacterCreationMenu.cpp.o
-.PHONY : src/CharacterCreationMenu.cpp.o
-
-src/CharacterCreationMenu.i: src/CharacterCreationMenu.cpp.i
-.PHONY : src/CharacterCreationMenu.i
-
-# target to preprocess a source file
-src/CharacterCreationMenu.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/CharacterCreationMenu.cpp.i
-.PHONY : src/CharacterCreationMenu.cpp.i
-
-src/CharacterCreationMenu.s: src/CharacterCreationMenu.cpp.s
-.PHONY : src/CharacterCreationMenu.s
-
-# target to generate assembly for a file
-src/CharacterCreationMenu.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/CharacterCreationMenu.cpp.s
-.PHONY : src/CharacterCreationMenu.cpp.s
-
-src/CharacterCreationScene.o: src/CharacterCreationScene.cpp.o
-.PHONY : src/CharacterCreationScene.o
-
-# target to build an object file
-src/CharacterCreationScene.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/CharacterCreationScene.cpp.o
-.PHONY : src/CharacterCreationScene.cpp.o
-
-src/CharacterCreationScene.i: src/CharacterCreationScene.cpp.i
-.PHONY : src/CharacterCreationScene.i
-
-# target to preprocess a source file
-src/CharacterCreationScene.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/CharacterCreationScene.cpp.i
-.PHONY : src/CharacterCreationScene.cpp.i
-
-src/CharacterCreationScene.s: src/CharacterCreationScene.cpp.s
-.PHONY : src/CharacterCreationScene.s
-
-# target to generate assembly for a file
-src/CharacterCreationScene.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/CharacterCreationScene.cpp.s
-.PHONY : src/CharacterCreationScene.cpp.s
-
-src/CharacterScene.o: src/CharacterScene.cpp.o
-.PHONY : src/CharacterScene.o
-
-# target to build an object file
-src/CharacterScene.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/CharacterScene.cpp.o
-.PHONY : src/CharacterScene.cpp.o
-
-src/CharacterScene.i: src/CharacterScene.cpp.i
-.PHONY : src/CharacterScene.i
-
-# target to preprocess a source file
-src/CharacterScene.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/CharacterScene.cpp.i
-.PHONY : src/CharacterScene.cpp.i
-
-src/CharacterScene.s: src/CharacterScene.cpp.s
-.PHONY : src/CharacterScene.s
-
-# target to generate assembly for a file
-src/CharacterScene.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/CharacterScene.cpp.s
-.PHONY : src/CharacterScene.cpp.s
-
-src/CinematicEventScene.o: src/CinematicEventScene.cpp.o
-.PHONY : src/CinematicEventScene.o
-
-# target to build an object file
-src/CinematicEventScene.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/CinematicEventScene.cpp.o
-.PHONY : src/CinematicEventScene.cpp.o
-
-src/CinematicEventScene.i: src/CinematicEventScene.cpp.i
-.PHONY : src/CinematicEventScene.i
-
-# target to preprocess a source file
-src/CinematicEventScene.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/CinematicEventScene.cpp.i
-.PHONY : src/CinematicEventScene.cpp.i
-
-src/CinematicEventScene.s: src/CinematicEventScene.cpp.s
-.PHONY : src/CinematicEventScene.s
-
-# target to generate assembly for a file
-src/CinematicEventScene.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/CinematicEventScene.cpp.s
-.PHONY : src/CinematicEventScene.cpp.s
-
-src/CompanionsScene.o: src/CompanionsScene.cpp.o
-.PHONY : src/CompanionsScene.o
-
-# target to build an object file
-src/CompanionsScene.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/CompanionsScene.cpp.o
-.PHONY : src/CompanionsScene.cpp.o
-
-src/CompanionsScene.i: src/CompanionsScene.cpp.i
-.PHONY : src/CompanionsScene.i
-
-# target to preprocess a source file
-src/CompanionsScene.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/CompanionsScene.cpp.i
-.PHONY : src/CompanionsScene.cpp.i
-
-src/CompanionsScene.s: src/CompanionsScene.cpp.s
-.PHONY : src/CompanionsScene.s
-
-# target to generate assembly for a file
-src/CompanionsScene.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/CompanionsScene.cpp.s
-.PHONY : src/CompanionsScene.cpp.s
-
 src/DialogueManager.o: src/DialogueManager.cpp.o
 .PHONY : src/DialogueManager.o
 
@@ -438,29 +406,29 @@ src/DialogueManager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/DialogueManager.cpp.s
 .PHONY : src/DialogueManager.cpp.s
 
-src/EndGameScene.o: src/EndGameScene.cpp.o
-.PHONY : src/EndGameScene.o
+src/EventFactory.o: src/EventFactory.cpp.o
+.PHONY : src/EventFactory.o
 
 # target to build an object file
-src/EndGameScene.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/EndGameScene.cpp.o
-.PHONY : src/EndGameScene.cpp.o
+src/EventFactory.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/EventFactory.cpp.o
+.PHONY : src/EventFactory.cpp.o
 
-src/EndGameScene.i: src/EndGameScene.cpp.i
-.PHONY : src/EndGameScene.i
+src/EventFactory.i: src/EventFactory.cpp.i
+.PHONY : src/EventFactory.i
 
 # target to preprocess a source file
-src/EndGameScene.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/EndGameScene.cpp.i
-.PHONY : src/EndGameScene.cpp.i
+src/EventFactory.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/EventFactory.cpp.i
+.PHONY : src/EventFactory.cpp.i
 
-src/EndGameScene.s: src/EndGameScene.cpp.s
-.PHONY : src/EndGameScene.s
+src/EventFactory.s: src/EventFactory.cpp.s
+.PHONY : src/EventFactory.s
 
 # target to generate assembly for a file
-src/EndGameScene.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/EndGameScene.cpp.s
-.PHONY : src/EndGameScene.cpp.s
+src/EventFactory.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/EventFactory.cpp.s
+.PHONY : src/EventFactory.cpp.s
 
 src/EventManager.o: src/EventManager.cpp.o
 .PHONY : src/EventManager.o
@@ -509,6 +477,30 @@ src/ExperienceSystem.s: src/ExperienceSystem.cpp.s
 src/ExperienceSystem.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/ExperienceSystem.cpp.s
 .PHONY : src/ExperienceSystem.cpp.s
+
+src/FuelSystem.o: src/FuelSystem.cpp.o
+.PHONY : src/FuelSystem.o
+
+# target to build an object file
+src/FuelSystem.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/FuelSystem.cpp.o
+.PHONY : src/FuelSystem.cpp.o
+
+src/FuelSystem.i: src/FuelSystem.cpp.i
+.PHONY : src/FuelSystem.i
+
+# target to preprocess a source file
+src/FuelSystem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/FuelSystem.cpp.i
+.PHONY : src/FuelSystem.cpp.i
+
+src/FuelSystem.s: src/FuelSystem.cpp.s
+.PHONY : src/FuelSystem.s
+
+# target to generate assembly for a file
+src/FuelSystem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/FuelSystem.cpp.s
+.PHONY : src/FuelSystem.cpp.s
 
 src/GameStateManager.o: src/GameStateManager.cpp.o
 .PHONY : src/GameStateManager.o
@@ -582,30 +574,6 @@ src/GridInventorySystem.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/GridInventorySystem.cpp.s
 .PHONY : src/GridInventorySystem.cpp.s
 
-src/InventoryScene.o: src/InventoryScene.cpp.o
-.PHONY : src/InventoryScene.o
-
-# target to build an object file
-src/InventoryScene.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/InventoryScene.cpp.o
-.PHONY : src/InventoryScene.cpp.o
-
-src/InventoryScene.i: src/InventoryScene.cpp.i
-.PHONY : src/InventoryScene.i
-
-# target to preprocess a source file
-src/InventoryScene.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/InventoryScene.cpp.i
-.PHONY : src/InventoryScene.cpp.i
-
-src/InventoryScene.s: src/InventoryScene.cpp.s
-.PHONY : src/InventoryScene.s
-
-# target to generate assembly for a file
-src/InventoryScene.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/InventoryScene.cpp.s
-.PHONY : src/InventoryScene.cpp.s
-
 src/InventorySystem.o: src/InventorySystem.cpp.o
 .PHONY : src/InventorySystem.o
 
@@ -629,30 +597,6 @@ src/InventorySystem.s: src/InventorySystem.cpp.s
 src/InventorySystem.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/InventorySystem.cpp.s
 .PHONY : src/InventorySystem.cpp.s
-
-src/LocationScene.o: src/LocationScene.cpp.o
-.PHONY : src/LocationScene.o
-
-# target to build an object file
-src/LocationScene.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/LocationScene.cpp.o
-.PHONY : src/LocationScene.cpp.o
-
-src/LocationScene.i: src/LocationScene.cpp.i
-.PHONY : src/LocationScene.i
-
-# target to preprocess a source file
-src/LocationScene.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/LocationScene.cpp.i
-.PHONY : src/LocationScene.cpp.i
-
-src/LocationScene.s: src/LocationScene.cpp.s
-.PHONY : src/LocationScene.s
-
-# target to generate assembly for a file
-src/LocationScene.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/LocationScene.cpp.s
-.PHONY : src/LocationScene.cpp.s
 
 src/MainMenuScene.o: src/MainMenuScene.cpp.o
 .PHONY : src/MainMenuScene.o
@@ -678,30 +622,6 @@ src/MainMenuScene.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/MainMenuScene.cpp.s
 .PHONY : src/MainMenuScene.cpp.s
 
-src/MapScene.o: src/MapScene.cpp.o
-.PHONY : src/MapScene.o
-
-# target to build an object file
-src/MapScene.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/MapScene.cpp.o
-.PHONY : src/MapScene.cpp.o
-
-src/MapScene.i: src/MapScene.cpp.i
-.PHONY : src/MapScene.i
-
-# target to preprocess a source file
-src/MapScene.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/MapScene.cpp.i
-.PHONY : src/MapScene.cpp.i
-
-src/MapScene.s: src/MapScene.cpp.s
-.PHONY : src/MapScene.s
-
-# target to generate assembly for a file
-src/MapScene.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/MapScene.cpp.s
-.PHONY : src/MapScene.cpp.s
-
 src/NPC.o: src/NPC.cpp.o
 .PHONY : src/NPC.o
 
@@ -726,53 +646,77 @@ src/NPC.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/NPC.cpp.s
 .PHONY : src/NPC.cpp.s
 
-src/NodeScene.o: src/NodeScene.cpp.o
-.PHONY : src/NodeScene.o
+src/Notebook/NotebookEntry.o: src/Notebook/NotebookEntry.cpp.o
+.PHONY : src/Notebook/NotebookEntry.o
 
 # target to build an object file
-src/NodeScene.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/NodeScene.cpp.o
-.PHONY : src/NodeScene.cpp.o
+src/Notebook/NotebookEntry.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/Notebook/NotebookEntry.cpp.o
+.PHONY : src/Notebook/NotebookEntry.cpp.o
 
-src/NodeScene.i: src/NodeScene.cpp.i
-.PHONY : src/NodeScene.i
+src/Notebook/NotebookEntry.i: src/Notebook/NotebookEntry.cpp.i
+.PHONY : src/Notebook/NotebookEntry.i
 
 # target to preprocess a source file
-src/NodeScene.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/NodeScene.cpp.i
-.PHONY : src/NodeScene.cpp.i
+src/Notebook/NotebookEntry.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/Notebook/NotebookEntry.cpp.i
+.PHONY : src/Notebook/NotebookEntry.cpp.i
 
-src/NodeScene.s: src/NodeScene.cpp.s
-.PHONY : src/NodeScene.s
+src/Notebook/NotebookEntry.s: src/Notebook/NotebookEntry.cpp.s
+.PHONY : src/Notebook/NotebookEntry.s
 
 # target to generate assembly for a file
-src/NodeScene.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/NodeScene.cpp.s
-.PHONY : src/NodeScene.cpp.s
+src/Notebook/NotebookEntry.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/Notebook/NotebookEntry.cpp.s
+.PHONY : src/Notebook/NotebookEntry.cpp.s
 
-src/NotesScene.o: src/NotesScene.cpp.o
-.PHONY : src/NotesScene.o
+src/Notebook/NotebookScene.o: src/Notebook/NotebookScene.cpp.o
+.PHONY : src/Notebook/NotebookScene.o
 
 # target to build an object file
-src/NotesScene.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/NotesScene.cpp.o
-.PHONY : src/NotesScene.cpp.o
+src/Notebook/NotebookScene.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/Notebook/NotebookScene.cpp.o
+.PHONY : src/Notebook/NotebookScene.cpp.o
 
-src/NotesScene.i: src/NotesScene.cpp.i
-.PHONY : src/NotesScene.i
+src/Notebook/NotebookScene.i: src/Notebook/NotebookScene.cpp.i
+.PHONY : src/Notebook/NotebookScene.i
 
 # target to preprocess a source file
-src/NotesScene.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/NotesScene.cpp.i
-.PHONY : src/NotesScene.cpp.i
+src/Notebook/NotebookScene.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/Notebook/NotebookScene.cpp.i
+.PHONY : src/Notebook/NotebookScene.cpp.i
 
-src/NotesScene.s: src/NotesScene.cpp.s
-.PHONY : src/NotesScene.s
+src/Notebook/NotebookScene.s: src/Notebook/NotebookScene.cpp.s
+.PHONY : src/Notebook/NotebookScene.s
 
 # target to generate assembly for a file
-src/NotesScene.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/NotesScene.cpp.s
-.PHONY : src/NotesScene.cpp.s
+src/Notebook/NotebookScene.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/Notebook/NotebookScene.cpp.s
+.PHONY : src/Notebook/NotebookScene.cpp.s
+
+src/Notebook/ThoughtSystem.o: src/Notebook/ThoughtSystem.cpp.o
+.PHONY : src/Notebook/ThoughtSystem.o
+
+# target to build an object file
+src/Notebook/ThoughtSystem.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/Notebook/ThoughtSystem.cpp.o
+.PHONY : src/Notebook/ThoughtSystem.cpp.o
+
+src/Notebook/ThoughtSystem.i: src/Notebook/ThoughtSystem.cpp.i
+.PHONY : src/Notebook/ThoughtSystem.i
+
+# target to preprocess a source file
+src/Notebook/ThoughtSystem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/Notebook/ThoughtSystem.cpp.i
+.PHONY : src/Notebook/ThoughtSystem.cpp.i
+
+src/Notebook/ThoughtSystem.s: src/Notebook/ThoughtSystem.cpp.s
+.PHONY : src/Notebook/ThoughtSystem.s
+
+# target to generate assembly for a file
+src/Notebook/ThoughtSystem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/Notebook/ThoughtSystem.cpp.s
+.PHONY : src/Notebook/ThoughtSystem.cpp.s
 
 src/PlayerState.o: src/PlayerState.cpp.o
 .PHONY : src/PlayerState.o
@@ -822,29 +766,29 @@ src/QuestManager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/QuestManager.cpp.s
 .PHONY : src/QuestManager.cpp.s
 
-src/QuestsScene.o: src/QuestsScene.cpp.o
-.PHONY : src/QuestsScene.o
+src/ResourceEventSystem.o: src/ResourceEventSystem.cpp.o
+.PHONY : src/ResourceEventSystem.o
 
 # target to build an object file
-src/QuestsScene.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/QuestsScene.cpp.o
-.PHONY : src/QuestsScene.cpp.o
+src/ResourceEventSystem.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/ResourceEventSystem.cpp.o
+.PHONY : src/ResourceEventSystem.cpp.o
 
-src/QuestsScene.i: src/QuestsScene.cpp.i
-.PHONY : src/QuestsScene.i
+src/ResourceEventSystem.i: src/ResourceEventSystem.cpp.i
+.PHONY : src/ResourceEventSystem.i
 
 # target to preprocess a source file
-src/QuestsScene.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/QuestsScene.cpp.i
-.PHONY : src/QuestsScene.cpp.i
+src/ResourceEventSystem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/ResourceEventSystem.cpp.i
+.PHONY : src/ResourceEventSystem.cpp.i
 
-src/QuestsScene.s: src/QuestsScene.cpp.s
-.PHONY : src/QuestsScene.s
+src/ResourceEventSystem.s: src/ResourceEventSystem.cpp.s
+.PHONY : src/ResourceEventSystem.s
 
 # target to generate assembly for a file
-src/QuestsScene.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/QuestsScene.cpp.s
-.PHONY : src/QuestsScene.cpp.s
+src/ResourceEventSystem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/ResourceEventSystem.cpp.s
+.PHONY : src/ResourceEventSystem.cpp.s
 
 src/SaveSystem.o: src/SaveSystem.cpp.o
 .PHONY : src/SaveSystem.o
@@ -917,54 +861,6 @@ src/Structure.s: src/Structure.cpp.s
 src/Structure.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/Structure.cpp.s
 .PHONY : src/Structure.cpp.s
-
-src/TravelCinematicScene.o: src/TravelCinematicScene.cpp.o
-.PHONY : src/TravelCinematicScene.o
-
-# target to build an object file
-src/TravelCinematicScene.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/TravelCinematicScene.cpp.o
-.PHONY : src/TravelCinematicScene.cpp.o
-
-src/TravelCinematicScene.i: src/TravelCinematicScene.cpp.i
-.PHONY : src/TravelCinematicScene.i
-
-# target to preprocess a source file
-src/TravelCinematicScene.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/TravelCinematicScene.cpp.i
-.PHONY : src/TravelCinematicScene.cpp.i
-
-src/TravelCinematicScene.s: src/TravelCinematicScene.cpp.s
-.PHONY : src/TravelCinematicScene.s
-
-# target to generate assembly for a file
-src/TravelCinematicScene.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/TravelCinematicScene.cpp.s
-.PHONY : src/TravelCinematicScene.cpp.s
-
-src/TravelSelectionScene.o: src/TravelSelectionScene.cpp.o
-.PHONY : src/TravelSelectionScene.o
-
-# target to build an object file
-src/TravelSelectionScene.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/TravelSelectionScene.cpp.o
-.PHONY : src/TravelSelectionScene.cpp.o
-
-src/TravelSelectionScene.i: src/TravelSelectionScene.cpp.i
-.PHONY : src/TravelSelectionScene.i
-
-# target to preprocess a source file
-src/TravelSelectionScene.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/TravelSelectionScene.cpp.i
-.PHONY : src/TravelSelectionScene.cpp.i
-
-src/TravelSelectionScene.s: src/TravelSelectionScene.cpp.s
-.PHONY : src/TravelSelectionScene.s
-
-# target to generate assembly for a file
-src/TravelSelectionScene.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/TravelSelectionScene.cpp.s
-.PHONY : src/TravelSelectionScene.cpp.s
 
 src/UI/HUDPanel.o: src/UI/HUDPanel.cpp.o
 .PHONY : src/UI/HUDPanel.o
@@ -1074,13 +970,20 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... test"
+	@echo "... gmock"
+	@echo "... gmock_main"
+	@echo "... gtest"
+	@echo "... gtest_main"
 	@echo "... kkurs"
+	@echo "... kkurs_lib"
+	@echo "... unit_tests"
+	@echo "... src/AbilityEffectManager.o"
+	@echo "... src/AbilityEffectManager.i"
+	@echo "... src/AbilityEffectManager.s"
 	@echo "... src/AbilityNode.o"
 	@echo "... src/AbilityNode.i"
 	@echo "... src/AbilityNode.s"
-	@echo "... src/AbilityTreeScene.o"
-	@echo "... src/AbilityTreeScene.i"
-	@echo "... src/AbilityTreeScene.s"
 	@echo "... src/AbilityTreeSystem.o"
 	@echo "... src/AbilityTreeSystem.i"
 	@echo "... src/AbilityTreeSystem.s"
@@ -1090,33 +993,21 @@ help:
 	@echo "... src/Character.o"
 	@echo "... src/Character.i"
 	@echo "... src/Character.s"
-	@echo "... src/CharacterCreationMenu.o"
-	@echo "... src/CharacterCreationMenu.i"
-	@echo "... src/CharacterCreationMenu.s"
-	@echo "... src/CharacterCreationScene.o"
-	@echo "... src/CharacterCreationScene.i"
-	@echo "... src/CharacterCreationScene.s"
-	@echo "... src/CharacterScene.o"
-	@echo "... src/CharacterScene.i"
-	@echo "... src/CharacterScene.s"
-	@echo "... src/CinematicEventScene.o"
-	@echo "... src/CinematicEventScene.i"
-	@echo "... src/CinematicEventScene.s"
-	@echo "... src/CompanionsScene.o"
-	@echo "... src/CompanionsScene.i"
-	@echo "... src/CompanionsScene.s"
 	@echo "... src/DialogueManager.o"
 	@echo "... src/DialogueManager.i"
 	@echo "... src/DialogueManager.s"
-	@echo "... src/EndGameScene.o"
-	@echo "... src/EndGameScene.i"
-	@echo "... src/EndGameScene.s"
+	@echo "... src/EventFactory.o"
+	@echo "... src/EventFactory.i"
+	@echo "... src/EventFactory.s"
 	@echo "... src/EventManager.o"
 	@echo "... src/EventManager.i"
 	@echo "... src/EventManager.s"
 	@echo "... src/ExperienceSystem.o"
 	@echo "... src/ExperienceSystem.i"
 	@echo "... src/ExperienceSystem.s"
+	@echo "... src/FuelSystem.o"
+	@echo "... src/FuelSystem.i"
+	@echo "... src/FuelSystem.s"
 	@echo "... src/GameStateManager.o"
 	@echo "... src/GameStateManager.i"
 	@echo "... src/GameStateManager.s"
@@ -1126,39 +1017,33 @@ help:
 	@echo "... src/GridInventorySystem.o"
 	@echo "... src/GridInventorySystem.i"
 	@echo "... src/GridInventorySystem.s"
-	@echo "... src/InventoryScene.o"
-	@echo "... src/InventoryScene.i"
-	@echo "... src/InventoryScene.s"
 	@echo "... src/InventorySystem.o"
 	@echo "... src/InventorySystem.i"
 	@echo "... src/InventorySystem.s"
-	@echo "... src/LocationScene.o"
-	@echo "... src/LocationScene.i"
-	@echo "... src/LocationScene.s"
 	@echo "... src/MainMenuScene.o"
 	@echo "... src/MainMenuScene.i"
 	@echo "... src/MainMenuScene.s"
-	@echo "... src/MapScene.o"
-	@echo "... src/MapScene.i"
-	@echo "... src/MapScene.s"
 	@echo "... src/NPC.o"
 	@echo "... src/NPC.i"
 	@echo "... src/NPC.s"
-	@echo "... src/NodeScene.o"
-	@echo "... src/NodeScene.i"
-	@echo "... src/NodeScene.s"
-	@echo "... src/NotesScene.o"
-	@echo "... src/NotesScene.i"
-	@echo "... src/NotesScene.s"
+	@echo "... src/Notebook/NotebookEntry.o"
+	@echo "... src/Notebook/NotebookEntry.i"
+	@echo "... src/Notebook/NotebookEntry.s"
+	@echo "... src/Notebook/NotebookScene.o"
+	@echo "... src/Notebook/NotebookScene.i"
+	@echo "... src/Notebook/NotebookScene.s"
+	@echo "... src/Notebook/ThoughtSystem.o"
+	@echo "... src/Notebook/ThoughtSystem.i"
+	@echo "... src/Notebook/ThoughtSystem.s"
 	@echo "... src/PlayerState.o"
 	@echo "... src/PlayerState.i"
 	@echo "... src/PlayerState.s"
 	@echo "... src/QuestManager.o"
 	@echo "... src/QuestManager.i"
 	@echo "... src/QuestManager.s"
-	@echo "... src/QuestsScene.o"
-	@echo "... src/QuestsScene.i"
-	@echo "... src/QuestsScene.s"
+	@echo "... src/ResourceEventSystem.o"
+	@echo "... src/ResourceEventSystem.i"
+	@echo "... src/ResourceEventSystem.s"
 	@echo "... src/SaveSystem.o"
 	@echo "... src/SaveSystem.i"
 	@echo "... src/SaveSystem.s"
@@ -1168,12 +1053,6 @@ help:
 	@echo "... src/Structure.o"
 	@echo "... src/Structure.i"
 	@echo "... src/Structure.s"
-	@echo "... src/TravelCinematicScene.o"
-	@echo "... src/TravelCinematicScene.i"
-	@echo "... src/TravelCinematicScene.s"
-	@echo "... src/TravelSelectionScene.o"
-	@echo "... src/TravelSelectionScene.i"
-	@echo "... src/TravelSelectionScene.s"
 	@echo "... src/UI/HUDPanel.o"
 	@echo "... src/UI/HUDPanel.i"
 	@echo "... src/UI/HUDPanel.s"

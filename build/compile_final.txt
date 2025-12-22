@@ -1,7 +1,0 @@
-[  5%] Building CXX object CMakeFiles/kkurs.dir/src/InventoryScene.cpp.o
-[  5%] Building CXX object CMakeFiles/kkurs.dir/src/UI/HUDPanel.cpp.o
-[  8%] Linking CXX executable kkurs
-Copying fonts to build directory
-Copying Press_Start_2P font to build directory
-Copying Jersey_10 font to build directory
-[100%] Built target kkurs

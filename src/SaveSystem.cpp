@@ -165,16 +165,17 @@ std::string SaveSystem::serializePlayerState(const PlayerState& playerState) con
     oss << "  \"version\": 1,\n";
     oss << "  \"timestamp\": " << now << ",\n";
     
-    // [MVP] Disabled - Resource state (uncomment to enable)
-    /*
     // Basic player state
     oss << "  \"energy\": " << playerState.getEnergy() << ",\n";
     oss << "  \"money\": " << playerState.getMoney() << ",\n";
     oss << "  \"fuel\": " << playerState.getFuel() << ",\n";
+    oss << "  \"vehicleCondition\": " << playerState.getVehicleCondition() << ",\n";
+    oss << "  \"mood\": " << playerState.getMood() << ",\n";
+    oss << "  \"reputation\": " << playerState.getReputation() << ",\n";
     oss << "  \"origin\": " << static_cast<int>(playerState.getOrigin()) << ",\n";
     oss << "  \"carType\": " << static_cast<int>(playerState.getCarType()) << ",\n";
-    */
     oss << "  \"currentNodeId\": " << playerState.getCurrentNodeId() << ",\n";
+    oss << "  \"currentNotebookEntryId\": \"" << playerState.getCurrentNotebookEntryId() << "\",\n";
 
     // [MVP] Disabled - Inventory (uncomment to enable)
     /*
@@ -288,10 +289,40 @@ std::string SaveSystem::serializePlayerState(const PlayerState& playerState) con
         oss << "    }";
         firstNPC = false;
     }
+    oss << "\n  ],\n";
+
+    // Principles - скрытые атрибуты для условных выборов
+    oss << "  \"principles\": [\n";
+    bool firstPrinciple = true;
+    for (const auto& principle : playerState.getPrinciples()) {
+        if (!firstPrinciple) oss << ",\n";
+        oss << "    \"" << principle << "\"";
+        firstPrinciple = false;
+    }
+    oss << "\n  ],\n";
+
+    // Traits - черты характера игрока
+    oss << "  \"traits\": [\n";
+    bool firstTrait = true;
+    for (const auto& trait : playerState.getTraits()) {
+        if (!firstTrait) oss << ",\n";
+        oss << "    \"" << trait << "\"";
+        firstTrait = false;
+    }
+    oss << "\n  ],\n";
+
+    // Story Items - сюжетные артефакты
+    oss << "  \"storyItems\": [\n";
+    bool firstItem = true;
+    for (const auto& item : playerState.getStoryItems()) {
+        if (!firstItem) oss << ",\n";
+        oss << "    \"" << item << "\"";
+        firstItem = false;
+    }
     oss << "\n  ]\n";
-    
+
     oss << "}\n";
-    
+
     return oss.str();
 }
 
@@ -307,17 +338,63 @@ bool SaveSystem::deserializePlayerState(const std::string& data, PlayerState& pl
     
     std::istringstream iss(data);
     std::string line;
-    
+
     float energy = 0.0f, money = 0.0f, fuel = 0.0f;
+    float vehicleCondition = 100.0f, mood = 70.0f;
     int origin = 0, carType = 0, currentNodeId = 0;
-    
+    int reputation = 0;
+    std::string currentNotebookEntryId = "tutorial_start";  // Default value
+    std::vector<std::string> principles, traits, storyItems;
+    std::string currentArray = "";  // Track which array we're parsing
+
     while (std::getline(iss, line)) {
-        // Skip empty lines, braces, and nested structures
-        if (line.find("{") != std::string::npos || 
-            line.find("}") != std::string::npos || 
-            line.find("[") != std::string::npos ||
-            line.find("]") != std::string::npos ||
+        // Skip empty lines and braces
+        if (line.find("{") != std::string::npos ||
+            line.find("}") != std::string::npos ||
             line.empty()) {
+            continue;
+        }
+
+        // Check if we're starting an array
+        if (line.find("\"principles\"") != std::string::npos) {
+            currentArray = "principles";
+            continue;
+        } else if (line.find("\"traits\"") != std::string::npos) {
+            currentArray = "traits";
+            continue;
+        } else if (line.find("\"storyItems\"") != std::string::npos) {
+            currentArray = "storyItems";
+            continue;
+        }
+
+        // Check if we're ending an array
+        if (line.find("]") != std::string::npos) {
+            currentArray = "";
+            continue;
+        }
+
+        // If we're inside an array, parse array elements
+        if (!currentArray.empty()) {
+            // Extract string value from line like: "    \"analytical\","
+            size_t firstQuote = line.find("\"");
+            if (firstQuote != std::string::npos) {
+                size_t secondQuote = line.find("\"", firstQuote + 1);
+                if (secondQuote != std::string::npos) {
+                    std::string value = line.substr(firstQuote + 1, secondQuote - firstQuote - 1);
+                    if (currentArray == "principles") {
+                        principles.push_back(value);
+                    } else if (currentArray == "traits") {
+                        traits.push_back(value);
+                    } else if (currentArray == "storyItems") {
+                        storyItems.push_back(value);
+                    }
+                }
+            }
+            continue;
+        }
+
+        // Skip other arrays we don't parse
+        if (line.find("[") != std::string::npos) {
             continue;
         }
         
@@ -341,28 +418,51 @@ bool SaveSystem::deserializePlayerState(const std::string& data, PlayerState& pl
             money = std::stof(value);
         } else if (key == "fuel") {
             fuel = std::stof(value);
+        } else if (key == "vehicleCondition") {
+            vehicleCondition = std::stof(value);
+        } else if (key == "mood") {
+            mood = std::stof(value);
+        } else if (key == "reputation") {
+            reputation = std::stoi(value);
         } else if (key == "origin") {
             origin = std::stoi(value);
         } else if (key == "carType") {
             carType = std::stoi(value);
         } else if (key == "currentNodeId") {
             currentNodeId = std::stoi(value);
+        } else if (key == "currentNotebookEntryId") {
+            // Remove quotes from string value
+            value.erase(0, value.find_first_not_of("\""));
+            value.erase(value.find_last_not_of("\"") + 1);
+            currentNotebookEntryId = value;
         }
         // Note: Inventory, quests, and dialogue history parsing would go here
         // For a production system, use a proper JSON library like nlohmann/json
     }
     
     // Apply values to player state
-    // [MVP] Disabled - Resource loading (uncomment to enable)
-    /*
     playerState.setEnergy(energy);
     playerState.setMoney(money);
     playerState.setFuel(fuel);
+    playerState.setVehicleCondition(vehicleCondition);
+    playerState.setMood(mood);
+    playerState.setReputation(reputation);
     playerState.setOrigin(static_cast<OriginType>(origin));
     playerState.setCarType(static_cast<CarType>(carType));
-    */
     playerState.setCurrentNodeId(currentNodeId);
-    
+    playerState.setCurrentNotebookEntryId(currentNotebookEntryId);
+
+    // Load principles, traits, and story items
+    for (const auto& principle : principles) {
+        playerState.addPrinciple(principle);
+    }
+    for (const auto& trait : traits) {
+        playerState.addTrait(trait);
+    }
+    for (const auto& item : storyItems) {
+        playerState.addStoryItem(item);
+    }
+
     return true;
 }
 

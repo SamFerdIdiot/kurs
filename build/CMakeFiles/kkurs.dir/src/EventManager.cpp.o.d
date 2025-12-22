@@ -754,6 +754,14 @@ CMakeFiles/kkurs.dir/src/EventManager.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/_types/_nl_item.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__locale_dir/locale_base_api/bsd_locale_defaults.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/cstdarg \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/map \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/is_transparent.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/erase_if_container.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/ranges_iterator_traits.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__node_handle \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__tree \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/can_extract_key.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/remove_const_ref.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/functional \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/binary_negate.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/bind.h \
@@ -769,13 +777,7 @@ CMakeFiles/kkurs.dir/src/EventManager.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/strip_signature.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/boyer_moore_searcher.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/unordered_map \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/is_transparent.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__hash_table \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/can_extract_key.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/remove_const_ref.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/erase_if_container.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/ranges_iterator_traits.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__node_handle \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/default_searcher.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/not_fn.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/perfect_forward.h \
@@ -785,42 +787,42 @@ CMakeFiles/kkurs.dir/src/EventManager.cpp.o: \
   /Users/afftobuss/Documents/GitHub/kurs/include/GameStateManager.h \
   /Users/afftobuss/Documents/GitHub/kurs/include/PlayerState.h \
   /Users/afftobuss/Documents/GitHub/kurs/include/GameTypes.h \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/BlendMode.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/Export.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Config.hpp \
+  /opt/homebrew/include/SFML/Graphics.hpp \
+  /opt/homebrew/include/SFML/Graphics/BlendMode.hpp \
+  /opt/homebrew/include/SFML/Graphics/Export.hpp \
+  /opt/homebrew/include/SFML/Config.hpp \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/TargetConditionals.h \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/CircleShape.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/Shape.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/Color.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/Color.inl \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/Drawable.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/PrimitiveType.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/Rect.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/System/Vector2.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/System/Export.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/System/Angle.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/System/Angle.inl \
+  /opt/homebrew/include/SFML/Graphics/CircleShape.hpp \
+  /opt/homebrew/include/SFML/Graphics/Shape.hpp \
+  /opt/homebrew/include/SFML/Graphics/Color.hpp \
+  /opt/homebrew/include/SFML/Graphics/Color.inl \
+  /opt/homebrew/include/SFML/Graphics/Drawable.hpp \
+  /opt/homebrew/include/SFML/Graphics/PrimitiveType.hpp \
+  /opt/homebrew/include/SFML/Graphics/Rect.hpp \
+  /opt/homebrew/include/SFML/System/Vector2.hpp \
+  /opt/homebrew/include/SFML/System/Export.hpp \
+  /opt/homebrew/include/SFML/System/Angle.hpp \
+  /opt/homebrew/include/SFML/System/Angle.inl \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/cassert \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/assert.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/_assert.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/_static_assert.h \
-  /opt/homebrew/opt/sfml/include/SFML/System/Vector2.inl \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/Rect.inl \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/RenderStates.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/CoordinateType.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/StencilMode.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/Transform.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/Transform.inl \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/Transformable.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/VertexArray.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/Vertex.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/ConvexShape.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/Font.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/Glyph.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/Texture.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Window/GlResource.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Window/Export.hpp \
+  /opt/homebrew/include/SFML/System/Vector2.inl \
+  /opt/homebrew/include/SFML/Graphics/Rect.inl \
+  /opt/homebrew/include/SFML/Graphics/RenderStates.hpp \
+  /opt/homebrew/include/SFML/Graphics/CoordinateType.hpp \
+  /opt/homebrew/include/SFML/Graphics/StencilMode.hpp \
+  /opt/homebrew/include/SFML/Graphics/Transform.hpp \
+  /opt/homebrew/include/SFML/Graphics/Transform.inl \
+  /opt/homebrew/include/SFML/Graphics/Transformable.hpp \
+  /opt/homebrew/include/SFML/Graphics/VertexArray.hpp \
+  /opt/homebrew/include/SFML/Graphics/Vertex.hpp \
+  /opt/homebrew/include/SFML/Graphics/ConvexShape.hpp \
+  /opt/homebrew/include/SFML/Graphics/Font.hpp \
+  /opt/homebrew/include/SFML/Graphics/Glyph.hpp \
+  /opt/homebrew/include/SFML/Graphics/Texture.hpp \
+  /opt/homebrew/include/SFML/Window/GlResource.hpp \
+  /opt/homebrew/include/SFML/Window/Export.hpp \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/filesystem \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/copy_options.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/directory_entry.h \
@@ -854,59 +856,60 @@ CMakeFiles/kkurs.dir/src/EventManager.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/path_iterator.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/recursive_directory_iterator.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/u8path.h \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/Image.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/RectangleShape.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/RenderTarget.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/View.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/RenderTexture.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Window/ContextSettings.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/RenderWindow.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Window/VideoMode.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Window/Window.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Window/WindowBase.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Window/Vulkan.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Window/WindowEnums.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Window/WindowHandle.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/System/Time.hpp \
+  /opt/homebrew/include/SFML/Graphics/Image.hpp \
+  /opt/homebrew/include/SFML/Graphics/RectangleShape.hpp \
+  /opt/homebrew/include/SFML/Graphics/RenderTarget.hpp \
+  /opt/homebrew/include/SFML/Graphics/View.hpp \
+  /opt/homebrew/include/SFML/Graphics/RenderTexture.hpp \
+  /opt/homebrew/include/SFML/Window/ContextSettings.hpp \
+  /opt/homebrew/include/SFML/Graphics/RenderWindow.hpp \
+  /opt/homebrew/include/SFML/Window/VideoMode.hpp \
+  /opt/homebrew/include/SFML/Window/Window.hpp \
+  /opt/homebrew/include/SFML/Window/WindowBase.hpp \
+  /opt/homebrew/include/SFML/Window/Vulkan.hpp \
+  /opt/homebrew/include/SFML/Window/WindowEnums.hpp \
+  /opt/homebrew/include/SFML/Window/WindowHandle.hpp \
+  /opt/homebrew/include/SFML/System/Time.hpp \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/chrono \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/forward_list \
-  /opt/homebrew/opt/sfml/include/SFML/System/Time.inl \
-  /opt/homebrew/opt/sfml/include/SFML/Window/WindowBase.inl \
-  /opt/homebrew/opt/sfml/include/SFML/Window/Event.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Window/Joystick.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/System/String.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/System/Utf.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/System/Utf.inl \
-  /opt/homebrew/opt/sfml/include/SFML/System/String.inl \
-  /opt/homebrew/opt/sfml/include/SFML/Window/Keyboard.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Window/Mouse.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Window/Sensor.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/System/Vector3.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/System/Vector3.inl \
-  /opt/homebrew/opt/sfml/include/SFML/Window/Event.inl \
-  /opt/homebrew/opt/sfml/include/SFML/System/Clock.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/Shader.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/Glsl.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/Glsl.inl \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/Sprite.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/Text.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Graphics/VertexBuffer.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Window.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Window/Clipboard.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Window/Context.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Window/Cursor.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/Window/Touch.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/System.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/System/Err.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/System/Exception.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/System/FileInputStream.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/System/InputStream.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/System/MemoryInputStream.hpp \
-  /opt/homebrew/opt/sfml/include/SFML/System/Sleep.hpp \
+  /opt/homebrew/include/SFML/System/Time.inl \
+  /opt/homebrew/include/SFML/Window/WindowBase.inl \
+  /opt/homebrew/include/SFML/Window/Event.hpp \
+  /opt/homebrew/include/SFML/Window/Joystick.hpp \
+  /opt/homebrew/include/SFML/System/String.hpp \
+  /opt/homebrew/include/SFML/System/Utf.hpp \
+  /opt/homebrew/include/SFML/System/Utf.inl \
+  /opt/homebrew/include/SFML/System/String.inl \
+  /opt/homebrew/include/SFML/Window/Keyboard.hpp \
+  /opt/homebrew/include/SFML/Window/Mouse.hpp \
+  /opt/homebrew/include/SFML/Window/Sensor.hpp \
+  /opt/homebrew/include/SFML/System/Vector3.hpp \
+  /opt/homebrew/include/SFML/System/Vector3.inl \
+  /opt/homebrew/include/SFML/Window/Event.inl \
+  /opt/homebrew/include/SFML/System/Clock.hpp \
+  /opt/homebrew/include/SFML/Graphics/Shader.hpp \
+  /opt/homebrew/include/SFML/Graphics/Glsl.hpp \
+  /opt/homebrew/include/SFML/Graphics/Glsl.inl \
+  /opt/homebrew/include/SFML/Graphics/Sprite.hpp \
+  /opt/homebrew/include/SFML/Graphics/Text.hpp \
+  /opt/homebrew/include/SFML/Graphics/VertexBuffer.hpp \
+  /opt/homebrew/include/SFML/Window.hpp \
+  /opt/homebrew/include/SFML/Window/Clipboard.hpp \
+  /opt/homebrew/include/SFML/Window/Context.hpp \
+  /opt/homebrew/include/SFML/Window/Cursor.hpp \
+  /opt/homebrew/include/SFML/Window/Touch.hpp \
+  /opt/homebrew/include/SFML/System.hpp \
+  /opt/homebrew/include/SFML/System/Err.hpp \
+  /opt/homebrew/include/SFML/System/Exception.hpp \
+  /opt/homebrew/include/SFML/System/FileInputStream.hpp \
+  /opt/homebrew/include/SFML/System/InputStream.hpp \
+  /opt/homebrew/include/SFML/System/MemoryInputStream.hpp \
+  /opt/homebrew/include/SFML/System/Sleep.hpp \
   /Users/afftobuss/Documents/GitHub/kurs/include/InventorySystem.h \
   /Users/afftobuss/Documents/GitHub/kurs/include/Item.h \
   /Users/afftobuss/Documents/GitHub/kurs/include/SaveSystem.h \
   /Users/afftobuss/Documents/GitHub/kurs/include/Location.h \
+  /Users/afftobuss/Documents/GitHub/kurs/include/NPC.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/random \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/bernoulli_distribution.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/uniform_real_distribution.h \

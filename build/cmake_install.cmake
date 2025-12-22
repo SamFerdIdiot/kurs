@@ -42,7 +42,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/kkurs" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/kkurs")
     execute_process(COMMAND /usr/bin/install_name_tool
-      -delete_rpath "/opt/homebrew/opt/sfml/lib"
+      -delete_rpath "/opt/homebrew/lib"
       "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/kkurs")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" -u -r "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/kkurs")
@@ -52,6 +52,12 @@ endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   include("/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles/kkurs.dir/install-cxx-module-bmi-noconfig.cmake" OPTIONAL)
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for each subdirectory.
+  include("/Users/afftobuss/Documents/GitHub/kurs/build/tests/cmake_install.cmake")
+
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT

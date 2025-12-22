@@ -37,7 +37,7 @@ MainMenuScene::MainMenuScene()
     m_continueText->setFillColor(hasSave ? UI::Color::ACCENT_GREEN : UI::Color::TEXT_SECONDARY);
     m_continueText->setPosition(sf::Vector2f(550.0f, 420.0f));
 
-    m_journalText.emplace(m_font, "БЛОКНОТ (ТЕСТ)", UI::FONT_SIZE_SUBTITLE);
+    m_journalText.emplace(m_font, "TESTS", UI::FONT_SIZE_SUBTITLE);
     m_journalText->setFillColor(UI::Color::ACCENT_GREEN);
     m_journalText->setPosition(sf::Vector2f(550.0f, 490.0f));
 
@@ -76,10 +76,12 @@ void MainMenuScene::handleInput(const sf::Event& event) {
             case sf::Keyboard::Key::Space:
                 // Handle selection
                 switch (m_selectedIndex) {
-                    case 0: // New Game - skip character creation, go straight to travel
-                        // [MVP] Character creation removed - start directly at Moscow
+                    case 0: // New Game - start with DEMO
+                        // ДЕМО: Игра начинается с простого демо-контента
+                        // ПРИМЕЧАНИЕ: Измени "demo_start" на "day0_knock" когда добавишь свой сюжет!
                         GameStateManager::getInstance().getPlayerState().setCurrentCityIndex(0);
-                        m_nextScene = SceneType::TRAVEL_SELECTION;
+                        GameStateManager::getInstance().getPlayerState().setCurrentNotebookEntryId("demo_start");
+                        m_nextScene = SceneType::NOTEBOOK;
                         m_isFinished = true;
                         break;
                     case 1: // Continue
@@ -87,8 +89,8 @@ void MainMenuScene::handleInput(const sf::Event& event) {
                         if (GameStateManager::getInstance().hasSaveGame()) {
                             // Load the game
                             if (GameStateManager::getInstance().loadGame()) {
-                                // After loading, go to the node scene (or appropriate scene)
-                                m_nextScene = SceneType::NODE;
+                                // After loading, continue in the Notebook
+                                m_nextScene = SceneType::NOTEBOOK;
                                 m_isFinished = true;
                             } else {
                                 std::cerr << "Failed to load game, staying on main menu" << std::endl;
@@ -98,6 +100,8 @@ void MainMenuScene::handleInput(const sf::Event& event) {
                         }
                         break;
                     case 2: // Notebook (Test)
+                        // Установить тестовую запись для ThoughtSystem
+                        GameStateManager::getInstance().getPlayerState().setCurrentNotebookEntryId("test_thought_system");
                         m_nextScene = SceneType::NOTEBOOK;
                         m_isFinished = true;
                         break;

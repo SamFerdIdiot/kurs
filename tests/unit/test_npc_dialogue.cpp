@@ -12,6 +12,14 @@ protected:
     void SetUp() override {
         // Clean up NPCManager before each test
         NPCManager::getInstance().clear();
+        // Reset max team size to default
+        NPCManager::getInstance().setMaxTeamSize(3);
+    }
+
+    void TearDown() override {
+        // Reset to default state after each test
+        NPCManager::getInstance().clear();
+        NPCManager::getInstance().setMaxTeamSize(3);
     }
 };
 

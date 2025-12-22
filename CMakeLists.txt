@@ -35,53 +35,59 @@ include_directories(include)
 
 # Source files
 set(SOURCES
+    # === CORE SYSTEMS ===
     src/main.cpp
-    src/MainMenuScene.cpp
-    src/CharacterCreationScene.cpp
-    src/CharacterCreationMenu.cpp
     src/SceneManager.cpp
     src/PlayerState.cpp
+
+    # === ACTIVE SCENES ===
+    src/MainMenuScene.cpp
+
+    # === PROGRESSION SYSTEMS ===
     src/Character.cpp
     src/Car.cpp
-    src/InventorySystem.cpp
-    src/GridInventorySystem.cpp
-    src/NPC.cpp
-    src/DialogueManager.cpp
-    src/GameTypes.cpp
     src/ExperienceSystem.cpp
     src/AbilityNode.cpp
     src/AbilityTreeSystem.cpp
-    src/AbilityTreeScene.cpp
     src/AbilityEffectManager.cpp
-    src/NodeScene.cpp
-    src/MapScene.cpp
+
+    # === INVENTORY & ITEMS ===
+    src/InventorySystem.cpp
+    src/GridInventorySystem.cpp
+    src/GameTypes.cpp
+
+    # === NPC & QUEST SYSTEMS ===
+    src/NPC.cpp
+    src/DialogueManager.cpp
+    src/QuestManager.cpp
     src/EventManager.cpp
     src/EventFactory.cpp
-    src/CinematicEventScene.cpp
-    src/EndGameScene.cpp
-    src/TravelCinematicScene.cpp
-    src/QuestManager.cpp
-    src/LocationScene.cpp
+    src/ResourceEventSystem.cpp
+
+    # === WORLD & STRUCTURES ===
     src/FuelSystem.cpp
     src/Structure.cpp
+
+    # === SAVE/LOAD ===
     src/GameStateManager.cpp
     src/SaveSystem.cpp
-    src/CharacterScene.cpp
-    src/CompanionsScene.cpp
-    src/QuestsScene.cpp
-    src/InventoryScene.cpp
-    src/TravelSelectionScene.cpp
-    src/NotesScene.cpp
+
+    # === UI COMPONENTS ===
     src/UI/UIComponent.cpp
     src/UI/HUDPanel.cpp
     src/UI/ResourceBar.cpp
-    # Journal system (unified text-based gameplay - LEGACY)
-    src/Journal/Note.cpp
-    src/Journal/CityNote.cpp
-    src/Journal/JournalScene.cpp
-    # Notebook system (NEW - text printing animation)
+
+    # === UI SCENES (commented out, will be implemented as Notebook submenus) ===
+    # src/CharacterScene.cpp
+    # src/CompanionsScene.cpp
+    # src/QuestsScene.cpp
+    # src/InventoryScene.cpp
+    # src/AbilityTreeScene.cpp
+
+    # === NOTEBOOK SYSTEM - MAIN GAMEPLAY ===
     src/Notebook/NotebookScene.cpp
     src/Notebook/NotebookEntry.cpp
+    src/Notebook/ThoughtSystem.cpp
 )
 
 # Create executable

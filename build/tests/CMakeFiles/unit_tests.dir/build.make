@@ -114,86 +114,56 @@ tests/CMakeFiles/unit_tests.dir/unit/test_quest_manager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/unit_tests.dir/unit/test_quest_manager.cpp.s"
 	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/afftobuss/Documents/GitHub/kurs/tests/unit/test_quest_manager.cpp -o CMakeFiles/unit_tests.dir/unit/test_quest_manager.cpp.s
 
-tests/CMakeFiles/unit_tests.dir/unit/test_ui.cpp.o: tests/CMakeFiles/unit_tests.dir/flags.make
-tests/CMakeFiles/unit_tests.dir/unit/test_ui.cpp.o: /Users/afftobuss/Documents/GitHub/kurs/tests/unit/test_ui.cpp
-tests/CMakeFiles/unit_tests.dir/unit/test_ui.cpp.o: tests/CMakeFiles/unit_tests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object tests/CMakeFiles/unit_tests.dir/unit/test_ui.cpp.o"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/unit_tests.dir/unit/test_ui.cpp.o -MF CMakeFiles/unit_tests.dir/unit/test_ui.cpp.o.d -o CMakeFiles/unit_tests.dir/unit/test_ui.cpp.o -c /Users/afftobuss/Documents/GitHub/kurs/tests/unit/test_ui.cpp
+tests/CMakeFiles/unit_tests.dir/test_companion_system.cpp.o: tests/CMakeFiles/unit_tests.dir/flags.make
+tests/CMakeFiles/unit_tests.dir/test_companion_system.cpp.o: /Users/afftobuss/Documents/GitHub/kurs/tests/test_companion_system.cpp
+tests/CMakeFiles/unit_tests.dir/test_companion_system.cpp.o: tests/CMakeFiles/unit_tests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object tests/CMakeFiles/unit_tests.dir/test_companion_system.cpp.o"
+	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/unit_tests.dir/test_companion_system.cpp.o -MF CMakeFiles/unit_tests.dir/test_companion_system.cpp.o.d -o CMakeFiles/unit_tests.dir/test_companion_system.cpp.o -c /Users/afftobuss/Documents/GitHub/kurs/tests/test_companion_system.cpp
 
-tests/CMakeFiles/unit_tests.dir/unit/test_ui.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/unit_tests.dir/unit/test_ui.cpp.i"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/afftobuss/Documents/GitHub/kurs/tests/unit/test_ui.cpp > CMakeFiles/unit_tests.dir/unit/test_ui.cpp.i
+tests/CMakeFiles/unit_tests.dir/test_companion_system.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/unit_tests.dir/test_companion_system.cpp.i"
+	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/afftobuss/Documents/GitHub/kurs/tests/test_companion_system.cpp > CMakeFiles/unit_tests.dir/test_companion_system.cpp.i
 
-tests/CMakeFiles/unit_tests.dir/unit/test_ui.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/unit_tests.dir/unit/test_ui.cpp.s"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/afftobuss/Documents/GitHub/kurs/tests/unit/test_ui.cpp -o CMakeFiles/unit_tests.dir/unit/test_ui.cpp.s
+tests/CMakeFiles/unit_tests.dir/test_companion_system.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/unit_tests.dir/test_companion_system.cpp.s"
+	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/afftobuss/Documents/GitHub/kurs/tests/test_companion_system.cpp -o CMakeFiles/unit_tests.dir/test_companion_system.cpp.s
 
-tests/CMakeFiles/unit_tests.dir/unit/test_phase4_scenes.cpp.o: tests/CMakeFiles/unit_tests.dir/flags.make
-tests/CMakeFiles/unit_tests.dir/unit/test_phase4_scenes.cpp.o: /Users/afftobuss/Documents/GitHub/kurs/tests/unit/test_phase4_scenes.cpp
-tests/CMakeFiles/unit_tests.dir/unit/test_phase4_scenes.cpp.o: tests/CMakeFiles/unit_tests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object tests/CMakeFiles/unit_tests.dir/unit/test_phase4_scenes.cpp.o"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/unit_tests.dir/unit/test_phase4_scenes.cpp.o -MF CMakeFiles/unit_tests.dir/unit/test_phase4_scenes.cpp.o.d -o CMakeFiles/unit_tests.dir/unit/test_phase4_scenes.cpp.o -c /Users/afftobuss/Documents/GitHub/kurs/tests/unit/test_phase4_scenes.cpp
+tests/CMakeFiles/unit_tests.dir/test_day0_complete.cpp.o: tests/CMakeFiles/unit_tests.dir/flags.make
+tests/CMakeFiles/unit_tests.dir/test_day0_complete.cpp.o: /Users/afftobuss/Documents/GitHub/kurs/tests/test_day0_complete.cpp
+tests/CMakeFiles/unit_tests.dir/test_day0_complete.cpp.o: tests/CMakeFiles/unit_tests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object tests/CMakeFiles/unit_tests.dir/test_day0_complete.cpp.o"
+	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/unit_tests.dir/test_day0_complete.cpp.o -MF CMakeFiles/unit_tests.dir/test_day0_complete.cpp.o.d -o CMakeFiles/unit_tests.dir/test_day0_complete.cpp.o -c /Users/afftobuss/Documents/GitHub/kurs/tests/test_day0_complete.cpp
 
-tests/CMakeFiles/unit_tests.dir/unit/test_phase4_scenes.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/unit_tests.dir/unit/test_phase4_scenes.cpp.i"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/afftobuss/Documents/GitHub/kurs/tests/unit/test_phase4_scenes.cpp > CMakeFiles/unit_tests.dir/unit/test_phase4_scenes.cpp.i
+tests/CMakeFiles/unit_tests.dir/test_day0_complete.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/unit_tests.dir/test_day0_complete.cpp.i"
+	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/afftobuss/Documents/GitHub/kurs/tests/test_day0_complete.cpp > CMakeFiles/unit_tests.dir/test_day0_complete.cpp.i
 
-tests/CMakeFiles/unit_tests.dir/unit/test_phase4_scenes.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/unit_tests.dir/unit/test_phase4_scenes.cpp.s"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/afftobuss/Documents/GitHub/kurs/tests/unit/test_phase4_scenes.cpp -o CMakeFiles/unit_tests.dir/unit/test_phase4_scenes.cpp.s
+tests/CMakeFiles/unit_tests.dir/test_day0_complete.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/unit_tests.dir/test_day0_complete.cpp.s"
+	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/afftobuss/Documents/GitHub/kurs/tests/test_day0_complete.cpp -o CMakeFiles/unit_tests.dir/test_day0_complete.cpp.s
 
-tests/CMakeFiles/unit_tests.dir/unit/test_phase4_scenes_improved.cpp.o: tests/CMakeFiles/unit_tests.dir/flags.make
-tests/CMakeFiles/unit_tests.dir/unit/test_phase4_scenes_improved.cpp.o: /Users/afftobuss/Documents/GitHub/kurs/tests/unit/test_phase4_scenes_improved.cpp
-tests/CMakeFiles/unit_tests.dir/unit/test_phase4_scenes_improved.cpp.o: tests/CMakeFiles/unit_tests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object tests/CMakeFiles/unit_tests.dir/unit/test_phase4_scenes_improved.cpp.o"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/unit_tests.dir/unit/test_phase4_scenes_improved.cpp.o -MF CMakeFiles/unit_tests.dir/unit/test_phase4_scenes_improved.cpp.o.d -o CMakeFiles/unit_tests.dir/unit/test_phase4_scenes_improved.cpp.o -c /Users/afftobuss/Documents/GitHub/kurs/tests/unit/test_phase4_scenes_improved.cpp
+tests/CMakeFiles/unit_tests.dir/test_full_system_integration.cpp.o: tests/CMakeFiles/unit_tests.dir/flags.make
+tests/CMakeFiles/unit_tests.dir/test_full_system_integration.cpp.o: /Users/afftobuss/Documents/GitHub/kurs/tests/test_full_system_integration.cpp
+tests/CMakeFiles/unit_tests.dir/test_full_system_integration.cpp.o: tests/CMakeFiles/unit_tests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object tests/CMakeFiles/unit_tests.dir/test_full_system_integration.cpp.o"
+	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/unit_tests.dir/test_full_system_integration.cpp.o -MF CMakeFiles/unit_tests.dir/test_full_system_integration.cpp.o.d -o CMakeFiles/unit_tests.dir/test_full_system_integration.cpp.o -c /Users/afftobuss/Documents/GitHub/kurs/tests/test_full_system_integration.cpp
 
-tests/CMakeFiles/unit_tests.dir/unit/test_phase4_scenes_improved.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/unit_tests.dir/unit/test_phase4_scenes_improved.cpp.i"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/afftobuss/Documents/GitHub/kurs/tests/unit/test_phase4_scenes_improved.cpp > CMakeFiles/unit_tests.dir/unit/test_phase4_scenes_improved.cpp.i
+tests/CMakeFiles/unit_tests.dir/test_full_system_integration.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/unit_tests.dir/test_full_system_integration.cpp.i"
+	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/afftobuss/Documents/GitHub/kurs/tests/test_full_system_integration.cpp > CMakeFiles/unit_tests.dir/test_full_system_integration.cpp.i
 
-tests/CMakeFiles/unit_tests.dir/unit/test_phase4_scenes_improved.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/unit_tests.dir/unit/test_phase4_scenes_improved.cpp.s"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/afftobuss/Documents/GitHub/kurs/tests/unit/test_phase4_scenes_improved.cpp -o CMakeFiles/unit_tests.dir/unit/test_phase4_scenes_improved.cpp.s
-
-tests/CMakeFiles/unit_tests.dir/test_AbilityNode.cpp.o: tests/CMakeFiles/unit_tests.dir/flags.make
-tests/CMakeFiles/unit_tests.dir/test_AbilityNode.cpp.o: /Users/afftobuss/Documents/GitHub/kurs/tests/test_AbilityNode.cpp
-tests/CMakeFiles/unit_tests.dir/test_AbilityNode.cpp.o: tests/CMakeFiles/unit_tests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object tests/CMakeFiles/unit_tests.dir/test_AbilityNode.cpp.o"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/unit_tests.dir/test_AbilityNode.cpp.o -MF CMakeFiles/unit_tests.dir/test_AbilityNode.cpp.o.d -o CMakeFiles/unit_tests.dir/test_AbilityNode.cpp.o -c /Users/afftobuss/Documents/GitHub/kurs/tests/test_AbilityNode.cpp
-
-tests/CMakeFiles/unit_tests.dir/test_AbilityNode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/unit_tests.dir/test_AbilityNode.cpp.i"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/afftobuss/Documents/GitHub/kurs/tests/test_AbilityNode.cpp > CMakeFiles/unit_tests.dir/test_AbilityNode.cpp.i
-
-tests/CMakeFiles/unit_tests.dir/test_AbilityNode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/unit_tests.dir/test_AbilityNode.cpp.s"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/afftobuss/Documents/GitHub/kurs/tests/test_AbilityNode.cpp -o CMakeFiles/unit_tests.dir/test_AbilityNode.cpp.s
-
-tests/CMakeFiles/unit_tests.dir/test_AbilityTreeSystem.cpp.o: tests/CMakeFiles/unit_tests.dir/flags.make
-tests/CMakeFiles/unit_tests.dir/test_AbilityTreeSystem.cpp.o: /Users/afftobuss/Documents/GitHub/kurs/tests/test_AbilityTreeSystem.cpp
-tests/CMakeFiles/unit_tests.dir/test_AbilityTreeSystem.cpp.o: tests/CMakeFiles/unit_tests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object tests/CMakeFiles/unit_tests.dir/test_AbilityTreeSystem.cpp.o"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/unit_tests.dir/test_AbilityTreeSystem.cpp.o -MF CMakeFiles/unit_tests.dir/test_AbilityTreeSystem.cpp.o.d -o CMakeFiles/unit_tests.dir/test_AbilityTreeSystem.cpp.o -c /Users/afftobuss/Documents/GitHub/kurs/tests/test_AbilityTreeSystem.cpp
-
-tests/CMakeFiles/unit_tests.dir/test_AbilityTreeSystem.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/unit_tests.dir/test_AbilityTreeSystem.cpp.i"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/afftobuss/Documents/GitHub/kurs/tests/test_AbilityTreeSystem.cpp > CMakeFiles/unit_tests.dir/test_AbilityTreeSystem.cpp.i
-
-tests/CMakeFiles/unit_tests.dir/test_AbilityTreeSystem.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/unit_tests.dir/test_AbilityTreeSystem.cpp.s"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/afftobuss/Documents/GitHub/kurs/tests/test_AbilityTreeSystem.cpp -o CMakeFiles/unit_tests.dir/test_AbilityTreeSystem.cpp.s
+tests/CMakeFiles/unit_tests.dir/test_full_system_integration.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/unit_tests.dir/test_full_system_integration.cpp.s"
+	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/afftobuss/Documents/GitHub/kurs/tests/test_full_system_integration.cpp -o CMakeFiles/unit_tests.dir/test_full_system_integration.cpp.s
 
 # Object files for target unit_tests
 unit_tests_OBJECTS = \
 "CMakeFiles/unit_tests.dir/unit/test_sanity.cpp.o" \
 "CMakeFiles/unit_tests.dir/unit/test_npc_dialogue.cpp.o" \
 "CMakeFiles/unit_tests.dir/unit/test_quest_manager.cpp.o" \
-"CMakeFiles/unit_tests.dir/unit/test_ui.cpp.o" \
-"CMakeFiles/unit_tests.dir/unit/test_phase4_scenes.cpp.o" \
-"CMakeFiles/unit_tests.dir/unit/test_phase4_scenes_improved.cpp.o" \
-"CMakeFiles/unit_tests.dir/test_AbilityNode.cpp.o" \
-"CMakeFiles/unit_tests.dir/test_AbilityTreeSystem.cpp.o"
+"CMakeFiles/unit_tests.dir/test_companion_system.cpp.o" \
+"CMakeFiles/unit_tests.dir/test_day0_complete.cpp.o" \
+"CMakeFiles/unit_tests.dir/test_full_system_integration.cpp.o"
 
 # External object files for target unit_tests
 unit_tests_EXTERNAL_OBJECTS =
@@ -201,17 +171,15 @@ unit_tests_EXTERNAL_OBJECTS =
 tests/unit_tests: tests/CMakeFiles/unit_tests.dir/unit/test_sanity.cpp.o
 tests/unit_tests: tests/CMakeFiles/unit_tests.dir/unit/test_npc_dialogue.cpp.o
 tests/unit_tests: tests/CMakeFiles/unit_tests.dir/unit/test_quest_manager.cpp.o
-tests/unit_tests: tests/CMakeFiles/unit_tests.dir/unit/test_ui.cpp.o
-tests/unit_tests: tests/CMakeFiles/unit_tests.dir/unit/test_phase4_scenes.cpp.o
-tests/unit_tests: tests/CMakeFiles/unit_tests.dir/unit/test_phase4_scenes_improved.cpp.o
-tests/unit_tests: tests/CMakeFiles/unit_tests.dir/test_AbilityNode.cpp.o
-tests/unit_tests: tests/CMakeFiles/unit_tests.dir/test_AbilityTreeSystem.cpp.o
+tests/unit_tests: tests/CMakeFiles/unit_tests.dir/test_companion_system.cpp.o
+tests/unit_tests: tests/CMakeFiles/unit_tests.dir/test_day0_complete.cpp.o
+tests/unit_tests: tests/CMakeFiles/unit_tests.dir/test_full_system_integration.cpp.o
 tests/unit_tests: tests/CMakeFiles/unit_tests.dir/build.make
 tests/unit_tests: tests/libkkurs_lib.a
 tests/unit_tests: lib/libgtest_main.a
 tests/unit_tests: lib/libgtest.a
 tests/unit_tests: tests/CMakeFiles/unit_tests.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable unit_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable unit_tests"
 	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/unit_tests.dir/link.txt --verbose=$(VERBOSE)
 	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /opt/homebrew/bin/cmake -D TEST_TARGET=unit_tests -D TEST_EXECUTABLE=/Users/afftobuss/Documents/GitHub/kurs/build/tests/unit_tests -D TEST_EXECUTOR= -D TEST_WORKING_DIR=/Users/afftobuss/Documents/GitHub/kurs/build/tests -D TEST_EXTRA_ARGS= -D "TEST_PROPERTIES=LABELS;unit" -D TEST_PREFIX= -D TEST_SUFFIX= -D TEST_FILTER= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=unit_tests_TESTS -D CTEST_FILE=/Users/afftobuss/Documents/GitHub/kurs/build/tests/unit_tests[1]_tests.cmake -D TEST_DISCOVERY_TIMEOUT=5 -D TEST_DISCOVERY_EXTRA_ARGS= -D TEST_XML_OUTPUT_DIR= -P /opt/homebrew/share/cmake/Modules/GoogleTestAddTests.cmake
 

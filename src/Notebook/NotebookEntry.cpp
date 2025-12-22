@@ -28,6 +28,27 @@ bool NotebookChoice::isAvailable(const PlayerState* player) const {
         return false;
     }
 
+    // Проверка принципов (для скрытых выборов)
+    for (const auto& principle : requiredPrinciples) {
+        if (!player->hasPrinciple(principle)) {
+            return false;  // Не показываем выбор, если нет нужного принципа
+        }
+    }
+
+    // Проверка черт
+    for (const auto& trait : requiredTraits) {
+        if (!player->hasTrait(trait)) {
+            return false;
+        }
+    }
+
+    // Проверка сюжетных предметов
+    for (const auto& item : requiredStoryItems) {
+        if (!player->hasStoryItem(item)) {
+            return false;
+        }
+    }
+
     return true;
 }
 

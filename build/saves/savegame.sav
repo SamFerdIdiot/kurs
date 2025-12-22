@@ -1,7 +1,16 @@
 {
   "version": 1,
-  "timestamp": 1764610755,
+  "timestamp": 1766416756,
+  "energy": 95,
+  "money": 1000,
+  "fuel": 85,
+  "vehicleCondition": 100,
+  "mood": 70,
+  "reputation": 0,
+  "origin": 0,
+  "carType": 0,
   "currentNodeId": 0,
+  "currentNotebookEntryId": "demo_rest_stop",
   "experience": {
     "level": 1,
     "exp": 0,
@@ -15,6 +24,15 @@
   "dialogueHistory": [
   ],
   "npcs": [
+
+  ],
+  "principles": [
+
+  ],
+  "traits": [
+
+  ],
+  "storyItems": [
 
   ]
 }
