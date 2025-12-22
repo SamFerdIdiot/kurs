@@ -211,20 +211,32 @@ private:
     // Ветка А: Системный анализ (Понимание контекста)
     void loadDay0_BranchA_MapAndTower();     // Запись 3А: Карта из ничего
     void loadDay0_BranchA_Geologist();       // Запись 4А: Геолог
+    void loadDay0_BranchA_3();               // Запись 5А: Системный анализ
+    void loadDay0_BranchA_4();               // Запись 6А: Практика диагностики
+    void loadDay0_BranchA_5();               // Запись 7А: Закрепление принципа
 
     // Ветка Б: Слушать материал (Чувство машины)
     void loadDay0_BranchB_Engine();          // Запись 3Б: Ритм двигателя
     void loadDay0_BranchB_Blacksmith();      // Запись 4Б: Кузнец
+    void loadDay0_BranchB_3();               // Запись 5Б: Чувство вибрации
+    void loadDay0_BranchB_4();               // Запись 6Б: Запахи и температура
+    void loadDay0_BranchB_5();               // Запись 7Б: Чувство материала
     void loadDay0_BranchB_Driver();          // Старое имя (для совместимости)
 
     // Ветка В: Спроси бывалого (Командная работа)
     void loadDay0_BranchC_Truck();           // Запись 3В: Помощь на обочине
     void loadDay0_BranchC_Teahouse();        // Запись 4В: Чай и разговоры
+    void loadDay0_BranchC_3();               // Запись 5В: Обмен опытом
+    void loadDay0_BranchC_4();               // Запись 6В: Коллективный разум
+    void loadDay0_BranchC_5();               // Запись 7В: Ценность команды
     void loadDay0_BranchC_Package();         // Старое имя (для совместимости)
 
     // Ветка Г: Ресурсоэффективность (Быстро и по делу)
     void loadDay0_BranchD_Route();           // Запись 3Г: Расчёт маршрута
     void loadDay0_BranchD_Boys();            // Запись 4Г: Мальчишки и металл
+    void loadDay0_BranchD_3();               // Запись 5Г: Оптимизация расходов
+    void loadDay0_BranchD_4();               // Запись 6Г: Время — тоже ресурс
+    void loadDay0_BranchD_5();               // Запись 7Г: Философия эффективности
     void loadDay0_BranchD_Choice();          // Старое имя (для совместимости)
 
     // Общие записи (для всех веток)
