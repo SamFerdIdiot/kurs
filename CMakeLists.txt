@@ -44,16 +44,11 @@ set(SOURCES
     src/MainMenuScene.cpp
 
     # === PROGRESSION SYSTEMS ===
-    src/Character.cpp
     src/Car.cpp
     src/ExperienceSystem.cpp
-    src/AbilityNode.cpp
-    src/AbilityTreeSystem.cpp
-    src/AbilityEffectManager.cpp
 
     # === INVENTORY & ITEMS ===
     src/InventorySystem.cpp
-    src/GridInventorySystem.cpp
     src/GameTypes.cpp
 
     # === NPC & QUEST SYSTEMS ===
@@ -64,10 +59,6 @@ set(SOURCES
     src/EventFactory.cpp
     src/ResourceEventSystem.cpp
 
-    # === WORLD & STRUCTURES ===
-    src/FuelSystem.cpp
-    src/Structure.cpp
-
     # === SAVE/LOAD ===
     src/GameStateManager.cpp
     src/SaveSystem.cpp
@@ -76,13 +67,6 @@ set(SOURCES
     src/UI/UIComponent.cpp
     src/UI/HUDPanel.cpp
     src/UI/ResourceBar.cpp
-
-    # === UI SCENES (commented out, will be implemented as Notebook submenus) ===
-    # src/CharacterScene.cpp
-    # src/CompanionsScene.cpp
-    # src/QuestsScene.cpp
-    # src/InventoryScene.cpp
-    # src/AbilityTreeScene.cpp
 
     # === NOTEBOOK SYSTEM - MAIN GAMEPLAY ===
     src/Notebook/NotebookScene.cpp

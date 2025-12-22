@@ -1,5 +1,4 @@
 #include "ExperienceSystem.h"
-#include "AbilityTreeSystem.h"
 #include <algorithm>
 #include <cmath>
 
@@ -7,7 +6,7 @@ ExperienceSystem* ExperienceSystem::s_instance = nullptr;
 
 ExperienceSystem::ExperienceSystem()
     : m_level(1), m_experience(0) {
-    initializeAbilityTree();
+    // Ability tree system removed for MVP demo
 }
 
 ExperienceSystem& ExperienceSystem::getInstance() {
@@ -40,12 +39,11 @@ void ExperienceSystem::levelUp() {
     if (!canLevelUp()) {
         return;
     }
-    
+
     m_experience -= getExperienceForNextLevel();
     m_level++;
-    
-    // Добавить очко способности при повышении уровня
-    AbilityTreeSystem::getInstance().addSkillPoints(1);
+
+    // Ability tree system removed for MVP demo
 }
 
 void ExperienceSystem::unlockAbility(const std::string& abilityId) {

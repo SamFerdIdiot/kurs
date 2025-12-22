@@ -1,6 +1,4 @@
 #include "EventManager.h"
-#include "AbilityTreeSystem.h"
-#include "AbilityTypes.h"
 #include "GameStateManager.h"
 #include "NPC.h"
 #include "PlayerState.h"
@@ -1676,8 +1674,12 @@ void EventManager::initializeDefaultEvents() {
 // Add ability perk choices to event
 // Injects perk-based choices into event based on available perks
 void EventManager::addPerkChoicesToEvent(GameEvent* event, float playerFuel, float playerEnergy, int playerMoney) {
+    // Ability tree system removed for MVP demo
+    return;
+
+#if 0  // DISABLED FOR MVP DEMO
     if (!event) return;
-    
+
     // Get ability tree system
     auto& abilitySystem = AbilityTreeSystem::getInstance();
     
@@ -1789,6 +1791,7 @@ void EventManager::addPerkChoicesToEvent(GameEvent* event, float playerFuel, flo
             event->choices.push_back(perkChoice);
         }
     }
+#endif  // DISABLED FOR MVP DEMO
 }
 
 // Random number generation helper

@@ -22,43 +22,19 @@ include(GoogleTest)
 # Create library with all source files (excluding main.cpp)
 # This allows tests to link against the same code
 set(LIB_SOURCES
-    ${CMAKE_SOURCE_DIR}/src/Character.cpp
     ${CMAKE_SOURCE_DIR}/src/Car.cpp
     ${CMAKE_SOURCE_DIR}/src/PlayerState.cpp
-    # ${CMAKE_SOURCE_DIR}/src/SceneManager.cpp  # Excluded - uses SFML 3.x Event API
-    # ${CMAKE_SOURCE_DIR}/src/MainMenuScene.cpp  # Excluded - uses SFML 3.x Event API
-    # ${CMAKE_SOURCE_DIR}/src/CharacterCreationScene.cpp  # Excluded - uses SFML 3.x Event API
-    # ${CMAKE_SOURCE_DIR}/src/CharacterCreationMenu.cpp  # Excluded - uses SFML 3.x Event API
     ${CMAKE_SOURCE_DIR}/src/InventorySystem.cpp
-    ${CMAKE_SOURCE_DIR}/src/GridInventorySystem.cpp
     ${CMAKE_SOURCE_DIR}/src/NPC.cpp
     ${CMAKE_SOURCE_DIR}/src/DialogueManager.cpp
     ${CMAKE_SOURCE_DIR}/src/GameTypes.cpp
     ${CMAKE_SOURCE_DIR}/src/ExperienceSystem.cpp
-    ${CMAKE_SOURCE_DIR}/src/AbilityNode.cpp
-    ${CMAKE_SOURCE_DIR}/src/AbilityTreeSystem.cpp
-    # ${CMAKE_SOURCE_DIR}/src/AbilityTreeScene.cpp  # Excluded - uses SFML 3.x Event API
-    ${CMAKE_SOURCE_DIR}/src/AbilityEffectManager.cpp
-    # ${CMAKE_SOURCE_DIR}/src/RestScene.cpp  # Excluded - has wstring compilation issues with mock SFML
-    # ${CMAKE_SOURCE_DIR}/src/NodeScene.cpp  # Excluded - uses SFML 3.x Event API
-    # ${CMAKE_SOURCE_DIR}/src/MapScene.cpp  # Excluded - uses SFML 3.x Event API
     ${CMAKE_SOURCE_DIR}/src/EventManager.cpp
     ${CMAKE_SOURCE_DIR}/src/EventFactory.cpp
-    # ${CMAKE_SOURCE_DIR}/src/CinematicEventScene.cpp  # Excluded - uses getGlobalBounds not in mock SFML
-    # ${CMAKE_SOURCE_DIR}/src/TravelCinematicScene.cpp  # Excluded - may have dependencies on CinematicEventScene
     ${CMAKE_SOURCE_DIR}/src/QuestManager.cpp
-    # ${CMAKE_SOURCE_DIR}/src/LocationScene.cpp  # Excluded - may have issues with mock SFML
-    ${CMAKE_SOURCE_DIR}/src/Structure.cpp
     ${CMAKE_SOURCE_DIR}/src/GameStateManager.cpp
     ${CMAKE_SOURCE_DIR}/src/SaveSystem.cpp
-    ${CMAKE_SOURCE_DIR}/src/Notebook/NotebookEntry.cpp  # Для тестов Дня 0
-    # ${CMAKE_SOURCE_DIR}/src/CharacterScene.cpp  # Excluded - uses SFML 3.x Event API
-    # ${CMAKE_SOURCE_DIR}/src/CompanionsScene.cpp  # Excluded - uses SFML 3.x Event API
-    # ${CMAKE_SOURCE_DIR}/src/QuestsScene.cpp  # Excluded - uses SFML 3.x Event API
-    # ${CMAKE_SOURCE_DIR}/src/InventoryScene.cpp  # Excluded - uses SFML 3.x Event API
-    # ${CMAKE_SOURCE_DIR}/src/UI/UIComponent.cpp  # Excluded - uses SFML 3.x Event API
-    # ${CMAKE_SOURCE_DIR}/src/UI/HUDPanel.cpp  # Excluded - uses SFML 3.x Event API
-    # ${CMAKE_SOURCE_DIR}/src/UI/ResourceBar.cpp  # Excluded - uses SFML 3.x Event API
+    ${CMAKE_SOURCE_DIR}/src/Notebook/NotebookEntry.cpp
 )
 
 # Check if SFML is available for tests
