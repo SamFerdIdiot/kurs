@@ -41,6 +41,18 @@ struct EventCondition {
     EventCondition() = default;
 };
 
+// Random outcome for a choice (when multiple outcomes possible)
+struct RandomOutcome {
+    std::string outcomeText;
+    float fuelChange = 0.0f;
+    float energyChange = 0.0f;
+    int moneyChange = 0;
+    float probability = 1.0f;  // Вероятность этого исхода (0.0-1.0)
+
+    RandomOutcome(const std::string& text, float fuel, float energy, int money, float prob)
+        : outcomeText(text), fuelChange(fuel), energyChange(energy), moneyChange(money), probability(prob) {}
+};
+
 // Event choice/outcome
 struct EventChoice {
     std::string text;
@@ -60,6 +72,9 @@ struct EventChoice {
     std::string recruitNPC = "";                      // ID NPC для рекрутинга (добавить в команду)
     std::string removeNPC = "";                       // ID NPC для удаления из команды
     std::string triggerEvent = "";                    // ID события для немедленного триггера
+
+    // Случайные исходы (если не пустой, выбирается один случайный исход)
+    std::vector<RandomOutcome> randomOutcomes;
 
     EventChoice(const std::string& text = "", const std::string& outcomeText = "")
         : text(text), outcomeText(outcomeText) {}

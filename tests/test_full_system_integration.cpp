@@ -173,8 +173,8 @@ TEST_F(EventManagerSystemTest, EventInitialization) {
     std::cout << "\n=== TEST: EventManager - Initialization ===" << std::endl;
 
     auto allEvents = eventManager.getAllEvents();
-    // 16 базовых + 20 уникальных для веток + 6 случайных + 10 ресурсных + 4 новых диалога = 56
-    EXPECT_EQ(allEvents.size(), 56) << "Должно быть 56 событий";
+    // 16 базовых + 20 уникальных для веток + 6 случайных + 10 ресурсных + 4 новых диалога + 1 OutOfFuel = 57
+    EXPECT_EQ(allEvents.size(), 57) << "Должно быть 57 событий (добавлено событие OutOfFuel)";
 
     std::cout << "Загружено событий: " << allEvents.size() << std::endl;
     for (const auto& event : allEvents) {
