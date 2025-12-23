@@ -82,6 +82,20 @@ NotebookScene::NotebookScene(PlayerState* playerState, const std::string& initia
 
     // Загрузить тестовые записи
     loadTestThoughtSystem();
+    loadDemoTestResources();
+    loadDemoTestResources2();
+    loadDemoTestPrinciples();
+    loadDemoTestPrinciples2();
+    loadDemoTestPrinciples3();
+    loadDemoTestConditional();
+    loadDemoTestConditional2();
+    loadDemoTestConditional3();
+    loadDemoTestConditional4();
+    loadDemoFullStart();
+    loadDemoFull1();
+    loadDemoFull2();
+    loadDemoFull3();
+    loadDemoFinale();
 
     // Загрузить демо-контент (простой пример)
     loadDemo_Start();
@@ -1961,33 +1975,493 @@ void NotebookScene::loadTestThoughtSystem() {
     NotebookEntry entry;
     entry.id = "test_thought_system";
     entry.type = EntryType::PRESENT;
-    entry.text = "🧪 ТЕСТ: Система размышлений\n\n"
-                 "Эта запись создана для тестирования ThoughtSystem.\n\n"
-                 "Просто НЕ ВЫБИРАЙТЕ ничего и подождите:\n"
-                 "• Через 5 секунд появится первая мысль\n"
-                 "• Через 10 секунд - вторая мысль\n"
-                 "• Через 15 секунд - третья мысль\n\n"
-                 "Мысли будут появляться в центре экрана с fade эффектом.\n"
-                 "Каждая мысль живет 8 секунд.";
-    entry.printSpeed = 100.0f;  // Быстрая печать для теста
+    entry.text = "=== ДЕМОНСТРАЦИЯ ИГРОВЫХ МЕХАНИК ===\n\n"
+                 "Добро пожаловать в интерактивную демонстрацию!\n\n"
+                 "Вы увидите пошаговую демонстрацию ВСЕХ систем игры:\n\n"
+                 "1. Система ресурсов (энергия, топливо, деньги)\n"
+                 "2. Система принципов (обучение и развитие)\n"
+                 "3. Система черт характера\n"
+                 "4. Система артефактов (story items)\n"
+                 "5. Условные выборы\n"
+                 "6. Система событий\n"
+                 "7. Система сохранений\n\n"
+                 "Выберите, что хотите протестировать:";
+    entry.printSpeed = 100.0f;
     entry.canSkip = true;
 
-    // Добавляем два выбора
     NotebookChoice choice1;
-    choice1.text = "Вернуться в главное меню";
-    choice1.action = [](PlayerState*) {
-        std::cout << "[TEST] Возврат в главное меню" << std::endl;
-    };
-    choice1.nextEntryIds = {};  // Пустой = возврат в меню
-    entry.choices.push_back(choice1);
+    choice1.text = "1. Тест системы ресурсов";
+    choice1.nextEntryIds = {"demo_test_resources"};
+    entry.addChoice(choice1);
 
     NotebookChoice choice2;
-    choice2.text = "Повторить тест";
-    choice2.action = [](PlayerState*) {
-        std::cout << "[TEST] Повтор теста" << std::endl;
+    choice2.text = "2. Тест системы принципов и черт";
+    choice2.nextEntryIds = {"demo_test_principles"};
+    entry.addChoice(choice2);
+
+    NotebookChoice choice3;
+    choice3.text = "3. Тест условных выборов";
+    choice3.nextEntryIds = {"demo_test_conditional"};
+    entry.addChoice(choice3);
+
+    NotebookChoice choice4;
+    choice4.text = "4. Полная демонстрация (все системы)";
+    choice4.nextEntryIds = {"demo_full_start"};
+    entry.addChoice(choice4);
+
+    NotebookChoice choice5;
+    choice5.text = "Вернуться в главное меню";
+    choice5.nextEntryIds = {};
+    entry.addChoice(choice5);
+
+    m_entries[entry.id] = entry;
+}
+
+void NotebookScene::loadDemoTestResources() {
+    NotebookEntry entry;
+    entry.id = "demo_test_resources";
+    entry.type = EntryType::PRESENT;
+    entry.text = "=== ТЕСТ 1: СИСТЕМА РЕСУРСОВ ===\n\n"
+                 "В игре есть 6 основных ресурсов:\n\n"
+                 "• ЭНЕРГИЯ (0-100%) - усталость персонажа\n"
+                 "• ТОПЛИВО (0-50L) - бензин в баке\n"
+                 "• ДЕНЬГИ (рубли) - финансы\n"
+                 "• СОСТОЯНИЕ МАШИНЫ (0-100%) - техническое состояние\n"
+                 "• НАСТРОЕНИЕ (0-100) - моральное состояние\n"
+                 "• РЕПУТАЦИЯ (0-100) - отношение НПС\n\n"
+                 "Сейчас ваши ресурсы будут изменены. Наблюдайте!";
+    entry.printSpeed = 80.0f;
+    entry.canSkip = true;
+
+    NotebookChoice choice1;
+    choice1.text = "Потратить ресурсы (-10% энергии, -5L топлива)";
+    choice1.action = [](PlayerState* player) {
+        player->modifyEnergy(-10.0f);
+        player->addFuel(-5.0f);
+        std::cout << "[DEMO] Ресурсы потрачены" << std::endl;
     };
-    choice2.nextEntryIds = {"test_thought_system"};
-    entry.choices.push_back(choice2);
+    choice1.nextEntryIds = {"demo_test_resources_2"};
+    entry.addChoice(choice1);
+
+    NotebookChoice choice2;
+    choice2.text = "Восстановить ресурсы (+20% энергии, +150₽)";
+    choice2.action = [](PlayerState* player) {
+        player->modifyEnergy(20.0f);
+        player->addMoney(150.0f);
+        std::cout << "[DEMO] Ресурсы восстановлены" << std::endl;
+    };
+    choice2.nextEntryIds = {"demo_test_resources_2"};
+    entry.addChoice(choice2);
+
+    NotebookChoice choice3;
+    choice3.text = "Вернуться в меню демо";
+    choice3.nextEntryIds = {"test_thought_system"};
+    entry.addChoice(choice3);
+
+    m_entries[entry.id] = entry;
+}
+
+void NotebookScene::loadDemoTestResources2() {
+    NotebookEntry entry;
+    entry.id = "demo_test_resources_2";
+    entry.type = EntryType::PRESENT;
+    entry.text = "Отлично! Ресурсы изменились.\n\n"
+                 "Проверьте левый верхний угол экрана - там отображается:\n"
+                 "• Энергия\n"
+                 "• Топливо\n"
+                 "• Деньги\n\n"
+                 "Остальные ресурсы (состояние машины, настроение, репутация)\n"
+                 "можно увидеть в меню персонажа.\n\n"
+                 "Тест системы ресурсов завершён!";
+    entry.printSpeed = 80.0f;
+    entry.canSkip = true;
+
+    NotebookChoice choice;
+    choice.text = "Вернуться в меню демо";
+    choice.nextEntryIds = {"test_thought_system"};
+    entry.addChoice(choice);
+
+    m_entries[entry.id] = entry;
+}
+
+void NotebookScene::loadDemoTestPrinciples() {
+    NotebookEntry entry;
+    entry.id = "demo_test_principles";
+    entry.type = EntryType::PRESENT;
+    entry.text = "=== ТЕСТ 2: ПРИНЦИПЫ И ЧЕРТЫ ===\n\n"
+                 "ПРИНЦИПЫ - это знания, которые персонаж получает:\n"
+                 "• understanding_context - системное мышление\n"
+                 "• listen_material - чувство материала\n"
+                 "• ask_experienced - обращение к опыту\n"
+                 "• resource_efficient - ресурсоэффективность\n\n"
+                 "ЧЕРТЫ - личностные качества:\n"
+                 "• analytical, intuitive\n"
+                 "• impulsive, patient\n"
+                 "• collaborative, efficient\n\n"
+                 "Сейчас вы получите принцип и черту!";
+    entry.printSpeed = 80.0f;
+    entry.canSkip = true;
+
+    NotebookChoice choice1;
+    choice1.text = "Получить 'Системное мышление' + черту 'Аналитический'";
+    choice1.action = [](PlayerState* player) {
+        player->addPrinciple("understanding_context");
+        player->addTrait("analytical");
+        std::cout << "[DEMO] Получен принцип и черта" << std::endl;
+    };
+    choice1.nextEntryIds = {"demo_test_principles_2"};
+    entry.addChoice(choice1);
+
+    NotebookChoice choice2;
+    choice2.text = "Получить 'Чувство материала' + черту 'Интуитивный'";
+    choice2.action = [](PlayerState* player) {
+        player->addPrinciple("listen_material");
+        player->addTrait("intuitive");
+        std::cout << "[DEMO] Получен принцип и черта" << std::endl;
+    };
+    choice2.nextEntryIds = {"demo_test_principles_2"};
+    entry.addChoice(choice2);
+
+    NotebookChoice choice3;
+    choice3.text = "Вернуться в меню демо";
+    choice3.nextEntryIds = {"test_thought_system"};
+    entry.addChoice(choice3);
+
+    m_entries[entry.id] = entry;
+}
+
+void NotebookScene::loadDemoTestPrinciples2() {
+    NotebookEntry entry;
+    entry.id = "demo_test_principles_2";
+    entry.type = EntryType::PRESENT;
+    entry.text = "Превосходно! Вы получили принцип и черту.\n\n"
+                 "Эти данные сохранены в PlayerState и влияют на:\n"
+                 "• Доступность условных выборов\n"
+                 "• Развитие персонажа\n"
+                 "• Ветвление сюжета\n\n"
+                 "Также попробуйте получить АРТЕФАКТ (story item):\n"
+                 "• technical_journal - технический дневник\n"
+                 "• burned_finger - шрам-память\n"
+                 "• photo_at_machine - фотография бригады\n"
+                 "• spare_starter - запасной стартер";
+    entry.printSpeed = 80.0f;
+    entry.canSkip = true;
+
+    NotebookChoice choice1;
+    choice1.text = "Получить 'Технический дневник'";
+    choice1.action = [](PlayerState* player) {
+        player->addStoryItem("technical_journal");
+        std::cout << "[DEMO] Получен артефакт: technical_journal" << std::endl;
+    };
+    choice1.nextEntryIds = {"demo_test_principles_3"};
+    entry.addChoice(choice1);
+
+    NotebookChoice choice2;
+    choice2.text = "Получить 'Шрам от ожога'";
+    choice2.action = [](PlayerState* player) {
+        player->addStoryItem("burned_finger");
+        std::cout << "[DEMO] Получен артефакт: burned_finger" << std::endl;
+    };
+    choice2.nextEntryIds = {"demo_test_principles_3"};
+    entry.addChoice(choice2);
+
+    NotebookChoice choice3;
+    choice3.text = "Вернуться в меню демо";
+    choice3.nextEntryIds = {"test_thought_system"};
+    entry.addChoice(choice3);
+
+    m_entries[entry.id] = entry;
+}
+
+void NotebookScene::loadDemoTestPrinciples3() {
+    NotebookEntry entry;
+    entry.id = "demo_test_principles_3";
+    entry.type = EntryType::PRESENT;
+    entry.text = "Отлично! Артефакт получен.\n\n"
+                 "Теперь у вас есть:\n"
+                 "✓ Принцип\n"
+                 "✓ Черта характера\n"
+                 "✓ Артефакт\n\n"
+                 "Все эти элементы используются для УСЛОВНЫХ ВЫБОРОВ!\n\n"
+                 "Тест принципов, черт и артефактов завершён!";
+    entry.printSpeed = 80.0f;
+    entry.canSkip = true;
+
+    NotebookChoice choice;
+    choice.text = "Вернуться в меню демо";
+    choice.nextEntryIds = {"test_thought_system"};
+    entry.addChoice(choice);
+
+    m_entries[entry.id] = entry;
+}
+
+void NotebookScene::loadDemoTestConditional() {
+    NotebookEntry entry;
+    entry.id = "demo_test_conditional";
+    entry.type = EntryType::PRESENT;
+    entry.text = "=== ТЕСТ 3: УСЛОВНЫЕ ВЫБОРЫ ===\n\n"
+                 "Условные выборы - это выборы, которые появляются\n"
+                 "ТОЛЬКО если у игрока есть нужные:\n"
+                 "• Принципы (principles)\n"
+                 "• Черты (traits)\n"
+                 "• Артефакты (story items)\n\n"
+                 "Сначала вы увидите БАЗОВЫЕ выборы.\n"
+                 "Затем получите принцип и увидите СКРЫТЫЙ выбор!";
+    entry.printSpeed = 80.0f;
+    entry.canSkip = true;
+
+    NotebookChoice choice;
+    choice.text = "Начать тест";
+    choice.nextEntryIds = {"demo_test_conditional_2"};
+    entry.addChoice(choice);
+
+    m_entries[entry.id] = entry;
+}
+
+void NotebookScene::loadDemoTestConditional2() {
+    NotebookEntry entry;
+    entry.id = "demo_test_conditional_2";
+    entry.type = EntryType::PRESENT;
+    entry.text = "Вы видите ТОЛЬКО базовые выборы.\n\n"
+                 "Сейчас мы дадим вам принцип 'understanding_context'\n"
+                 "и артефакт 'technical_journal'.\n\n"
+                 "После этого появится УСЛОВНЫЙ ВЫБОР!";
+    entry.printSpeed = 80.0f;
+    entry.canSkip = true;
+
+    NotebookChoice baseChoice1;
+    baseChoice1.text = "Базовый выбор 1 (всегда доступен)";
+    baseChoice1.action = [](PlayerState* player) {
+        player->addPrinciple("understanding_context");
+        player->addStoryItem("technical_journal");
+        std::cout << "[DEMO] Получен принцип и артефакт для условного выбора" << std::endl;
+    };
+    baseChoice1.nextEntryIds = {"demo_test_conditional_3"};
+    entry.addChoice(baseChoice1);
+
+    NotebookChoice baseChoice2;
+    baseChoice2.text = "Базовый выбор 2 (всегда доступен)";
+    baseChoice2.action = [](PlayerState* player) {
+        player->addPrinciple("understanding_context");
+        player->addStoryItem("technical_journal");
+        std::cout << "[DEMO] Получен принцип и артефакт для условного выбора" << std::endl;
+    };
+    baseChoice2.nextEntryIds = {"demo_test_conditional_3"};
+    entry.addChoice(baseChoice2);
+
+    m_entries[entry.id] = entry;
+}
+
+void NotebookScene::loadDemoTestConditional3() {
+    NotebookEntry entry;
+    entry.id = "demo_test_conditional_3";
+    entry.type = EntryType::PRESENT;
+    entry.text = "СМОТРИТЕ! Теперь появился УСЛОВНЫЙ ВЫБОР!\n\n"
+                 "Он помечен значком 💡 и доступен только потому,\n"
+                 "что у вас есть:\n"
+                 "✓ Принцип 'understanding_context'\n"
+                 "✓ Артефакт 'technical_journal'\n\n"
+                 "Это основа персонализации игры!";
+    entry.printSpeed = 80.0f;
+    entry.canSkip = true;
+
+    NotebookChoice baseChoice;
+    baseChoice.text = "Базовый выбор (всегда доступен)";
+    baseChoice.nextEntryIds = {"demo_test_conditional_4"};
+    entry.addChoice(baseChoice);
+
+    NotebookChoice conditionalChoice;
+    conditionalChoice.text = "[💡 Применить системный подход] (УСЛОВНЫЙ!)";
+    conditionalChoice.requiredPrinciples = {"understanding_context"};
+    conditionalChoice.requiredStoryItems = {"technical_journal"};
+    conditionalChoice.isHidden = true;
+    conditionalChoice.action = [](PlayerState* player) {
+        player->modifyEnergy(15.0f);
+        player->addMoney(200.0f);
+        std::cout << "[DEMO] Использован условный выбор: +15% энергии, +200₽" << std::endl;
+    };
+    conditionalChoice.nextEntryIds = {"demo_test_conditional_4"};
+    entry.addChoice(conditionalChoice);
+
+    m_entries[entry.id] = entry;
+}
+
+void NotebookScene::loadDemoTestConditional4() {
+    NotebookEntry entry;
+    entry.id = "demo_test_conditional_4";
+    entry.type = EntryType::PRESENT;
+    entry.text = "Превосходно!\n\n"
+                 "Условные выборы используются во всей игре:\n"
+                 "• В финалах веток Day0\n"
+                 "• В сцене провокации\n"
+                 "• В случайных событиях\n\n"
+                 "Они делают каждое прохождение уникальным!\n\n"
+                 "Тест условных выборов завершён!";
+    entry.printSpeed = 80.0f;
+    entry.canSkip = true;
+
+    NotebookChoice choice;
+    choice.text = "Вернуться в меню демо";
+    choice.nextEntryIds = {"test_thought_system"};
+    entry.addChoice(choice);
+
+    m_entries[entry.id] = entry;
+}
+
+void NotebookScene::loadDemoFullStart() {
+    NotebookEntry entry;
+    entry.id = "demo_full_start";
+    entry.type = EntryType::PRESENT;
+    entry.text = "=== ПОЛНАЯ ДЕМОНСТРАЦИЯ ===\n\n"
+                 "Сейчас вы увидите краткую демонстрацию игры\n"
+                 "с использованием ВСЕХ систем одновременно:\n\n"
+                 "• Изменение ресурсов\n"
+                 "• Получение принципов и черт\n"
+                 "• Условные выборы\n"
+                 "• Ветвление сюжета\n"
+                 "• Случайные события\n\n"
+                 "Представьте, что вы - молодой инженер,\n"
+                 "едущий из России в Германию в 1994 году...";
+    entry.printSpeed = 70.0f;
+    entry.canSkip = true;
+
+    NotebookChoice choice;
+    choice.text = "Начать демонстрацию";
+    choice.nextEntryIds = {"demo_full_1"};
+    entry.addChoice(choice);
+
+    m_entries[entry.id] = entry;
+}
+
+void NotebookScene::loadDemoFull1() {
+    NotebookEntry entry;
+    entry.id = "demo_full_1";
+    entry.type = EntryType::PAST;
+    entry.text = "Полгода назад. Завод.\n\n"
+                 "Денис Петрович показывает мне старый немецкий станок.\n\n"
+                 "«Смотри на косвенные признаки, - говорит он. -\n"
+                 "Вибрация, звук, температура...\n"
+                 "Система скажет тебе всё сама.»\n\n"
+                 "Я записываю его слова в потрёпанный блокнот.";
+    entry.printSpeed = 60.0f;
+    entry.canSkip = true;
+
+    NotebookChoice choice;
+    choice.text = "Продолжить";
+    choice.action = [](PlayerState* player) {
+        player->addPrinciple("understanding_context");
+        player->addStoryItem("technical_journal");
+        std::cout << "[DEMO] Получен принцип: understanding_context" << std::endl;
+        std::cout << "[DEMO] Получен артефакт: technical_journal" << std::endl;
+    };
+    choice.nextEntryIds = {"demo_full_2"};
+    entry.addChoice(choice);
+
+    m_entries[entry.id] = entry;
+}
+
+void NotebookScene::loadDemoFull2() {
+    NotebookEntry entry;
+    entry.id = "demo_full_2";
+    entry.type = EntryType::PRESENT;
+    entry.text = "Сегодня. Дорога.\n\n"
+                 "Машина глохнет. Снова.\n\n"
+                 "У меня есть два варианта:\n"
+                 "• Проверить систему зажигания (нужны знания)\n"
+                 "• Позвать местного механика (нужны деньги: 100₽)";
+    entry.printSpeed = 60.0f;
+    entry.canSkip = true;
+
+    NotebookChoice choice1;
+    choice1.text = "Разобраться самому (-10% энергии, +опыт)";
+    choice1.action = [](PlayerState* player) {
+        player->modifyEnergy(-10.0f);
+        player->addTrait("analytical");
+        std::cout << "[DEMO] Получена черта: analytical" << std::endl;
+    };
+    choice1.nextEntryIds = {"demo_full_3"};
+    entry.addChoice(choice1);
+
+    NotebookChoice choice2;
+    choice2.text = "Позвать механика (-100₽, сэкономить время)";
+    choice2.action = [](PlayerState* player) {
+        player->modifyMoney(-100.0f);
+        player->modifyEnergy(5.0f);
+    };
+    choice2.nextEntryIds = {"demo_full_3"};
+    entry.addChoice(choice2);
+
+    NotebookChoice conditionalChoice;
+    conditionalChoice.text = "[💡 Применить системный подход] (УСЛОВНЫЙ)";
+    conditionalChoice.requiredPrinciples = {"understanding_context"};
+    conditionalChoice.requiredStoryItems = {"technical_journal"};
+    conditionalChoice.isHidden = true;
+    conditionalChoice.action = [](PlayerState* player) {
+        player->modifyEnergy(-5.0f);
+        player->addMoney(50.0f);
+        std::cout << "[DEMO] Использован условный выбор!" << std::endl;
+    };
+    conditionalChoice.nextEntryIds = {"demo_full_3"};
+    entry.addChoice(conditionalChoice);
+
+    m_entries[entry.id] = entry;
+}
+
+void NotebookScene::loadDemoFull3() {
+    NotebookEntry entry;
+    entry.id = "demo_full_3";
+    entry.type = EntryType::PRESENT;
+    entry.text = "Машина снова заводится.\n\n"
+                 "Я еду дальше по пустой дороге.\n\n"
+                 "В кармане: деньги на бензин и еду.\n"
+                 "В голове: уроки наставника.\n"
+                 "Впереди: новая жизнь.\n\n"
+                 "=== ДЕМОНСТРАЦИЯ ЗАВЕРШЕНА ===\n\n"
+                 "Вы увидели:\n"
+                 "✓ Систему ресурсов\n"
+                 "✓ Принципы и артефакты\n"
+                 "✓ Условные выборы\n"
+                 "✓ Ветвление сюжета\n\n"
+                 "Полная версия игры содержит:\n"
+                 "• День 0 с 4 ветками обучения\n"
+                 "• 26 уникальных событий\n"
+                 "• Систему сохранений\n"
+                 "• И многое другое!";
+    entry.printSpeed = 70.0f;
+    entry.canSkip = true;
+
+    NotebookChoice choice;
+    choice.text = "Завершить демо";
+    choice.nextEntryIds = {"demo_finale"};
+    entry.addChoice(choice);
+
+    m_entries[entry.id] = entry;
+}
+
+void NotebookScene::loadDemoFinale() {
+    NotebookEntry entry;
+    entry.id = "demo_finale";
+    entry.type = EntryType::PRESENT;
+    entry.text = "=== СПАСИБО ЗА ТЕСТИРОВАНИЕ! ===\n\n"
+                 "Это был краткий обзор игровых механик.\n\n"
+                 "В полной версии вас ждёт:\n\n"
+                 "📖 ДЕНЬ 0: Уроки дороги\n"
+                 "   4 уникальных ветки обучения с разными принципами\n\n"
+                 "🎲 СЛУЧАЙНЫЕ СОБЫТИЯ\n"
+                 "   26 событий с вероятностными исходами\n\n"
+                 "💾 СИСТЕМА СОХРАНЕНИЙ\n"
+                 "   Автосохранение + 4 слота бэкапов\n\n"
+                 "🎯 ПЕРСОНАЛИЗАЦИЯ\n"
+                 "   Каждое прохождение уникально\n\n"
+                 "Выберите 'NEW GAME' в главном меню,\n"
+                 "чтобы начать полное прохождение!";
+    entry.printSpeed = 70.0f;
+    entry.canSkip = true;
+
+    NotebookChoice choice;
+    choice.text = "Вернуться в главное меню";
+    choice.nextEntryIds = {};
+    entry.addChoice(choice);
 
     m_entries[entry.id] = entry;
 }

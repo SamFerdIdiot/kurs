@@ -261,10 +261,21 @@ private:
 
     // === ТЕСТОВЫЕ ЗАПИСИ ===
 
-    /**
-     * @brief Тестовая запись для проверки ThoughtSystem (короткие задержки 5/10/15 сек)
-     */
     void loadTestThoughtSystem();
+    void loadDemoTestResources();
+    void loadDemoTestResources2();
+    void loadDemoTestPrinciples();
+    void loadDemoTestPrinciples2();
+    void loadDemoTestPrinciples3();
+    void loadDemoTestConditional();
+    void loadDemoTestConditional2();
+    void loadDemoTestConditional3();
+    void loadDemoTestConditional4();
+    void loadDemoFullStart();
+    void loadDemoFull1();
+    void loadDemoFull2();
+    void loadDemoFull3();
+    void loadDemoFinale();
 
     // === ДЕМО-КОНТЕНТ (простой пример для быстрого тестирования) ===
 
