@@ -857,10 +857,25 @@ void NotebookScene::loadDay0_BranchA_5() {
     entry.mood = "Понимание системы";
     entry.printSpeed = 45.0f;
 
+    // Базовый выбор (всегда доступен)
     NotebookChoice choiceFinish;
     choiceFinish.text = "[Ехать дальше]";
     choiceFinish.nextEntryIds = {"day0_provocation"};
     entry.addChoice(choiceFinish);
+
+    // УСЛОВНЫЙ ВЫБОР: Появляется только если игрок усвоил принцип системного мышления
+    NotebookChoice choiceSystemThinking;
+    choiceSystemThinking.text = "[💡 Применить системный подход к текущей ситуации]";
+    choiceSystemThinking.requiredPrinciples = {"understanding_context"};
+    choiceSystemThinking.isHidden = true;
+    choiceSystemThinking.action = [](PlayerState* player) {
+        // Бонус за применение полученных знаний
+        player->modifyEnergy(5.0f);  // Ясность мышления даёт энергию
+        player->modifyMood(10.0f);   // Понимание приносит удовлетворение
+        std::cout << "[Choice] Применил системное мышление: +5 энергии, +10 настроения" << std::endl;
+    };
+    choiceSystemThinking.nextEntryIds = {"day0_provocation"};
+    entry.addChoice(choiceSystemThinking);
 
     m_entries[entry.id] = entry;
     std::cout << "[NotebookScene] Loaded Day 0 entry (Branch A-5): " << entry.id << std::endl;
@@ -1080,10 +1095,26 @@ void NotebookScene::loadDay0_BranchB_5() {
     entry.mood = "Понимание материала";
     entry.printSpeed = 45.0f;
 
+    // Базовый выбор (всегда доступен)
     NotebookChoice choiceFinish;
     choiceFinish.text = "[Завершить день]";
     choiceFinish.nextEntryIds = {"day0_provocation"};
     entry.addChoice(choiceFinish);
+
+    // УСЛОВНЫЙ ВЫБОР: Появляется если игрок усвоил чувство материала
+    NotebookChoice choiceMaterialSense;
+    choiceMaterialSense.text = "[💡 Довериться чувству материала]";
+    choiceMaterialSense.requiredPrinciples = {"listen_material"};
+    choiceMaterialSense.requiredStoryItems = {"burned_finger"}; // Нужен опыт (ожог)
+    choiceMaterialSense.isHidden = true;
+    choiceMaterialSense.action = [](PlayerState* player) {
+        // Бонус за интуитивное понимание техники
+        player->modifyVehicleCondition(5.0f);  // Лучше чувствуешь машину
+        player->modifyEnergy(5.0f);            // Интуиция экономит силы
+        std::cout << "[Choice] Использовал чувство материала: +5 состояния машины, +5 энергии" << std::endl;
+    };
+    choiceMaterialSense.nextEntryIds = {"day0_provocation"};
+    entry.addChoice(choiceMaterialSense);
 
     m_entries[entry.id] = entry;
     std::cout << "[NotebookScene] Loaded Day 0 entry (Branch B-5): " << entry.id << std::endl;
@@ -1301,10 +1332,26 @@ void NotebookScene::loadDay0_BranchC_5() {
     entry.mood = "Сила команды";
     entry.printSpeed = 45.0f;
 
+    // Базовый выбор (всегда доступен)
     NotebookChoice choiceFinish;
     choiceFinish.text = "[Завершить день]";
     choiceFinish.nextEntryIds = {"day0_provocation"};
     entry.addChoice(choiceFinish);
+
+    // УСЛОВНЫЙ ВЫБОР: Появляется если игрок понял ценность командной работы
+    NotebookChoice choiceTeamwork;
+    choiceTeamwork.text = "[💡 Вспомнить опыт командной работы]";
+    choiceTeamwork.requiredPrinciples = {"ask_experienced"};
+    choiceTeamwork.requiredStoryItems = {"photo_at_machine"}; // Нужна фотография бригады
+    choiceTeamwork.isHidden = true;
+    choiceTeamwork.action = [](PlayerState* player) {
+        // Бонус за понимание силы команды
+        player->modifyReputation(5);     // Тебя уважают как командного игрока
+        player->modifyMood(10.0f);       // Тёплые воспоминания о товарищах
+        std::cout << "[Choice] Вспомнил ценность команды: +5 репутации, +10 настроения" << std::endl;
+    };
+    choiceTeamwork.nextEntryIds = {"day0_provocation"};
+    entry.addChoice(choiceTeamwork);
 
     m_entries[entry.id] = entry;
     std::cout << "[NotebookScene] Loaded Day 0 entry (Branch C-5): " << entry.id << std::endl;
@@ -1500,10 +1547,26 @@ void NotebookScene::loadDay0_BranchD_5() {
     entry.mood = "Осознанность";
     entry.printSpeed = 45.0f;
 
+    // Базовый выбор (всегда доступен)
     NotebookChoice choiceFinish;
     choiceFinish.text = "[Завершить день]";
     choiceFinish.nextEntryIds = {"day0_provocation"};
     entry.addChoice(choiceFinish);
+
+    // УСЛОВНЫЙ ВЫБОР: Появляется если игрок усвоил принцип ресурсоэффективности
+    NotebookChoice choiceEfficiency;
+    choiceEfficiency.text = "[💡 Применить принцип ресурсоэффективности]";
+    choiceEfficiency.requiredPrinciples = {"resource_efficient"};
+    choiceEfficiency.requiredStoryItems = {"spare_starter"}; // Нужна запасная деталь
+    choiceEfficiency.isHidden = true;
+    choiceEfficiency.action = [](PlayerState* player) {
+        // Бонус за эффективное планирование
+        player->addMoney(100.0f);        // Сэкономил деньги
+        player->addFuel(5.0f);           // Оптимизировал расход топлива
+        std::cout << "[Choice] Применил ресурсоэффективность: +100₽, +5 топлива" << std::endl;
+    };
+    choiceEfficiency.nextEntryIds = {"day0_provocation"};
+    entry.addChoice(choiceEfficiency);
 
     m_entries[entry.id] = entry;
     std::cout << "[NotebookScene] Loaded Day 0 entry (Branch D-5): " << entry.id << std::endl;
@@ -1528,6 +1591,8 @@ void NotebookScene::loadDay0_Provocation() {
     entry.mood = "Напряжённый";
     entry.printSpeed = 45.0f;
 
+    // БАЗОВЫЕ ВЫБОРЫ (всегда доступны)
+
     // Выбор 1: Огрызнуться
     NotebookChoice choice1;
     choice1.text = "«Сам ты вечно ворчишь.»";
@@ -1547,6 +1612,60 @@ void NotebookScene::loadDay0_Provocation() {
         std::cout << "[Day0] Игрок подумал (черта: терпеливый)" << std::endl;
     };
     entry.addChoice(choice2);
+
+    // УСЛОВНЫЕ ВЫБОРЫ (появляются в зависимости от пройденной ветки)
+
+    // Условный выбор для ветки А: Системный анализ
+    NotebookChoice choiceSystemic;
+    choiceSystemic.text = "[💡 «Проанализирую ситуацию системно.» (Ветка А)]";
+    choiceSystemic.requiredPrinciples = {"understanding_context"};
+    choiceSystemic.isHidden = true;
+    choiceSystemic.nextEntryIds = {"day0_garage_finale"};
+    choiceSystemic.action = [](PlayerState* player) {
+        player->addTrait("analytical");  // Черта: аналитический
+        player->modifyEnergy(10.0f);     // Ясность мышления
+        std::cout << "[Day0] Применил системное мышление (черта: аналитический, +10 энергии)" << std::endl;
+    };
+    entry.addChoice(choiceSystemic);
+
+    // Условный выбор для ветки Б: Чувство материала
+    NotebookChoice choiceIntuitive;
+    choiceIntuitive.text = "[💡 «Чувствую, что это правильно.» (Ветка Б)]";
+    choiceIntuitive.requiredPrinciples = {"listen_material"};
+    choiceIntuitive.isHidden = true;
+    choiceIntuitive.nextEntryIds = {"day0_garage_finale"};
+    choiceIntuitive.action = [](PlayerState* player) {
+        player->addTrait("intuitive");      // Черта: интуитивный
+        player->modifyVehicleCondition(10.0f);  // Лучше чувствуешь технику
+        std::cout << "[Day0] Доверился интуиции (черта: интуитивный, +10 состояния машины)" << std::endl;
+    };
+    entry.addChoice(choiceIntuitive);
+
+    // Условный выбор для ветки В: Командная работа
+    NotebookChoice choiceCollaborative;
+    choiceCollaborative.text = "[💡 «Спрошу у тех, кто знает лучше.» (Ветка В)]";
+    choiceCollaborative.requiredPrinciples = {"ask_experienced"};
+    choiceCollaborative.isHidden = true;
+    choiceCollaborative.nextEntryIds = {"day0_garage_finale"};
+    choiceCollaborative.action = [](PlayerState* player) {
+        player->addTrait("collaborative");  // Черта: коллаборативный
+        player->modifyReputation(10);       // Уважение к опыту других
+        std::cout << "[Day0] Ценишь командную работу (черта: коллаборативный, +10 репутации)" << std::endl;
+    };
+    entry.addChoice(choiceCollaborative);
+
+    // Условный выбор для ветки Г: Ресурсоэффективность
+    NotebookChoice choiceEfficient;
+    choiceEfficient.text = "[💡 «Взвешу все ресурсы и решу.» (Ветка Г)]";
+    choiceEfficient.requiredPrinciples = {"resource_efficient"};
+    choiceEfficient.isHidden = true;
+    choiceEfficient.nextEntryIds = {"day0_garage_finale"};
+    choiceEfficient.action = [](PlayerState* player) {
+        player->addTrait("efficient");   // Черта: эффективный
+        player->addMoney(150.0f);        // Экономия ресурсов
+        std::cout << "[Day0] Применил принцип эффективности (черта: эффективный, +150₽)" << std::endl;
+    };
+    entry.addChoice(choiceEfficient);
 
     m_entries[entry.id] = entry;
     std::cout << "[NotebookScene] Loaded Day 0 entry (Provocation): " << entry.id << std::endl;

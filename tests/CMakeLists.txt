@@ -72,6 +72,7 @@ set(UNIT_TEST_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/test_day0_complete.cpp  # День 0: полное тестирование
     ${CMAKE_CURRENT_SOURCE_DIR}/test_full_system_integration.cpp  # Полная интеграция систем
     ${CMAKE_CURRENT_SOURCE_DIR}/test_out_of_fuel.cpp  # Тест события "Закончилось топливо"
+    ${CMAKE_CURRENT_SOURCE_DIR}/test_conditional_choices.cpp  # Тест условных выборов
     # Add more unit test files here as they are created
     # ${CMAKE_CURRENT_SOURCE_DIR}/unit/test_character.cpp
     # ${CMAKE_CURRENT_SOURCE_DIR}/unit/test_car.cpp
