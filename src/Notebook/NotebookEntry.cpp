@@ -10,43 +10,46 @@ bool NotebookChoice::isAvailable(const PlayerState* player) const {
     }
 
     if (!player) {
-        return true;
+        bool hasConditionalRequirements = !requiredPrinciples.empty() ||
+                                          !requiredTraits.empty() ||
+                                          !requiredStoryItems.empty();
+        return !(isHidden || hasConditionalRequirements);
     }
 
+    bool hasConditionalRequirements = !requiredPrinciples.empty() ||
+                                      !requiredTraits.empty() ||
+                                      !requiredStoryItems.empty();
+
+    if (isHidden || hasConditionalRequirements) {
+        for (const auto& principle : requiredPrinciples) {
+            if (!player->hasPrinciple(principle)) {
+                return false;
+            }
+        }
+
+        for (const auto& trait : requiredTraits) {
+            if (!player->hasTrait(trait)) {
+                return false;
+            }
+        }
+
+        for (const auto& item : requiredStoryItems) {
+            if (!player->hasStoryItem(item)) {
+                return false;
+            }
+        }
+    }
 
     if (energyRequired > 0.0f && player->getEnergy() < energyRequired) {
         return false;
     }
 
-
     if (fuelRequired > 0.0f && player->getFuel() < fuelRequired) {
         return false;
     }
 
-
     if (moneyRequired > 0.0f && player->getMoney() < moneyRequired) {
         return false;
-    }
-
-
-    for (const auto& principle : requiredPrinciples) {
-        if (!player->hasPrinciple(principle)) {
-            return false;
-        }
-    }
-
-
-    for (const auto& trait : requiredTraits) {
-        if (!player->hasTrait(trait)) {
-            return false;
-        }
-    }
-
-
-    for (const auto& item : requiredStoryItems) {
-        if (!player->hasStoryItem(item)) {
-            return false;
-        }
     }
 
     return true;

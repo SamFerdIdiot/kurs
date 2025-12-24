@@ -77,10 +77,8 @@ void MainMenuScene::handleInput(const sf::Event& event) {
 
                 switch (m_selectedIndex) {
                     case 0:
-
-
                         GameStateManager::getInstance().getPlayerState().setCurrentCityIndex(0);
-                        GameStateManager::getInstance().getPlayerState().setCurrentNotebookEntryId("demo_start");
+                        GameStateManager::getInstance().getPlayerState().setCurrentNotebookEntryId("day0_knock");
                         m_nextScene = SceneType::NOTEBOOK;
                         m_isFinished = true;
                         break;
