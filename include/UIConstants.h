@@ -3,16 +3,16 @@
 
 #include <SFML/Graphics.hpp>
 
-// Fixed UI Constants (1300x800)
-// No scaling, no responsive design - everything is hardcoded
+
+
 
 namespace UI {
 
-// Screen dimensions
+
 constexpr float SCREEN_WIDTH = 1300.0f;
 constexpr float SCREEN_HEIGHT = 800.0f;
 
-// Colors
+
 namespace Color {
     const sf::Color BACKGROUND_DARK(40, 40, 50);
     const sf::Color BACKGROUND_LIGHT(60, 60, 70);
@@ -29,7 +29,7 @@ namespace Color {
     const sf::Color SELECTION_HIGHLIGHT(70, 130, 180, 100);
 }
 
-// Font sizes
+
 constexpr unsigned int FONT_SIZE_HUGE = 48;
 constexpr unsigned int FONT_SIZE_TITLE = 32;
 constexpr unsigned int FONT_SIZE_SUBTITLE = 24;
@@ -37,7 +37,7 @@ constexpr unsigned int FONT_SIZE_NORMAL = 18;
 constexpr unsigned int FONT_SIZE_SMALL = 14;
 constexpr unsigned int FONT_SIZE_TINY = 12;
 
-// Spacing and padding
+
 constexpr float PADDING_HUGE = 40.0f;
 constexpr float PADDING_LARGE = 20.0f;
 constexpr float PADDING_MEDIUM = 10.0f;
@@ -48,12 +48,12 @@ constexpr float SPACING_LARGE = 60.0f;
 constexpr float SPACING_MEDIUM = 40.0f;
 constexpr float SPACING_SMALL = 20.0f;
 
-// Button dimensions
+
 constexpr float BUTTON_HEIGHT = 50.0f;
 constexpr float BUTTON_WIDTH = 300.0f;
 constexpr float BUTTON_WIDTH_SMALL = 150.0f;
 
-// Menu positioning (NodeScene)
+
 namespace Menu {
     constexpr float START_X = 100.0f;
     constexpr float START_Y = 150.0f;
@@ -63,21 +63,21 @@ namespace Menu {
     constexpr float SELECTION_HIGHLIGHT_OFFSET = -10.0f;
 }
 
-// HUD positioning
+
 namespace HUD {
-    constexpr float TOP_RIGHT_X = 1060.0f;  // 1300 - 240
+    constexpr float TOP_RIGHT_X = 1060.0f;
     constexpr float TOP_RIGHT_Y = 20.0f;
-    constexpr float STATUS_Y = 560.0f;  // 800 - 240
-    constexpr float CONTROLS_Y = 720.0f;  // 800 - 80
+    constexpr float STATUS_Y = 560.0f;
+    constexpr float CONTROLS_Y = 720.0f;
 }
 
-// Font paths
+
 namespace Fonts {
     const char* const PRIMARY = "assets/fonts/font.ttf";
     const char* const FALLBACK_1 = "images/Press_Start_2P/PressStart2P-Regular.ttf";
     const char* const FALLBACK_2 = "/System/Library/Fonts/Helvetica.ttc";
 }
 
-} // namespace UI
+}
 
-#endif // UI_CONSTANTS_H
+#endif

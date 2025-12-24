@@ -4,14 +4,14 @@
 #include "FontLoader.h"
 #include <iostream>
 
-// Constructor
+
 MainMenuScene::MainMenuScene()
     : m_selectedIndex(0),
       m_isFinished(false),
       m_nextScene(SceneType::MAIN_MENU),
       m_fontLoaded(false) {
 
-    // Try to load font using FontLoader helper
+
     if (auto fontOpt = FontLoader::load()) {
         m_font = std::move(*fontOpt);
         m_fontLoaded = true;
@@ -21,17 +21,17 @@ MainMenuScene::MainMenuScene()
         return;
     }
 
-    // Setup title text with fixed dimensions (using emplace for SFML 3.x)
+
     m_titleText.emplace(m_font, "69 Crossroads", UI::FONT_SIZE_HUGE);
     m_titleText->setFillColor(UI::Color::ACCENT_YELLOW);
     m_titleText->setPosition(sf::Vector2f(480.0f, 150.0f));
 
-    // Setup menu items with fixed positions
+
     m_newGameText.emplace(m_font, "NEW GAME", UI::FONT_SIZE_SUBTITLE);
     m_newGameText->setFillColor(UI::Color::ACCENT_GREEN);
     m_newGameText->setPosition(sf::Vector2f(550.0f, 350.0f));
 
-    // Check if save exists to enable/disable Continue
+
     bool hasSave = GameStateManager::getInstance().hasSaveGame();
     m_continueText.emplace(m_font, "CONTINUE", UI::FONT_SIZE_SUBTITLE);
     m_continueText->setFillColor(hasSave ? UI::Color::ACCENT_GREEN : UI::Color::TEXT_SECONDARY);
@@ -45,20 +45,20 @@ MainMenuScene::MainMenuScene()
     m_exitText->setFillColor(UI::Color::ACCENT_GREEN);
     m_exitText->setPosition(sf::Vector2f(550.0f, 560.0f));
 
-    // Setup background boxes with fixed dimensions
+
     m_titleBox.setSize(sf::Vector2f(600.0f, 80.0f));
     m_titleBox.setPosition(sf::Vector2f(420.0f, 140.0f));
     m_titleBox.setFillColor(UI::Color::BACKGROUND_DARK);
     m_titleBox.setOutlineColor(UI::Color::ACCENT_GREEN);
     m_titleBox.setOutlineThickness(2.0f);
 
-    // Setup selector (orange blinking arrow)
+
     m_selectorBox.setSize(sf::Vector2f(30.0f, 30.0f));
     m_selectorBox.setFillColor(UI::Color::ACCENT_YELLOW);
     m_selectorBox.setPosition(sf::Vector2f(500.0f, 350.0f));
 }
 
-// Handle input
+
 void MainMenuScene::handleInput(const sf::Event& event) {
     if (const auto* keyPressed = event.getIf<sf::Event::KeyPressed>()) {
         switch (keyPressed->code) {
@@ -74,22 +74,22 @@ void MainMenuScene::handleInput(const sf::Event& event) {
 
             case sf::Keyboard::Key::Enter:
             case sf::Keyboard::Key::Space:
-                // Handle selection
+
                 switch (m_selectedIndex) {
-                    case 0: // New Game - start with DEMO
-                        // ДЕМО: Игра начинается с простого демо-контента
-                        // ПРИМЕЧАНИЕ: Измени "demo_start" на "day0_knock" когда добавишь свой сюжет!
+                    case 0:
+
+
                         GameStateManager::getInstance().getPlayerState().setCurrentCityIndex(0);
                         GameStateManager::getInstance().getPlayerState().setCurrentNotebookEntryId("demo_start");
                         m_nextScene = SceneType::NOTEBOOK;
                         m_isFinished = true;
                         break;
-                    case 1: // Continue
-                        // Only allow continue if save exists
+                    case 1:
+
                         if (GameStateManager::getInstance().hasSaveGame()) {
-                            // Load the game
+
                             if (GameStateManager::getInstance().loadGame()) {
-                                // After loading, continue in the Notebook
+
                                 m_nextScene = SceneType::NOTEBOOK;
                                 m_isFinished = true;
                             } else {
@@ -99,13 +99,13 @@ void MainMenuScene::handleInput(const sf::Event& event) {
                             std::cout << "No save file found, cannot continue" << std::endl;
                         }
                         break;
-                    case 2: // Notebook (Test)
-                        // Установить тестовую запись для ThoughtSystem
+                    case 2:
+
                         GameStateManager::getInstance().getPlayerState().setCurrentNotebookEntryId("test_thought_system");
                         m_nextScene = SceneType::NOTEBOOK;
                         m_isFinished = true;
                         break;
-                    case 3: // Exit
+                    case 3:
                         m_nextScene = SceneType::EXIT;
                         m_isFinished = true;
                         break;
@@ -123,31 +123,31 @@ void MainMenuScene::handleInput(const sf::Event& event) {
     }
 }
 
-// Update
+
 void MainMenuScene::update(float deltaTime) {
-    // Update selector position based on selected index with fixed positions
+
     float yPositions[] = {350.0f, 420.0f, 490.0f, 560.0f};
     m_selectorBox.setPosition(sf::Vector2f(500.0f, yPositions[m_selectedIndex]));
 
-    // Simple blinking effect for selector
+
     static float blinkTimer = 0.0f;
     blinkTimer += deltaTime;
     if (blinkTimer > 0.5f) {
         blinkTimer = 0.0f;
-        // Toggle visibility by changing alpha
+
         sf::Color color = m_selectorBox.getFillColor();
         color.a = (color.a == 255) ? 100 : 255;
         m_selectorBox.setFillColor(color);
     }
 
-    // Check if save exists and update Continue text color
+
     bool hasSave = GameStateManager::getInstance().hasSaveGame();
 
-    // Highlight selected item (using optional -> operator)
+
     if (m_newGameText) {
         m_newGameText->setFillColor((m_selectedIndex == 0) ? UI::Color::ACCENT_YELLOW : UI::Color::ACCENT_GREEN);
     }
-    // Continue is yellow if selected AND save exists, gray if no save, green otherwise
+
     if (m_continueText) {
         if (m_selectedIndex == 1) {
             m_continueText->setFillColor(hasSave ? UI::Color::ACCENT_YELLOW : UI::Color::TEXT_SECONDARY);
@@ -163,22 +163,22 @@ void MainMenuScene::update(float deltaTime) {
     }
 }
 
-// Render
+
 void MainMenuScene::render(sf::RenderWindow& window) {
-    // Clear with dark background
+
     window.clear(UI::Color::BACKGROUND_DARK);
 
     if (!m_fontLoaded) {
         return;
     }
 
-    // Draw title box and text
+
     window.draw(m_titleBox);
     if (m_titleText) {
         window.draw(*m_titleText);
     }
 
-    // Draw menu items
+
     if (m_newGameText) {
         window.draw(*m_newGameText);
     }
@@ -192,16 +192,16 @@ void MainMenuScene::render(sf::RenderWindow& window) {
         window.draw(*m_exitText);
     }
 
-    // Draw selector (blinking arrow)
+
     window.draw(m_selectorBox);
 }
 
-// Get next scene
+
 SceneType MainMenuScene::getNextScene() const {
     return m_nextScene;
 }
 
-// Check if finished
+
 bool MainMenuScene::isFinished() const {
     return m_isFinished;
 }

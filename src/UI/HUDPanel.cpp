@@ -17,20 +17,20 @@ HUDPanel::HUDPanel(float windowWidth, float windowHeight)
       m_topRightCargoMax(100.0f),
       m_topRightFuelBar(sf::Vector2f(700.0f, 50.0f), sf::Vector2f(100.0f, 10.0f)),
       m_topRightEnergyBar(sf::Vector2f(700.0f, 85.0f), sf::Vector2f(100.0f, 10.0f)) {
-    
-    // Try to load default font (SFML 3.x uses openFromFile)
+
+
     m_fontLoaded = m_font.openFromFile("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf");
 
     if (!m_fontLoaded) {
         std::cerr << "Warning: Could not load HUD font" << std::endl;
     }
-    
+
     initializeLayout();
     initializeTopRightDisplay();
 }
 
 void HUDPanel::initializeLayout() {
-    // Main HUD background - bottom aligned, spans full width
+
     float hudHeight = 120.f;
     m_hudBackground.setSize(sf::Vector2f(m_windowWidth, hudHeight));
     m_hudBackground.setPosition(sf::Vector2f(0.f, m_windowHeight - hudHeight));
@@ -47,7 +47,7 @@ void HUDPanel::initializeLeftSection() {
     float hudTop = m_windowHeight - 120.f;
     float leftX = 20.f;
 
-    // Energy panel
+
     m_energyPanel.setSize(sf::Vector2f(180.f, 30.f));
     m_energyPanel.setPosition(sf::Vector2f(leftX, hudTop + 10.f));
     m_energyPanel.setFillColor(sf::Color(40, 40, 50));
@@ -68,7 +68,7 @@ void HUDPanel::initializeLeftSection() {
         m_energyValue->setPosition(sf::Vector2f(leftX + 5.f, hudTop + 12.f));
     }
 
-    // Money panel
+
     m_moneyPanel.setSize(sf::Vector2f(180.f, 25.f));
     m_moneyPanel.setPosition(sf::Vector2f(leftX, hudTop + 50.f));
     m_moneyPanel.setFillColor(sf::Color(50, 50, 40));
@@ -85,7 +85,7 @@ void HUDPanel::initializeLeftSection() {
         m_moneyValue->setPosition(sf::Vector2f(leftX + 80.f, hudTop + 52.f));
     }
 
-    // Inventory panel
+
     m_inventoryPanel.setSize(sf::Vector2f(180.f, 25.f));
     m_inventoryPanel.setPosition(sf::Vector2f(leftX, hudTop + 85.f));
     m_inventoryPanel.setFillColor(sf::Color(40, 50, 50));
@@ -107,7 +107,7 @@ void HUDPanel::initializeCenterSection() {
     float hudTop = m_windowHeight - 120.f;
     float centerX = m_windowWidth / 2.f - 100.f;
 
-    // Speed panel
+
     m_speedPanel.setSize(sf::Vector2f(120.f, 40.f));
     m_speedPanel.setPosition(sf::Vector2f(centerX, hudTop + 10.f));
     m_speedPanel.setFillColor(sf::Color(50, 50, 60));
@@ -124,7 +124,7 @@ void HUDPanel::initializeCenterSection() {
         m_speedValue->setPosition(sf::Vector2f(centerX + 40.f, hudTop + 23.f));
     }
 
-    // Odometer panel
+
     m_odometerPanel.setSize(sf::Vector2f(120.f, 25.f));
     m_odometerPanel.setPosition(sf::Vector2f(centerX, hudTop + 55.f));
     m_odometerPanel.setFillColor(sf::Color(40, 50, 40));
@@ -141,7 +141,7 @@ void HUDPanel::initializeCenterSection() {
         m_odometerValue->setPosition(sf::Vector2f(centerX + 55.f, hudTop + 57.f));
     }
 
-    // LCD panel
+
     m_lcdPanel.setSize(sf::Vector2f(200.f, 30.f));
     m_lcdPanel.setPosition(sf::Vector2f(centerX - 40.f, hudTop + 85.f));
     m_lcdPanel.setFillColor(sf::Color(20, 40, 20));
@@ -159,7 +159,7 @@ void HUDPanel::initializeRightSection() {
     float hudTop = m_windowHeight - 120.f;
     float rightX = m_windowWidth - 200.f;
 
-    // Fuel panel
+
     m_fuelPanel.setSize(sf::Vector2f(180.f, 30.f));
     m_fuelPanel.setPosition(sf::Vector2f(rightX, hudTop + 10.f));
     m_fuelPanel.setFillColor(sf::Color(50, 40, 40));
@@ -180,7 +180,7 @@ void HUDPanel::initializeRightSection() {
         m_fuelValue->setPosition(sf::Vector2f(rightX + 5.f, hudTop + 12.f));
     }
 
-    // Temperature panel
+
     m_tempPanel.setSize(sf::Vector2f(180.f, 30.f));
     m_tempPanel.setPosition(sf::Vector2f(rightX, hudTop + 50.f));
     m_tempPanel.setFillColor(sf::Color(40, 40, 50));
@@ -201,7 +201,7 @@ void HUDPanel::initializeRightSection() {
         m_tempValue->setPosition(sf::Vector2f(rightX + 95.f, hudTop + 55.f));
     }
 
-    // Warning indicators
+
     m_warningEngine.setSize(sf::Vector2f(55.f, 20.f));
     m_warningEngine.setPosition(sf::Vector2f(rightX + 5.f, hudTop + 90.f));
     m_warningEngine.setFillColor(sf::Color(60, 40, 40));
@@ -237,21 +237,21 @@ void HUDPanel::update(const HUDData& data) {
         return;
     }
 
-    // Update energy value
+
     if (m_energyValue) {
         std::ostringstream energyStream;
         energyStream << std::fixed << std::setprecision(0) << m_data.energy << "%";
         m_energyValue->setString(energyStream.str());
     }
 
-    // Update money value
+
     if (m_moneyValue) {
         std::ostringstream moneyStream;
         moneyStream << std::fixed << std::setprecision(0) << m_data.money << " ₽";
         m_moneyValue->setString(moneyStream.str());
     }
 
-    // Update inventory value
+
     if (m_inventoryValue) {
         std::ostringstream invStream;
         invStream << std::fixed << std::setprecision(1) << m_data.inventoryWeight
@@ -259,40 +259,40 @@ void HUDPanel::update(const HUDData& data) {
         m_inventoryValue->setString(invStream.str());
     }
 
-    // Update speed value
+
     if (m_speedValue) {
         std::ostringstream speedStream;
         speedStream << std::fixed << std::setprecision(0) << m_data.speed;
         m_speedValue->setString(speedStream.str());
     }
 
-    // Update odometer value
+
     if (m_odometerValue) {
         std::ostringstream odoStream;
         odoStream << std::fixed << std::setprecision(1) << m_data.odometer << " км";
         m_odometerValue->setString(odoStream.str());
     }
 
-    // Update LCD text
+
     if (m_lcdText) {
         m_lcdText->setString(m_data.lcdText);
     }
 
-    // Update fuel value
+
     if (m_fuelValue) {
         std::ostringstream fuelStream;
         fuelStream << std::fixed << std::setprecision(0) << m_data.fuel << "%";
         m_fuelValue->setString(fuelStream.str());
     }
 
-    // Update temperature value
+
     if (m_tempValue) {
         std::ostringstream tempStream;
         tempStream << std::fixed << std::setprecision(0) << m_data.temperature << "%";
         m_tempValue->setString(tempStream.str());
     }
 
-    // Update warning indicators
+
     if (m_data.engineWarning) {
         m_warningEngine.setFillColor(sf::Color(200, 50, 50));
         if (m_warningEngineText) m_warningEngineText->setFillColor(sf::Color::White);
@@ -319,11 +319,11 @@ void HUDPanel::update(const HUDData& data) {
 }
 
 void HUDPanel::updateBars() {
-    // Update energy bar width
+
     float energyWidth = (m_data.energy / 100.f) * 170.f;
     m_energyBar.setSize(sf::Vector2f(energyWidth, 20.f));
-    
-    // Change energy color based on level
+
+
     if (m_data.energy < 20.f) {
         m_energyBar.setFillColor(sf::Color(200, 50, 50));
     } else if (m_data.energy < 50.f) {
@@ -331,12 +331,12 @@ void HUDPanel::updateBars() {
     } else {
         m_energyBar.setFillColor(sf::Color(100, 200, 100));
     }
-    
-    // Update fuel bar width
+
+
     float fuelWidth = (m_data.fuel / 100.f) * 170.f;
     m_fuelBar.setSize(sf::Vector2f(fuelWidth, 20.f));
-    
-    // Change fuel color based on level
+
+
     if (m_data.fuel < 20.f) {
         m_fuelBar.setFillColor(sf::Color(200, 50, 50));
     } else if (m_data.fuel < 50.f) {
@@ -344,12 +344,12 @@ void HUDPanel::updateBars() {
     } else {
         m_fuelBar.setFillColor(sf::Color(200, 200, 50));
     }
-    
-    // Update temperature bar width
+
+
     float tempWidth = (m_data.temperature / 100.f) * 85.f;
     m_tempBar.setSize(sf::Vector2f(tempWidth, 20.f));
-    
-    // Change temperature color based on level
+
+
     if (m_data.temperature > 80.f) {
         m_tempBar.setFillColor(sf::Color(200, 50, 50));
     } else if (m_data.temperature > 60.f) {
@@ -360,10 +360,10 @@ void HUDPanel::updateBars() {
 }
 
 void HUDPanel::render(sf::RenderWindow& window) {
-    // Draw main background
+
     window.draw(m_hudBackground);
 
-    // Draw left section
+
     window.draw(m_energyPanel);
     window.draw(m_energyBar);
     window.draw(m_moneyPanel);
@@ -378,7 +378,7 @@ void HUDPanel::render(sf::RenderWindow& window) {
         if (m_inventoryValue) window.draw(*m_inventoryValue);
     }
 
-    // Draw center section
+
     window.draw(m_speedPanel);
     window.draw(m_odometerPanel);
     window.draw(m_lcdPanel);
@@ -391,7 +391,7 @@ void HUDPanel::render(sf::RenderWindow& window) {
         if (m_lcdText) window.draw(*m_lcdText);
     }
 
-    // Draw right section
+
     window.draw(m_fuelPanel);
     window.draw(m_fuelBar);
     window.draw(m_tempPanel);
@@ -410,18 +410,18 @@ void HUDPanel::render(sf::RenderWindow& window) {
         if (m_warningCheckText) window.draw(*m_warningCheckText);
     }
 
-    // Draw top-right display
+
     if (m_topRightEnabled) {
         renderTopRightDisplay(window);
     }
 }
 
 bool HUDPanel::setFont(const std::string& fontPath) {
-    // SFML 3.x uses openFromFile instead of loadFromFile
+
     m_fontLoaded = m_font.openFromFile(fontPath);
 
     if (m_fontLoaded) {
-        // Reinitialize layout with new font
+
         initializeLayout();
         initializeTopRightDisplay();
     }
@@ -429,44 +429,44 @@ bool HUDPanel::setFont(const std::string& fontPath) {
     return m_fontLoaded;
 }
 
-// === Phase 4: Top-right resource display implementation ===
+
 
 void HUDPanel::initializeTopRightDisplay() {
     if (!m_fontLoaded) {
         return;
     }
 
-    float rightX = 650.0f;  // Top-right corner start position
+    float rightX = 650.0f;
     float startY = 10.0f;
     float lineSpacing = 25.0f;
 
-    // Money text: 💰 1,250₽
+
     m_topRightMoneyText.emplace(m_font, "💰 0₽", 14);
-    m_topRightMoneyText->setFillColor(sf::Color(255, 215, 0));  // Gold color
+    m_topRightMoneyText->setFillColor(sf::Color(255, 215, 0));
     m_topRightMoneyText->setPosition(sf::Vector2f(rightX, startY));
 
-    // Fuel text: ⛽ 45.5/100L (above fuel bar)
+
     m_topRightFuelText.emplace(m_font, "⛽ 100.0/100L", 14);
-    m_topRightFuelText->setFillColor(sf::Color(255, 165, 0));  // Orange color
+    m_topRightFuelText->setFillColor(sf::Color(255, 165, 0));
     m_topRightFuelText->setPosition(sf::Vector2f(rightX, startY + lineSpacing));
 
-    // Fuel bar position (below fuel text)
+
     m_topRightFuelBar.setPosition(sf::Vector2f(rightX + 100, startY + lineSpacing + 5));
 
-    // Energy text: ⚡ 70/100 (above energy bar)
+
     m_topRightEnergyText.emplace(m_font, "⚡ 100/100", 14);
-    m_topRightEnergyText->setFillColor(sf::Color(0, 255, 255));  // Cyan color
+    m_topRightEnergyText->setFillColor(sf::Color(0, 255, 255));
     m_topRightEnergyText->setPosition(sf::Vector2f(rightX, startY + lineSpacing * 2 + 10));
 
-    // Energy bar position (below energy text)
+
     m_topRightEnergyBar.setPosition(sf::Vector2f(rightX + 100, startY + lineSpacing * 2 + 15));
 
-    // Cargo text: 📦 25/64
+
     m_topRightCargoText.emplace(m_font, "📦 0/100", 14);
     m_topRightCargoText->setFillColor(sf::Color::White);
     m_topRightCargoText->setPosition(sf::Vector2f(rightX, startY + lineSpacing * 3 + 20));
 
-    // Initialize resource values
+
     updateTopRightDisplay();
 }
 
@@ -503,8 +503,8 @@ void HUDPanel::updateTopRight(float deltaTime) {
     if (!m_topRightEnabled) {
         return;
     }
-    
-    // Update resource bar animations
+
+
     m_topRightFuelBar.update(deltaTime);
     m_topRightEnergyBar.update(deltaTime);
 }
@@ -514,14 +514,14 @@ void HUDPanel::updateTopRightDisplay() {
         return;
     }
 
-    // Update money text
+
     if (m_topRightMoneyText) {
         std::ostringstream moneyStream;
         moneyStream << "💰 " << std::fixed << std::setprecision(0) << m_topRightMoney << "₽";
         m_topRightMoneyText->setString(moneyStream.str());
     }
 
-    // Update fuel text
+
     if (m_topRightFuelText) {
         std::ostringstream fuelStream;
         fuelStream << "⛽ " << std::fixed << std::setprecision(1)
@@ -529,7 +529,7 @@ void HUDPanel::updateTopRightDisplay() {
         m_topRightFuelText->setString(fuelStream.str());
     }
 
-    // Update energy text
+
     if (m_topRightEnergyText) {
         std::ostringstream energyStream;
         energyStream << "⚡ " << std::fixed << std::setprecision(0)
@@ -537,7 +537,7 @@ void HUDPanel::updateTopRightDisplay() {
         m_topRightEnergyText->setString(energyStream.str());
     }
 
-    // Update cargo text
+
     if (m_topRightCargoText) {
         std::ostringstream cargoStream;
         cargoStream << "📦 " << std::fixed << std::setprecision(0)
@@ -551,13 +551,13 @@ void HUDPanel::renderTopRightDisplay(sf::RenderWindow& window) {
         return;
     }
 
-    // Draw text elements
+
     if (m_topRightMoneyText) window.draw(*m_topRightMoneyText);
     if (m_topRightFuelText) window.draw(*m_topRightFuelText);
     if (m_topRightEnergyText) window.draw(*m_topRightEnergyText);
     if (m_topRightCargoText) window.draw(*m_topRightCargoText);
 
-    // Draw resource bars
+
     m_topRightFuelBar.draw(window);
     m_topRightEnergyBar.draw(window);
 }

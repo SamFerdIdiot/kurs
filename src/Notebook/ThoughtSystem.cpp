@@ -3,7 +3,7 @@
 #include <ctime>
 #include <algorithm>
 
-// Helper function to convert UTF-8 string to SFML string
+
 static sf::String utf8(const std::string& str) {
     return sf::String::fromUtf8(str.begin(), str.end());
 }
@@ -14,23 +14,23 @@ ThoughtSystem::ThoughtSystem()
     , m_thoughtsSpawned(0)
     , m_testMode(false)
 {
-    // Инициализировать генератор случайных чисел
+
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
-    // Загрузить мысли
+
     initializeThoughts();
 }
 
 void ThoughtSystem::update(float deltaTime, float timeSinceChoice) {
-    // Обновить таймер
+
     m_thoughtTimer += deltaTime;
 
-    // Проверить, нужно ли показать новую мысль
+
     if (timeSinceChoice >= m_nextThoughtDelay && m_thoughtsSpawned < 3) {
         spawnThought(getRandomThought());
         m_thoughtsSpawned++;
 
-        // Установить задержку для следующей мысли (зависит от режима)
+
         if (m_thoughtsSpawned == 1) {
             m_nextThoughtDelay = m_testMode ? TEST_SECOND_THOUGHT_DELAY : SECOND_THOUGHT_DELAY;
         } else if (m_thoughtsSpawned == 2) {
@@ -38,13 +38,13 @@ void ThoughtSystem::update(float deltaTime, float timeSinceChoice) {
         }
     }
 
-    // Обновить все активные мысли
+
     for (auto& thought : m_activeThoughts) {
         thought.lifetime += deltaTime;
         updateThoughtAlpha(thought);
     }
 
-    // Удалить мысли, которые истекли
+
     m_activeThoughts.erase(
         std::remove_if(m_activeThoughts.begin(), m_activeThoughts.end(),
             [](const ThoughtBubble& t) { return t.lifetime >= t.maxLifetime; }),
@@ -57,12 +57,12 @@ void ThoughtSystem::render(sf::RenderWindow& window, const sf::Font& font) {
     const float screenHeight = static_cast<float>(window.getSize().y);
 
     for (const auto& thought : m_activeThoughts) {
-        // Создать текст мысли (более крупный шрифт - 32) с правильной кодировкой UTF-8
+
         sf::Text text(font, utf8(thought.text), 32);
-        // Темный текст для лучшей видимости на светлом фоне блокнота
+
         text.setFillColor(sf::Color(40, 40, 40, static_cast<uint8_t>(thought.alpha)));
 
-        // Позиция: центр экрана
+
         sf::FloatRect bounds = text.getLocalBounds();
         float textWidth = bounds.size.x;
         float textHeight = bounds.size.y;
@@ -72,7 +72,7 @@ void ThoughtSystem::render(sf::RenderWindow& window, const sf::Font& font) {
 
         text.setPosition(sf::Vector2f(textPosX, textPosY));
 
-        // Рисуем полупрозрачный фон за текстом
+
         sf::RectangleShape background;
         background.setSize(sf::Vector2f(textWidth + 40.0f, textHeight + 40.0f));
         background.setPosition(sf::Vector2f(
@@ -99,7 +99,7 @@ void ThoughtSystem::spawnThought(const std::string& text) {
     thought.lifetime = 0.0f;
     thought.maxLifetime = THOUGHT_LIFETIME;
     thought.alpha = 0.0f;
-    thought.position = sf::Vector2f(0.0f, 0.0f);  // Позиция установится в render
+    thought.position = sf::Vector2f(0.0f, 0.0f);
 
     m_activeThoughts.push_back(thought);
 }
@@ -114,26 +114,26 @@ std::string ThoughtSystem::getRandomThought() const {
 }
 
 void ThoughtSystem::updateThoughtAlpha(ThoughtBubble& thought) const {
-    // Fade in: первые 0.5 секунды
+
     if (thought.lifetime < FADE_IN_TIME) {
         thought.alpha = (thought.lifetime / FADE_IN_TIME) * 255.0f;
     }
-    // Fade out: последняя секунда
+
     else if (thought.lifetime > thought.maxLifetime - FADE_OUT_TIME) {
         float timeLeft = thought.maxLifetime - thought.lifetime;
         thought.alpha = (timeLeft / FADE_OUT_TIME) * 255.0f;
     }
-    // Полная видимость
+
     else {
         thought.alpha = 255.0f;
     }
 
-    // Ограничить значения
+
     thought.alpha = std::max(0.0f, std::min(255.0f, thought.alpha));
 }
 
 void ThoughtSystem::initializeThoughts() {
-    // Простые мысли для Дня 0
+
     m_generalThoughts = {
         "В кармане осталось 500 рублей...",
         "Как там мама?",
@@ -153,7 +153,7 @@ void ThoughtSystem::initializeThoughts() {
 void ThoughtSystem::enableTestMode(bool enabled) {
     m_testMode = enabled;
 
-    // Сбросить задержку на текущую для нового режима
+
     if (m_thoughtsSpawned == 0) {
         m_nextThoughtDelay = m_testMode ? TEST_FIRST_THOUGHT_DELAY : FIRST_THOUGHT_DELAY;
     } else if (m_thoughtsSpawned == 1) {

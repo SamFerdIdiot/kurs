@@ -6,7 +6,7 @@ ExperienceSystem* ExperienceSystem::s_instance = nullptr;
 
 ExperienceSystem::ExperienceSystem()
     : m_level(1), m_experience(0) {
-    // Ability tree system removed for MVP demo
+
 }
 
 ExperienceSystem& ExperienceSystem::getInstance() {
@@ -17,15 +17,15 @@ ExperienceSystem& ExperienceSystem::getInstance() {
 }
 
 int ExperienceSystem::getExperienceForNextLevel() const {
-    // Прогрессия опыта для главного героя
-    // Базовая формула: 100 * уровень^1.5
+
+
     return static_cast<int>(100.0f * std::pow(m_level, 1.5f));
 }
 
 void ExperienceSystem::addExperience(int exp) {
     m_experience += exp;
-    
-    // Автоматическое повышение уровня
+
+
     while (canLevelUp()) {
         levelUp();
     }
@@ -43,7 +43,7 @@ void ExperienceSystem::levelUp() {
     m_experience -= getExperienceForNextLevel();
     m_level++;
 
-    // Ability tree system removed for MVP demo
+
 }
 
 void ExperienceSystem::unlockAbility(const std::string& abilityId) {
@@ -72,36 +72,36 @@ void ExperienceSystem::reset() {
 
 void ExperienceSystem::initializeAbilityTree() {
     m_abilityTree.clear();
-    
-    // Временные тестовые способности (заглушка)
+
+
     m_abilityTree.push_back(AbilityTreeNode(
         "ability_driving_1",
         "Driving I",
         "Basic driving skills",
         1
     ));
-    
+
     m_abilityTree.push_back(AbilityTreeNode(
         "ability_driving_2",
         "Вождение II / Driving II",
         "Улучшенные навыки вождения / Improved driving skills",
         3
     ));
-    
+
     m_abilityTree.push_back(AbilityTreeNode(
         "ability_trading_1",
         "Торговля I / Trading I",
         "Базовые навыки торговли / Basic trading skills",
         2
     ));
-    
+
     m_abilityTree.push_back(AbilityTreeNode(
         "ability_survival_1",
         "Выживание I / Survival I",
         "Навыки выживания / Survival skills",
         2
     ));
-    
+
     m_abilityTree.push_back(AbilityTreeNode(
         "ability_mechanics_1",
         "Механика I / Mechanics I",

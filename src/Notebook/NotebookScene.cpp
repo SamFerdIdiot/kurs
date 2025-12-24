@@ -2,12 +2,12 @@
 #include "UIConstants.h"
 #include "EventHelper.h"
 #include "GameStateManager.h"
-#include "EventFactory.h"  // Для инициализации событий
+#include "EventFactory.h"
 #include <iostream>
 #include <sstream>
-#include <cstdlib>  // Для rand()
+#include <cstdlib>
 
-// Helper function to convert UTF-8 string to SFML string
+
 static sf::String utf8(const std::string& str) {
     return sf::String::fromUtf8(str.begin(), str.end());
 }
@@ -18,19 +18,19 @@ NotebookScene::NotebookScene(PlayerState* playerState, const std::string& initia
       m_nextScene(SceneType::MAIN_MENU),
       m_currentEntryId(initialEntryId),
       m_textRevealTimer(0.0f),
-      m_charactersPerSecond(50.0f),  // 50 символов в секунду
+      m_charactersPerSecond(50.0f),
       m_textFullyRevealed(false),
       m_canSkipText(true),
       m_selectedChoiceIndex(0),
       m_choiceTimer(0.0f),
       m_eventManager(),
-      m_resourceEventSystem(playerState, &m_eventManager),  // Инициализация системы ресурсов
-      m_eventTriggerChance(0.2f),    // 20% шанс случайного события
+      m_resourceEventSystem(playerState, &m_eventManager),
+      m_eventTriggerChance(0.2f),
       m_pendingEventId(""),
-      m_pendingNextEntryId(""),      // ID следующей записи после события
+      m_pendingNextEntryId(""),
       m_fontLoaded(false) {
 
-    // Загрузить шрифты для разных типов записей
+
     if (auto fontOpt = FontLoader::load()) {
         m_fontPresent = *fontOpt;
         m_fontPast = *fontOpt;
@@ -41,12 +41,12 @@ NotebookScene::NotebookScene(PlayerState* playerState, const std::string& initia
         std::cerr << "[NotebookScene] Failed to load fonts" << std::endl;
     }
 
-    // Загрузить День 0
+
     loadDay0_KnockOnDoor();
     loadDay0_Volga();
     loadDay0_FirstTask();
 
-    // Загрузить ветки обучения
+
     loadDay0_BranchA_MapAndTower();
     loadDay0_BranchA_Geologist();
     loadDay0_BranchA_3();
@@ -71,16 +71,16 @@ NotebookScene::NotebookScene(PlayerState* playerState, const std::string& initia
     loadDay0_BranchD_4();
     loadDay0_BranchD_5();
 
-    // Загрузить общие записи
-    loadDay0_Provocation();  // НОВАЯ ЗАПИСЬ
+
+    loadDay0_Provocation();
     loadDay0_GarageFinale();
     loadDay0_TransitionPresent();
 
-    // Загрузить День 1 (начало)
+
     loadDay1_BorderCrossing();
     loadDay1_CustomsCheck();
 
-    // Загрузить тестовые записи
+
     loadTestThoughtSystem();
     loadDemoTestResources();
     loadDemoTestResources2();
@@ -97,7 +97,7 @@ NotebookScene::NotebookScene(PlayerState* playerState, const std::string& initia
     loadDemoFull3();
     loadDemoFinale();
 
-    // Загрузить демо-контент (простой пример)
+
     loadDemo_Start();
     loadDemo_Road();
     loadDemo_Choice();
@@ -105,34 +105,34 @@ NotebookScene::NotebookScene(PlayerState* playerState, const std::string& initia
     loadDemo_Backroad();
     loadDemo_Finale();
 
-    // Инициализировать систему случайных событий
+
     EventFactory::initializeAllEvents(m_eventManager);
     std::cout << "[NotebookScene] EventManager initialized with "
               << m_eventManager.getAllEvents().size() << " events" << std::endl;
 
-    // Показать начальную запись
+
     showEntry(m_currentEntryId);
 
     std::cout << "[NotebookScene] Initialized with entry: " << m_currentEntryId << std::endl;
 }
 
 void NotebookScene::handleInput(const sf::Event& event) {
-    // Закрытие окна
+
     if (EventHelper::isClosed(event)) {
         m_isFinished = true;
         return;
     }
 
-    // SFML 3.x event handling
+
     if (const auto* keyPressed = event.getIf<sf::Event::KeyPressed>()) {
-        // Escape - выход в главное меню
+
         if (keyPressed->code == sf::Keyboard::Key::Escape) {
             m_isFinished = true;
             m_nextScene = SceneType::MAIN_MENU;
             return;
         }
 
-        // Пробел или Enter - пропустить анимацию текста
+
         if ((keyPressed->code == sf::Keyboard::Key::Space ||
              keyPressed->code == sf::Keyboard::Key::Enter) &&
             !m_textFullyRevealed && m_canSkipText) {
@@ -140,9 +140,9 @@ void NotebookScene::handleInput(const sf::Event& event) {
             return;
         }
 
-        // Если текст полностью показан, обрабатываем навигацию по выборам
+
         if (m_textFullyRevealed && !m_choices.empty()) {
-            // Навигация стрелками
+
             if (keyPressed->code == sf::Keyboard::Key::Up) {
                 moveSelectionUp();
             }
@@ -150,12 +150,12 @@ void NotebookScene::handleInput(const sf::Event& event) {
                 moveSelectionDown();
             }
 
-            // Подтверждение выбора
+
             else if (keyPressed->code == sf::Keyboard::Key::Enter) {
                 handleChoice(m_selectedChoiceIndex);
             }
 
-            // Выбор цифрами 1-9
+
             else if (keyPressed->code >= sf::Keyboard::Key::Num1 &&
                      keyPressed->code <= sf::Keyboard::Key::Num9) {
                 int choiceIndex = static_cast<int>(keyPressed->code) - static_cast<int>(sf::Keyboard::Key::Num1);
@@ -169,35 +169,35 @@ void NotebookScene::handleInput(const sf::Event& event) {
 }
 
 void NotebookScene::update(float deltaTime) {
-    // Обновить анимацию печати текста
+
     if (!m_textFullyRevealed) {
         updateTextReveal(deltaTime);
     }
 
-    // Обновить таймер выбора (если есть выборы и текст полностью показан)
+
     if (m_textFullyRevealed && !m_choices.empty()) {
         m_choiceTimer += deltaTime;
     }
 
-    // Проверка ресурсов убрана из автоматического обновления
-    // Теперь события срабатывают только после выборов игрока в handleChoice()
+
+
 }
 
 void NotebookScene::render(sf::RenderWindow& window) {
-    // Очистить экран (фон как старая бумага)
+
     window.clear(sf::Color(230, 220, 210));
 
     if (!m_fontLoaded) {
         return;
     }
 
-    // Отрендерить HUD сверху
+
     renderHUD(window);
 
-    // Отрендерить текст записи
+
     renderText(window);
 
-    // Отрендерить варианты выбора (если текст полностью показан)
+
     if (m_textFullyRevealed) {
         renderChoices(window);
     }
@@ -211,12 +211,12 @@ bool NotebookScene::isFinished() const {
     return m_isFinished;
 }
 
-// === УПРАВЛЕНИЕ ЗАПИСЯМИ ===
+
 
 void NotebookScene::showEntry(const std::string& entryId) {
     m_currentEntryId = entryId;
 
-    // Сохранить текущую запись в PlayerState для сохранения игры
+
     if (m_playerState) {
         m_playerState->setCurrentNotebookEntryId(entryId);
     }
@@ -226,14 +226,14 @@ void NotebookScene::showEntry(const std::string& entryId) {
     m_textFullyRevealed = false;
     m_selectedChoiceIndex = 0;
 
-    // Сбросить таймер выбора
+
     m_choiceTimer = 0.0f;
 
-    // Очистить сохраненный следующий entry (если был)
-    // Это важно, т.к. мы уже перешли к нужной записи
+
+
     m_pendingNextEntryId.clear();
 
-    // Найти запись по ID
+
     auto it = m_entries.find(entryId);
     if (it != m_entries.end()) {
         m_currentEntry = it->second;
@@ -241,7 +241,7 @@ void NotebookScene::showEntry(const std::string& entryId) {
         m_charactersPerSecond = m_currentEntry.printSpeed;
         m_canSkipText = m_currentEntry.canSkip;
 
-        // Получить доступные выборы для игрока
+
         m_choices = m_currentEntry.getAvailableChoices(m_playerState);
 
         std::cout << "[NotebookScene] Loaded entry: " << entryId
@@ -260,7 +260,7 @@ void NotebookScene::skipTextAnimation() {
     std::cout << "[NotebookScene] Text animation skipped" << std::endl;
 }
 
-// === ПРИВАТНЫЕ МЕТОДЫ ===
+
 
 void NotebookScene::updateTextReveal(float deltaTime) {
     if (m_textFullyRevealed) {
@@ -269,16 +269,16 @@ void NotebookScene::updateTextReveal(float deltaTime) {
 
     m_textRevealTimer += deltaTime;
 
-    // Вычислить сколько символов должно быть показано
+
     int charactersToReveal = static_cast<int>(m_textRevealTimer * m_charactersPerSecond);
 
-    // Ограничить до размера полного текста
+
     charactersToReveal = std::min(charactersToReveal, static_cast<int>(m_fullText.size()));
 
-    // Обновить показанный текст
+
     m_revealedText = m_fullText.substr(0, charactersToReveal);
 
-    // Проверить, весь ли текст показан
+
     if (m_revealedText.size() >= m_fullText.size()) {
         m_textFullyRevealed = true;
         std::cout << "[NotebookScene] Text fully revealed" << std::endl;
@@ -287,36 +287,36 @@ void NotebookScene::updateTextReveal(float deltaTime) {
 
 void NotebookScene::renderText(sf::RenderWindow& window) {
     const float PADDING = 50.0f;
-    const float LINE_SPACING = 1.0f;  // Уменьшено с 1.5f до 1.0f
-    const float MAX_TEXT_WIDTH = UI::SCREEN_WIDTH * 0.8f;  // Максимальная ширина текста
+    const float LINE_SPACING = 1.0f;
+    const float MAX_TEXT_WIDTH = UI::SCREEN_WIDTH * 0.8f;
 
-    // === ФОН ЗАПИСКИ (цвет старой бумаги) ===
+
     sf::RectangleShape background;
     background.setSize(sf::Vector2f(UI::SCREEN_WIDTH * 0.9f, UI::SCREEN_HEIGHT * 0.85f));
     background.setPosition(sf::Vector2f(UI::SCREEN_WIDTH * 0.05f, UI::SCREEN_HEIGHT * 0.1f));
-    background.setFillColor(sf::Color(245, 235, 220));  // Старая бумага
+    background.setFillColor(sf::Color(245, 235, 220));
     background.setOutlineColor(sf::Color(100, 90, 80));
     background.setOutlineThickness(2.0f);
     window.draw(background);
 
     float yPos = UI::SCREEN_HEIGHT * 0.1f + PADDING;
 
-    // === ЗАГОЛОВОК (ID записи) ===
-    sf::Text titleText(m_fontPresent);  // Всегда используем шрифт PRESENT для заголовка
+
+    sf::Text titleText(m_fontPresent);
     titleText.setString(utf8("ДНЕВНИК ПУТЕШЕСТВЕННИКА"));
     titleText.setCharacterSize(24);
-    titleText.setFillColor(sf::Color(50, 40, 30));  // Темно-коричневый
+    titleText.setFillColor(sf::Color(50, 40, 30));
     titleText.setStyle(sf::Text::Bold);
     titleText.setPosition(sf::Vector2f(UI::SCREEN_WIDTH * 0.05f + PADDING, yPos));
     window.draw(titleText);
 
     yPos += 50.0f;
 
-    // === ТЕКСТ ЗАПИСИ (с анимацией печати и автопереносом) ===
-    // Перенести текст по словам с учетом ширины
+
+
     std::string wrappedText = wrapText(m_revealedText, getCurrentFont(), getCurrentFontSize(), MAX_TEXT_WIDTH);
 
-    // Используем шрифт, цвет и размер в зависимости от типа записи
+
     sf::Text bodyText(getCurrentFont());
     bodyText.setString(utf8(wrappedText));
     bodyText.setCharacterSize(getCurrentFontSize());
@@ -326,13 +326,13 @@ void NotebookScene::renderText(sf::RenderWindow& window) {
 
     window.draw(bodyText);
 
-    // === ПОДСКАЗКА ПРОПУСКА (если анимация идет) ===
+
     if (!m_textFullyRevealed && m_canSkipText) {
         yPos = UI::SCREEN_HEIGHT * 0.9f - 30.0f;
         sf::Text hintText(m_fontPresent);
         hintText.setString(utf8("[Нажмите ПРОБЕЛ, чтобы пропустить]"));
         hintText.setCharacterSize(14);
-        hintText.setFillColor(sf::Color(120, 110, 100));  // Светло-коричневый
+        hintText.setFillColor(sf::Color(120, 110, 100));
         hintText.setPosition(sf::Vector2f(UI::SCREEN_WIDTH * 0.5f - 150.0f, yPos));
         window.draw(hintText);
     }
@@ -346,43 +346,43 @@ void NotebookScene::renderChoices(sf::RenderWindow& window) {
     const float PADDING = 50.0f;
     float yPos = UI::SCREEN_HEIGHT * 0.65f;
 
-    // === ЗАГОЛОВОК ВЫБОРОВ ===
-    sf::Text choicesHeader(m_fontPresent);  // Выборы всегда в настоящем времени
+
+    sf::Text choicesHeader(m_fontPresent);
     choicesHeader.setString(utf8("ЧТО ДЕЛАТЬ?"));
     choicesHeader.setCharacterSize(20);
-    choicesHeader.setFillColor(sf::Color(100, 50, 50));  // Красноватый
+    choicesHeader.setFillColor(sf::Color(100, 50, 50));
     choicesHeader.setStyle(sf::Text::Bold);
     choicesHeader.setPosition(sf::Vector2f(UI::SCREEN_WIDTH * 0.05f + PADDING, yPos));
     window.draw(choicesHeader);
 
     yPos += 40.0f;
 
-    // === ОТРИСОВКА КАЖДОГО ВЫБОРА ===
+
     for (size_t i = 0; i < m_choices.size(); i++) {
         const auto& choice = m_choices[i];
 
-        // Подсветка выбранного варианта
+
         if (static_cast<int>(i) == m_selectedChoiceIndex) {
             sf::RectangleShape highlight;
             highlight.setSize(sf::Vector2f(UI::SCREEN_WIDTH * 0.75f, 30.0f));
             highlight.setPosition(sf::Vector2f(UI::SCREEN_WIDTH * 0.05f + PADDING - 10.0f, yPos - 5.0f));
-            highlight.setFillColor(sf::Color(255, 240, 200, 150));  // Светло-желтая подсветка
+            highlight.setFillColor(sf::Color(255, 240, 200, 150));
             window.draw(highlight);
         }
 
-        // Стрелка для выбранного варианта
+
         std::string arrow = (static_cast<int>(i) == m_selectedChoiceIndex) ? "▸ " : "  ";
 
-        // Номер варианта
+
         std::string choiceText = arrow + "[" + std::to_string(i + 1) + "] " + choice.text;
 
         sf::Text choiceTextSf(m_fontPresent);
         choiceTextSf.setString(utf8(choiceText));
         choiceTextSf.setCharacterSize(18);
 
-        // Цвет зависит от доступности
+
         if (choice.isDisabled) {
-            choiceTextSf.setFillColor(sf::Color(150, 140, 130));  // Серый для недоступных
+            choiceTextSf.setFillColor(sf::Color(150, 140, 130));
         } else {
             choiceTextSf.setFillColor(sf::Color(50, 40, 30));
         }
@@ -390,27 +390,27 @@ void NotebookScene::renderChoices(sf::RenderWindow& window) {
         choiceTextSf.setPosition(sf::Vector2f(UI::SCREEN_WIDTH * 0.05f + PADDING, yPos));
         window.draw(choiceTextSf);
 
-        // Причина недоступности
+
         if (choice.isDisabled && !choice.disabledReason.empty()) {
             sf::Text reasonText(m_fontPresent);
             reasonText.setString(utf8("  ⚠️ " + choice.disabledReason));
             reasonText.setCharacterSize(14);
-            reasonText.setFillColor(sf::Color(180, 50, 50));  // Красный
+            reasonText.setFillColor(sf::Color(180, 50, 50));
             reasonText.setPosition(sf::Vector2f(UI::SCREEN_WIDTH * 0.05f + PADDING + 30.0f, yPos + 22.0f));
             window.draw(reasonText);
 
-            yPos += 50.0f;  // Больше места для двустрочного варианта
+            yPos += 50.0f;
         } else {
             yPos += 35.0f;
         }
     }
 
-    // === ПОДСКАЗКА УПРАВЛЕНИЯ ===
+
     yPos = UI::SCREEN_HEIGHT * 0.9f - 30.0f;
     sf::Text hintText(m_fontPresent);
     hintText.setString(utf8("[Используйте 1-9 или стрелки + Enter]"));
     hintText.setCharacterSize(14);
-    hintText.setFillColor(sf::Color(120, 110, 100));  // Светло-коричневый
+    hintText.setFillColor(sf::Color(120, 110, 100));
     hintText.setPosition(sf::Vector2f(UI::SCREEN_WIDTH * 0.5f - 200.0f, yPos));
     window.draw(hintText);
 }
@@ -420,20 +420,20 @@ void NotebookScene::renderHUD(sf::RenderWindow& window) {
         return;
     }
 
-    // === МИНИМАЛЬНЫЙ HUD СВЕРХУ ЭКРАНА ===
 
-    // Фон для HUD
+
+
     sf::RectangleShape hudBackground;
     hudBackground.setSize(sf::Vector2f(UI::SCREEN_WIDTH, 50.0f));
     hudBackground.setPosition(sf::Vector2f(0.0f, 0.0f));
-    hudBackground.setFillColor(sf::Color(40, 35, 30, 200));  // Темный полупрозрачный
+    hudBackground.setFillColor(sf::Color(40, 35, 30, 200));
     window.draw(hudBackground);
 
-    // Состояние машины и героя
+
     float xPos = 30.0f;
     float yPos = 15.0f;
 
-    // Топливо
+
     std::stringstream fuelText;
     fuelText << "ТОПЛИВО: " << static_cast<int>(m_playerState->getFuel()) << "L";
     sf::Text fuel(m_fontPresent);
@@ -445,7 +445,7 @@ void NotebookScene::renderHUD(sf::RenderWindow& window) {
 
     xPos += 250.0f;
 
-    // Энергия
+
     std::stringstream energyText;
     energyText << "ЭНЕРГИЯ: " << static_cast<int>(m_playerState->getEnergy()) << "%";
     sf::Text energy(m_fontPresent);
@@ -457,7 +457,7 @@ void NotebookScene::renderHUD(sf::RenderWindow& window) {
 
     xPos += 250.0f;
 
-    // Деньги
+
     std::stringstream moneyText;
     moneyText << "ДЕНЬГИ: " << static_cast<int>(m_playerState->getMoney()) << " ₽";
     sf::Text money(m_fontPresent);
@@ -475,7 +475,7 @@ void NotebookScene::handleChoice(int choiceIndex) {
 
     const auto& choice = m_choices[choiceIndex];
 
-    // Пропустить недоступные варианты
+
     if (choice.isDisabled) {
         std::cout << "[NotebookScene] Choice disabled: " << choice.disabledReason << std::endl;
         return;
@@ -483,49 +483,49 @@ void NotebookScene::handleChoice(int choiceIndex) {
 
     std::cout << "[NotebookScene] Player chose: " << choice.text << std::endl;
 
-    // Выполнить действие выбора (если есть)
+
     if (choice.action) {
         choice.action(m_playerState);
     }
 
-    // Перейти к следующей записи
+
     if (!choice.nextEntryIds.empty() && !choice.nextEntryIds[0].empty()) {
-        // Проверить, есть ли ожидающее событие
+
         if (!m_pendingEventId.empty()) {
             std::cout << "[NotebookScene] Showing pending event: " << m_pendingEventId << std::endl;
             showEventAsEntry(m_pendingEventId);
             return;
         }
 
-        // ВАЖНО: Сохранить куда нужно перейти ПЕРЕД вызовом события
+
         std::string nextEntryId = choice.nextEntryIds[0];
 
-        // СНАЧАЛА проверить критические ресурсы (наивысший приоритет)
+
         std::string resourceEventId = m_resourceEventSystem.checkResourcesAndTriggerEvents();
         if (!resourceEventId.empty()) {
             std::cout << "[NotebookScene] CRITICAL: Resource event triggered: " << resourceEventId << std::endl;
-            m_pendingNextEntryId = nextEntryId; // Сохранить следующую запись
+            m_pendingNextEntryId = nextEntryId;
             showEventAsEntry(resourceEventId);
             return;
         }
 
-        // Попытаться вызвать случайное событие при переходе
+
         if (tryTriggerRandomEvent()) {
             std::cout << "[NotebookScene] Random event triggered, saving next entry: " << nextEntryId << std::endl;
-            m_pendingNextEntryId = nextEntryId; // Сохранить следующую запись
+            m_pendingNextEntryId = nextEntryId;
             showEventAsEntry(m_pendingEventId);
             return;
         }
 
-        // Нормальный переход к следующей записи
-        // TODO: В будущем здесь будет обработка вероятностей для ветвления
-        // Пока просто берем первую запись
+
+
+
         showEntry(nextEntryId);
 
-        // Автосохранение после каждого перехода
+
         GameStateManager::getInstance().autoSave();
     } else {
-        // Если нет следующей записи, вернуться в главное меню
+
         m_isFinished = true;
         m_nextScene = SceneType::MAIN_MENU;
     }
@@ -553,10 +553,10 @@ void NotebookScene::moveSelectionDown() {
     std::cout << "[NotebookScene] Selection moved down to: " << m_selectedChoiceIndex << std::endl;
 }
 
-// === ДЕНЬ 0: УРОКИ ДОРОГИ ===
+
 
 void NotebookScene::loadDay0_KnockOnDoor() {
-    // ЗАПИСЬ 1.1: СТУК В ДВЕРЬ
+
     NotebookEntry entry("day0_knock", EntryType::PAST,
         "ВОСПОМИНАНИЕ: ПОЛГОДА НАЗАД, 6:00\n\n"
         "Стук в дверь разбудил точнее будильника. Три чётких удара, никакой лишней настойчивости. "
@@ -568,7 +568,7 @@ void NotebookScene::loadDay0_KnockOnDoor() {
     entry.date = "Полгода назад, 6:00";
     entry.location = "Дом";
     entry.mood = "Внезапное пробуждение";
-    entry.printSpeed = 40.0f;  // Медленнее для погружения
+    entry.printSpeed = 40.0f;
 
     NotebookChoice choice1;
     choice1.text = "[Продолжить]";
@@ -580,7 +580,7 @@ void NotebookScene::loadDay0_KnockOnDoor() {
 }
 
 void NotebookScene::loadDay0_Volga() {
-    // ЗАПИСЬ 1.2: МАШИНА
+
     NotebookEntry entry("day0_volga", EntryType::PAST,
         "ВОСПОМИНАНИЕ: 6:20\n\n"
         "Его машина была нестарой, но потёртой, с царапинами на порогах. "
@@ -605,7 +605,7 @@ void NotebookScene::loadDay0_Volga() {
 }
 
 void NotebookScene::loadDay0_FirstTask() {
-    // ЗАПИСЬ 2: ПЕРВАЯ ЗАДАЧА - ВЫБОР ПОДХОДА (4 ветки)
+
     NotebookEntry entry("day0_first_task", EntryType::PAST,
         "ДИАЛОГ: 6:45, ЗА ГОРОДОМ\n\n"
         "Молчали, пока не кончилась асфальтовая лента. "
@@ -617,42 +617,42 @@ void NotebookScene::loadDay0_FirstTask() {
     entry.mood = "Экзаменационный";
     entry.printSpeed = 45.0f;
 
-    // ВЕТКА А: Системный анализ (понимание контекста)
+
     NotebookChoice choiceA;
     choiceA.text = "Спросить, когда началось, при каких условиях";
     choiceA.nextEntryIds = {"day0_branch_a_map"};
     choiceA.action = [](PlayerState* player) {
-        player->addTrait("analytical");  // Черта: аналитический
+        player->addTrait("analytical");
         std::cout << "[Day0] Выбрана ветка А: Системный анализ" << std::endl;
     };
     entry.addChoice(choiceA);
 
-    // ВЕТКА Б: Чувство материала (слушать машину)
+
     NotebookChoice choiceB;
     choiceB.text = "Закрыть глаза, слушать двигатель и руки";
     choiceB.nextEntryIds = {"day0_branch_b_engine"};
     choiceB.action = [](PlayerState* player) {
-        player->addTrait("intuitive");  // Черта: интуитивный
+        player->addTrait("intuitive");
         std::cout << "[Day0] Выбрана ветка Б: Чувство материала" << std::endl;
     };
     entry.addChoice(choiceB);
 
-    // ВЕТКА В: Командная работа (спросить бывалого)
+
     NotebookChoice choiceC;
     choiceC.text = "Спросить: «Что обычно в таких случаях?»";
     choiceC.nextEntryIds = {"day0_branch_c_truck"};
     choiceC.action = [](PlayerState* player) {
-        player->addTrait("social");  // Черта: социальный
+        player->addTrait("social");
         std::cout << "[Day0] Выбрана ветка В: Командная работа" << std::endl;
     };
     entry.addChoice(choiceC);
 
-    // ВЕТКА Г: Ресурсоэффективность (быстро и по делу)
+
     NotebookChoice choiceD;
     choiceD.text = "Сразу лезть в багажник за инструментом";
     choiceD.nextEntryIds = {"day0_branch_d_route"};
     choiceD.action = [](PlayerState* player) {
-        player->addTrait("practical");  // Черта: практичный
+        player->addTrait("practical");
         std::cout << "[Day0] Выбрана ветка Г: Ресурсоэффективность" << std::endl;
     };
     entry.addChoice(choiceD);
@@ -661,10 +661,10 @@ void NotebookScene::loadDay0_FirstTask() {
     std::cout << "[NotebookScene] Loaded Day 0 entry: " << entry.id << std::endl;
 }
 
-// === ВЕТКА А: СИСТЕМНЫЙ АНАЛИЗ (Понимание контекста) ===
+
 
 void NotebookScene::loadDay0_BranchA_MapAndTower() {
-    // ЗАПИСЬ 3А: КАРТА И ВЫШКИ - Системный подход к навигации
+
     NotebookEntry entry("day0_branch_a_map", EntryType::PAST,
         "ВЕТКА А: СИСТЕМНЫЙ АНАЛИЗ\n"
         "8:30, Главная дорога\n\n"
@@ -705,7 +705,7 @@ void NotebookScene::loadDay0_BranchA_MapAndTower() {
 }
 
 void NotebookScene::loadDay0_BranchA_Geologist() {
-    // ЗАПИСЬ 4А: ГЕОЛОГ - Системное мышление в действии + получение артефакта
+
     NotebookEntry entry("day0_branch_a_geologist", EntryType::PAST,
         "10:00, Придорожная заправка\n\n"
         "Пока Наставник заправляет машину, к нам подходит мужчина в потрёпанной куртке. "
@@ -744,14 +744,14 @@ void NotebookScene::loadDay0_BranchA_Geologist() {
     entry.mood = "Встреча с мудрым человеком";
     entry.printSpeed = 45.0f;
 
-    // Выбор 1: Взять журнал (знания - правильный путь)
+
     NotebookChoice choiceJournal;
     choiceJournal.text = "[Взять заметки о станках]";
-    choiceJournal.nextEntryIds = {"day0_branch_a_3"};  // Теперь ведет к 3-й записи ветки
+    choiceJournal.nextEntryIds = {"day0_branch_a_3"};
     choiceJournal.action = [](PlayerState* player) {
-        player->addStoryItem("technical_journal");  // Артефакт: Журнал
-        player->addPrinciple("understanding_context");  // ПРИНЦИП: Понимание контекста
-        player->modifyEnergy(-5.0f);  // Чтение и изучение
+        player->addStoryItem("technical_journal");
+        player->addPrinciple("understanding_context");
+        player->modifyEnergy(-5.0f);
         std::cout << "[Day0-A] Получен артефакт: Журнал с пометками" << std::endl;
         std::cout << "[Day0-A] Получен принцип: Системное понимание контекста" << std::endl;
     };
@@ -762,7 +762,7 @@ void NotebookScene::loadDay0_BranchA_Geologist() {
 }
 
 void NotebookScene::loadDay0_BranchA_3() {
-    // ЗАПИСЬ 3А: СИСТЕМНЫЙ АНАЛИЗ - Учимся видеть связи
+
     NotebookEntry entry("day0_branch_a_3", EntryType::PAST,
         "ВЕТКА А: СИСТЕМНЫЙ АНАЛИЗ\n"
         "11:30, Остановка у придорожного кафе\n\n"
@@ -800,7 +800,7 @@ void NotebookScene::loadDay0_BranchA_3() {
 }
 
 void NotebookScene::loadDay0_BranchA_4() {
-    // ЗАПИСЬ 4А: ПРАКТИКА СИСТЕМНОГО АНАЛИЗА - Диагностика
+
     NotebookEntry entry("day0_branch_a_4", EntryType::PAST,
         "13:00, Снова в пути\n\n"
         "Едем дальше. Вдруг машина начинает вибрировать на скорости.\n\n"
@@ -835,7 +835,7 @@ void NotebookScene::loadDay0_BranchA_4() {
     choice1.text = "[Записать метод]";
     choice1.nextEntryIds = {"day0_branch_a_5"};
     choice1.action = [](PlayerState* player) {
-        player->modifyMoney(-15.0f);  // Балансировка колеса
+        player->modifyMoney(-15.0f);
     };
     entry.addChoice(choice1);
 
@@ -844,7 +844,7 @@ void NotebookScene::loadDay0_BranchA_4() {
 }
 
 void NotebookScene::loadDay0_BranchA_5() {
-    // ЗАПИСЬ 5А: ЗАВЕРШЕНИЕ ВЕТКИ А - Закрепление принципа
+
     NotebookEntry entry("day0_branch_a_5", EntryType::PAST,
         "15:00, Последняя остановка перед городом\n\n"
         "Останавливаемся на смотровой площадке. Наставник достаёт термос с кофе.\n\n"
@@ -871,21 +871,21 @@ void NotebookScene::loadDay0_BranchA_5() {
     entry.mood = "Понимание системы";
     entry.printSpeed = 45.0f;
 
-    // Базовый выбор (всегда доступен)
+
     NotebookChoice choiceFinish;
     choiceFinish.text = "[Ехать дальше]";
     choiceFinish.nextEntryIds = {"day0_provocation"};
     entry.addChoice(choiceFinish);
 
-    // УСЛОВНЫЙ ВЫБОР: Появляется только если игрок усвоил принцип системного мышления
+
     NotebookChoice choiceSystemThinking;
     choiceSystemThinking.text = "[💡 Применить системный подход к текущей ситуации]";
     choiceSystemThinking.requiredPrinciples = {"understanding_context"};
     choiceSystemThinking.isHidden = true;
     choiceSystemThinking.action = [](PlayerState* player) {
-        // Бонус за применение полученных знаний
-        player->modifyEnergy(5.0f);  // Ясность мышления даёт энергию
-        player->modifyMood(10.0f);   // Понимание приносит удовлетворение
+
+        player->modifyEnergy(5.0f);
+        player->modifyMood(10.0f);
         std::cout << "[Choice] Применил системное мышление: +5 энергии, +10 настроения" << std::endl;
     };
     choiceSystemThinking.nextEntryIds = {"day0_provocation"};
@@ -895,10 +895,10 @@ void NotebookScene::loadDay0_BranchA_5() {
     std::cout << "[NotebookScene] Loaded Day 0 entry (Branch A-5): " << entry.id << std::endl;
 }
 
-// === ВЕТКА Б: СЛУШАТЬ МАТЕРИАЛ (Чувство машины) ===
+
 
 void NotebookScene::loadDay0_BranchB_Engine() {
-    // ЗАПИСЬ 3Б: СЛУШАТЬ ДВИГАТЕЛЬ - Практический подход
+
     NotebookEntry entry("day0_branch_b_engine", EntryType::PAST,
         "ВЕТКА Б: ЧУВСТВО МАТЕРИАЛА\n"
         "8:30, В дороге\n\n"
@@ -941,7 +941,7 @@ void NotebookScene::loadDay0_BranchB_Engine() {
 }
 
 void NotebookScene::loadDay0_BranchB_Blacksmith() {
-    // ЗАПИСЬ 4Б: ГАРАЖНЫЙ РЕМОНТ - Работа руками + получение артефакта
+
     NotebookEntry entry("day0_branch_b_blacksmith", EntryType::PAST,
         "10:00, Гараж на окраине\n\n"
         "Наставник сворачивает в гаражный кооператив. Останавливается у знакомого бокса.\n\n"
@@ -977,14 +977,14 @@ void NotebookScene::loadDay0_BranchB_Blacksmith() {
     entry.mood = "Практический урок";
     entry.printSpeed = 45.0f;
 
-    // Только один вариант — принять урок
+
     NotebookChoice choiceAccept;
     choiceAccept.text = "[Взять урок на заметку]";
     choiceAccept.nextEntryIds = {"day0_branch_b_3"};
     choiceAccept.action = [](PlayerState* player) {
-        player->addStoryItem("burned_finger");  // Артефакт: Ожог от трубы
-        player->addPrinciple("listen_material");  // ПРИНЦИП: Слушать материал
-        player->modifyEnergy(-3.0f);  // Небольшая боль
+        player->addStoryItem("burned_finger");
+        player->addPrinciple("listen_material");
+        player->modifyEnergy(-3.0f);
         std::cout << "[Day0-B] Получен артефакт: Ожог-напоминание" << std::endl;
         std::cout << "[Day0-B] Получен принцип: Слушать материал (практический опыт)" << std::endl;
     };
@@ -995,7 +995,7 @@ void NotebookScene::loadDay0_BranchB_Blacksmith() {
 }
 
 void NotebookScene::loadDay0_BranchB_3() {
-    // ЗАПИСЬ 3Б: ЧУВСТВО ВИБРАЦИИ - Диагностика на слух и осязание
+
     NotebookEntry entry("day0_branch_b_3", EntryType::PAST,
         "ВЕТКА Б: ЧУВСТВО МАТЕРИАЛА\n"
         "12:00, Грунтовая дорога\n\n"
@@ -1035,7 +1035,7 @@ void NotebookScene::loadDay0_BranchB_3() {
 }
 
 void NotebookScene::loadDay0_BranchB_4() {
-    // ЗАПИСЬ 4Б: ЗАПАХИ И ТЕМПЕРАТУРА - Диагностика через обоняние
+
     NotebookEntry entry("day0_branch_b_4", EntryType::PAST,
         "13:30, Заправка\n\n"
         "Останавливаемся заправиться. Наставник заливает бензин, а я проверяю масло.\n\n"
@@ -1071,8 +1071,8 @@ void NotebookScene::loadDay0_BranchB_4() {
     choice1.text = "[Ехать дальше]";
     choice1.nextEntryIds = {"day0_branch_b_5"};
     choice1.action = [](PlayerState* player) {
-        player->addFuel(30.0f);  // Заправились
-        player->modifyMoney(-25.0f);  // Заплатили за топливо
+        player->addFuel(30.0f);
+        player->modifyMoney(-25.0f);
     };
     entry.addChoice(choice1);
 
@@ -1081,7 +1081,7 @@ void NotebookScene::loadDay0_BranchB_4() {
 }
 
 void NotebookScene::loadDay0_BranchB_5() {
-    // ЗАПИСЬ 5Б: ЗАВЕРШЕНИЕ ВЕТКИ Б - Чувство материала
+
     NotebookEntry entry("day0_branch_b_5", EntryType::PAST,
         "15:30, Конец пути\n\n"
         "Подъезжаем к городу. Наставник сбавляет скорость, останавливается на последней обочине.\n\n"
@@ -1109,22 +1109,22 @@ void NotebookScene::loadDay0_BranchB_5() {
     entry.mood = "Понимание материала";
     entry.printSpeed = 45.0f;
 
-    // Базовый выбор (всегда доступен)
+
     NotebookChoice choiceFinish;
     choiceFinish.text = "[Завершить день]";
     choiceFinish.nextEntryIds = {"day0_provocation"};
     entry.addChoice(choiceFinish);
 
-    // УСЛОВНЫЙ ВЫБОР: Появляется если игрок усвоил чувство материала
+
     NotebookChoice choiceMaterialSense;
     choiceMaterialSense.text = "[💡 Довериться чувству материала]";
     choiceMaterialSense.requiredPrinciples = {"listen_material"};
-    choiceMaterialSense.requiredStoryItems = {"burned_finger"}; // Нужен опыт (ожог)
+    choiceMaterialSense.requiredStoryItems = {"burned_finger"};
     choiceMaterialSense.isHidden = true;
     choiceMaterialSense.action = [](PlayerState* player) {
-        // Бонус за интуитивное понимание техники
-        player->modifyVehicleCondition(5.0f);  // Лучше чувствуешь машину
-        player->modifyEnergy(5.0f);            // Интуиция экономит силы
+
+        player->modifyVehicleCondition(5.0f);
+        player->modifyEnergy(5.0f);
         std::cout << "[Choice] Использовал чувство материала: +5 состояния машины, +5 энергии" << std::endl;
     };
     choiceMaterialSense.nextEntryIds = {"day0_provocation"};
@@ -1134,15 +1134,15 @@ void NotebookScene::loadDay0_BranchB_5() {
     std::cout << "[NotebookScene] Loaded Day 0 entry (Branch B-5): " << entry.id << std::endl;
 }
 
-// Сохраняем старое имя для обратной совместимости
+
 void NotebookScene::loadDay0_BranchB_Driver() {
     loadDay0_BranchB_Blacksmith();
 }
 
-// === ВЕТКА В: СПРОСИ БЫВАЛОГО (Командная работа) ===
+
 
 void NotebookScene::loadDay0_BranchC_Truck() {
-    // ЗАПИСЬ 3В: ПОМОЩЬ ДАЛЬНОБОЙЩИКУ - Обмен опытом
+
     NotebookEntry entry("day0_branch_c_truck", EntryType::PAST,
         "ВЕТКА В: КОМАНДНАЯ РАБОТА\n"
         "9:15, Обочина дороги\n\n"
@@ -1183,7 +1183,7 @@ void NotebookScene::loadDay0_BranchC_Truck() {
 }
 
 void NotebookScene::loadDay0_BranchC_Teahouse() {
-    // ЗАПИСЬ 4В: ПРИДОРОЖНОЕ КАФЕ - Обмен знаниями + получение артефакта
+
     NotebookEntry entry("day0_branch_c_teahouse", EntryType::PAST,
         "10:30, Придорожное кафе \"Огонёк\"\n\n"
         "Дальнобойщик пригласил нас на чай в ближайшее кафе.\n\n"
@@ -1219,13 +1219,13 @@ void NotebookScene::loadDay0_BranchC_Teahouse() {
     entry.mood = "Братство дороги";
     entry.printSpeed = 45.0f;
 
-    // Один выбор — принять артефакт
+
     NotebookChoice choicePhoto;
     choicePhoto.text = "[Взять фотографию и телефон]";
     choicePhoto.nextEntryIds = {"day0_branch_c_3"};
     choicePhoto.action = [](PlayerState* player) {
-        player->addStoryItem("photo_at_machine");  // Артефакт: Фото бригады
-        player->addPrinciple("ask_experienced");  // ПРИНЦИП: Спрашивать у опытных
+        player->addStoryItem("photo_at_machine");
+        player->addPrinciple("ask_experienced");
         std::cout << "[Day0-C] Получен артефакт: Фотография бригады у станка" << std::endl;
         std::cout << "[Day0-C] Получен принцип: Спрашивать у опытных" << std::endl;
     };
@@ -1236,7 +1236,7 @@ void NotebookScene::loadDay0_BranchC_Teahouse() {
 }
 
 void NotebookScene::loadDay0_BranchC_3() {
-    // ЗАПИСЬ 3В: ОБМЕН ОПЫТОМ - Ценность коммуникации
+
     NotebookEntry entry("day0_branch_c_3", EntryType::PAST,
         "ВЕТКА В: КОМАНДНАЯ РАБОТА\n"
         "12:00, В пути\n\n"
@@ -1275,7 +1275,7 @@ void NotebookScene::loadDay0_BranchC_3() {
 }
 
 void NotebookScene::loadDay0_BranchC_4() {
-    // ЗАПИСЬ 4В: КОЛЛЕКТИВНЫЙ РАЗУМ - Практика командной работы
+
     NotebookEntry entry("day0_branch_c_4", EntryType::PAST,
         "14:00, Остановка у мастерской\n\n"
         "Останавливаемся у придорожной мастерской. Наставник хочет купить запчасть.\n\n"
@@ -1309,7 +1309,7 @@ void NotebookScene::loadDay0_BranchC_4() {
     choice1.text = "[Ехать дальше]";
     choice1.nextEntryIds = {"day0_branch_c_5"};
     choice1.action = [](PlayerState* player) {
-        player->modifyMoney(-10.0f);  // Заплатили за прокладку
+        player->modifyMoney(-10.0f);
     };
     entry.addChoice(choice1);
 
@@ -1318,7 +1318,7 @@ void NotebookScene::loadDay0_BranchC_4() {
 }
 
 void NotebookScene::loadDay0_BranchC_5() {
-    // ЗАПИСЬ 5В: ЗАВЕРШЕНИЕ ВЕТКИ В - Ценность команды
+
     NotebookEntry entry("day0_branch_c_5", EntryType::PAST,
         "16:00, Финальная остановка\n\n"
         "Подъезжаем к городу. Наставник останавливается на последней площадке.\n\n"
@@ -1346,22 +1346,22 @@ void NotebookScene::loadDay0_BranchC_5() {
     entry.mood = "Сила команды";
     entry.printSpeed = 45.0f;
 
-    // Базовый выбор (всегда доступен)
+
     NotebookChoice choiceFinish;
     choiceFinish.text = "[Завершить день]";
     choiceFinish.nextEntryIds = {"day0_provocation"};
     entry.addChoice(choiceFinish);
 
-    // УСЛОВНЫЙ ВЫБОР: Появляется если игрок понял ценность командной работы
+
     NotebookChoice choiceTeamwork;
     choiceTeamwork.text = "[💡 Вспомнить опыт командной работы]";
     choiceTeamwork.requiredPrinciples = {"ask_experienced"};
-    choiceTeamwork.requiredStoryItems = {"photo_at_machine"}; // Нужна фотография бригады
+    choiceTeamwork.requiredStoryItems = {"photo_at_machine"};
     choiceTeamwork.isHidden = true;
     choiceTeamwork.action = [](PlayerState* player) {
-        // Бонус за понимание силы команды
-        player->modifyReputation(5);     // Тебя уважают как командного игрока
-        player->modifyMood(10.0f);       // Тёплые воспоминания о товарищах
+
+        player->modifyReputation(5);
+        player->modifyMood(10.0f);
         std::cout << "[Choice] Вспомнил ценность команды: +5 репутации, +10 настроения" << std::endl;
     };
     choiceTeamwork.nextEntryIds = {"day0_provocation"};
@@ -1371,15 +1371,15 @@ void NotebookScene::loadDay0_BranchC_5() {
     std::cout << "[NotebookScene] Loaded Day 0 entry (Branch C-5): " << entry.id << std::endl;
 }
 
-// Сохраняем старое имя для обратной совместимости
+
 void NotebookScene::loadDay0_BranchC_Package() {
     loadDay0_BranchC_Teahouse();
 }
 
-// === ВЕТКА Г: РЕСУРСОЭФФЕКТИВНОСТЬ (Быстро и по делу) ===
+
 
 void NotebookScene::loadDay0_BranchD_Route() {
-    // ЗАПИСЬ 3Г: РАСЧЁТ МАРШРУТА
+
     NotebookEntry entry("day0_branch_d_route", EntryType::PAST,
         "ЗАДАНИЕ: 8:30\n\n"
         "Я сразу начал проверять: свечи, топливный фильтр, карбюратор. Самые частые причины.\n\n"
@@ -1411,7 +1411,7 @@ void NotebookScene::loadDay0_BranchD_Route() {
 }
 
 void NotebookScene::loadDay0_BranchD_Boys() {
-    // ЗАПИСЬ 4Г: МАЛЬЧИШКИ И МЕТАЛЛ (Выбор артефакта)
+
     NotebookEntry entry("day0_branch_d_boys", EntryType::PAST,
         "ВСТРЕЧА: 10:00, ОПУШКА\n\n"
         "Старый «машину» разбирали на запчасти пацаны.\n\n"
@@ -1426,24 +1426,24 @@ void NotebookScene::loadDay0_BranchD_Boys() {
     entry.mood = "Торговля";
     entry.printSpeed = 45.0f;
 
-    // Выбор 1: Взять стартер и свечи (полезное)
+
     NotebookChoice choiceStarter;
     choiceStarter.text = "Взять стартер и свечи (полезное)";
     choiceStarter.nextEntryIds = {"day0_branch_d_3"};
     choiceStarter.action = [](PlayerState* player) {
-        player->addStoryItem("spare_starter");  // Артефакт: Исправный стартер
-        player->addPrinciple("resource_efficient");  // ПРИНЦИП: Ресурсоэффективность
+        player->addStoryItem("spare_starter");
+        player->addPrinciple("resource_efficient");
         std::cout << "[Day0-D] Получен артефакт: Стартер + Принцип: Ресурсоэффективность" << std::endl;
     };
     entry.addChoice(choiceStarter);
 
-    // Выбор 2: Взять игрушку (сентименты)
+
     NotebookChoice choiceToy;
     choiceToy.text = "Взять игрушку (бесполезно, но...)";
     choiceToy.nextEntryIds = {"day0_branch_d_3"};
     choiceToy.action = [](PlayerState* player) {
-        player->addMoney(25.0f);  // Меньше выгоды
-        player->addPrinciple("resource_efficient");  // Принцип все равно получаем
+        player->addMoney(25.0f);
+        player->addPrinciple("resource_efficient");
         std::cout << "[Day0-D] Получена игрушка + Принцип: Ресурсоэффективность" << std::endl;
     };
     entry.addChoice(choiceToy);
@@ -1453,7 +1453,7 @@ void NotebookScene::loadDay0_BranchD_Boys() {
 }
 
 void NotebookScene::loadDay0_BranchD_3() {
-    // ЗАПИСЬ 3Г: ОПТИМИЗАЦИЯ РАСХОДОВ - Принцип минимализма
+
     NotebookEntry entry("day0_branch_d_3", EntryType::PAST,
         "ВЕТКА Г: РЕСУРСОЭФФЕКТИВНОСТЬ\n"
         "12:30, Заправка\n\n"
@@ -1485,8 +1485,8 @@ void NotebookScene::loadDay0_BranchD_3() {
     choice1.text = "[Продолжить путь]";
     choice1.nextEntryIds = {"day0_branch_d_4"};
     choice1.action = [](PlayerState* player) {
-        player->addFuel(20.0f);  // Заправились
-        player->modifyMoney(-15.0f);  // Заплатили оптимально
+        player->addFuel(20.0f);
+        player->modifyMoney(-15.0f);
     };
     entry.addChoice(choice1);
 
@@ -1495,7 +1495,7 @@ void NotebookScene::loadDay0_BranchD_3() {
 }
 
 void NotebookScene::loadDay0_BranchD_4() {
-    // ЗАПИСЬ 4Г: ВРЕМЯ — ТОЖЕ РЕСУРС
+
     NotebookEntry entry("day0_branch_d_4", EntryType::PAST,
         "14:00, В пути\n\n"
         "Едем по трассе. Наставник смотрит на часы.\n\n"
@@ -1532,7 +1532,7 @@ void NotebookScene::loadDay0_BranchD_4() {
 }
 
 void NotebookScene::loadDay0_BranchD_5() {
-    // ЗАПИСЬ 5Г: ЗАВЕРШЕНИЕ ВЕТКИ Г - Философия эффективности
+
     NotebookEntry entry("day0_branch_d_5", EntryType::PAST,
         "16:30, Приезд домой\n\n"
         "Подъезжаем к дому. Наставник выключает двигатель, оборачивается.\n\n"
@@ -1561,22 +1561,22 @@ void NotebookScene::loadDay0_BranchD_5() {
     entry.mood = "Осознанность";
     entry.printSpeed = 45.0f;
 
-    // Базовый выбор (всегда доступен)
+
     NotebookChoice choiceFinish;
     choiceFinish.text = "[Завершить день]";
     choiceFinish.nextEntryIds = {"day0_provocation"};
     entry.addChoice(choiceFinish);
 
-    // УСЛОВНЫЙ ВЫБОР: Появляется если игрок усвоил принцип ресурсоэффективности
+
     NotebookChoice choiceEfficiency;
     choiceEfficiency.text = "[💡 Применить принцип ресурсоэффективности]";
     choiceEfficiency.requiredPrinciples = {"resource_efficient"};
-    choiceEfficiency.requiredStoryItems = {"spare_starter"}; // Нужна запасная деталь
+    choiceEfficiency.requiredStoryItems = {"spare_starter"};
     choiceEfficiency.isHidden = true;
     choiceEfficiency.action = [](PlayerState* player) {
-        // Бонус за эффективное планирование
-        player->addMoney(100.0f);        // Сэкономил деньги
-        player->addFuel(5.0f);           // Оптимизировал расход топлива
+
+        player->addMoney(100.0f);
+        player->addFuel(5.0f);
         std::cout << "[Choice] Применил ресурсоэффективность: +100₽, +5 топлива" << std::endl;
     };
     choiceEfficiency.nextEntryIds = {"day0_provocation"};
@@ -1586,15 +1586,15 @@ void NotebookScene::loadDay0_BranchD_5() {
     std::cout << "[NotebookScene] Loaded Day 0 entry (Branch D-5): " << entry.id << std::endl;
 }
 
-// Сохраняем старое имя для обратной совместимости
+
 void NotebookScene::loadDay0_BranchD_Choice() {
     loadDay0_BranchD_Boys();
 }
 
-// === ОБЩАЯ ЗАПИСЬ: ПРОВОКАЦИЯ (для всех веток) ===
+
 
 void NotebookScene::loadDay0_Provocation() {
-    // ЗАПИСЬ 5: ПРОВОКАЦИЯ
+
     NotebookEntry entry("day0_provocation", EntryType::PAST,
         "ВОСПОМИНАНИЕ: ПОЛГОДА НАЗАД, 8:15\n\n"
         "— Что, обдумываешь моё предложение? — спросил он, не глядя. — "
@@ -1605,78 +1605,78 @@ void NotebookScene::loadDay0_Provocation() {
     entry.mood = "Напряжённый";
     entry.printSpeed = 45.0f;
 
-    // БАЗОВЫЕ ВЫБОРЫ (всегда доступны)
 
-    // Выбор 1: Огрызнуться
+
+
     NotebookChoice choice1;
     choice1.text = "«Сам ты вечно ворчишь.»";
     choice1.nextEntryIds = {"day0_garage_finale"};
     choice1.action = [](PlayerState* player) {
-        player->addTrait("impulsive");  // Черта: импульсивный
+        player->addTrait("impulsive");
         std::cout << "[Day0] Игрок огрызнулся (черта: импульсивный)" << std::endl;
     };
     entry.addChoice(choice1);
 
-    // Выбор 2: Подумать
+
     NotebookChoice choice2;
     choice2.text = "«Я думаю.»";
     choice2.nextEntryIds = {"day0_garage_finale"};
     choice2.action = [](PlayerState* player) {
-        player->addTrait("patient");  // Черта: терпеливый
+        player->addTrait("patient");
         std::cout << "[Day0] Игрок подумал (черта: терпеливый)" << std::endl;
     };
     entry.addChoice(choice2);
 
-    // УСЛОВНЫЕ ВЫБОРЫ (появляются в зависимости от пройденной ветки)
 
-    // Условный выбор для ветки А: Системный анализ
+
+
     NotebookChoice choiceSystemic;
     choiceSystemic.text = "[💡 «Проанализирую ситуацию системно.» (Ветка А)]";
     choiceSystemic.requiredPrinciples = {"understanding_context"};
     choiceSystemic.isHidden = true;
     choiceSystemic.nextEntryIds = {"day0_garage_finale"};
     choiceSystemic.action = [](PlayerState* player) {
-        player->addTrait("analytical");  // Черта: аналитический
-        player->modifyEnergy(10.0f);     // Ясность мышления
+        player->addTrait("analytical");
+        player->modifyEnergy(10.0f);
         std::cout << "[Day0] Применил системное мышление (черта: аналитический, +10 энергии)" << std::endl;
     };
     entry.addChoice(choiceSystemic);
 
-    // Условный выбор для ветки Б: Чувство материала
+
     NotebookChoice choiceIntuitive;
     choiceIntuitive.text = "[💡 «Чувствую, что это правильно.» (Ветка Б)]";
     choiceIntuitive.requiredPrinciples = {"listen_material"};
     choiceIntuitive.isHidden = true;
     choiceIntuitive.nextEntryIds = {"day0_garage_finale"};
     choiceIntuitive.action = [](PlayerState* player) {
-        player->addTrait("intuitive");      // Черта: интуитивный
-        player->modifyVehicleCondition(10.0f);  // Лучше чувствуешь технику
+        player->addTrait("intuitive");
+        player->modifyVehicleCondition(10.0f);
         std::cout << "[Day0] Доверился интуиции (черта: интуитивный, +10 состояния машины)" << std::endl;
     };
     entry.addChoice(choiceIntuitive);
 
-    // Условный выбор для ветки В: Командная работа
+
     NotebookChoice choiceCollaborative;
     choiceCollaborative.text = "[💡 «Спрошу у тех, кто знает лучше.» (Ветка В)]";
     choiceCollaborative.requiredPrinciples = {"ask_experienced"};
     choiceCollaborative.isHidden = true;
     choiceCollaborative.nextEntryIds = {"day0_garage_finale"};
     choiceCollaborative.action = [](PlayerState* player) {
-        player->addTrait("collaborative");  // Черта: коллаборативный
-        player->modifyReputation(10);       // Уважение к опыту других
+        player->addTrait("collaborative");
+        player->modifyReputation(10);
         std::cout << "[Day0] Ценишь командную работу (черта: коллаборативный, +10 репутации)" << std::endl;
     };
     entry.addChoice(choiceCollaborative);
 
-    // Условный выбор для ветки Г: Ресурсоэффективность
+
     NotebookChoice choiceEfficient;
     choiceEfficient.text = "[💡 «Взвешу все ресурсы и решу.» (Ветка Г)]";
     choiceEfficient.requiredPrinciples = {"resource_efficient"};
     choiceEfficient.isHidden = true;
     choiceEfficient.nextEntryIds = {"day0_garage_finale"};
     choiceEfficient.action = [](PlayerState* player) {
-        player->addTrait("efficient");   // Черта: эффективный
-        player->addMoney(150.0f);        // Экономия ресурсов
+        player->addTrait("efficient");
+        player->addMoney(150.0f);
         std::cout << "[Day0] Применил принцип эффективности (черта: эффективный, +150₽)" << std::endl;
     };
     entry.addChoice(choiceEfficient);
@@ -1685,10 +1685,10 @@ void NotebookScene::loadDay0_Provocation() {
     std::cout << "[NotebookScene] Loaded Day 0 entry (Provocation): " << entry.id << std::endl;
 }
 
-// === ОБЩИЙ ФИНАЛ: ГАРАЖ (для всех веток) ===
+
 
 void NotebookScene::loadDay0_GarageFinale() {
-    // ЗАПИСЬ 6: ПЕРЕДАЧА ИНСТРУМЕНТА (в гараже)
+
     NotebookEntry entry("day0_garage_finale", EntryType::PAST,
         "ВОСПОМИНАНИЕ: ПОЛГОДА НАЗАД, ВЕЧЕР, ГАРАЖ\n\n"
         "Он подвёл меня к «машинуу».\n\n"
@@ -1704,7 +1704,7 @@ void NotebookScene::loadDay0_GarageFinale() {
     entry.date = "Полгода назад, вечер";
     entry.location = "Гараж";
     entry.mood = "Прощание";
-    entry.printSpeed = 35.0f;  // Медленнее для драматизма
+    entry.printSpeed = 35.0f;
 
     NotebookChoice choice1;
     choice1.text = "[Продолжить в настоящее время]";
@@ -1715,10 +1715,10 @@ void NotebookScene::loadDay0_GarageFinale() {
     std::cout << "[NotebookScene] Loaded Day 0 entry (Garage Finale): " << entry.id << std::endl;
 }
 
-// === ПЕРЕХОД В НАСТОЯЩЕЕ ===
+
 
 void NotebookScene::loadDay0_TransitionPresent() {
-    // ЗАПИСЬ 7: НАСТОЯЩЕЕ ВРЕМЯ. ДОРОГА
+
     NotebookEntry entry("day0_transition_present", EntryType::PRESENT,
         "Сегодня. Дорога.\n\n"
         "И вот сейчас, на этом длинном пути, "
@@ -1741,14 +1741,14 @@ void NotebookScene::loadDay0_TransitionPresent() {
 
     NotebookChoice choice1;
     choice1.text = "[Продолжить путешествие]";
-    choice1.nextEntryIds = {"day1_border_crossing"};  // Переход к Дню 1
+    choice1.nextEntryIds = {"day1_border_crossing"};
     entry.addChoice(choice1);
 
     m_entries[entry.id] = entry;
     std::cout << "[NotebookScene] Loaded Day 0 entry (Transition to Present): " << entry.id << std::endl;
 }
 
-// === ДЕНЬ 1: ПЕРЕХОД ГРАНИЦЫ ===
+
 
 void NotebookScene::loadDay1_BorderCrossing() {
     NotebookEntry entry("day1_border_crossing", EntryType::PRESENT,
@@ -1842,14 +1842,14 @@ void NotebookScene::loadDay1_CustomsCheck() {
 
     NotebookChoice choice1;
     choice1.text = "[Закончить пролог]";
-    choice1.nextEntryIds = {"day0_knock"};  // Возврат к началу для повторного прохождения
+    choice1.nextEntryIds = {"day0_knock"};
     choice1.action = [](PlayerState* player) {
         std::cout << "\n=== ПРОЛОГ ЗАВЕРШЁН ===" << std::endl;
         std::cout << "Вы прошли День 0 и узнали один из уроков наставника." << std::endl;
         std::cout << "Можете начать заново и выбрать другую ветку обучения!" << std::endl;
 
-        // Сброс для нового прохождения (опционально)
-        // player->resetToStart();
+
+
     };
     entry.addChoice(choice1);
 
@@ -1857,7 +1857,7 @@ void NotebookScene::loadDay1_CustomsCheck() {
     std::cout << "[NotebookScene] Loaded Day 1 entry (Customs): " << entry.id << std::endl;
 }
 
-// === ВСПОМОГАТЕЛЬНЫЕ МЕТОДЫ ДЛЯ ШРИФТОВ И ЦВЕТОВ ===
+
 
 const sf::Font& NotebookScene::getCurrentFont() const {
     switch (m_currentEntry.type) {
@@ -1875,27 +1875,27 @@ const sf::Font& NotebookScene::getCurrentFont() const {
 sf::Color NotebookScene::getCurrentTextColor() const {
     switch (m_currentEntry.type) {
         case EntryType::PRESENT:
-            // Приглушенный серо-зеленый для настоящего времени
-            return sf::Color(140, 160, 140);  // Комфортный серо-зеленый
+
+            return sf::Color(140, 160, 140);
         case EntryType::PAST:
-            // Приглушенный серо-желтый для воспоминаний
-            return sf::Color(180, 170, 130);  // Теплый приглушенный желтый
+
+            return sf::Color(180, 170, 130);
         case EntryType::THOUGHT:
-            // Приглушенный серо-голубой для внутренних мыслей
-            return sf::Color(150, 150, 160);  // Мягкий серо-голубой
+
+            return sf::Color(150, 150, 160);
         default:
-            return sf::Color(200, 200, 200);  // Приглушенный серый по умолчанию
+            return sf::Color(200, 200, 200);
     }
 }
 
 unsigned int NotebookScene::getCurrentFontSize() const {
     switch (m_currentEntry.type) {
         case EntryType::PRESENT:
-            return 24;  // Обычный размер для настоящего
+            return 24;
         case EntryType::PAST:
-            return 22;  // Чуть меньше для воспоминаний
+            return 22;
         case EntryType::THOUGHT:
-            return 20;  // Еще меньше для мыслей (более интимное)
+            return 20;
         default:
             return 24;
     }
@@ -1911,10 +1911,10 @@ std::string NotebookScene::wrapText(const std::string& text, const sf::Font& fon
     testText.setCharacterSize(fontSize);
 
     while (stream >> word) {
-        // Проверить, есть ли в слове перевод строки
+
         size_t newlinePos = word.find('\n');
         if (newlinePos != std::string::npos) {
-            // Обработать часть до переноса строки
+
             std::string beforeNewline = word.substr(0, newlinePos);
             std::string afterNewline = word.substr(newlinePos + 1);
 
@@ -1931,29 +1931,29 @@ std::string NotebookScene::wrapText(const std::string& text, const sf::Font& fon
                 }
             }
 
-            // Добавить текущую строку и начать новую
+
             result += currentLine + "\n";
             currentLine.clear();
 
-            // Обработать часть после переноса
+
             if (!afterNewline.empty()) {
                 currentLine = afterNewline;
             }
             continue;
         }
 
-        // Проверить, поместится ли слово в текущую строку
+
         std::string testLine = currentLine.empty() ? word : currentLine + " " + word;
         testText.setString(utf8(testLine));
 
         if (testText.getLocalBounds().size.x <= maxWidth) {
-            // Слово помещается
+
             if (!currentLine.empty()) {
                 currentLine += " ";
             }
             currentLine += word;
         } else {
-            // Слово не помещается, начать новую строку
+
             if (!currentLine.empty()) {
                 result += currentLine + "\n";
             }
@@ -1961,7 +1961,7 @@ std::string NotebookScene::wrapText(const std::string& text, const sf::Font& fon
         }
     }
 
-    // Добавить последнюю строку
+
     if (!currentLine.empty()) {
         result += currentLine;
     }
@@ -1969,7 +1969,7 @@ std::string NotebookScene::wrapText(const std::string& text, const sf::Font& fon
     return result;
 }
 
-// === ТЕСТОВЫЕ ЗАПИСИ ===
+
 
 void NotebookScene::loadTestThoughtSystem() {
     NotebookEntry entry;
@@ -2466,9 +2466,9 @@ void NotebookScene::loadDemoFinale() {
     m_entries[entry.id] = entry;
 }
 
-// === ДЕМО-КОНТЕНТ (простой пример для быстрого тестирования) ===
-// Эти записи созданы как пример для демонстрации работы системы.
-// Пользователь заменит их на свой контент.
+
+
+
 
 void NotebookScene::loadDemo_Start() {
     NotebookEntry entry;
@@ -2483,7 +2483,7 @@ void NotebookScene::loadDemo_Start() {
     entry.printSpeed = 50.0f;
     entry.canSkip = true;
 
-    // Автоматический переход к следующей записи
+
     NotebookChoice auto_continue;
     auto_continue.text = "[Продолжить]";
     auto_continue.nextEntryIds = {"demo_road"};
@@ -2505,7 +2505,7 @@ void NotebookScene::loadDemo_Road() {
     entry.printSpeed = 50.0f;
     entry.canSkip = true;
 
-    // Автоматический переход
+
     NotebookChoice auto_continue;
     auto_continue.text = "[Продолжить]";
     auto_continue.nextEntryIds = {"demo_choice"};
@@ -2527,7 +2527,7 @@ void NotebookScene::loadDemo_Choice() {
     entry.printSpeed = 50.0f;
     entry.canSkip = true;
 
-    // Выбор 1: Трасса
+
     NotebookChoice choice1;
     choice1.text = "Трасса (быстро, -15L топлива, -5% энергии)";
     choice1.nextEntryIds = {"demo_highway"};
@@ -2538,7 +2538,7 @@ void NotebookScene::loadDemo_Choice() {
     };
     entry.addChoice(choice1);
 
-    // Выбор 2: Проселок
+
     NotebookChoice choice2;
     choice2.text = "Проселок (тихо, -10L топлива, -15% энергии)";
     choice2.nextEntryIds = {"demo_backroad"};
@@ -2565,7 +2565,7 @@ void NotebookScene::loadDemo_Highway() {
     entry.printSpeed = 50.0f;
     entry.canSkip = true;
 
-    // Переход к финалу
+
     NotebookChoice auto_continue;
     auto_continue.text = "[Продолжить]";
     auto_continue.nextEntryIds = {"demo_finale"};
@@ -2588,7 +2588,7 @@ void NotebookScene::loadDemo_Backroad() {
     entry.printSpeed = 50.0f;
     entry.canSkip = true;
 
-    // Переход к финалу
+
     NotebookChoice auto_continue;
     auto_continue.text = "[Продолжить]";
     auto_continue.nextEntryIds = {"demo_finale"};
@@ -2712,7 +2712,7 @@ void NotebookScene::loadDemo_LowFuel() {
     continue_road.text = "[Продолжить путь]";
     continue_road.nextEntryIds = {"demo_final_choice"};
     continue_road.action = [](PlayerState* ps) {
-        ps->addFuel(-25.0f);  // Критический расход - вызовет событие
+        ps->addFuel(-25.0f);
         ps->addEnergy(-15.0f);
         std::cout << "[DEMO] Трата ресурсов для теста событий" << std::endl;
     };
@@ -2839,23 +2839,23 @@ void NotebookScene::loadDemo_End() {
     m_entries[entry.id] = entry;
 }
 
-// ============================================================================
-// ИНТЕГРАЦИЯ СОБЫТИЙ
-// ============================================================================
+
+
+
 
 bool NotebookScene::tryTriggerRandomEvent() {
-    // Проверить есть ли уже ожидающее событие
+
     if (!m_pendingEventId.empty()) {
         return false;
     }
 
-    // Проверить шанс срабатывания (20% по умолчанию)
+
     float randomChance = static_cast<float>(rand()) / RAND_MAX;
     if (randomChance > m_eventTriggerChance) {
-        return false;  // Событие не сработало
+        return false;
     }
 
-    // Получить случайное событие по текущим условиям
+
     GameEvent* event = m_eventManager.getRandomEvent(
         m_playerState->getFuel(),
         m_playerState->getEnergy(),
@@ -2863,10 +2863,10 @@ bool NotebookScene::tryTriggerRandomEvent() {
     );
 
     if (event == nullptr) {
-        return false;  // Нет подходящих событий
+        return false;
     }
 
-    // Сохранить ID события для показа
+
     m_pendingEventId = event->id;
 
     std::cout << "[NotebookScene] Random event triggered: " << event->title
@@ -2876,28 +2876,28 @@ bool NotebookScene::tryTriggerRandomEvent() {
 }
 
 NotebookEntry NotebookScene::convertEventToEntry(const GameEvent& event) {
-    // Создать запись из события
+
     NotebookEntry entry(
-        "event_" + event.id,  // Префикс для событий
-        EntryType::PRESENT,   // События в настоящем времени
+        "event_" + event.id,
+        EntryType::PRESENT,
         event.description
     );
 
-    // Конвертировать каждый выбор события в выбор блокнота
+
     int choiceIndex = 0;
     for (const auto& eventChoice : event.choices) {
         NotebookChoice notebookChoice;
         notebookChoice.text = eventChoice.text;
 
-        // Создать уникальный ID для страницы результата
+
         std::string outcomeId = "event_outcome_" + event.id + "_choice" + std::to_string(choiceIndex);
 
-        // Выбор ведет к странице результата
+
         notebookChoice.nextEntryIds = {outcomeId};
 
-        // Применить эффекты события через action
+
         notebookChoice.action = [eventChoice](PlayerState* player) {
-            // Применить изменения ресурсов
+
             player->modifyEnergy(eventChoice.energyChange);
             player->modifyMoney(eventChoice.moneyChange);
             player->addFuel(eventChoice.fuelChange);
@@ -2905,11 +2905,11 @@ NotebookEntry NotebookScene::convertEventToEntry(const GameEvent& event) {
             float currentCondition = player->getVehicleCondition();
             player->setVehicleCondition(currentCondition + eventChoice.vehicleConditionChange);
 
-            // Применить изменения отношений с NPC (если есть)
-            // TODO: интеграция с NPCManager
 
-            // Добавить/убрать предметы (если есть)
-            // TODO: интеграция с инвентарем
+
+
+
+
 
             std::cout << "[Event] Applied choice effects:" << std::endl;
             std::cout << "  Energy: " << eventChoice.energyChange << std::endl;
@@ -2920,17 +2920,17 @@ NotebookEntry NotebookScene::convertEventToEntry(const GameEvent& event) {
 
         entry.addChoice(notebookChoice);
 
-        // Создать страницу результата для этого выбора
+
         if (!eventChoice.outcomeText.empty()) {
             NotebookEntry outcomeEntry(outcomeId, EntryType::PRESENT, eventChoice.outcomeText);
             outcomeEntry.printSpeed = 60.0f;
             outcomeEntry.canSkip = true;
 
-            // Один выбор - продолжить к следующей записи
+
             NotebookChoice continueChoice;
             continueChoice.text = "[Продолжить]";
 
-            // Использовать сохраненный ID следующей записи
+
             if (!m_pendingNextEntryId.empty()) {
                 continueChoice.nextEntryIds = {m_pendingNextEntryId};
             } else {
@@ -2939,7 +2939,7 @@ NotebookEntry NotebookScene::convertEventToEntry(const GameEvent& event) {
 
             outcomeEntry.addChoice(continueChoice);
 
-            // Добавить страницу результата в хранилище
+
             m_entries[outcomeId] = outcomeEntry;
 
             std::cout << "[Event] Created outcome page: " << outcomeId << " -> " << m_pendingNextEntryId << std::endl;
@@ -2952,26 +2952,26 @@ NotebookEntry NotebookScene::convertEventToEntry(const GameEvent& event) {
 }
 
 void NotebookScene::showEventAsEntry(const std::string& eventId) {
-    // Получить событие
+
     GameEvent* event = m_eventManager.getEvent(eventId);
     if (event == nullptr) {
         std::cerr << "[NotebookScene] Event not found: " << eventId << std::endl;
         return;
     }
 
-    // Конвертировать событие в запись
+
     NotebookEntry entry = convertEventToEntry(*event);
 
-    // Добавить запись во временное хранилище
+
     m_entries[entry.id] = entry;
 
-    // Показать запись
+
     showEntry(entry.id);
 
-    // Пометить событие как сработавшее
+
     m_eventManager.triggerEvent(eventId);
 
-    // Очистить ожидающее событие
+
     m_pendingEventId = "";
 
     std::cout << "[NotebookScene] Showing event as entry: " << event->title << std::endl;

@@ -2,9 +2,9 @@
 
 namespace EventFactory {
 
-// ============================================================================
-// События встреч с компаньонами (ENCOUNTER)
-// ============================================================================
+
+
+
 
 GameEvent createMeetMechanic() {
     GameEvent event("meet_mechanic",
@@ -17,10 +17,10 @@ GameEvent createMeetMechanic() {
     event.oneTimeOnly = true;
     event.associatedNPC = "mechanic_mikhalych";
 
-    // Условия: нет механика в команде, есть место
-    event.condition.maxPartySize = 2; // Меньше 3 = есть место
 
-    // Вариант 1: Помочь и пригласить
+    event.condition.maxPartySize = 2;
+
+
     EventChoice help;
     help.text = "Остановиться и помочь с ремонтом";
     help.outcomeText = "Вы помогли Михалычу починить машину. Он благодарен и готов присоединиться к вам!";
@@ -28,15 +28,15 @@ GameEvent createMeetMechanic() {
     help.recruitNPC = "mechanic_mikhalych";
     help.relationshipChanges["mechanic_mikhalych"] = 20;
 
-    // Вариант 2: Просто помочь
+
     EventChoice helpOnly;
     helpOnly.text = "Помочь, но ехать дальше";
     helpOnly.outcomeText = "Михалыч благодарит вас. Может, ещё встретитесь на дороге.";
     helpOnly.energyChange = -5.0f;
-    helpOnly.moneyChange = 50; // Михалыч даёт немного денег в благодарность
+    helpOnly.moneyChange = 50;
     helpOnly.relationshipChanges["mechanic_mikhalych"] = 10;
 
-    // Вариант 3: Проехать мимо
+
     EventChoice ignore;
     ignore.text = "Проехать мимо";
     ignore.outcomeText = "Вы продолжаете путь. Михалыч остаётся у своей машины.";
@@ -126,7 +126,7 @@ GameEvent createMeetGranny() {
     help.text = "Подвезти бабушку";
     help.outcomeText = "Галина Петровна благодарно садится. Она тут же угощает вас пирожками!";
     help.recruitNPC = "granny_galina";
-    help.energyChange = 10.0f; // Сразу пирожки!
+    help.energyChange = 10.0f;
     help.relationshipChanges["granny_galina"] = 30;
 
     EventChoice refuse;
@@ -158,7 +158,7 @@ GameEvent createMeetTrucker() {
     EventChoice chatOnly;
     chatOnly.text = "Поболтать и узнать про дорогу";
     chatOnly.outcomeText = "Петрович рассказывает полезные советы о маршруте.";
-    chatOnly.energyChange = 5.0f; // Отдохнули за чаем
+    chatOnly.energyChange = 5.0f;
     chatOnly.relationshipChanges["trucker_petrovich"] = 10;
 
     EventChoice leave;
@@ -196,9 +196,9 @@ GameEvent createMeetStudent() {
     return event;
 }
 
-// ============================================================================
-// События с компаньонами (COMPANION)
-// ============================================================================
+
+
+
 
 GameEvent createMechanicRepairOffer() {
     GameEvent event("mechanic_repair_offer",
@@ -211,7 +211,7 @@ GameEvent createMechanicRepairOffer() {
     event.oneTimeOnly = false;
     event.associatedNPC = "mechanic_mikhalych";
 
-    // Условие: Механик в команде, есть другие NPC, состояние машины < 80%
+
     event.condition.requiredNPCsInParty = {"mechanic_mikhalych"};
     event.condition.minPartySize = 2;
 
@@ -246,7 +246,7 @@ GameEvent createPunkConcertEvent() {
     EventChoice allow;
     allow.text = "Разрешить концерт";
     allow.outcomeText = "Вася играет, собирает деньги. Правда, охранник потребовал откат...";
-    allow.moneyChange = 150; // 200₽ - 50₽ откат
+    allow.moneyChange = 150;
     allow.relationshipChanges["punk_vasya"] = 10;
 
     EventChoice forbid;
@@ -301,12 +301,12 @@ GameEvent createCompanionConflict() {
     mediate.text = "Вмешаться и помирить всех";
     mediate.outcomeText = "Вы находите компромисс. Все успокаиваются.";
     mediate.energyChange = -10.0f;
-    // Небольшое улучшение отношений со всеми (нужно динамически добавлять)
+
 
     EventChoice ignore;
     ignore.text = "Не вмешиваться";
     ignore.outcomeText = "Спор утихает сам собой, но осадок остался.";
-    // Небольшое ухудшение отношений
+
 
     event.choices = {mediate, ignore};
     return event;
@@ -415,7 +415,7 @@ GameEvent createMechanicTeachSkill() {
 
     event.type = EventType::COMPANION;
     event.weight = 0.6f;
-    event.oneTimeOnly = true;  // Обучение только раз
+    event.oneTimeOnly = true;
     event.associatedNPC = "mechanic_mikhalych";
 
     event.condition.requiredNPCsInParty = {"mechanic_mikhalych"};
@@ -436,9 +436,9 @@ GameEvent createMechanicTeachSkill() {
     return event;
 }
 
-// ============================================================================
-// Дорожные события (ROAD)
-// ============================================================================
+
+
+
 
 GameEvent createCarBreakdown() {
     GameEvent event("car_breakdown",
@@ -460,7 +460,7 @@ GameEvent createCarBreakdown() {
     mechanicHelp.outcomeText = "Механик быстро и профессионально чинит поломку!";
     mechanicHelp.energyChange = -5.0f;
     mechanicHelp.vehicleConditionChange = 25.0f;
-    // Доступен только если есть механик
+
 
     EventChoice callService;
     callService.text = "Вызвать эвакуатор (500₽)";
@@ -538,20 +538,20 @@ GameEvent createBadWeather() {
     continue_driving.text = "Продолжать ехать осторожно";
     continue_driving.outcomeText = "Вы медленно, но верно продолжаете путь.";
     continue_driving.energyChange = -10.0f;
-    continue_driving.fuelChange = -8.0f; // Медленнее = больше расход
+    continue_driving.fuelChange = -8.0f;
 
     EventChoice wait;
     wait.text = "Переждать на стоянке";
     wait.outcomeText = "Через час дождь стихает. Можно ехать дальше.";
-    wait.energyChange = 5.0f; // Отдохнули
+    wait.energyChange = 5.0f;
 
     event.choices = {continue_driving, wait};
     return event;
 }
 
-// ============================================================================
-// Ресурсные события (RESOURCE)
-// ============================================================================
+
+
+
 
 GameEvent createRoadsideFinding() {
     GameEvent event("roadside_finding",
@@ -598,9 +598,9 @@ GameEvent createHitchhikerTrade() {
     return event;
 }
 
-// ============================================================================
-// СОБЫТИЯ ДЛЯ ВЕТКИ А: СИСТЕМНЫЙ АНАЛИЗ
-// ============================================================================
+
+
+
 
 GameEvent createBranchA_BrokenSign() {
     GameEvent event("branchA_broken_sign",
@@ -616,7 +616,7 @@ GameEvent createBranchA_BrokenSign() {
     analyze.outcomeText = "Вы анализируете асфальт, следы шин, свежесть разметки. Ответ очевиден!";
     analyze.energyChange = -3.0f;
     analyze.fuelChange = -3.0f;
-    // Требует принципа understanding_context
+
 
     EventChoice guess;
     guess.text = "Ехать наугад";
@@ -753,9 +753,9 @@ GameEvent createBranchA_MapDiscrepancy() {
     return event;
 }
 
-// ============================================================================
-// СОБЫТИЯ ДЛЯ ВЕТКИ Б: ЧУВСТВО МАТЕРИАЛА
-// ============================================================================
+
+
+
 
 GameEvent createBranchB_RoadFeel() {
     GameEvent event("branchB_road_feel",
@@ -909,9 +909,9 @@ GameEvent createBranchB_BrakeFeel() {
     return event;
 }
 
-// ============================================================================
-// СОБЫТИЯ ДЛЯ ВЕТКИ В: КОМАНДНАЯ РАБОТА
-// ============================================================================
+
+
+
 
 GameEvent createBranchC_TruckerAdvice() {
     GameEvent event("branchC_trucker_advice",
@@ -1053,9 +1053,9 @@ GameEvent createBranchC_RadioCall() {
     return event;
 }
 
-// ============================================================================
-// СОБЫТИЯ ДЛЯ ВЕТКИ Г: РЕСУРСОЭФФЕКТИВНОСТЬ
-// ============================================================================
+
+
+
 
 GameEvent createBranchD_FuelChoice() {
     GameEvent event("branchD_fuel_choice",
@@ -1214,9 +1214,9 @@ GameEvent createBranchD_FoodPlanning() {
     return event;
 }
 
-// ============================================================================
-// СЛУЧАЙНЫЕ СОБЫТИЯ (ДЛЯ ЛЮБОЙ ВЕТКИ)
-// ============================================================================
+
+
+
 
 GameEvent createRandom_FlatTire() {
     GameEvent event("random_flat_tire",
@@ -1392,9 +1392,9 @@ GameEvent createRandom_ScenicView() {
     return event;
 }
 
-// ============================================================================
-// СОБЫТИЯ НА ОСНОВЕ РЕСУРСОВ
-// ============================================================================
+
+
+
 
 GameEvent createResourceFuelCritical() {
     GameEvent event;
@@ -1665,12 +1665,12 @@ GameEvent createResourceMoodLow() {
     return event;
 }
 
-// ============================================================================
-// Утилиты
-// ============================================================================
+
+
+
 
 void initializeAllEvents(EventManager& eventManager) {
-    // Встречи с компаньонами
+
     eventManager.addEvent(createMeetMechanic());
     eventManager.addEvent(createMeetUnemployed());
     eventManager.addEvent(createMeetPunk());
@@ -1678,7 +1678,7 @@ void initializeAllEvents(EventManager& eventManager) {
     eventManager.addEvent(createMeetTrucker());
     eventManager.addEvent(createMeetStudent());
 
-    // События с компаньонами
+
     eventManager.addEvent(createMechanicRepairOffer());
     eventManager.addEvent(createPunkConcertEvent());
     eventManager.addEvent(createGrannyStoriesEvent());
@@ -1688,46 +1688,46 @@ void initializeAllEvents(EventManager& eventManager) {
     eventManager.addEvent(createUnemployedAdvice());
     eventManager.addEvent(createMechanicTeachSkill());
 
-    // Дорожные события
+
     eventManager.addEvent(createCarBreakdown());
     eventManager.addEvent(createPoliceStop());
     eventManager.addEvent(createCrossroads());
     eventManager.addEvent(createBadWeather());
 
-    // Ресурсные события
+
     eventManager.addEvent(createRoadsideFinding());
     eventManager.addEvent(createHitchhikerTrade());
     eventManager.addEvent(createOutOfFuel());
 
-    // СОБЫТИЯ ДЛЯ ВЕТКИ А (Системный анализ)
+
     eventManager.addEvent(createBranchA_BrokenSign());
     eventManager.addEvent(createBranchA_EngineNoise());
     eventManager.addEvent(createBranchA_WeatherPattern());
     eventManager.addEvent(createBranchA_FuelConsumption());
     eventManager.addEvent(createBranchA_MapDiscrepancy());
 
-    // СОБЫТИЯ ДЛЯ ВЕТКИ Б (Чувство материала)
+
     eventManager.addEvent(createBranchB_RoadFeel());
     eventManager.addEvent(createBranchB_MetalFatigue());
     eventManager.addEvent(createBranchB_TirePressure());
     eventManager.addEvent(createBranchB_FuelQuality());
     eventManager.addEvent(createBranchB_BrakeFeel());
 
-    // СОБЫТИЯ ДЛЯ ВЕТКИ В (Командная работа)
+
     eventManager.addEvent(createBranchC_TruckerAdvice());
     eventManager.addEvent(createBranchC_MechanicHelp());
     eventManager.addEvent(createBranchC_LocalKnowledge());
     eventManager.addEvent(createBranchC_ConvoyOffer());
     eventManager.addEvent(createBranchC_RadioCall());
 
-    // СОБЫТИЯ ДЛЯ ВЕТКИ Г (Ресурсоэффективность)
+
     eventManager.addEvent(createBranchD_FuelChoice());
     eventManager.addEvent(createBranchD_Shortcut());
     eventManager.addEvent(createBranchD_RestStop());
     eventManager.addEvent(createBranchD_RepairChoice());
     eventManager.addEvent(createBranchD_FoodPlanning());
 
-    // СЛУЧАЙНЫЕ СОБЫТИЯ (для всех веток)
+
     eventManager.addEvent(createRandom_FlatTire());
     eventManager.addEvent(createRandom_Hungry());
     eventManager.addEvent(createRandom_Rain());
@@ -1735,7 +1735,7 @@ void initializeAllEvents(EventManager& eventManager) {
     eventManager.addEvent(createRandom_Hitchhiker());
     eventManager.addEvent(createRandom_ScenicView());
 
-    // СОБЫТИЯ НА ОСНОВЕ РЕСУРСОВ
+
     eventManager.addEvent(createResourceFuelCritical());
     eventManager.addEvent(createResourceFuelLow());
     eventManager.addEvent(createResourceEnergyExhausted());
@@ -1748,9 +1748,9 @@ void initializeAllEvents(EventManager& eventManager) {
     eventManager.addEvent(createResourceMoodLow());
 }
 
-// ============================================================================
-// Событие: Закончилось топливо (с случайными исходами)
-// ============================================================================
+
+
+
 
 GameEvent createOutOfFuel() {
     GameEvent event;
@@ -1763,71 +1763,71 @@ GameEvent createOutOfFuel() {
     event.oneTimeOnly = false;
     event.weight = 1.0f;
 
-    // ВЫБОР 1: Ждать попутку (3 случайных исхода)
+
     EventChoice hitchhike;
     hitchhike.text = "Голосовать на дороге, ждать попутку с канистрой";
-    hitchhike.energyChange = -15.0f; // Стоять на дороге утомительно
+    hitchhike.energyChange = -15.0f;
     hitchhike.randomOutcomes = {
-        // Исход 1: Быстро повезло (30% шанс)
+
         {
             "Через 20 минут остановился дальнобойщик. Продал 5 литров за 300₽. Повезло!",
-            5.0f,   // fuel
-            -15.0f, // energy
-            -300,   // money
-            0.3f    // probability 30%
+            5.0f,
+            -15.0f,
+            -300,
+            0.3f
         },
-        // Исход 2: Долгое ожидание (50% шанс)
+
         {
             "Прождал 2 часа на жаре. Наконец остановился местный житель. Отвёз до заправки бесплатно, "
             "но пришлось купить полный бак.",
-            25.0f,  // fuel
-            -30.0f, // energy (долгое ожидание + жара)
-            -800,   // money (полный бак)
-            0.5f    // probability 50%
+            25.0f,
+            -30.0f,
+            -800,
+            0.5f
         },
-        // Исход 3: Никто не остановился (20% шанс)
+
         {
             "Простоял 3 часа. Никто не остановился. Солнце жжёт, голова кружится. "
             "В итоге пришлось идти пешком до заправки.",
-            0.0f,   // fuel (канистру не получил)
-            -40.0f, // energy (очень устал)
-            0,      // money
-            0.2f    // probability 20%
+            0.0f,
+            -40.0f,
+            0,
+            0.2f
         }
     };
 
-    // ВЫБОР 2: Идти до заправки (3 случайных исхода)
+
     EventChoice walk;
     walk.text = "Идти пешком до ближайшей заправки";
-    walk.energyChange = -25.0f; // Идти пешком тяжело
+    walk.energyChange = -25.0f;
     walk.randomOutcomes = {
-        // Исход 1: Нормальный путь (40% шанс)
+
         {
             "5 километров пешком под солнцем. Ноги гудят, но дошёл. Купил канистру (150₽) и 5 литров (250₽). "
             "Обратный путь с канистрой был ещё тяжелее.",
-            5.0f,   // fuel
-            -35.0f, // energy (туда-обратно с канистрой)
-            -400,   // money (канистра 150₽ + 5л топлива 250₽)
-            0.4f    // probability 40%
+            5.0f,
+            -35.0f,
+            -400,
+            0.4f
         },
-        // Исход 2: Подвезли (35% шанс)
+
         {
             "Прошёл километр, и меня подобрал местный житель. Довёз до заправки и обратно к машине. "
             "Купил только топливо 5л (250₽), канистру одолжил.",
-            5.0f,   // fuel
-            -20.0f, // energy (меньше устал)
-            -250,   // money (только топливо)
-            0.35f   // probability 35%
+            5.0f,
+            -20.0f,
+            -250,
+            0.35f
         },
-        // Исход 3: Тепловой удар (25% шанс)
+
         {
             "В середине пути стало плохо от жары и усталости. Присел на обочину, голова кружилась. "
             "Пришёл в себя, допёр до заправки. Купил воду (50₽), канистру (150₽), топливо (250₽). "
             "Обратно шёл еле-еле.",
-            5.0f,   // fuel
-            -50.0f, // energy (тепловой удар + длинный путь)
-            -450,   // money (вода + канистра + топливо)
-            0.25f   // probability 25%
+            5.0f,
+            -50.0f,
+            -450,
+            0.25f
         }
     };
 
@@ -1864,4 +1864,4 @@ std::vector<GameEvent> createCompanionEvents() {
     };
 }
 
-} // namespace EventFactory
+}

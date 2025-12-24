@@ -1,8 +1,8 @@
 #include "GameTypes.h"
 
-// ============================================================================
-// BiomeType Functions
-// ============================================================================
+
+
+
 
 std::string getBiomeTypeName(BiomeType type) {
     switch (type) {
@@ -26,25 +26,25 @@ std::string getBiomeTypeName(BiomeType type) {
 sf::Color getBiomeColor(BiomeType type) {
     switch (type) {
         case BiomeType::DESERT:
-            return sf::Color(218, 165, 32);  // Goldenrod
+            return sf::Color(218, 165, 32);
         case BiomeType::FOREST:
-            return sf::Color(34, 139, 34);   // ForestGreen
+            return sf::Color(34, 139, 34);
         case BiomeType::COASTAL:
-            return sf::Color(0, 191, 255);   // DeepSkyBlue
+            return sf::Color(0, 191, 255);
         case BiomeType::MOUNTAIN:
-            return sf::Color(112, 128, 144); // SlateGray
+            return sf::Color(112, 128, 144);
         case BiomeType::URBAN:
-            return sf::Color(169, 169, 169); // DarkGray
+            return sf::Color(169, 169, 169);
         case BiomeType::SUBURBAN:
-            return sf::Color(154, 205, 50);  // YellowGreen
+            return sf::Color(154, 205, 50);
         default:
             return sf::Color::White;
     }
 }
 
-// ============================================================================
-// OriginType Functions
-// ============================================================================
+
+
+
 
 OriginType indexToOriginType(int index) {
     switch (index) {
@@ -86,18 +86,18 @@ BiomeType getPreferredBiome(OriginType origin) {
     }
 }
 
-// ============================================================================
-// CarType Functions
-// ============================================================================
+
+
+
 
 CarType indexToCarType(int index) {
     switch (index) {
         case 0:
-            return CarType::SPORTS_COUPE;  // BMW E30 Coupe
+            return CarType::SPORTS_COUPE;
         case 1:
-            return CarType::OLD_SEDAN;     // Volvo 940 Sedan
+            return CarType::OLD_SEDAN;
         case 2:
-            return CarType::OFFROAD_VAN;   // Mercedes-Benz Sprinter
+            return CarType::OFFROAD_VAN;
         default:
             return CarType::UNKNOWN;
     }
@@ -117,68 +117,68 @@ std::string getCarTypeName(CarType type) {
     }
 }
 
-// ============================================================================
-// Starting Resources Functions
-// ============================================================================
+
+
+
 
 StartingResources getStartingResources(OriginType origin, CarType car) {
-    // Base resources
+
     float baseMoney = 200.0f;
     float baseFuel = 100.0f;
     float baseEnergy = 100.0f;
-    
-    // Origin modifiers
+
+
     switch (origin) {
         case OriginType::NOMAD:
-            // Nomad: Less money, but more resourceful
-            baseMoney *= 0.75f;  // $150
-            baseEnergy *= 1.1f;  // 110% energy
+
+            baseMoney *= 0.75f;
+            baseEnergy *= 1.1f;
             break;
-            
+
         case OriginType::HITCHHIKER:
-            // Hitchhiker: Average resources, social skills
-            baseMoney *= 1.0f;   // $200
-            baseEnergy *= 1.0f;  // 100% energy
+
+            baseMoney *= 1.0f;
+            baseEnergy *= 1.0f;
             break;
-            
+
         case OriginType::EX_RACER:
-            // Ex-Racer: More money from racing, good condition
-            baseMoney *= 1.25f;  // $250
-            baseFuel *= 1.1f;    // 110% fuel
+
+            baseMoney *= 1.25f;
+            baseFuel *= 1.1f;
             break;
-            
+
         default:
             break;
     }
-    
-    // Car modifiers (updated for BMW, Volvo, Mercedes)
+
+
     switch (car) {
-        case CarType::SPORTS_COUPE: // BMW E30
-            // Fast but expensive and fuel-hungry
-            baseFuel *= 1.0f;    // Full tank (200L)
-            baseMoney -= 50.0f;  // Expensive to maintain
+        case CarType::SPORTS_COUPE:
+
+            baseFuel *= 1.0f;
+            baseMoney -= 50.0f;
             break;
-            
-        case CarType::OLD_SEDAN: // Volvo 940
-            // Reliable, balanced, economical
-            baseFuel *= 1.0f;    // Full tank (100L)
-            baseMoney += 0.0f;   // No extra cost
+
+        case CarType::OLD_SEDAN:
+
+            baseFuel *= 1.0f;
+            baseMoney += 0.0f;
             break;
-            
-        case CarType::OFFROAD_VAN: // Mercedes Sprinter
-            // Utility vehicle, smaller tank
-            baseFuel *= 0.75f;   // 75L tank
-            baseMoney -= 20.0f;  // Commercial vehicle maintenance
+
+        case CarType::OFFROAD_VAN:
+
+            baseFuel *= 0.75f;
+            baseMoney -= 20.0f;
             break;
-            
+
         default:
             break;
     }
-    
-    // Ensure values are within reasonable bounds
-    baseMoney = std::max(50.0f, baseMoney);      // Minimum $50
-    baseFuel = std::max(50.0f, std::min(100.0f, baseFuel));    // 50-100%
-    baseEnergy = std::max(80.0f, std::min(100.0f, baseEnergy)); // 80-100%
-    
+
+
+    baseMoney = std::max(50.0f, baseMoney);
+    baseFuel = std::max(50.0f, std::min(100.0f, baseFuel));
+    baseEnergy = std::max(80.0f, std::min(100.0f, baseEnergy));
+
     return StartingResources(baseMoney, baseFuel, baseEnergy);
 }

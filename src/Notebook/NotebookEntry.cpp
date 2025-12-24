@@ -2,7 +2,7 @@
 #include "PlayerState.h"
 #include <iostream>
 
-// === NotebookChoice методы ===
+
 
 bool NotebookChoice::isAvailable(const PlayerState* player) const {
     if (isDisabled) {
@@ -10,39 +10,39 @@ bool NotebookChoice::isAvailable(const PlayerState* player) const {
     }
 
     if (!player) {
-        return true;  // Если нет игрока, считаем доступным (для тестов)
+        return true;
     }
 
-    // Проверка энергии
+
     if (energyRequired > 0.0f && player->getEnergy() < energyRequired) {
         return false;
     }
 
-    // Проверка топлива
+
     if (fuelRequired > 0.0f && player->getFuel() < fuelRequired) {
         return false;
     }
 
-    // Проверка денег
+
     if (moneyRequired > 0.0f && player->getMoney() < moneyRequired) {
         return false;
     }
 
-    // Проверка принципов (для скрытых выборов)
+
     for (const auto& principle : requiredPrinciples) {
         if (!player->hasPrinciple(principle)) {
-            return false;  // Не показываем выбор, если нет нужного принципа
+            return false;
         }
     }
 
-    // Проверка черт
+
     for (const auto& trait : requiredTraits) {
         if (!player->hasTrait(trait)) {
             return false;
         }
     }
 
-    // Проверка сюжетных предметов
+
     for (const auto& item : requiredStoryItems) {
         if (!player->hasStoryItem(item)) {
             return false;
@@ -52,7 +52,7 @@ bool NotebookChoice::isAvailable(const PlayerState* player) const {
     return true;
 }
 
-// === NotebookEntry методы ===
+
 
 NotebookEntry::NotebookEntry()
     : id(""),

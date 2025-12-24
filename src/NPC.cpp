@@ -2,9 +2,9 @@
 #include <algorithm>
 #include <cmath>
 
-// ============================================================================
-// NPC Class Implementation
-// ============================================================================
+
+
+
 
 NPC::NPC(const std::string& id, const std::string& name,
          const std::string& bio, int initialLevel)
@@ -13,16 +13,16 @@ NPC::NPC(const std::string& id, const std::string& name,
       m_bio(bio),
       m_level(std::max(1, std::min(3, initialLevel))),
       m_experience(0),
-      m_relationship(0),          // Нейтральные отношения по умолчанию
-      m_metBefore(false),         // Еще не встречались
-      m_inParty(false),           // Не в команде
-      m_currentLocation("") {     // Местоположение не задано
+      m_relationship(0),
+      m_metBefore(false),
+      m_inParty(false),
+      m_currentLocation("") {
 }
 
 int NPC::getExperienceForNextLevel() const {
-    // Опыт для следующего уровня
-    // Уровень 1->2: 100 опыта
-    // Уровень 2->3: 250 опыта
+
+
+
     switch (m_level) {
         case 1:
             return 100;
@@ -30,18 +30,18 @@ int NPC::getExperienceForNextLevel() const {
             return 250;
         case 3:
         default:
-            return 0; // Максимальный уровень
+            return 0;
     }
 }
 
 void NPC::addExperience(int exp) {
     if (m_level >= 3) {
-        return; // Максимальный уровень достигнут
+        return;
     }
-    
+
     m_experience += exp;
-    
-    // Автоматическое повышение уровня
+
+
     while (canLevelUp()) {
         levelUp();
     }
@@ -58,18 +58,18 @@ void NPC::levelUp() {
     if (!canLevelUp()) {
         return;
     }
-    
+
     m_experience -= getExperienceForNextLevel();
     m_level++;
-    
-    // Не допускаем уровень выше 3
+
+
     if (m_level > 3) {
         m_level = 3;
         m_experience = 0;
     }
 }
 
-// Квесты (заглушка)
+
 void NPC::attachQuest(const std::string& questId) {
     if (!hasQuest(questId)) {
         m_attachedQuests.push_back(questId);
@@ -88,9 +88,9 @@ bool NPC::hasQuest(const std::string& questId) const {
            != m_attachedQuests.end();
 }
 
-// Система отношений
+
 void NPC::setRelationship(int value) {
-    // Ограничиваем значение от -100 до +100
+
     m_relationship = std::max(-100, std::min(100, value));
 }
 
@@ -98,9 +98,9 @@ void NPC::modifyRelationship(int delta) {
     setRelationship(m_relationship + delta);
 }
 
-// ============================================================================
-// NPCManager Class Implementation
-// ============================================================================
+
+
+
 
 NPCManager* NPCManager::s_instance = nullptr;
 
@@ -119,18 +119,18 @@ bool NPCManager::addNPC(std::unique_ptr<NPC> npc) {
     if (!npc) {
         return false;
     }
-    
+
     if (!hasSpace()) {
         return false;
     }
-    
-    // Check if NPC with same ID already exists
+
+
     for (const auto& existing : m_team) {
         if (existing->getId() == npc->getId()) {
-            return false; // Duplicate ID
+            return false;
         }
     }
-    
+
     m_team.push_back(std::move(npc));
     return true;
 }
@@ -168,9 +168,9 @@ void NPCManager::clear() {
     m_team.clear();
 }
 
-// ============================================================================
-// NPCFactory Implementation
-// ============================================================================
+
+
+
 
 namespace NPCFactory {
     std::unique_ptr<NPC> createMechanic(const std::string& id) {
@@ -181,20 +181,20 @@ namespace NPCFactory {
             "Experienced mechanic who knows everything about old Soviet cars.",
             1
         );
-        
-        // Установка способностей (заглушка)
+
+
         PassiveAbility passive("mechanic_passive", "Repair Expert",
                               "Reduces repair cost",
                               PassiveAbilityAttachment::CAR);
         npc->setPassiveAbility(passive);
-        
+
         ActiveAbility active("mechanic_active", "Emergency Repair",
                             "Quick repair on the road", 60.0f);
         npc->setActiveAbility(active);
-        
+
         return npc;
     }
-    
+
     std::unique_ptr<NPC> createTrader(const std::string& id) {
         auto npc = std::make_unique<NPC>(
             id,
@@ -203,19 +203,19 @@ namespace NPCFactory {
             "Former trader, knows all about prices and discounts.",
             1
         );
-        
+
         PassiveAbility passive("trader_passive", "Торговец / Trader",
                               "Скидки в магазинах / Shop discounts",
                               PassiveAbilityAttachment::MAIN_HERO);
         npc->setPassiveAbility(passive);
-        
+
         ActiveAbility active("trader_active", "Торг / Bargain",
                             "Дополнительная скидка / Extra discount", 120.0f);
         npc->setActiveAbility(active);
-        
+
         return npc;
     }
-    
+
     std::unique_ptr<NPC> createCompanion(const std::string& id) {
         auto npc = std::make_unique<NPC>(
             id,
@@ -224,19 +224,19 @@ namespace NPCFactory {
             "Life of the party, lifts the spirits of the whole team.",
             1
         );
-        
+
         PassiveAbility passive("companion_passive", "Friendliness",
                               "Dialogue bonuses",
                               PassiveAbilityAttachment::NPC);
         npc->setPassiveAbility(passive);
-        
+
         ActiveAbility active("companion_active", "Inspiration",
                             "Temporary team bonus", 180.0f);
         npc->setActiveAbility(active);
-        
+
         return npc;
     }
-    
+
     std::unique_ptr<NPC> createMedic(const std::string& id) {
         auto npc = std::make_unique<NPC>(
             id,
@@ -245,19 +245,19 @@ namespace NPCFactory {
             "Former paramedic, knows how to provide first aid.",
             1
         );
-        
+
         PassiveAbility passive("medic_passive", "Лечение / Healing",
                               "Эффективное лечение / Effective healing",
                               PassiveAbilityAttachment::MAIN_HERO);
         npc->setPassiveAbility(passive);
-        
+
         ActiveAbility active("medic_active", "Первая помощь / First Aid",
                             "Быстрое лечение / Quick heal", 90.0f);
         npc->setActiveAbility(active);
-        
+
         return npc;
     }
-    
+
     std::unique_ptr<NPC> createNavigator(const std::string& id) {
         auto npc = std::make_unique<NPC>(
             id,
@@ -266,22 +266,22 @@ namespace NPCFactory {
             "Experienced traveler, knows all the roads like the back of his hand.",
             1
         );
-        
+
         PassiveAbility passive("navigator_passive", "Навигация / Navigation",
                               "Экономия топлива / Fuel economy",
                               PassiveAbilityAttachment::CAR);
         npc->setPassiveAbility(passive);
-        
+
         ActiveAbility active("navigator_active", "Короткий путь / Shortcut",
                             "Находит короткий путь / Finds shortcut", 240.0f);
         npc->setActiveAbility(active);
-        
+
         return npc;
     }
 
-    // ============================================================================
-    // Русские персонажи
-    // ============================================================================
+
+
+
 
     std::unique_ptr<NPC> createRussianMechanic(const std::string& id) {
         auto npc = std::make_unique<NPC>(
@@ -298,7 +298,7 @@ namespace NPCFactory {
         npc->setPassiveAbility(passive);
 
         ActiveAbility active("mechanic_field_repair", "Полевой ремонт",
-                            "Восстановить 20% состояния машины", 72.0f);  // 3 дня кулдаун
+                            "Восстановить 20% состояния машины", 72.0f);
         npc->setActiveAbility(active);
 
         return npc;
@@ -319,7 +319,7 @@ namespace NPCFactory {
         npc->setPassiveAbility(passive);
 
         ActiveAbility active("unemployed_discount", "Знание цен",
-                            "Скидка -20% в магазинах", 168.0f);  // 7 дней кулдаун
+                            "Скидка -20% в магазинах", 168.0f);
         npc->setActiveAbility(active);
 
         return npc;
@@ -340,7 +340,7 @@ namespace NPCFactory {
         npc->setPassiveAbility(passive);
 
         ActiveAbility active("punk_concert", "Концерт",
-                            "Устроить концерт на заправке (+200₽, риск штрафа)", 120.0f);  // 5 дней
+                            "Устроить концерт на заправке (+200₽, риск штрафа)", 120.0f);
         npc->setActiveAbility(active);
 
         return npc;
@@ -382,7 +382,7 @@ namespace NPCFactory {
         npc->setPassiveAbility(passive);
 
         ActiveAbility active("trucker_radio", "Связь с дальнобойщиками",
-                            "Найти дешёвую заправку или получить инфо о дороге", 72.0f);  // 3 дня
+                            "Найти дешёвую заправку или получить инфо о дороге", 72.0f);
         npc->setActiveAbility(active);
 
         return npc;
@@ -403,7 +403,7 @@ namespace NPCFactory {
         npc->setPassiveAbility(passive);
 
         ActiveAbility active("student_help_driving", "Помощь в пути",
-                            "Может водить машину (восстановление энергии +20)", 48.0f);  // 2 дня
+                            "Может водить машину (восстановление энергии +20)", 48.0f);
         npc->setActiveAbility(active);
 
         return npc;
