@@ -199,78 +199,6 @@ unit_tests/fast:
 	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/build
 .PHONY : unit_tests/fast
 
-__/src/AbilityEffectManager.o: __/src/AbilityEffectManager.cpp.o
-.PHONY : __/src/AbilityEffectManager.o
-
-# target to build an object file
-__/src/AbilityEffectManager.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityEffectManager.cpp.o
-.PHONY : __/src/AbilityEffectManager.cpp.o
-
-__/src/AbilityEffectManager.i: __/src/AbilityEffectManager.cpp.i
-.PHONY : __/src/AbilityEffectManager.i
-
-# target to preprocess a source file
-__/src/AbilityEffectManager.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityEffectManager.cpp.i
-.PHONY : __/src/AbilityEffectManager.cpp.i
-
-__/src/AbilityEffectManager.s: __/src/AbilityEffectManager.cpp.s
-.PHONY : __/src/AbilityEffectManager.s
-
-# target to generate assembly for a file
-__/src/AbilityEffectManager.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityEffectManager.cpp.s
-.PHONY : __/src/AbilityEffectManager.cpp.s
-
-__/src/AbilityNode.o: __/src/AbilityNode.cpp.o
-.PHONY : __/src/AbilityNode.o
-
-# target to build an object file
-__/src/AbilityNode.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityNode.cpp.o
-.PHONY : __/src/AbilityNode.cpp.o
-
-__/src/AbilityNode.i: __/src/AbilityNode.cpp.i
-.PHONY : __/src/AbilityNode.i
-
-# target to preprocess a source file
-__/src/AbilityNode.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityNode.cpp.i
-.PHONY : __/src/AbilityNode.cpp.i
-
-__/src/AbilityNode.s: __/src/AbilityNode.cpp.s
-.PHONY : __/src/AbilityNode.s
-
-# target to generate assembly for a file
-__/src/AbilityNode.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityNode.cpp.s
-.PHONY : __/src/AbilityNode.cpp.s
-
-__/src/AbilityTreeSystem.o: __/src/AbilityTreeSystem.cpp.o
-.PHONY : __/src/AbilityTreeSystem.o
-
-# target to build an object file
-__/src/AbilityTreeSystem.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityTreeSystem.cpp.o
-.PHONY : __/src/AbilityTreeSystem.cpp.o
-
-__/src/AbilityTreeSystem.i: __/src/AbilityTreeSystem.cpp.i
-.PHONY : __/src/AbilityTreeSystem.i
-
-# target to preprocess a source file
-__/src/AbilityTreeSystem.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityTreeSystem.cpp.i
-.PHONY : __/src/AbilityTreeSystem.cpp.i
-
-__/src/AbilityTreeSystem.s: __/src/AbilityTreeSystem.cpp.s
-.PHONY : __/src/AbilityTreeSystem.s
-
-# target to generate assembly for a file
-__/src/AbilityTreeSystem.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityTreeSystem.cpp.s
-.PHONY : __/src/AbilityTreeSystem.cpp.s
-
 __/src/Car.o: __/src/Car.cpp.o
 .PHONY : __/src/Car.o
 
@@ -294,30 +222,6 @@ __/src/Car.s: __/src/Car.cpp.s
 __/src/Car.cpp.s:
 	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/Car.cpp.s
 .PHONY : __/src/Car.cpp.s
-
-__/src/Character.o: __/src/Character.cpp.o
-.PHONY : __/src/Character.o
-
-# target to build an object file
-__/src/Character.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/Character.cpp.o
-.PHONY : __/src/Character.cpp.o
-
-__/src/Character.i: __/src/Character.cpp.i
-.PHONY : __/src/Character.i
-
-# target to preprocess a source file
-__/src/Character.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/Character.cpp.i
-.PHONY : __/src/Character.cpp.i
-
-__/src/Character.s: __/src/Character.cpp.s
-.PHONY : __/src/Character.s
-
-# target to generate assembly for a file
-__/src/Character.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/Character.cpp.s
-.PHONY : __/src/Character.cpp.s
 
 __/src/DialogueManager.o: __/src/DialogueManager.cpp.o
 .PHONY : __/src/DialogueManager.o
@@ -463,30 +367,6 @@ __/src/GameTypes.cpp.s:
 	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/GameTypes.cpp.s
 .PHONY : __/src/GameTypes.cpp.s
 
-__/src/GridInventorySystem.o: __/src/GridInventorySystem.cpp.o
-.PHONY : __/src/GridInventorySystem.o
-
-# target to build an object file
-__/src/GridInventorySystem.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/GridInventorySystem.cpp.o
-.PHONY : __/src/GridInventorySystem.cpp.o
-
-__/src/GridInventorySystem.i: __/src/GridInventorySystem.cpp.i
-.PHONY : __/src/GridInventorySystem.i
-
-# target to preprocess a source file
-__/src/GridInventorySystem.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/GridInventorySystem.cpp.i
-.PHONY : __/src/GridInventorySystem.cpp.i
-
-__/src/GridInventorySystem.s: __/src/GridInventorySystem.cpp.s
-.PHONY : __/src/GridInventorySystem.s
-
-# target to generate assembly for a file
-__/src/GridInventorySystem.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/GridInventorySystem.cpp.s
-.PHONY : __/src/GridInventorySystem.cpp.s
-
 __/src/InventorySystem.o: __/src/InventorySystem.cpp.o
 .PHONY : __/src/InventorySystem.o
 
@@ -631,30 +511,6 @@ __/src/SaveSystem.cpp.s:
 	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/SaveSystem.cpp.s
 .PHONY : __/src/SaveSystem.cpp.s
 
-__/src/Structure.o: __/src/Structure.cpp.o
-.PHONY : __/src/Structure.o
-
-# target to build an object file
-__/src/Structure.cpp.o:
-	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/Structure.cpp.o
-.PHONY : __/src/Structure.cpp.o
-
-__/src/Structure.i: __/src/Structure.cpp.i
-.PHONY : __/src/Structure.i
-
-# target to preprocess a source file
-__/src/Structure.cpp.i:
-	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/Structure.cpp.i
-.PHONY : __/src/Structure.cpp.i
-
-__/src/Structure.s: __/src/Structure.cpp.s
-.PHONY : __/src/Structure.s
-
-# target to generate assembly for a file
-__/src/Structure.cpp.s:
-	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/kkurs_lib.dir/build.make tests/CMakeFiles/kkurs_lib.dir/__/src/Structure.cpp.s
-.PHONY : __/src/Structure.cpp.s
-
 test_companion_system.o: test_companion_system.cpp.o
 .PHONY : test_companion_system.o
 
@@ -678,6 +534,30 @@ test_companion_system.s: test_companion_system.cpp.s
 test_companion_system.cpp.s:
 	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/test_companion_system.cpp.s
 .PHONY : test_companion_system.cpp.s
+
+test_conditional_choices.o: test_conditional_choices.cpp.o
+.PHONY : test_conditional_choices.o
+
+# target to build an object file
+test_conditional_choices.cpp.o:
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/test_conditional_choices.cpp.o
+.PHONY : test_conditional_choices.cpp.o
+
+test_conditional_choices.i: test_conditional_choices.cpp.i
+.PHONY : test_conditional_choices.i
+
+# target to preprocess a source file
+test_conditional_choices.cpp.i:
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/test_conditional_choices.cpp.i
+.PHONY : test_conditional_choices.cpp.i
+
+test_conditional_choices.s: test_conditional_choices.cpp.s
+.PHONY : test_conditional_choices.s
+
+# target to generate assembly for a file
+test_conditional_choices.cpp.s:
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/test_conditional_choices.cpp.s
+.PHONY : test_conditional_choices.cpp.s
 
 test_day0_complete.o: test_day0_complete.cpp.o
 .PHONY : test_day0_complete.o
@@ -726,6 +606,30 @@ test_full_system_integration.s: test_full_system_integration.cpp.s
 test_full_system_integration.cpp.s:
 	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/test_full_system_integration.cpp.s
 .PHONY : test_full_system_integration.cpp.s
+
+test_out_of_fuel.o: test_out_of_fuel.cpp.o
+.PHONY : test_out_of_fuel.o
+
+# target to build an object file
+test_out_of_fuel.cpp.o:
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/test_out_of_fuel.cpp.o
+.PHONY : test_out_of_fuel.cpp.o
+
+test_out_of_fuel.i: test_out_of_fuel.cpp.i
+.PHONY : test_out_of_fuel.i
+
+# target to preprocess a source file
+test_out_of_fuel.cpp.i:
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/test_out_of_fuel.cpp.i
+.PHONY : test_out_of_fuel.cpp.i
+
+test_out_of_fuel.s: test_out_of_fuel.cpp.s
+.PHONY : test_out_of_fuel.s
+
+# target to generate assembly for a file
+test_out_of_fuel.cpp.s:
+	cd /Users/afftobuss/Documents/GitHub/kurs/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/test_out_of_fuel.cpp.s
+.PHONY : test_out_of_fuel.cpp.s
 
 unit/test_npc_dialogue.o: unit/test_npc_dialogue.cpp.o
 .PHONY : unit/test_npc_dialogue.o
@@ -814,21 +718,9 @@ help:
 	@echo "... test"
 	@echo "... kkurs_lib"
 	@echo "... unit_tests"
-	@echo "... __/src/AbilityEffectManager.o"
-	@echo "... __/src/AbilityEffectManager.i"
-	@echo "... __/src/AbilityEffectManager.s"
-	@echo "... __/src/AbilityNode.o"
-	@echo "... __/src/AbilityNode.i"
-	@echo "... __/src/AbilityNode.s"
-	@echo "... __/src/AbilityTreeSystem.o"
-	@echo "... __/src/AbilityTreeSystem.i"
-	@echo "... __/src/AbilityTreeSystem.s"
 	@echo "... __/src/Car.o"
 	@echo "... __/src/Car.i"
 	@echo "... __/src/Car.s"
-	@echo "... __/src/Character.o"
-	@echo "... __/src/Character.i"
-	@echo "... __/src/Character.s"
 	@echo "... __/src/DialogueManager.o"
 	@echo "... __/src/DialogueManager.i"
 	@echo "... __/src/DialogueManager.s"
@@ -847,9 +739,6 @@ help:
 	@echo "... __/src/GameTypes.o"
 	@echo "... __/src/GameTypes.i"
 	@echo "... __/src/GameTypes.s"
-	@echo "... __/src/GridInventorySystem.o"
-	@echo "... __/src/GridInventorySystem.i"
-	@echo "... __/src/GridInventorySystem.s"
 	@echo "... __/src/InventorySystem.o"
 	@echo "... __/src/InventorySystem.i"
 	@echo "... __/src/InventorySystem.s"
@@ -868,18 +757,21 @@ help:
 	@echo "... __/src/SaveSystem.o"
 	@echo "... __/src/SaveSystem.i"
 	@echo "... __/src/SaveSystem.s"
-	@echo "... __/src/Structure.o"
-	@echo "... __/src/Structure.i"
-	@echo "... __/src/Structure.s"
 	@echo "... test_companion_system.o"
 	@echo "... test_companion_system.i"
 	@echo "... test_companion_system.s"
+	@echo "... test_conditional_choices.o"
+	@echo "... test_conditional_choices.i"
+	@echo "... test_conditional_choices.s"
 	@echo "... test_day0_complete.o"
 	@echo "... test_day0_complete.i"
 	@echo "... test_day0_complete.s"
 	@echo "... test_full_system_integration.o"
 	@echo "... test_full_system_integration.i"
 	@echo "... test_full_system_integration.s"
+	@echo "... test_out_of_fuel.o"
+	@echo "... test_out_of_fuel.i"
+	@echo "... test_out_of_fuel.s"
 	@echo "... unit/test_npc_dialogue.o"
 	@echo "... unit/test_npc_dialogue.i"
 	@echo "... unit/test_npc_dialogue.s"

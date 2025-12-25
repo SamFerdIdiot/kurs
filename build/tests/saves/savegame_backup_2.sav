@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "timestamp": 1766593904,
-  "energy": 67,
-  "money": 1200,
-  "fuel": 60,
+  "timestamp": 1766593165,
+  "energy": 80,
+  "money": 1250,
+  "fuel": 85,
   "vehicleCondition": 100,
-  "mood": 55,
-  "reputation": 10,
+  "mood": 85,
+  "reputation": 15,
   "origin": 0,
   "carType": 0,
   "currentNodeId": 0,
@@ -37,7 +37,7 @@
     "understanding_context"
   ],
   "traits": [
-
+    "analytical"
   ],
   "storyItems": [
     "technical_journal"

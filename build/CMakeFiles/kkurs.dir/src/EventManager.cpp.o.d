@@ -781,9 +781,6 @@ CMakeFiles/kkurs.dir/src/EventManager.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/default_searcher.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/not_fn.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/perfect_forward.h \
-  /Users/afftobuss/Documents/GitHub/kurs/include/AbilityTreeSystem.h \
-  /Users/afftobuss/Documents/GitHub/kurs/include/AbilityNode.h \
-  /Users/afftobuss/Documents/GitHub/kurs/include/AbilityTypes.h \
   /Users/afftobuss/Documents/GitHub/kurs/include/GameStateManager.h \
   /Users/afftobuss/Documents/GitHub/kurs/include/PlayerState.h \
   /Users/afftobuss/Documents/GitHub/kurs/include/GameTypes.h \

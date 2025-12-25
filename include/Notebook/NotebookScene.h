@@ -254,6 +254,7 @@ private:
 
 
     void loadDay0_TransitionPresent();
+    void loadDay0_DemoFinale();
 
 
     void loadDay1_BorderCrossing();

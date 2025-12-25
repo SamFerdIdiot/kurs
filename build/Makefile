@@ -262,78 +262,6 @@ gtest_main/fast:
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build
 .PHONY : gtest_main/fast
 
-src/AbilityEffectManager.o: src/AbilityEffectManager.cpp.o
-.PHONY : src/AbilityEffectManager.o
-
-# target to build an object file
-src/AbilityEffectManager.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/AbilityEffectManager.cpp.o
-.PHONY : src/AbilityEffectManager.cpp.o
-
-src/AbilityEffectManager.i: src/AbilityEffectManager.cpp.i
-.PHONY : src/AbilityEffectManager.i
-
-# target to preprocess a source file
-src/AbilityEffectManager.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/AbilityEffectManager.cpp.i
-.PHONY : src/AbilityEffectManager.cpp.i
-
-src/AbilityEffectManager.s: src/AbilityEffectManager.cpp.s
-.PHONY : src/AbilityEffectManager.s
-
-# target to generate assembly for a file
-src/AbilityEffectManager.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/AbilityEffectManager.cpp.s
-.PHONY : src/AbilityEffectManager.cpp.s
-
-src/AbilityNode.o: src/AbilityNode.cpp.o
-.PHONY : src/AbilityNode.o
-
-# target to build an object file
-src/AbilityNode.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/AbilityNode.cpp.o
-.PHONY : src/AbilityNode.cpp.o
-
-src/AbilityNode.i: src/AbilityNode.cpp.i
-.PHONY : src/AbilityNode.i
-
-# target to preprocess a source file
-src/AbilityNode.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/AbilityNode.cpp.i
-.PHONY : src/AbilityNode.cpp.i
-
-src/AbilityNode.s: src/AbilityNode.cpp.s
-.PHONY : src/AbilityNode.s
-
-# target to generate assembly for a file
-src/AbilityNode.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/AbilityNode.cpp.s
-.PHONY : src/AbilityNode.cpp.s
-
-src/AbilityTreeSystem.o: src/AbilityTreeSystem.cpp.o
-.PHONY : src/AbilityTreeSystem.o
-
-# target to build an object file
-src/AbilityTreeSystem.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/AbilityTreeSystem.cpp.o
-.PHONY : src/AbilityTreeSystem.cpp.o
-
-src/AbilityTreeSystem.i: src/AbilityTreeSystem.cpp.i
-.PHONY : src/AbilityTreeSystem.i
-
-# target to preprocess a source file
-src/AbilityTreeSystem.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/AbilityTreeSystem.cpp.i
-.PHONY : src/AbilityTreeSystem.cpp.i
-
-src/AbilityTreeSystem.s: src/AbilityTreeSystem.cpp.s
-.PHONY : src/AbilityTreeSystem.s
-
-# target to generate assembly for a file
-src/AbilityTreeSystem.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/AbilityTreeSystem.cpp.s
-.PHONY : src/AbilityTreeSystem.cpp.s
-
 src/Car.o: src/Car.cpp.o
 .PHONY : src/Car.o
 
@@ -357,30 +285,6 @@ src/Car.s: src/Car.cpp.s
 src/Car.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/Car.cpp.s
 .PHONY : src/Car.cpp.s
-
-src/Character.o: src/Character.cpp.o
-.PHONY : src/Character.o
-
-# target to build an object file
-src/Character.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/Character.cpp.o
-.PHONY : src/Character.cpp.o
-
-src/Character.i: src/Character.cpp.i
-.PHONY : src/Character.i
-
-# target to preprocess a source file
-src/Character.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/Character.cpp.i
-.PHONY : src/Character.cpp.i
-
-src/Character.s: src/Character.cpp.s
-.PHONY : src/Character.s
-
-# target to generate assembly for a file
-src/Character.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/Character.cpp.s
-.PHONY : src/Character.cpp.s
 
 src/DialogueManager.o: src/DialogueManager.cpp.o
 .PHONY : src/DialogueManager.o
@@ -478,30 +382,6 @@ src/ExperienceSystem.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/ExperienceSystem.cpp.s
 .PHONY : src/ExperienceSystem.cpp.s
 
-src/FuelSystem.o: src/FuelSystem.cpp.o
-.PHONY : src/FuelSystem.o
-
-# target to build an object file
-src/FuelSystem.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/FuelSystem.cpp.o
-.PHONY : src/FuelSystem.cpp.o
-
-src/FuelSystem.i: src/FuelSystem.cpp.i
-.PHONY : src/FuelSystem.i
-
-# target to preprocess a source file
-src/FuelSystem.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/FuelSystem.cpp.i
-.PHONY : src/FuelSystem.cpp.i
-
-src/FuelSystem.s: src/FuelSystem.cpp.s
-.PHONY : src/FuelSystem.s
-
-# target to generate assembly for a file
-src/FuelSystem.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/FuelSystem.cpp.s
-.PHONY : src/FuelSystem.cpp.s
-
 src/GameStateManager.o: src/GameStateManager.cpp.o
 .PHONY : src/GameStateManager.o
 
@@ -549,30 +429,6 @@ src/GameTypes.s: src/GameTypes.cpp.s
 src/GameTypes.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/GameTypes.cpp.s
 .PHONY : src/GameTypes.cpp.s
-
-src/GridInventorySystem.o: src/GridInventorySystem.cpp.o
-.PHONY : src/GridInventorySystem.o
-
-# target to build an object file
-src/GridInventorySystem.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/GridInventorySystem.cpp.o
-.PHONY : src/GridInventorySystem.cpp.o
-
-src/GridInventorySystem.i: src/GridInventorySystem.cpp.i
-.PHONY : src/GridInventorySystem.i
-
-# target to preprocess a source file
-src/GridInventorySystem.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/GridInventorySystem.cpp.i
-.PHONY : src/GridInventorySystem.cpp.i
-
-src/GridInventorySystem.s: src/GridInventorySystem.cpp.s
-.PHONY : src/GridInventorySystem.s
-
-# target to generate assembly for a file
-src/GridInventorySystem.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/GridInventorySystem.cpp.s
-.PHONY : src/GridInventorySystem.cpp.s
 
 src/InventorySystem.o: src/InventorySystem.cpp.o
 .PHONY : src/InventorySystem.o
@@ -838,30 +694,6 @@ src/SceneManager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/SceneManager.cpp.s
 .PHONY : src/SceneManager.cpp.s
 
-src/Structure.o: src/Structure.cpp.o
-.PHONY : src/Structure.o
-
-# target to build an object file
-src/Structure.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/Structure.cpp.o
-.PHONY : src/Structure.cpp.o
-
-src/Structure.i: src/Structure.cpp.i
-.PHONY : src/Structure.i
-
-# target to preprocess a source file
-src/Structure.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/Structure.cpp.i
-.PHONY : src/Structure.cpp.i
-
-src/Structure.s: src/Structure.cpp.s
-.PHONY : src/Structure.s
-
-# target to generate assembly for a file
-src/Structure.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/kkurs.dir/build.make CMakeFiles/kkurs.dir/src/Structure.cpp.s
-.PHONY : src/Structure.cpp.s
-
 src/UI/HUDPanel.o: src/UI/HUDPanel.cpp.o
 .PHONY : src/UI/HUDPanel.o
 
@@ -978,21 +810,9 @@ help:
 	@echo "... kkurs"
 	@echo "... kkurs_lib"
 	@echo "... unit_tests"
-	@echo "... src/AbilityEffectManager.o"
-	@echo "... src/AbilityEffectManager.i"
-	@echo "... src/AbilityEffectManager.s"
-	@echo "... src/AbilityNode.o"
-	@echo "... src/AbilityNode.i"
-	@echo "... src/AbilityNode.s"
-	@echo "... src/AbilityTreeSystem.o"
-	@echo "... src/AbilityTreeSystem.i"
-	@echo "... src/AbilityTreeSystem.s"
 	@echo "... src/Car.o"
 	@echo "... src/Car.i"
 	@echo "... src/Car.s"
-	@echo "... src/Character.o"
-	@echo "... src/Character.i"
-	@echo "... src/Character.s"
 	@echo "... src/DialogueManager.o"
 	@echo "... src/DialogueManager.i"
 	@echo "... src/DialogueManager.s"
@@ -1005,18 +825,12 @@ help:
 	@echo "... src/ExperienceSystem.o"
 	@echo "... src/ExperienceSystem.i"
 	@echo "... src/ExperienceSystem.s"
-	@echo "... src/FuelSystem.o"
-	@echo "... src/FuelSystem.i"
-	@echo "... src/FuelSystem.s"
 	@echo "... src/GameStateManager.o"
 	@echo "... src/GameStateManager.i"
 	@echo "... src/GameStateManager.s"
 	@echo "... src/GameTypes.o"
 	@echo "... src/GameTypes.i"
 	@echo "... src/GameTypes.s"
-	@echo "... src/GridInventorySystem.o"
-	@echo "... src/GridInventorySystem.i"
-	@echo "... src/GridInventorySystem.s"
 	@echo "... src/InventorySystem.o"
 	@echo "... src/InventorySystem.i"
 	@echo "... src/InventorySystem.s"
@@ -1050,9 +864,6 @@ help:
 	@echo "... src/SceneManager.o"
 	@echo "... src/SceneManager.i"
 	@echo "... src/SceneManager.s"
-	@echo "... src/Structure.o"
-	@echo "... src/Structure.i"
-	@echo "... src/Structure.s"
 	@echo "... src/UI/HUDPanel.o"
 	@echo "... src/UI/HUDPanel.i"
 	@echo "... src/UI/HUDPanel.s"

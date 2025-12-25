@@ -75,6 +75,7 @@ NotebookScene::NotebookScene(PlayerState* playerState, const std::string& initia
     loadDay0_Provocation();
     loadDay0_GarageFinale();
     loadDay0_TransitionPresent();
+    loadDay0_DemoFinale();
 
 
     loadDay1_BorderCrossing();
@@ -1741,11 +1742,67 @@ void NotebookScene::loadDay0_TransitionPresent() {
 
     NotebookChoice choice1;
     choice1.text = "[Продолжить путешествие]";
-    choice1.nextEntryIds = {"day1_border_crossing"};
+    choice1.nextEntryIds = {"day0_demo_finale"};
     entry.addChoice(choice1);
 
     m_entries[entry.id] = entry;
     std::cout << "[NotebookScene] Loaded Day 0 entry (Transition to Present): " << entry.id << std::endl;
+}
+
+
+void NotebookScene::loadDay0_DemoFinale() {
+    NotebookEntry entry("day0_demo_finale", EntryType::PRESENT,
+        "=== КОНЕЦ ДНЯ 0: ДЕМОНСТРАЦИЯ ===\n\n"
+
+        "Спасибо за прохождение демонстрации!\n\n"
+
+        "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
+
+        "ВЫ ПРОШЛИ:\n"
+        "• Пролог: Стук в дверь и первое задание\n"
+        "• Выбор пути обучения (Ветки А, Б, В, Г)\n"
+        "• Получение принципов и артефактов\n"
+        "• Провокация и кульминация\n"
+        "• Финал: Получение машины и начало пути\n\n"
+
+        "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
+
+        "ИГРОВЫЕ СИСТЕМЫ:\n"
+        "✓ Ресурсы: Энергия, топливо, деньги, состояние машины\n"
+        "✓ Принципы: Системы обучения через опыт\n"
+        "✓ Черты характера: Развитие личности через выборы\n"
+        "✓ Артефакты: Коллекционирование значимых предметов\n"
+        "✓ Условные выборы: Выборы, зависящие от ваших достижений\n\n"
+
+        "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
+
+        "ВАШЕ СОСТОЯНИЕ:\n");
+
+    entry.printSpeed = 50.0f;
+    entry.canSkip = true;
+
+    NotebookChoice choiceMainMenu;
+    choiceMainMenu.text = "[Вернуться в главное меню]";
+    choiceMainMenu.action = [this](PlayerState* player) {
+        m_isFinished = true;
+        m_nextScene = SceneType::MAIN_MENU;
+        std::cout << "[Day0 Demo] Возврат в главное меню" << std::endl;
+    };
+    choiceMainMenu.nextEntryIds = {};
+    entry.addChoice(choiceMainMenu);
+
+    NotebookChoice choiceExit;
+    choiceExit.text = "[Выход из игры]";
+    choiceExit.action = [this](PlayerState* player) {
+        m_isFinished = true;
+        m_nextScene = SceneType::EXIT;
+        std::cout << "[Day0 Demo] Выход из игры" << std::endl;
+    };
+    choiceExit.nextEntryIds = {};
+    entry.addChoice(choiceExit);
+
+    m_entries[entry.id] = entry;
+    std::cout << "[NotebookScene] Loaded Day 0 Demo Finale: " << entry.id << std::endl;
 }
 
 

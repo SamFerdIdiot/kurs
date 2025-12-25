@@ -72,24 +72,10 @@ include tests/CMakeFiles/kkurs_lib.dir/flags.make
 tests/CMakeFiles/kkurs_lib.dir/codegen:
 .PHONY : tests/CMakeFiles/kkurs_lib.dir/codegen
 
-tests/CMakeFiles/kkurs_lib.dir/__/src/Character.cpp.o: tests/CMakeFiles/kkurs_lib.dir/flags.make
-tests/CMakeFiles/kkurs_lib.dir/__/src/Character.cpp.o: /Users/afftobuss/Documents/GitHub/kurs/src/Character.cpp
-tests/CMakeFiles/kkurs_lib.dir/__/src/Character.cpp.o: tests/CMakeFiles/kkurs_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/Character.cpp.o"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/kkurs_lib.dir/__/src/Character.cpp.o -MF CMakeFiles/kkurs_lib.dir/__/src/Character.cpp.o.d -o CMakeFiles/kkurs_lib.dir/__/src/Character.cpp.o -c /Users/afftobuss/Documents/GitHub/kurs/src/Character.cpp
-
-tests/CMakeFiles/kkurs_lib.dir/__/src/Character.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/kkurs_lib.dir/__/src/Character.cpp.i"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/afftobuss/Documents/GitHub/kurs/src/Character.cpp > CMakeFiles/kkurs_lib.dir/__/src/Character.cpp.i
-
-tests/CMakeFiles/kkurs_lib.dir/__/src/Character.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/kkurs_lib.dir/__/src/Character.cpp.s"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/afftobuss/Documents/GitHub/kurs/src/Character.cpp -o CMakeFiles/kkurs_lib.dir/__/src/Character.cpp.s
-
 tests/CMakeFiles/kkurs_lib.dir/__/src/Car.cpp.o: tests/CMakeFiles/kkurs_lib.dir/flags.make
 tests/CMakeFiles/kkurs_lib.dir/__/src/Car.cpp.o: /Users/afftobuss/Documents/GitHub/kurs/src/Car.cpp
 tests/CMakeFiles/kkurs_lib.dir/__/src/Car.cpp.o: tests/CMakeFiles/kkurs_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/Car.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/Car.cpp.o"
 	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/kkurs_lib.dir/__/src/Car.cpp.o -MF CMakeFiles/kkurs_lib.dir/__/src/Car.cpp.o.d -o CMakeFiles/kkurs_lib.dir/__/src/Car.cpp.o -c /Users/afftobuss/Documents/GitHub/kurs/src/Car.cpp
 
 tests/CMakeFiles/kkurs_lib.dir/__/src/Car.cpp.i: cmake_force
@@ -103,7 +89,7 @@ tests/CMakeFiles/kkurs_lib.dir/__/src/Car.cpp.s: cmake_force
 tests/CMakeFiles/kkurs_lib.dir/__/src/PlayerState.cpp.o: tests/CMakeFiles/kkurs_lib.dir/flags.make
 tests/CMakeFiles/kkurs_lib.dir/__/src/PlayerState.cpp.o: /Users/afftobuss/Documents/GitHub/kurs/src/PlayerState.cpp
 tests/CMakeFiles/kkurs_lib.dir/__/src/PlayerState.cpp.o: tests/CMakeFiles/kkurs_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/PlayerState.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/PlayerState.cpp.o"
 	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/kkurs_lib.dir/__/src/PlayerState.cpp.o -MF CMakeFiles/kkurs_lib.dir/__/src/PlayerState.cpp.o.d -o CMakeFiles/kkurs_lib.dir/__/src/PlayerState.cpp.o -c /Users/afftobuss/Documents/GitHub/kurs/src/PlayerState.cpp
 
 tests/CMakeFiles/kkurs_lib.dir/__/src/PlayerState.cpp.i: cmake_force
@@ -117,7 +103,7 @@ tests/CMakeFiles/kkurs_lib.dir/__/src/PlayerState.cpp.s: cmake_force
 tests/CMakeFiles/kkurs_lib.dir/__/src/InventorySystem.cpp.o: tests/CMakeFiles/kkurs_lib.dir/flags.make
 tests/CMakeFiles/kkurs_lib.dir/__/src/InventorySystem.cpp.o: /Users/afftobuss/Documents/GitHub/kurs/src/InventorySystem.cpp
 tests/CMakeFiles/kkurs_lib.dir/__/src/InventorySystem.cpp.o: tests/CMakeFiles/kkurs_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/InventorySystem.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/InventorySystem.cpp.o"
 	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/kkurs_lib.dir/__/src/InventorySystem.cpp.o -MF CMakeFiles/kkurs_lib.dir/__/src/InventorySystem.cpp.o.d -o CMakeFiles/kkurs_lib.dir/__/src/InventorySystem.cpp.o -c /Users/afftobuss/Documents/GitHub/kurs/src/InventorySystem.cpp
 
 tests/CMakeFiles/kkurs_lib.dir/__/src/InventorySystem.cpp.i: cmake_force
@@ -128,24 +114,10 @@ tests/CMakeFiles/kkurs_lib.dir/__/src/InventorySystem.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/kkurs_lib.dir/__/src/InventorySystem.cpp.s"
 	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/afftobuss/Documents/GitHub/kurs/src/InventorySystem.cpp -o CMakeFiles/kkurs_lib.dir/__/src/InventorySystem.cpp.s
 
-tests/CMakeFiles/kkurs_lib.dir/__/src/GridInventorySystem.cpp.o: tests/CMakeFiles/kkurs_lib.dir/flags.make
-tests/CMakeFiles/kkurs_lib.dir/__/src/GridInventorySystem.cpp.o: /Users/afftobuss/Documents/GitHub/kurs/src/GridInventorySystem.cpp
-tests/CMakeFiles/kkurs_lib.dir/__/src/GridInventorySystem.cpp.o: tests/CMakeFiles/kkurs_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/GridInventorySystem.cpp.o"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/kkurs_lib.dir/__/src/GridInventorySystem.cpp.o -MF CMakeFiles/kkurs_lib.dir/__/src/GridInventorySystem.cpp.o.d -o CMakeFiles/kkurs_lib.dir/__/src/GridInventorySystem.cpp.o -c /Users/afftobuss/Documents/GitHub/kurs/src/GridInventorySystem.cpp
-
-tests/CMakeFiles/kkurs_lib.dir/__/src/GridInventorySystem.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/kkurs_lib.dir/__/src/GridInventorySystem.cpp.i"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/afftobuss/Documents/GitHub/kurs/src/GridInventorySystem.cpp > CMakeFiles/kkurs_lib.dir/__/src/GridInventorySystem.cpp.i
-
-tests/CMakeFiles/kkurs_lib.dir/__/src/GridInventorySystem.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/kkurs_lib.dir/__/src/GridInventorySystem.cpp.s"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/afftobuss/Documents/GitHub/kurs/src/GridInventorySystem.cpp -o CMakeFiles/kkurs_lib.dir/__/src/GridInventorySystem.cpp.s
-
 tests/CMakeFiles/kkurs_lib.dir/__/src/NPC.cpp.o: tests/CMakeFiles/kkurs_lib.dir/flags.make
 tests/CMakeFiles/kkurs_lib.dir/__/src/NPC.cpp.o: /Users/afftobuss/Documents/GitHub/kurs/src/NPC.cpp
 tests/CMakeFiles/kkurs_lib.dir/__/src/NPC.cpp.o: tests/CMakeFiles/kkurs_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/NPC.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/NPC.cpp.o"
 	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/kkurs_lib.dir/__/src/NPC.cpp.o -MF CMakeFiles/kkurs_lib.dir/__/src/NPC.cpp.o.d -o CMakeFiles/kkurs_lib.dir/__/src/NPC.cpp.o -c /Users/afftobuss/Documents/GitHub/kurs/src/NPC.cpp
 
 tests/CMakeFiles/kkurs_lib.dir/__/src/NPC.cpp.i: cmake_force
@@ -159,7 +131,7 @@ tests/CMakeFiles/kkurs_lib.dir/__/src/NPC.cpp.s: cmake_force
 tests/CMakeFiles/kkurs_lib.dir/__/src/DialogueManager.cpp.o: tests/CMakeFiles/kkurs_lib.dir/flags.make
 tests/CMakeFiles/kkurs_lib.dir/__/src/DialogueManager.cpp.o: /Users/afftobuss/Documents/GitHub/kurs/src/DialogueManager.cpp
 tests/CMakeFiles/kkurs_lib.dir/__/src/DialogueManager.cpp.o: tests/CMakeFiles/kkurs_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/DialogueManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/DialogueManager.cpp.o"
 	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/kkurs_lib.dir/__/src/DialogueManager.cpp.o -MF CMakeFiles/kkurs_lib.dir/__/src/DialogueManager.cpp.o.d -o CMakeFiles/kkurs_lib.dir/__/src/DialogueManager.cpp.o -c /Users/afftobuss/Documents/GitHub/kurs/src/DialogueManager.cpp
 
 tests/CMakeFiles/kkurs_lib.dir/__/src/DialogueManager.cpp.i: cmake_force
@@ -173,7 +145,7 @@ tests/CMakeFiles/kkurs_lib.dir/__/src/DialogueManager.cpp.s: cmake_force
 tests/CMakeFiles/kkurs_lib.dir/__/src/GameTypes.cpp.o: tests/CMakeFiles/kkurs_lib.dir/flags.make
 tests/CMakeFiles/kkurs_lib.dir/__/src/GameTypes.cpp.o: /Users/afftobuss/Documents/GitHub/kurs/src/GameTypes.cpp
 tests/CMakeFiles/kkurs_lib.dir/__/src/GameTypes.cpp.o: tests/CMakeFiles/kkurs_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/GameTypes.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/GameTypes.cpp.o"
 	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/kkurs_lib.dir/__/src/GameTypes.cpp.o -MF CMakeFiles/kkurs_lib.dir/__/src/GameTypes.cpp.o.d -o CMakeFiles/kkurs_lib.dir/__/src/GameTypes.cpp.o -c /Users/afftobuss/Documents/GitHub/kurs/src/GameTypes.cpp
 
 tests/CMakeFiles/kkurs_lib.dir/__/src/GameTypes.cpp.i: cmake_force
@@ -187,7 +159,7 @@ tests/CMakeFiles/kkurs_lib.dir/__/src/GameTypes.cpp.s: cmake_force
 tests/CMakeFiles/kkurs_lib.dir/__/src/ExperienceSystem.cpp.o: tests/CMakeFiles/kkurs_lib.dir/flags.make
 tests/CMakeFiles/kkurs_lib.dir/__/src/ExperienceSystem.cpp.o: /Users/afftobuss/Documents/GitHub/kurs/src/ExperienceSystem.cpp
 tests/CMakeFiles/kkurs_lib.dir/__/src/ExperienceSystem.cpp.o: tests/CMakeFiles/kkurs_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/ExperienceSystem.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/ExperienceSystem.cpp.o"
 	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/kkurs_lib.dir/__/src/ExperienceSystem.cpp.o -MF CMakeFiles/kkurs_lib.dir/__/src/ExperienceSystem.cpp.o.d -o CMakeFiles/kkurs_lib.dir/__/src/ExperienceSystem.cpp.o -c /Users/afftobuss/Documents/GitHub/kurs/src/ExperienceSystem.cpp
 
 tests/CMakeFiles/kkurs_lib.dir/__/src/ExperienceSystem.cpp.i: cmake_force
@@ -198,52 +170,10 @@ tests/CMakeFiles/kkurs_lib.dir/__/src/ExperienceSystem.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/kkurs_lib.dir/__/src/ExperienceSystem.cpp.s"
 	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/afftobuss/Documents/GitHub/kurs/src/ExperienceSystem.cpp -o CMakeFiles/kkurs_lib.dir/__/src/ExperienceSystem.cpp.s
 
-tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityNode.cpp.o: tests/CMakeFiles/kkurs_lib.dir/flags.make
-tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityNode.cpp.o: /Users/afftobuss/Documents/GitHub/kurs/src/AbilityNode.cpp
-tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityNode.cpp.o: tests/CMakeFiles/kkurs_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityNode.cpp.o"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityNode.cpp.o -MF CMakeFiles/kkurs_lib.dir/__/src/AbilityNode.cpp.o.d -o CMakeFiles/kkurs_lib.dir/__/src/AbilityNode.cpp.o -c /Users/afftobuss/Documents/GitHub/kurs/src/AbilityNode.cpp
-
-tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityNode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/kkurs_lib.dir/__/src/AbilityNode.cpp.i"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/afftobuss/Documents/GitHub/kurs/src/AbilityNode.cpp > CMakeFiles/kkurs_lib.dir/__/src/AbilityNode.cpp.i
-
-tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityNode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/kkurs_lib.dir/__/src/AbilityNode.cpp.s"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/afftobuss/Documents/GitHub/kurs/src/AbilityNode.cpp -o CMakeFiles/kkurs_lib.dir/__/src/AbilityNode.cpp.s
-
-tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityTreeSystem.cpp.o: tests/CMakeFiles/kkurs_lib.dir/flags.make
-tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityTreeSystem.cpp.o: /Users/afftobuss/Documents/GitHub/kurs/src/AbilityTreeSystem.cpp
-tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityTreeSystem.cpp.o: tests/CMakeFiles/kkurs_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityTreeSystem.cpp.o"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityTreeSystem.cpp.o -MF CMakeFiles/kkurs_lib.dir/__/src/AbilityTreeSystem.cpp.o.d -o CMakeFiles/kkurs_lib.dir/__/src/AbilityTreeSystem.cpp.o -c /Users/afftobuss/Documents/GitHub/kurs/src/AbilityTreeSystem.cpp
-
-tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityTreeSystem.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/kkurs_lib.dir/__/src/AbilityTreeSystem.cpp.i"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/afftobuss/Documents/GitHub/kurs/src/AbilityTreeSystem.cpp > CMakeFiles/kkurs_lib.dir/__/src/AbilityTreeSystem.cpp.i
-
-tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityTreeSystem.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/kkurs_lib.dir/__/src/AbilityTreeSystem.cpp.s"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/afftobuss/Documents/GitHub/kurs/src/AbilityTreeSystem.cpp -o CMakeFiles/kkurs_lib.dir/__/src/AbilityTreeSystem.cpp.s
-
-tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityEffectManager.cpp.o: tests/CMakeFiles/kkurs_lib.dir/flags.make
-tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityEffectManager.cpp.o: /Users/afftobuss/Documents/GitHub/kurs/src/AbilityEffectManager.cpp
-tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityEffectManager.cpp.o: tests/CMakeFiles/kkurs_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityEffectManager.cpp.o"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityEffectManager.cpp.o -MF CMakeFiles/kkurs_lib.dir/__/src/AbilityEffectManager.cpp.o.d -o CMakeFiles/kkurs_lib.dir/__/src/AbilityEffectManager.cpp.o -c /Users/afftobuss/Documents/GitHub/kurs/src/AbilityEffectManager.cpp
-
-tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityEffectManager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/kkurs_lib.dir/__/src/AbilityEffectManager.cpp.i"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/afftobuss/Documents/GitHub/kurs/src/AbilityEffectManager.cpp > CMakeFiles/kkurs_lib.dir/__/src/AbilityEffectManager.cpp.i
-
-tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityEffectManager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/kkurs_lib.dir/__/src/AbilityEffectManager.cpp.s"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/afftobuss/Documents/GitHub/kurs/src/AbilityEffectManager.cpp -o CMakeFiles/kkurs_lib.dir/__/src/AbilityEffectManager.cpp.s
-
 tests/CMakeFiles/kkurs_lib.dir/__/src/EventManager.cpp.o: tests/CMakeFiles/kkurs_lib.dir/flags.make
 tests/CMakeFiles/kkurs_lib.dir/__/src/EventManager.cpp.o: /Users/afftobuss/Documents/GitHub/kurs/src/EventManager.cpp
 tests/CMakeFiles/kkurs_lib.dir/__/src/EventManager.cpp.o: tests/CMakeFiles/kkurs_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/EventManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/EventManager.cpp.o"
 	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/kkurs_lib.dir/__/src/EventManager.cpp.o -MF CMakeFiles/kkurs_lib.dir/__/src/EventManager.cpp.o.d -o CMakeFiles/kkurs_lib.dir/__/src/EventManager.cpp.o -c /Users/afftobuss/Documents/GitHub/kurs/src/EventManager.cpp
 
 tests/CMakeFiles/kkurs_lib.dir/__/src/EventManager.cpp.i: cmake_force
@@ -257,7 +187,7 @@ tests/CMakeFiles/kkurs_lib.dir/__/src/EventManager.cpp.s: cmake_force
 tests/CMakeFiles/kkurs_lib.dir/__/src/EventFactory.cpp.o: tests/CMakeFiles/kkurs_lib.dir/flags.make
 tests/CMakeFiles/kkurs_lib.dir/__/src/EventFactory.cpp.o: /Users/afftobuss/Documents/GitHub/kurs/src/EventFactory.cpp
 tests/CMakeFiles/kkurs_lib.dir/__/src/EventFactory.cpp.o: tests/CMakeFiles/kkurs_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/EventFactory.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/EventFactory.cpp.o"
 	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/kkurs_lib.dir/__/src/EventFactory.cpp.o -MF CMakeFiles/kkurs_lib.dir/__/src/EventFactory.cpp.o.d -o CMakeFiles/kkurs_lib.dir/__/src/EventFactory.cpp.o -c /Users/afftobuss/Documents/GitHub/kurs/src/EventFactory.cpp
 
 tests/CMakeFiles/kkurs_lib.dir/__/src/EventFactory.cpp.i: cmake_force
@@ -271,7 +201,7 @@ tests/CMakeFiles/kkurs_lib.dir/__/src/EventFactory.cpp.s: cmake_force
 tests/CMakeFiles/kkurs_lib.dir/__/src/QuestManager.cpp.o: tests/CMakeFiles/kkurs_lib.dir/flags.make
 tests/CMakeFiles/kkurs_lib.dir/__/src/QuestManager.cpp.o: /Users/afftobuss/Documents/GitHub/kurs/src/QuestManager.cpp
 tests/CMakeFiles/kkurs_lib.dir/__/src/QuestManager.cpp.o: tests/CMakeFiles/kkurs_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/QuestManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/QuestManager.cpp.o"
 	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/kkurs_lib.dir/__/src/QuestManager.cpp.o -MF CMakeFiles/kkurs_lib.dir/__/src/QuestManager.cpp.o.d -o CMakeFiles/kkurs_lib.dir/__/src/QuestManager.cpp.o -c /Users/afftobuss/Documents/GitHub/kurs/src/QuestManager.cpp
 
 tests/CMakeFiles/kkurs_lib.dir/__/src/QuestManager.cpp.i: cmake_force
@@ -282,24 +212,10 @@ tests/CMakeFiles/kkurs_lib.dir/__/src/QuestManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/kkurs_lib.dir/__/src/QuestManager.cpp.s"
 	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/afftobuss/Documents/GitHub/kurs/src/QuestManager.cpp -o CMakeFiles/kkurs_lib.dir/__/src/QuestManager.cpp.s
 
-tests/CMakeFiles/kkurs_lib.dir/__/src/Structure.cpp.o: tests/CMakeFiles/kkurs_lib.dir/flags.make
-tests/CMakeFiles/kkurs_lib.dir/__/src/Structure.cpp.o: /Users/afftobuss/Documents/GitHub/kurs/src/Structure.cpp
-tests/CMakeFiles/kkurs_lib.dir/__/src/Structure.cpp.o: tests/CMakeFiles/kkurs_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/Structure.cpp.o"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/kkurs_lib.dir/__/src/Structure.cpp.o -MF CMakeFiles/kkurs_lib.dir/__/src/Structure.cpp.o.d -o CMakeFiles/kkurs_lib.dir/__/src/Structure.cpp.o -c /Users/afftobuss/Documents/GitHub/kurs/src/Structure.cpp
-
-tests/CMakeFiles/kkurs_lib.dir/__/src/Structure.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/kkurs_lib.dir/__/src/Structure.cpp.i"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/afftobuss/Documents/GitHub/kurs/src/Structure.cpp > CMakeFiles/kkurs_lib.dir/__/src/Structure.cpp.i
-
-tests/CMakeFiles/kkurs_lib.dir/__/src/Structure.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/kkurs_lib.dir/__/src/Structure.cpp.s"
-	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/afftobuss/Documents/GitHub/kurs/src/Structure.cpp -o CMakeFiles/kkurs_lib.dir/__/src/Structure.cpp.s
-
 tests/CMakeFiles/kkurs_lib.dir/__/src/GameStateManager.cpp.o: tests/CMakeFiles/kkurs_lib.dir/flags.make
 tests/CMakeFiles/kkurs_lib.dir/__/src/GameStateManager.cpp.o: /Users/afftobuss/Documents/GitHub/kurs/src/GameStateManager.cpp
 tests/CMakeFiles/kkurs_lib.dir/__/src/GameStateManager.cpp.o: tests/CMakeFiles/kkurs_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/GameStateManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/GameStateManager.cpp.o"
 	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/kkurs_lib.dir/__/src/GameStateManager.cpp.o -MF CMakeFiles/kkurs_lib.dir/__/src/GameStateManager.cpp.o.d -o CMakeFiles/kkurs_lib.dir/__/src/GameStateManager.cpp.o -c /Users/afftobuss/Documents/GitHub/kurs/src/GameStateManager.cpp
 
 tests/CMakeFiles/kkurs_lib.dir/__/src/GameStateManager.cpp.i: cmake_force
@@ -313,7 +229,7 @@ tests/CMakeFiles/kkurs_lib.dir/__/src/GameStateManager.cpp.s: cmake_force
 tests/CMakeFiles/kkurs_lib.dir/__/src/SaveSystem.cpp.o: tests/CMakeFiles/kkurs_lib.dir/flags.make
 tests/CMakeFiles/kkurs_lib.dir/__/src/SaveSystem.cpp.o: /Users/afftobuss/Documents/GitHub/kurs/src/SaveSystem.cpp
 tests/CMakeFiles/kkurs_lib.dir/__/src/SaveSystem.cpp.o: tests/CMakeFiles/kkurs_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/SaveSystem.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/SaveSystem.cpp.o"
 	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/kkurs_lib.dir/__/src/SaveSystem.cpp.o -MF CMakeFiles/kkurs_lib.dir/__/src/SaveSystem.cpp.o.d -o CMakeFiles/kkurs_lib.dir/__/src/SaveSystem.cpp.o -c /Users/afftobuss/Documents/GitHub/kurs/src/SaveSystem.cpp
 
 tests/CMakeFiles/kkurs_lib.dir/__/src/SaveSystem.cpp.i: cmake_force
@@ -327,7 +243,7 @@ tests/CMakeFiles/kkurs_lib.dir/__/src/SaveSystem.cpp.s: cmake_force
 tests/CMakeFiles/kkurs_lib.dir/__/src/Notebook/NotebookEntry.cpp.o: tests/CMakeFiles/kkurs_lib.dir/flags.make
 tests/CMakeFiles/kkurs_lib.dir/__/src/Notebook/NotebookEntry.cpp.o: /Users/afftobuss/Documents/GitHub/kurs/src/Notebook/NotebookEntry.cpp
 tests/CMakeFiles/kkurs_lib.dir/__/src/Notebook/NotebookEntry.cpp.o: tests/CMakeFiles/kkurs_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/Notebook/NotebookEntry.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/Notebook/NotebookEntry.cpp.o"
 	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/kkurs_lib.dir/__/src/Notebook/NotebookEntry.cpp.o -MF CMakeFiles/kkurs_lib.dir/__/src/Notebook/NotebookEntry.cpp.o.d -o CMakeFiles/kkurs_lib.dir/__/src/Notebook/NotebookEntry.cpp.o -c /Users/afftobuss/Documents/GitHub/kurs/src/Notebook/NotebookEntry.cpp
 
 tests/CMakeFiles/kkurs_lib.dir/__/src/Notebook/NotebookEntry.cpp.i: cmake_force
@@ -340,22 +256,16 @@ tests/CMakeFiles/kkurs_lib.dir/__/src/Notebook/NotebookEntry.cpp.s: cmake_force
 
 # Object files for target kkurs_lib
 kkurs_lib_OBJECTS = \
-"CMakeFiles/kkurs_lib.dir/__/src/Character.cpp.o" \
 "CMakeFiles/kkurs_lib.dir/__/src/Car.cpp.o" \
 "CMakeFiles/kkurs_lib.dir/__/src/PlayerState.cpp.o" \
 "CMakeFiles/kkurs_lib.dir/__/src/InventorySystem.cpp.o" \
-"CMakeFiles/kkurs_lib.dir/__/src/GridInventorySystem.cpp.o" \
 "CMakeFiles/kkurs_lib.dir/__/src/NPC.cpp.o" \
 "CMakeFiles/kkurs_lib.dir/__/src/DialogueManager.cpp.o" \
 "CMakeFiles/kkurs_lib.dir/__/src/GameTypes.cpp.o" \
 "CMakeFiles/kkurs_lib.dir/__/src/ExperienceSystem.cpp.o" \
-"CMakeFiles/kkurs_lib.dir/__/src/AbilityNode.cpp.o" \
-"CMakeFiles/kkurs_lib.dir/__/src/AbilityTreeSystem.cpp.o" \
-"CMakeFiles/kkurs_lib.dir/__/src/AbilityEffectManager.cpp.o" \
 "CMakeFiles/kkurs_lib.dir/__/src/EventManager.cpp.o" \
 "CMakeFiles/kkurs_lib.dir/__/src/EventFactory.cpp.o" \
 "CMakeFiles/kkurs_lib.dir/__/src/QuestManager.cpp.o" \
-"CMakeFiles/kkurs_lib.dir/__/src/Structure.cpp.o" \
 "CMakeFiles/kkurs_lib.dir/__/src/GameStateManager.cpp.o" \
 "CMakeFiles/kkurs_lib.dir/__/src/SaveSystem.cpp.o" \
 "CMakeFiles/kkurs_lib.dir/__/src/Notebook/NotebookEntry.cpp.o"
@@ -363,28 +273,22 @@ kkurs_lib_OBJECTS = \
 # External object files for target kkurs_lib
 kkurs_lib_EXTERNAL_OBJECTS =
 
-tests/libkkurs_lib.a: tests/CMakeFiles/kkurs_lib.dir/__/src/Character.cpp.o
 tests/libkkurs_lib.a: tests/CMakeFiles/kkurs_lib.dir/__/src/Car.cpp.o
 tests/libkkurs_lib.a: tests/CMakeFiles/kkurs_lib.dir/__/src/PlayerState.cpp.o
 tests/libkkurs_lib.a: tests/CMakeFiles/kkurs_lib.dir/__/src/InventorySystem.cpp.o
-tests/libkkurs_lib.a: tests/CMakeFiles/kkurs_lib.dir/__/src/GridInventorySystem.cpp.o
 tests/libkkurs_lib.a: tests/CMakeFiles/kkurs_lib.dir/__/src/NPC.cpp.o
 tests/libkkurs_lib.a: tests/CMakeFiles/kkurs_lib.dir/__/src/DialogueManager.cpp.o
 tests/libkkurs_lib.a: tests/CMakeFiles/kkurs_lib.dir/__/src/GameTypes.cpp.o
 tests/libkkurs_lib.a: tests/CMakeFiles/kkurs_lib.dir/__/src/ExperienceSystem.cpp.o
-tests/libkkurs_lib.a: tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityNode.cpp.o
-tests/libkkurs_lib.a: tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityTreeSystem.cpp.o
-tests/libkkurs_lib.a: tests/CMakeFiles/kkurs_lib.dir/__/src/AbilityEffectManager.cpp.o
 tests/libkkurs_lib.a: tests/CMakeFiles/kkurs_lib.dir/__/src/EventManager.cpp.o
 tests/libkkurs_lib.a: tests/CMakeFiles/kkurs_lib.dir/__/src/EventFactory.cpp.o
 tests/libkkurs_lib.a: tests/CMakeFiles/kkurs_lib.dir/__/src/QuestManager.cpp.o
-tests/libkkurs_lib.a: tests/CMakeFiles/kkurs_lib.dir/__/src/Structure.cpp.o
 tests/libkkurs_lib.a: tests/CMakeFiles/kkurs_lib.dir/__/src/GameStateManager.cpp.o
 tests/libkkurs_lib.a: tests/CMakeFiles/kkurs_lib.dir/__/src/SaveSystem.cpp.o
 tests/libkkurs_lib.a: tests/CMakeFiles/kkurs_lib.dir/__/src/Notebook/NotebookEntry.cpp.o
 tests/libkkurs_lib.a: tests/CMakeFiles/kkurs_lib.dir/build.make
 tests/libkkurs_lib.a: tests/CMakeFiles/kkurs_lib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Linking CXX static library libkkurs_lib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/afftobuss/Documents/GitHub/kurs/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX static library libkkurs_lib.a"
 	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && $(CMAKE_COMMAND) -P CMakeFiles/kkurs_lib.dir/cmake_clean_target.cmake
 	cd /Users/afftobuss/Documents/GitHub/kurs/build/tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/kkurs_lib.dir/link.txt --verbose=$(VERBOSE)
 

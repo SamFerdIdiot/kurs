@@ -1,3 +1,0 @@
-/Users/afftobuss/Documents/GitHub/kurs/build_release/_deps/googletest-subbuild/CMakeFiles/googletest-populate.dir
-/Users/afftobuss/Documents/GitHub/kurs/build_release/_deps/googletest-subbuild/CMakeFiles/edit_cache.dir
-/Users/afftobuss/Documents/GitHub/kurs/build_release/_deps/googletest-subbuild/CMakeFiles/rebuild_cache.dir

@@ -1,16 +1,16 @@
 {
   "version": 1,
-  "timestamp": 1766416749,
-  "energy": 95,
-  "money": 1000,
-  "fuel": 85,
+  "timestamp": 1766594203,
+  "energy": 100,
+  "money": 985,
+  "fuel": 100,
   "vehicleCondition": 100,
   "mood": 70,
   "reputation": 0,
   "origin": 0,
   "carType": 0,
   "currentNodeId": 0,
-  "currentNotebookEntryId": "event_outcome_meet_punk_choice0",
+  "currentNotebookEntryId": "day0_garage_finale",
   "experience": {
     "level": 1,
     "exp": 0,
@@ -27,12 +27,13 @@
 
   ],
   "principles": [
-
+    "resource_efficient"
   ],
   "traits": [
-
+    "practical",
+    "patient"
   ],
   "storyItems": [
-
+    "spare_starter"
   ]
 }

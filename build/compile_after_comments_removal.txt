@@ -1,0 +1,55 @@
+[  1%] Building CXX object CMakeFiles/kkurs.dir/src/main.cpp.o
+[  3%] Building CXX object CMakeFiles/kkurs.dir/src/SceneManager.cpp.o
+[  5%] Building CXX object CMakeFiles/kkurs.dir/src/PlayerState.cpp.o
+[  7%] Building CXX object CMakeFiles/kkurs.dir/src/MainMenuScene.cpp.o
+[  9%] Building CXX object CMakeFiles/kkurs.dir/src/Car.cpp.o
+[ 11%] Building CXX object CMakeFiles/kkurs.dir/src/ExperienceSystem.cpp.o
+[ 12%] Building CXX object CMakeFiles/kkurs.dir/src/InventorySystem.cpp.o
+[ 14%] Building CXX object CMakeFiles/kkurs.dir/src/GameTypes.cpp.o
+[ 16%] Building CXX object CMakeFiles/kkurs.dir/src/NPC.cpp.o
+[ 18%] Building CXX object CMakeFiles/kkurs.dir/src/DialogueManager.cpp.o
+[ 20%] Building CXX object CMakeFiles/kkurs.dir/src/QuestManager.cpp.o
+[ 22%] Building CXX object CMakeFiles/kkurs.dir/src/EventManager.cpp.o
+[ 24%] Building CXX object CMakeFiles/kkurs.dir/src/EventFactory.cpp.o
+[ 25%] Building CXX object CMakeFiles/kkurs.dir/src/ResourceEventSystem.cpp.o
+[ 27%] Building CXX object CMakeFiles/kkurs.dir/src/GameStateManager.cpp.o
+[ 29%] Building CXX object CMakeFiles/kkurs.dir/src/SaveSystem.cpp.o
+[ 31%] Building CXX object CMakeFiles/kkurs.dir/src/UI/UIComponent.cpp.o
+[ 33%] Building CXX object CMakeFiles/kkurs.dir/src/UI/HUDPanel.cpp.o
+[ 35%] Building CXX object CMakeFiles/kkurs.dir/src/UI/ResourceBar.cpp.o
+[ 37%] Building CXX object CMakeFiles/kkurs.dir/src/Notebook/NotebookScene.cpp.o
+[ 38%] Building CXX object CMakeFiles/kkurs.dir/src/Notebook/NotebookEntry.cpp.o
+[ 40%] Building CXX object CMakeFiles/kkurs.dir/src/Notebook/ThoughtSystem.cpp.o
+[ 42%] Linking CXX executable kkurs
+Copying fonts to build directory
+Copying Press_Start_2P font to build directory
+Copying Jersey_10 font to build directory
+[ 42%] Built target kkurs
+[ 44%] Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/Car.cpp.o
+[ 46%] Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/PlayerState.cpp.o
+[ 48%] Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/InventorySystem.cpp.o
+[ 50%] Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/NPC.cpp.o
+[ 51%] Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/DialogueManager.cpp.o
+[ 53%] Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/GameTypes.cpp.o
+[ 55%] Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/ExperienceSystem.cpp.o
+[ 57%] Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/EventManager.cpp.o
+[ 59%] Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/EventFactory.cpp.o
+[ 61%] Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/QuestManager.cpp.o
+[ 62%] Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/GameStateManager.cpp.o
+[ 64%] Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/SaveSystem.cpp.o
+[ 66%] Building CXX object tests/CMakeFiles/kkurs_lib.dir/__/src/Notebook/NotebookEntry.cpp.o
+[ 68%] Linking CXX static library libkkurs_lib.a
+[ 68%] Built target kkurs_lib
+[ 72%] Built target gtest
+[ 75%] Built target gtest_main
+[ 77%] Building CXX object tests/CMakeFiles/unit_tests.dir/unit/test_npc_dialogue.cpp.o
+[ 79%] Building CXX object tests/CMakeFiles/unit_tests.dir/unit/test_quest_manager.cpp.o
+[ 81%] Building CXX object tests/CMakeFiles/unit_tests.dir/test_companion_system.cpp.o
+[ 83%] Building CXX object tests/CMakeFiles/unit_tests.dir/test_day0_complete.cpp.o
+[ 85%] Building CXX object tests/CMakeFiles/unit_tests.dir/test_full_system_integration.cpp.o
+[ 87%] Building CXX object tests/CMakeFiles/unit_tests.dir/test_out_of_fuel.cpp.o
+[ 88%] Building CXX object tests/CMakeFiles/unit_tests.dir/test_conditional_choices.cpp.o
+[ 90%] Linking CXX executable unit_tests
+[ 92%] Built target unit_tests
+[ 96%] Built target gmock
+[100%] Built target gmock_main

@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "timestamp": 1766416730,
+  "timestamp": 1766594193,
   "energy": 100,
-  "money": 1000,
+  "money": 985,
   "fuel": 100,
   "vehicleCondition": 100,
   "mood": 70,
@@ -10,7 +10,7 @@
   "origin": 0,
   "carType": 0,
   "currentNodeId": 0,
-  "currentNotebookEntryId": "demo_choice",
+  "currentNotebookEntryId": "day0_branch_d_5",
   "experience": {
     "level": 1,
     "exp": 0,
@@ -27,12 +27,12 @@
 
   ],
   "principles": [
-
+    "resource_efficient"
   ],
   "traits": [
-
+    "practical"
   ],
   "storyItems": [
-
+    "spare_starter"
   ]
 }
